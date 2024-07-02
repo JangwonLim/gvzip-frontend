@@ -6,14 +6,14 @@ export const register = async (formData, profileImage) => {
     const data = new FormData();
     const json = JSON.stringify(formData);
 
-    data.append('json', json);
+    data.append('signUpRequest', json);
     if (profileImage) {
       data.append('profileImage', profileImage);
     }
 
     // FormData 확인
     for (let [key, value] of data.entries()) {
-      console.log(key, value);
+      console.log(key);
     }
 
     const response = await axios.post(`${API_URL}/signup`, data, {
