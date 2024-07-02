@@ -8,7 +8,7 @@ import {
   GetCity,
 } from "react-country-state-city";
 import Introduction from "../../../../components/SignUpComponents/Introduction";
-
+/* eslint-disable no-unused-vars */
 function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPrevPage }) {
   const fieldOptions = [
     '영업', '경영/사무', '마케팅',

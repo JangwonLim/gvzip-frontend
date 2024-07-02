@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import './BottomSheet.css';
@@ -15,7 +15,7 @@ function BottomSheet({Content, isBottomSheetOpen, closeBottomSheet, contentProps
     if (isBottomSheetOpen) {
       set({y: 0, height: window.innerHeight});
     }
-  }, [isBottomSheetOpen])
+  })
 
   const bind = useDrag(({ last, movement: [, my], memo = y.get() }) => {
     if (last) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Archive.css';
 import './../../styles/defaultDesign.css';
+/* eslint-disable no-unused-vars */
 import Dropdown from "../../components/Filter/Dropdown";
 import Card from "../../components/Card/Card";
 import Modal from "../../components/ProfileDetail/Modal";
@@ -142,7 +143,7 @@ function Archive() {
 
   useEffect(() => {
     fetchArchData();
-  }, []);
+  });
 
   // ************** 6/10 필터 redux랑 연결시키는 거 하고 있었음
   // useEffect(() => {

@@ -23,7 +23,7 @@ function MobileFilterContent({contentProps}) {
   const [countriesList, setCountriesList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
-
+  // eslint-disable-next-line 
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
 

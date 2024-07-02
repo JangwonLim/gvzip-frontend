@@ -4,6 +4,7 @@ import './SearchBar.css';
 
 function SearchBar({isFiltered}) {
   const [isDropdownView, setDropdownView] = useState(false);
+  /* eslint-disable no-unused-vars */
   const [title, setTitle] = useState('전체');
   const allOptions = ['국가', '이름', '대학교명']; // All possible options
   const [searchList, setSearchList] = useState([...allOptions]);

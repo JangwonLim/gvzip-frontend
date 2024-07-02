@@ -13,7 +13,7 @@ export const register = async (formData, profileImage) => {
 
     // FormData 확인
     for (let [key, value] of data.entries()) {
-      console.log(value);
+      console.log(key, value);
     }
 
     const response = await axios.post(`${API_URL}/signup`, data, {

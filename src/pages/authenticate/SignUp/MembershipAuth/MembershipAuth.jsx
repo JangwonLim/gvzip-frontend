@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import '../ProfileInfo.css';
 import '../../../../styles/defaultDesign.css';
 import { validateDateOfBirth } from "../../../../utils/validate";
 
 function MembershipAuth() {
-  const navigate = useNavigate();
-
   const alumniType = useSelector((state) => state.alumniType);
 
   const alumniTitle = () => {

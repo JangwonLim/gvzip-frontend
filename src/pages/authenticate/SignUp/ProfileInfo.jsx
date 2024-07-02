@@ -14,7 +14,7 @@ import { register } from "../../../service/postService";
 import ParentForm from "./Parent/ParentForm";
 import StudentForm from "./Student/StudentForm";
 import StaffForm from "./Staff/StaffForm";
-
+/* eslint-disable no-unused-vars */
 function ProfileInfo() {
   const alumniType = useSelector((state) => state.alumniType);
 
