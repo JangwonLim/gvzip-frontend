@@ -1,0 +1,123 @@
+@import '../../styles/colors.css';
+
+.Card--container {
+  position: relative;
+  height: 268px;
+  width: 316px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E8E8E8;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.05);
+}
+
+.Card--container-header {
+  height: 28px;
+  width: 100%;
+  background-color: #727272;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* .Card--header-text {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 140%;
+  color: white;
+  margin-left: 12px;
+} */
+
+
+.Card--picture-container {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background-color: #DCE0E5;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.Card--content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 112px;
+  width: auto;
+  text-align: center;
+}
+
+.Card--content-name {
+  font-size: 20px;
+  line-height: 120%;
+  word-spacing: -0.5%;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.Card--content-location {
+  display: flex;
+  align-items: center;
+  width: auto; height: auto;
+  margin-bottom: 20px;
+  color: #6B6B6B;
+}
+
+.Card--content-location-img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.Card--content-button {
+  width: 258px;
+  height: 30px;
+  border: 1px solid #E8E8E8;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #6B6B6B;
+}
+
+@media (max-width: 768px) {
+  .Card--container {
+    width: 173px; height: 148px;
+    border: 0.56px solid #E8E8E8;
+    background-color: white;
+    box-shadow: 0px 0px 16.68px 0px rgba(0,0,0,0.05);
+    border-radius: 4.45px;
+    gap: 23px;
+    cursor: pointer;
+  }
+
+  .Card--header-container {
+    display: flex;
+    gap: 19px;
+  }
+
+  .Card--header-text {
+    width: 66px; height: auto;
+  }
+
+  .Card--header-img {
+    height: 64px; width: 64px;
+  }
+
+  .Card--content-container {
+    width: 149px; height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .Card--content-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    color: var(--black-text);
+    margin: 0;
+  }
+}

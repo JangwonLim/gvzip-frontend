@@ -1,0 +1,132 @@
+.Dropdown--container {
+  width: 322px;
+  height: 100%;
+  /* min-height: 100vh; */
+  background-color: #E9E8E8;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Dropdown--header {
+  width: 226px; 
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 86px;
+  margin-top: 48px;
+}
+
+.Dropdown--header-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Dropdown--exit {
+  width: 14px; height: 14px;
+  background-image: url('../../img/exit.png');
+  background-position: center;
+  border: none;
+  margin: 5px;
+}
+
+.Dropdown--menu {
+  width: 226px; height: auto;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+}
+
+.Dropdown--menu-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.Dropdown--menu-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Dropdown--expand {
+  width: 10px; height: 5px;
+  border: none;
+  background-image: url("./../../img/filter-arrow.png");
+  background-position: center;
+  transition: transform 250ms ease-out;
+  margin: 9.5px 7px;
+
+  &.rotate {
+    transform: rotate(-180deg);
+  }
+}
+
+.Dropdown--menu-divider {
+  width: 226px; height: 1px;
+  background-color: #808080;
+  margin-bottom: 32px;
+}
+
+.Dropdown--content {
+  display: none;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 32px;
+
+  &.active {
+    display: block;
+  }
+}
+
+.Dropdown--content ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  row-gap: 16px;
+}
+
+.Dropdown--content li {
+  height: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.Dropdown--content input {
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1px solid #808080;
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  margin: 2px;
+}
+
+.Dropdown--content input:checked {
+  background: #808080;
+  background-image: url('./../../img/filter-checked.png');
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.Dropdown--content input:checked::after {
+  display: block;
+}
+
+.Dropdown--menu-location {
+  margin-bottom: 32px;
+}

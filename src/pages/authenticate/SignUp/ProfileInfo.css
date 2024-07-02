@@ -1,0 +1,268 @@
+@import './../../../styles/colors.css';
+
+@media (max-width: 768px) {
+
+  input::placeholder {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--grey2);
+  }
+
+  .Profile--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .Profile--header {
+    width: 100%; height: auto;
+    padding: 12px 20px; 
+    background-color: black;
+    color: white;
+  }
+
+  .Profile--header-back-button {
+    width: 36px; height: 36px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  .Profile--content-container {
+    width: 100%; height: auto;
+    max-width: 342px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .Profile--content-section {
+    width: 100%; height: auto;
+    display: flex;
+    flex-direction: column;
+
+    &.narrow-gap {
+      gap: 8px;
+    }
+
+    &.wide-gap {
+      gap: 12px;
+    }
+
+    &.huge-gap {
+      gap: 20px;
+    }
+
+    &.row {
+      flex-direction: row;
+    }
+  }
+
+  .Profile--text-input-box {
+    width: 100%; height: 42px;
+    border: none;
+    border-bottom: 1px solid var(--grey1);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+
+    &.center {
+      text-align: center;
+    }
+  }
+
+  .Profile--text-input-box:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+  }
+
+  .Profile--button-container {
+    width: 100%; height: auto;
+    display: flex;
+    gap: 8px;
+    
+    &.wide-gap {
+      gap: 13px;
+    }
+
+    &.fields {
+      flex-wrap: wrap;
+    }
+
+    &.navigate {
+      margin: 12px 0;
+    }
+  }
+
+  .Profile--button {
+    width: 100%; height: 40px;
+    border: 1px solid var(--grey2);
+    background-color: var(--bg-grey);
+    border-radius: 30px;
+    color: var(--grey3);
+
+    &.field {
+      width: calc((100% - 16px) / 3);
+    }
+
+    &.selected {
+      background-color: var(--grey4);
+      border: 1px solid var(--grey4);
+      color: var(--bg-grey);
+    }
+  }
+
+  .Profile--warning-msg {
+    color: red;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+  }
+
+  .Profile--dropdown-menu {
+    width: 100%; height: 40px;
+    border: 1px solid var(--grey2);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    background-color: var(--bg-grey);
+
+    /* arrow */
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../../assets/profile-select-arrow.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: calc(100% - 12px);
+
+    &.placeholder {
+      color: #A8B3BD;
+    }
+  }
+
+  .Profile--dropdown-menu:focus {
+    border: 1px solid black;
+    outline: none;
+  }
+
+  .Profile--navigate-button {
+    width: 100%; height: 52px;
+    border: 1px solid black;
+    background-color: black;
+    border-radius: 30px;
+    color: white;
+
+    &.prev {
+      background-color: white;
+      color: var(--black-text);
+      border: 1px solid black;
+    }
+  }
+
+  .Profile--navigate-button:disabled {
+    border: none;
+    cursor: not-allowed;
+    opacity: 0.45;
+    color: rgba(256, 256, 256, 0.45);
+  }
+
+  .Profile--add-education {
+    width: 100%; height: 64px;
+    border: 1px dashed var(--grey2);
+    border-radius: 4px;
+    background-color: var(--bg-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--grey2);
+  }
+
+  .Profile--checkbox-input input[type="checkbox"] {
+    display: none;
+  }
+
+  .Profile--checkbox-input {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+    margin-top: 16px;
+
+    &::before {
+      content: "";
+      background-color: white;
+    }
+
+    &:checked {
+      background-color: blue;
+    }
+  }
+
+  .Profile--checkbox-input .checkmark {
+    position: relative;
+    width: 22px; height: 22px;
+    border: 1px solid var(--grey2);
+    opacity: 0.4;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+
+  .Profile--checkbox-input input:checked ~ .checkmark {
+    background-color: #3479FF;
+    border: 1px solid #3479FF;
+    opacity: 1;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .Profile--checkbox-input .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .Profile--checkbox-input input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .Profile--checkbox-input .checkmark:after {
+    width: 100%; height: 100%;
+    background-image: url('../../../assets/profile-check.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+  }
+
+  .label-text {
+    color: var(--black-text);
+    opacity: 0.4;
+  }
+
+  .Profile--checkbox-input input:checked ~ .label-text {
+    color: var(--black-text);
+    opacity: 1;
+  }
+
+  /* .Profile--education-history-container {
+    width: 100%; height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--black-text);
+  } */
+
+}

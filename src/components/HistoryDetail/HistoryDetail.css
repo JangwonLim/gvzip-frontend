@@ -1,0 +1,9 @@
+@import '../../styles/colors.css';
+
+.HistoryDetail--container {
+  width: 100%; height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--black-text);
+}

@@ -1,0 +1,10 @@
+@import '../../../../styles/colors.css';
+
+.MembershipAuth--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; height: auto;
+  max-width: 342px;
+}

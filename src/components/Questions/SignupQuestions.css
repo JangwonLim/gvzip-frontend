@@ -1,0 +1,44 @@
+@import './../../defaultDesign.css';
+
+.Signup--content-box {
+  height: auto;
+  width: 73px;
+}
+
+.Signup--content-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+  text-align: center;
+}
+
+.Signup--content-title {
+  height: 48px;
+  width: auto;
+  line-height: 48px;
+}
+
+.Signup--content-input {
+  display: flex;
+  width: 329px;
+  border: 1px solid #7A7A7A;
+  border-radius: 12px;
+  padding: 20px;
+  align-items: center;
+  font-size: 24px;
+  margin-top: 4px;
+  background-color: transparent;
+}
+
+.Signup--content-button-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: auto;
+  width: 683px;
+  margin-top: 4px;
+}

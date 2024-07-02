@@ -1,0 +1,36 @@
+.MobileSlider--container {
+  display: flex;
+  width: 318px;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  position: relative;
+}
+
+.MobilSlider--wrapper {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.MobileSlider--card {
+  min-width: 100%;
+  /* box-sizing: border-box; */
+}
+
+.MobileSlider--page-container {
+  width: 318px; height: auto;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: end;
+}
+
+.MobileSlider--page-wrapper {
+  width: 47px; height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #B9B9B9;
+  border: none;
+  border-radius: 20px;
+}

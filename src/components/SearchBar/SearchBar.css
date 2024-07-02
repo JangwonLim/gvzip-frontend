@@ -1,0 +1,63 @@
+@import '../../styles/colors.css';
+
+.SearchBar-container {
+  width: 100%;
+  height: 52px;
+  border-radius: 30px;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+
+  &.active {
+    width: 85.03%;
+  }
+}
+
+.SearchBar--input {
+  margin-left: 10px;
+  height: 26.83px;
+  width: 380px;
+  overflow-x: scroll;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.SearchBar--icon {
+  width: 24px;
+  height: 24px;
+  background-image: url("./../../img/search-icon.png");
+  background-position: center;
+  background-size: cover;
+  border: none;
+  background-color: transparent;
+  margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .SearchBar-container {
+    width: 100%; height: 36px;
+    background-color: var(--bg-grey);
+    border: 1.5px solid var(--grey1);
+  }
+
+  .SearchBar--icon {
+    width: 16px; height: 16px;
+    margin-left: 12px;
+  }
+
+  .SearchBar--input {
+    width: auto; height: 28px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    margin-left: 8px;
+  }
+
+  .SearchBar--input::placeholder {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--grey3);
+  }
+}

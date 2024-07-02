@@ -1,0 +1,7 @@
+.Landing--ddg-card-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  margin: 0 48px;
+  gap: 24px;
+}

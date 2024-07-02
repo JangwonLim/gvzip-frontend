@@ -1,0 +1,19 @@
+.FilterOption--container {
+  width: 57.24px; height: 18px;
+  padding: 0 8px 0 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+.FilterOption--content {
+  width: auto; height: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.FilterOption--img {
+  width: auto; height: auto;
+  padding: 4px;
+}

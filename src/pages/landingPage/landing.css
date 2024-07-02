@@ -1,0 +1,194 @@
+@import './../../styles/colors.css';
+
+.Landing--poster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 772px;
+  /* width: 100vw; */
+  padding: 0 120px;
+}
+
+.Landing--slogan {
+  font-size: 96px;
+  line-height: 110%;
+  font-weight: bold;
+  text-align: center;
+  /* min-width: 905px; */
+}
+
+/* About */
+.Landing--about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 312px;
+  /* width: 100vw; */
+  background-color: #000;
+  opacity: 60%;
+  color: white;
+  padding: 0 120px;
+  text-align: center;
+}
+
+.Landing--about-content {
+  min-width: 328px;
+}
+
+/* Values */
+.Landing--values {
+  height: 840px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  margin: 180px 0 180px 0;
+}
+
+.Landing--values-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38.1%;
+  width: 83.3%;
+  margin: 0 120px 0 120px;
+}
+
+.Landing--values-picture {
+  height: 320px;
+  width: 558px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.Landing--values-content {
+  width: 569px; height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-margin {
+  margin-bottom: 28px;
+}
+
+.subtitle-margin {
+  margin-bottom: 8px;
+}
+
+/* Connect */
+.Landing--connect-container {
+  width: 100vw;
+  height: 360px;
+  border-bottom: 1px solid #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Landing--connect-title {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 140%;
+  text-align: center;
+  margin-bottom: 33px;
+}
+
+/* Contact Us */
+.Landing--ddg {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.Landing--ddg-title {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  height: 75px;
+  width: 1227px;
+  margin: 154px 120px 106px 120px;
+  text-align: left;
+}
+
+
+.Landing--contact {
+  margin: 80px 0 120px 0;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .Landing--poster {
+    height: 655px;
+  }
+
+  .Landing--slogan {
+    font-size: 32px;
+    min-width: 302px;
+  }
+
+  .Landing--about {
+    height: 220px;
+  }
+
+  .Landing--values {
+    width: auto;
+    height: 772px;
+    min-width: 326px;
+    align-items: center;
+    margin: 160px 0;
+  }
+
+  .Landing--values-container {
+    height: auto;
+    width: 326px;
+    flex-direction: column;
+    /* margin: 0; */
+  }
+
+  .Landing--values-picture {
+    height: 187px;
+    width: 326px;
+    margin-bottom: 20px;
+  }
+
+  .Landing--values-content {
+    width: 100%;
+    height: auto;
+  }
+
+  .title-margin {
+    margin-bottom: 8px;
+  }
+
+  .subtitle-margin {
+    margin-bottom: 6px;
+  }
+
+  .Landing--connect-container {
+    height: 303px;
+    justify-content: initial;
+  }
+
+  .Landing--connect-title {
+    height: 90px;
+  }
+
+  .Landing--ddg {
+    align-items: center;
+  }
+
+  .Landing--ddg-title {
+    width: 326px;
+    height: 116px;
+    flex-direction: column;
+    margin: 80px 32px 44px 32px;
+  }
+
+  
+}

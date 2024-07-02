@@ -1,0 +1,62 @@
+.CountrySelector--container {
+  position: relative;
+  width: 226px;
+  height: 50px;
+}
+
+.CountrySelector--header {
+  width: 27px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6D6D6D;
+  position: absolute; top: 0; left: 7px;
+  z-index: 100;
+  background-color: #E9E8E8;
+}
+
+/* override the original css styling */
+
+.css-b62m3t-container {
+  position: absolute !important;
+  bottom: 0 !important;
+}
+
+.css-13cymwt-control {
+  background-color: transparent !important;
+  width: 226px !important;
+  height: 41px !important;
+  border-radius: 4px !important;
+  border: 1px solid #808080 !important;
+}
+
+.css-t3ipsp-control {
+  background-color: transparent !important;
+  width: 226px !important;
+  height: 41px !important;
+  border-radius: 4px !important;
+  border: 1px solid #808080 !important;
+}
+
+.css-1u9des2-indicatorSeparator {
+  display: none !important;
+}
+
+.css-tj5bde-Svg path{
+  display: none !important;
+} 
+
+.css-1xc3v61-indicatorContainer {
+  padding: 0 !important;
+  position: absolute !important; left: 206px !important;
+}
+
+.css-tj5bde-Svg {
+  width: 10px !important; height: 9px !important;
+  background-image: url('./../../img/filter-location-arrow.png') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: auto !important;
+}
+

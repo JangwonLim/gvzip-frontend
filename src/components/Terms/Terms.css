@@ -1,0 +1,85 @@
+@import '../../styles/colors.css';
+
+.Terms--container {
+  width: 100%; height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Terms--divider {
+  height: 1px; width: 100%;
+  background-color: var(--grey2);
+  border: none;
+}
+
+.Terms--checkbox-input input[type="checkbox"] {
+  display: none;
+}
+
+.Terms--checkbox-input {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+
+  &::before {
+    content: "";
+    background-color: white;
+  }
+
+  &:checked {
+    background-color: blue;
+  }
+}
+
+.Terms--checkbox-input .checkmark {
+  position: relative;
+  width: 22px; height: 22px;
+  border: 1px solid var(--grey2);
+  opacity: 0.4;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.Terms--checkbox-input input:checked ~ .checkmark {
+  background-color: #3479FF;
+  border: 1px solid #3479FF;
+  opacity: 1;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.Terms--checkbox-input .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.Terms--checkbox-input input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.Terms--checkbox-input .checkmark:after {
+  width: 100%; height: 100%;
+  background-image: url('../../assets/profile-check.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+}
+
+.label-text {
+  color: var(--black-text);
+  opacity: 0.4;
+}
+
+.Profile--checkbox-input input:checked ~ .label-text {
+  color: var(--black-text);
+  opacity: 1;
+}
