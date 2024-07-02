@@ -38,10 +38,42 @@ function ProfileInfo() {
     field3: '',
     introduction: '',
     alumniType: null,
-    sns: '',
-    educations: [{ schoolName: '', degree: '', status: '', major: '', entranceYear: '', graduationYear: '' }],
-    careers: [{ companyName: '', position: '', startYear: '', duration: '' }],
-    entranceYear: ''
+    sns: 'www.instagram.com',
+    // educations: [{ schoolName: '', degree: '', status: '', major: '', entranceYear: '', graduationYear: '' }],
+    educations: [
+      {
+        "schoolName": "Seoul National University",
+        "degree": "Bachelor's",
+        "status": "Graduated",
+        "major": "Computer Science",
+        "entranceYear": 2008,
+        "graduationYear": 2012
+      },
+      {
+        "schoolName": "Korea University",
+        "degree": "Master's",
+        "status": "Graduated",
+        "major": "AI",
+        "entranceYear": 2013,
+        "graduationYear": 2015
+      }
+    ],
+    // careers: [{ companyName: '', position: '', startYear: '', duration: '' }],
+    "careers": [
+      {
+        "companyName": "Samsung Electronics",
+        "position": "Software Engineer",
+        "startYear": 2015,
+        "duration": 3
+      },
+      {
+        "companyName": "LG Electronics",
+        "position": "Senior Software Engineer",
+        "startYear": 2018,
+        "duration": 5
+      }
+    ],
+    entranceYear: '2000'
   });
 
   useEffect(() => {
