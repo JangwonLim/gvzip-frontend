@@ -41,7 +41,7 @@ function ProfileInfo() {
     sns: '',
     educations: [{ schoolName: '', degree: '', status: '', major: '', entranceYear: '', graduationYear: '' }],
     careers: [{ companyName: '', position: '', startYear: '', duration: '' }],
-    entranceYear: '',
+    entranceYear: ''
   });
 
   useEffect(() => {
