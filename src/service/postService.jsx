@@ -20,7 +20,8 @@ export const register = async (formData, profileImage) => {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*'
-      }
+      },
+      withCredentials: true
     });
 
     if (response.data.success) {

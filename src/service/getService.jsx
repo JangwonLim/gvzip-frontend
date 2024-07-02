@@ -13,7 +13,7 @@ export const getInfo = async (membership, campus, fields, page, size, direction)
         page: page,
         size: size,
         direction: direction
-      }
+      }, withCredentials: true
     })
 
     if (response && response.data) {
