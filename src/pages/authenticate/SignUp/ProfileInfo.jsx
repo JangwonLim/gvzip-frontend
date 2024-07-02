@@ -21,15 +21,15 @@ function ProfileInfo() {
   const [formData, setFormData] = useState({
     korName: '',
     engName: '',
-    bornYear: '',
-    bornMonth: '',
-    bornDay: '',
+    bornYear: 0,
+    bornMonth: 0,
+    bornDay: 0,
     sex: '',
     email: '',
     campus: '',
-    graduationYear: '',
-    expectedGraduationYear: '',
-    generation: '',
+    graduationYear: 0,
+    expectedGraduationYear: 0,
+    generation: 0,
     country: '',
     state: '',
     city: '',
@@ -73,7 +73,7 @@ function ProfileInfo() {
         "duration": 5
       }
     ],
-    entranceYear: '2000'
+    entranceYear: 0
   });
 
   useEffect(() => {
@@ -91,17 +91,26 @@ function ProfileInfo() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    if (name === 'graduationYear'){
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: parseInt(value),
+      }))
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+
+    }
   };
 
   const handleBornYearChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: parseInt(value),
     }));
     setIsValidYear(validateYear(value));
   };
@@ -110,7 +119,7 @@ function ProfileInfo() {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: parseInt(value),
     }));
     setIsValidMonth(validateMonth(value));
   };
@@ -119,7 +128,7 @@ function ProfileInfo() {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: parseInt(value),
     }));
     setIsValidDay(validateDay(value));
   };
