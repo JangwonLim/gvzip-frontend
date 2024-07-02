@@ -15,9 +15,11 @@ export const getInfo = async (membership, campus, fields, page, size, direction)
         direction: direction
       }, withCredentials: true
     })
+    // console.log(response.data)
 
     if (response && response.data) {
-      console.log(response.data)
+      console.log(response);
+      console.log(response.data);
       return response.data;
     } else {
       console.log('No response data received');
