@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -72,3 +73,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 =======
 # gvzip
 >>>>>>> c62ffa294048c271ca82827a9687912cf830fdf2
+=======
+# gvzip-frontend
+>>>>>>> 3515eab4ae2c03a1083d4b888253ea07f65f98e7
