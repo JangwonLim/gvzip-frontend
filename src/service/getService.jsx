@@ -1,11 +1,11 @@
 import axios from "axios";
-const API_URL = 'https://gvzip.com';
+// const API_URL = 'https://gvzip.com';
 
 
 export const getInfo = async (membership, campus, fields, page, size, direction) => {
   try {
     console.log(membership, campus, fields, page, size, direction)
-    const response = await axios.get(`${API_URL}/archive`, {
+    const response = await axios.get("/archive", {
       params: {
         membership: membership,
         campus: campus,

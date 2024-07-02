@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = 'https://gvzip.com';
+// const API_URL = 'https://gvzip.com';
 
 export const register = async (formData, profileImage) => {
   try {
@@ -16,7 +16,7 @@ export const register = async (formData, profileImage) => {
       console.log(key, value);
     }
 
-    const response = await axios.post(`${API_URL}/signup`, data, {
+    const response = await axios.post("/signup", data, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*'
