@@ -39,6 +39,7 @@ function ProfileInfo() {
     introduction: '',
     alumniType: null,
     sns: 'www.instagram.com',
+    entranceYear: 0,
     // educations: [{ schoolName: '', degree: '', status: '', major: '', entranceYear: '', graduationYear: '' }],
     educations: [
       {
@@ -72,8 +73,7 @@ function ProfileInfo() {
         "startYear": 2018,
         "duration": 5
       }
-    ],
-    entranceYear: 0
+    ]
   });
 
   useEffect(() => {

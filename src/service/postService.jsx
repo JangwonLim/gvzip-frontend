@@ -6,7 +6,9 @@ export const register = async (formData, profileImage) => {
     const data = new FormData();
     const json = JSON.stringify(formData);
 
-    data.append('signUpRequest', json);
+    const blob = new Blob([json], { type: 'application/json' });
+    data.append('signUpRequest', blob);
+    
     if (profileImage) {
       data.append('profileImage', profileImage);
     }
