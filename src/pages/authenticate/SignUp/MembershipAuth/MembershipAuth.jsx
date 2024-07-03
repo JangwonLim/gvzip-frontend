@@ -9,11 +9,6 @@ import { useGoBack } from "../../../../utils/usefulFunctions";
 function MembershipAuth() {
   const alumniType = useSelector((state) => state.alumniType);
 
-  const principals = [
-    "이영석", "Jesse Newman", "John Dunlavey", 
-    "조성률", "조인진", "고영선", "문모세", "이정주", 
-    "강성봉", "박주영", "이명훈", "임혜준", "Joshua Kang"
-  ]
   const studentCode = "W2@#33s2LoVE88";
   const staffCode = "Jj$$2704sl3HOPE";
 
@@ -93,6 +88,11 @@ function MembershipAuth() {
   const shareLink = "https://main--gvzip.netlify.app/";
 
   useEffect(() => {
+    const principals = [
+      "이영석", "Jesse Newman", "John Dunlavey", 
+      "조성률", "조인진", "고영선", "문모세", "이정주", 
+      "강성봉", "박주영", "이명훈", "임혜준", "Joshua Kang"
+    ]
     // Temporary logic
     if (alumniType === 0) {
       setIsValidAuth(principals.includes(alumniAuth));
