@@ -10,6 +10,8 @@ function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const memberType = ["졸업생", "인기모", "재학생", "교직원"];
+
   const goToInfo = (e) => {
     const membership = e.target.textContent;
     switch (membership) {
@@ -46,17 +48,49 @@ function SignUp() {
         <span>멤버십 선택</span>
       </div>
 
+      <div className="SignUp--content-container">
+        <div className="SignUp--content-wrapper">
+          <span className="SignUp--triangle-text">지비집 식구가 되기 위한<br/>멤버십 인증을 진행해 주세요</span>
+
+          <div className="SignUp--button-container">
+            {
+              memberType.map((type) => {
+                return(
+                  <button 
+                    className="SignUp--button"
+                    onClick={goToInfo}
+                  >
+                    <span className="h2-18-sb">{type}</span>
+                  </button>
+                )
+              })
+            }
+          </div>
+        </div>
+      </div>
+
       <div className="SignUp--description">
         <div className="SignUp--triangle">
           <span className="SignUp--triangle-text">지비집 식구가 되기 위한<br/>멤버십 인증을 진행해 주세요</span>
         </div>
       </div>
-      <div>
-        <button onClick={goToInfo}>졸업생</button>
-        <button onClick={goToInfo}>인기모</button>
-        <button onClick={goToInfo}>재학생</button>
-        <button onClick={goToInfo}>교직원</button>
+      <div className="SignUp--rectangle">
+        <div className="SignUp--button-container">
+          {
+            memberType.map((type) => {
+              return(
+                <button 
+                  className="SignUp--button"
+                  onClick={goToInfo}
+                >
+                  <span className="h2-18-sb">{type}</span>
+                </button>
+              )
+            })
+          }
+        </div>
       </div>
+
     </div>
   )
 }

@@ -1,10 +1,37 @@
 @import '../../../../styles/colors.css';
 
-.MembershipAuth--container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%; height: auto;
-  max-width: 342px;
+
+@media (max-width: 768px) {
+  .MembershipAuth--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .MembershipAuth--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; height: auto;
+    max-width: 342px;
+  }
+  
+  .MembershipAuth--content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .MembershipAuth--link-share {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--grey3);
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

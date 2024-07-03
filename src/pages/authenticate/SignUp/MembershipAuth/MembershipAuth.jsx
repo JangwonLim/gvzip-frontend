@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import '../ProfileInfo.css';
 import '../../../../styles/defaultDesign.css';
 import { validateDateOfBirth } from "../../../../utils/validate";
+import { handleCopyClipBoard } from "../../../../utils/usefulFunctions";
+import { useGoBack } from "../../../../utils/usefulFunctions";
 
 function MembershipAuth() {
   const alumniType = useSelector((state) => state.alumniType);
@@ -80,6 +82,8 @@ function MembershipAuth() {
     window.location.href = 'https://gvzip.com/oauth2/authorize/google';
   }
 
+  const shareLink = "https://main--gvzip.netlify.app/";
+
   useEffect(() => {
     // Temporary logic
     if (alumniType === 0) {
@@ -93,29 +97,34 @@ function MembershipAuth() {
     } else {
       setIsValidAuth(false);
     }
-  }, [alumniType, alumniAuth, parentsAuth, studentAuth, teacherAuth, isValidDoB])
+  }, [alumniType, alumniAuth, parentsAuth, studentAuth, teacherAuth, isValidDoB]);
 
   return (
     <div className="Profile--container">
       <div className="Profile--header">
-        <button className="Profile--header-back-button">
+        <button 
+          className="Profile--header-back-button"
+          onClick={useGoBack()}
+        >
           <img src={require("../../../../assets/profile-header-back-button.png")} alt="back-button" />
         </button> 
-        <span className="h3-20-b">{alumniTitle()} 인증</span>
+        <span className="h3-20-b" style={{ fontWeight: "500" }}>{alumniTitle()} 인증</span>
       </div>
 
       {/* Alumni */}
       {
         alumniType === 0 && (
-          <div className="Profile--content-container">
+          <div className="Profile--content-container" style={{ marginTop: "94px"}}>
             <div className="Profile--content-section huge-gap">
-              <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>Q. 졸업 당시 교장 선생님의 성함은?</span>
+              <div>
+                <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>Q. 졸업 당시 교장 선생님의 성함은? </span>
+              </div>
 
               <input 
                 className="Profile--text-input-box"
                 placeholder="답변 입력"
                 type="text" 
-                style={{ marginBottom: "140px" }}
+                style={{ marginBottom: "132px" }}
                 onChange={(e) => handleAlumni(e)}
               />
             </div>
@@ -127,10 +136,12 @@ function MembershipAuth() {
       {/* Parents */}
       {
         alumniType === 1 && (
-          <div 
-            className="Profile--content-container"
-            style={{ gap: "40px" }}
-          >
+          <div className="Profile--content-container" style={{ gap: "44px", marginTop: "4px"}}>
+            <span className="b3-14-m" style={{ color: "#66707A" }}>
+              *필독* <br />
+              자녀의 정보가 지비집 서비스에 등록되어 있는 경우에만 인증이 <br />가능합니다. 지비집의 소중한 정보 자산이 유출되지 않도록
+              <br />미연에 방지하고자 함이니 너른 양해 부탁드립니다 :)
+            </span>
             <div className="Profile--content-section narrow-gap">
               <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>자녀 이름</span>
 
@@ -187,18 +198,19 @@ function MembershipAuth() {
           </div>
         )
       }
-      
+
+      {/* Current Students & Teachers */}
       {
         (alumniType === 2 || alumniType === 3) && (
-          <div className="Profile--content-container">
+          <div className="Profile--content-container" style={{ marginTop: "94px"}}>
             <div className="Profile--content-section huge-gap">
-              <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>학교 이메일을 통해 제공 받은 인증코드를 입력 해주세요.</span>
+              <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>학교 이메일을 통해 제공 받은 인증코드를 <br /> 입력해 주세요.</span>
 
               <input 
                 className="Profile--text-input-box"
                 placeholder="인증코드 입력"
                 type="text" 
-                style={{ marginBottom: "140px" }}
+                style={{ marginBottom: "132px" }}
                 onChange={(e) => {
                   alumniType === 0 ? handleStudent(e) : handleTeacher(e);
                 }}
@@ -207,9 +219,7 @@ function MembershipAuth() {
           </div>
         )
       }
-      {/* Current Students & Teachers */}
       
-
       <button 
         className="Profile--navigate-button" 
         style={{ maxWidth: "342px"}}
@@ -218,6 +228,14 @@ function MembershipAuth() {
       >
         <span className="h2-18-sb">인증하고 구글로 시작</span>
       </button>
+
+      {
+        alumniType === 1 && (
+          <div onClick={() => handleCopyClipBoard(shareLink)}>
+            <span className="MembershipAuth--link-share">자녀에게 가입 링크 공유하기</span>
+          </div>
+        )
+      }
     </div>
   )
 }
