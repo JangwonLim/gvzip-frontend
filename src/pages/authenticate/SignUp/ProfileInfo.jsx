@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import './ProfileInfo.css';
 import './Signup.css';
@@ -16,6 +17,7 @@ import StudentForm from "./Student/StudentForm";
 import StaffForm from "./Staff/StaffForm";
 /* eslint-disable no-unused-vars */
 function ProfileInfo() {
+  const navigate = useNavigate();
   const alumniType = useSelector((state) => state.alumniType);
 
   const [formData, setFormData] = useState({
@@ -173,7 +175,10 @@ function ProfileInfo() {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    await register(formData, profileImage);
+    const result = await register(formData, profileImage);
+    if (result.success) {
+      navigate('/archive');
+    }
   }
 
   return (
