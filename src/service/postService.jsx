@@ -1,24 +1,25 @@
 import axios from "axios";
-// const API_URL = 'https://gvzip.com';
+const API_URL = 'https://gvzip.com';
 
 export const register = async (formData, profileImage) => {
   try {
     const data = new FormData();
     const json = JSON.stringify(formData);
 
-    data.append('profileImage', null);
+    if (profileImage) {
+      data.append('profileImage', profileImage);
+    }
+
+    // data.append('profileImage', null);
     data.append('signUpRequest', json);
 
-    // if (profileImage) {
-    //   data.append('profileImage', profileImage);
-    // }
-
+    
     // FormData 확인
     for (let [key, value] of data.entries()) {
       console.log(key, value);
     }
 
-    const response = await axios.post("/signup", data, {
+    const response = await axios.post(`${API_URL}/signup`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Origin': '*'
