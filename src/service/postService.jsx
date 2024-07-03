@@ -13,9 +13,6 @@ export const register = async (formData, profileImage) => {
       data.append('profileImage', profileImage);
     }
 
-    // data.append('profileImage', null);
-    data.append('signUpRequest', json);
-
     
     // FormData 확인
     for (let [key, value] of data.entries()) {
