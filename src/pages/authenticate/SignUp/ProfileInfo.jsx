@@ -21,14 +21,14 @@ function ProfileInfo() {
   const [formData, setFormData] = useState({
     korName: '',
     engName: '',
-    bornYear: 0,
-    bornMonth: 0,
-    bornDay: 0,
+    bornYear: '',
+    bornMonth: '',
+    bornDay: '',
     sex: '',
     email: '',
     campus: '',
-    graduationYear: 0,
-    expectedGraduationYear: 0,
+    graduationYear: '',
+    expectedGraduationYear: '',
     generation: 0,
     country: '',
     state: '',
@@ -39,7 +39,7 @@ function ProfileInfo() {
     introduction: '',
     alumniType: null,
     sns: 'www.instagram.com',
-    entranceYear: 0,
+    entranceYear: '',
     // educations: [{ schoolName: '', degree: '', status: '', major: '', entranceYear: '', graduationYear: '' }],
     educations: [
       {
@@ -92,7 +92,11 @@ function ProfileInfo() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'graduationYear'){
+    if (
+          name === 'graduationYear' || 
+          name === 'expectedGraduationYear' ||
+          name === 'entranceYear'
+      ){
       setFormData((prevState) => ({
         ...prevState,
         [name]: parseInt(value),
@@ -169,7 +173,7 @@ function ProfileInfo() {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    await register(formData, profileImage)
+    await register(formData, profileImage);
   }
 
   return (

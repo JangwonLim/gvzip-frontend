@@ -14,7 +14,7 @@ function DateOfBirth({formData, handleBornYearChange, handleBornMonthChange, han
         <input 
           className="Profile--text-input-box center"
           placeholder="YYYY" 
-          type="number" 
+          type="text" 
           minLength="4"
           maxLength="4" 
           pattern="^\d{4}$"
@@ -25,7 +25,7 @@ function DateOfBirth({formData, handleBornYearChange, handleBornMonthChange, han
         <input 
           className="Profile--text-input-box center" 
           placeholder="MM" 
-          type="number" 
+          type="text" 
           minLength="2"
           maxLength="2"
           pattern="^(0[1-9]|1[0-2])$"
@@ -36,7 +36,7 @@ function DateOfBirth({formData, handleBornYearChange, handleBornMonthChange, han
         <input 
           className="Profile--text-input-box center" 
           placeholder="DD" 
-          type="number" 
+          type="text" 
           minLength="2"
           maxLength="2" 
           pattern="^(0[1-9]|[12][0-9]|3[01])$"
