@@ -22,7 +22,6 @@ export const register = async (formData, profileImage) => {
     const response = await axios.post(`${API_URL}/signup`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*'
       },
       withCredentials: true
     });
