@@ -29,9 +29,15 @@ function NavBar() {
 
   return (
     <nav className="NavBar--container">
-      <div className="NavBar--logo-wrap" onClick={() => navigate('/')}>
-        로고
+      <div className="NavBar--logo-wrap">
+        <img 
+          src={require("../../assets/final-logo-1.png")} 
+          alt="logo" 
+        />
       </div>
+      {/* <div className="NavBar--logo-wrap" onClick={() => navigate('/')}>
+        로고
+      </div> */}
 
       <div className="NavBar--buttons-container">
         <div

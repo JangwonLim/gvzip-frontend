@@ -82,7 +82,7 @@ function MembershipAuth() {
   };
 
   const handleGoogleSignUp = () => {
-    window.location.href = 'https://gvzip.com/oauth2/authorize/google';
+    window.open('https://gvzip.com/oauth2/authorize/google', '_blank');
   }
 
   const shareLink = "https://main--gvzip.netlify.app/";

@@ -1,0 +1,38 @@
+@import '../../styles/colors.css';
+
+.Footer--container {
+  width: 100vw; height: 140px;
+  background-color: var(--bg-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Footer--content-container {
+  display: flex;
+  gap: 28px;
+  flex-direction: column;
+}
+
+.Footer--contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--grey3);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.Footer--instagram {
+  width: 36px; height: 36px;
+  border: 0.4px solid var(--grey2);
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
