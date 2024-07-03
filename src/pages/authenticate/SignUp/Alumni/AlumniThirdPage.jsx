@@ -9,7 +9,7 @@ import {
 } from "react-country-state-city";
 import Introduction from "../../../../components/SignUpComponents/Introduction";
 /* eslint-disable no-unused-vars */
-function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPrevPage }) {
+function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPage }) {
   const fieldOptions = [
     '영업', '경영/사무', '마케팅',
     '생산/제조', '연구/설계', 'IT/개발',
@@ -246,7 +246,7 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPrevPage })
       <div className="Profile--button-container navigate">
         <button 
           className="Profile--navigate-button prev"
-          onClick={goToPrevPage}
+          onClick={goToPreviousPage}
         >
           <span className="h2-18-sb">이전</span>
         </button>

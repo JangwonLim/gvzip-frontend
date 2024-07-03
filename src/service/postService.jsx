@@ -6,11 +6,12 @@ export const register = async (formData, profileImage) => {
     const data = new FormData();
     const json = JSON.stringify(formData);
 
+    data.append('profileImage', null);
     data.append('signUpRequest', json);
 
-    if (profileImage) {
-      data.append('profileImage', profileImage);
-    }
+    // if (profileImage) {
+    //   data.append('profileImage', profileImage);
+    // }
 
     // FormData 확인
     for (let [key, value] of data.entries()) {
