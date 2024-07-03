@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Archive.css';
 import './../../styles/defaultDesign.css';
@@ -74,7 +74,7 @@ function Archive() {
 
   /* functions */
   // fetch the archive data from the database
-  const fetchArchData = async () => {
+  const fetchArchData = useCallback(async () => {
     setIsLoading(true);
 
     try {
@@ -92,7 +92,7 @@ function Archive() {
     } finally {
       setIsLoading(false);
     }    
-  }
+  }, [fields, campus, membership, page, isFiltered]);
 
   // close the modal
   const closeModal = (e) => {
@@ -143,7 +143,7 @@ function Archive() {
 
   useEffect(() => {
     fetchArchData();
-  });
+  }, [fetchArchData]);
 
   // ************** 6/10 필터 redux랑 연결시키는 거 하고 있었음
   // useEffect(() => {
