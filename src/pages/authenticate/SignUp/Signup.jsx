@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { setAlumniType } from "../../../redux/store";
+import { useGoBack } from "../../../utils/usefulFunctions";
 import './Signup.css';
 import './ProfileInfo.css';
 
@@ -39,6 +40,7 @@ function SignUp() {
         <button 
           style={{ marginRight: "12px" }}
           className="Profile--header-back-button"
+          onClick={useGoBack()}
         >
           <img 
             src={require("../../../assets/header-backbutton-black.png")} 
@@ -68,29 +70,6 @@ function SignUp() {
           </div>
         </div>
       </div>
-
-      <div className="SignUp--description">
-        <div className="SignUp--triangle">
-          <span className="SignUp--triangle-text">지비집 식구가 되기 위한<br/>멤버십 인증을 진행해 주세요</span>
-        </div>
-      </div>
-      <div className="SignUp--rectangle">
-        <div className="SignUp--button-container">
-          {
-            memberType.map((type) => {
-              return(
-                <button 
-                  className="SignUp--button"
-                  onClick={goToInfo}
-                >
-                  <span className="h2-18-sb">{type}</span>
-                </button>
-              )
-            })
-          }
-        </div>
-      </div>
-
     </div>
   )
 }
