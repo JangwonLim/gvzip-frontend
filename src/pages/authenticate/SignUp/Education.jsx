@@ -3,34 +3,34 @@ import './ProfileInfo.css';
 import '../../../styles/defaultDesign.css';
 import Introduction from "../../../components/SignUpComponents/Introduction";
 import ButtonSelection from "../../../components/SignUpComponents/ButtonSelection";
-import Year from "../../../components/SignUpComponents/Year";
+// import Year from "../../../components/SignUpComponents/Year";
 
 function Education({handleChange}) {
   const statusList = ["재학", "휴학", "졸업"];
 
-  const generateYearOptions = () => {
-    const yearOptions = [];
-    for (let year = 2003; year <= 2023; year++) {
-      yearOptions.push(
-        <option key={year} value={year}>
-          {year}
-        </option>
-      );
-    }
-    return yearOptions;
-  };
+  // const generateYearOptions = () => {
+  //   const yearOptions = [];
+  //   for (let year = 2003; year <= 2023; year++) {
+  //     yearOptions.push(
+  //       <option key={year} value={year}>
+  //         {year}
+  //       </option>
+  //     );
+  //   }
+  //   return yearOptions;
+  // };
 
-  const generateExpectedYearOptions = () => {
-    const yearOptions = [];
-    for (let year = 2003; year <= 2050; year++) {
-      yearOptions.push(
-        <option key={year} value={year}>
-          {year}
-        </option>
-      );
-    }
-    return yearOptions;
-  };
+  // const generateExpectedYearOptions = () => {
+  //   const yearOptions = [];
+  //   for (let year = 2003; year <= 2050; year++) {
+  //     yearOptions.push(
+  //       <option key={year} value={year}>
+  //         {year}
+  //       </option>
+  //     );
+  //   }
+  //   return yearOptions;
+  // };
   const [yearData, setYearData] = useState({
     schoolName: '', 
     degree: '', 

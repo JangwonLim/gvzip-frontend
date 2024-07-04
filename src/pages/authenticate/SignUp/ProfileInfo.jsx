@@ -15,7 +15,6 @@ import { register } from "../../../service/postService";
 import ParentForm from "./Parent/ParentForm";
 import StudentForm from "./Student/StudentForm";
 import StaffForm from "./Staff/StaffForm";
-import { useGoBack } from '../../../utils/usefulFunctions';
 
 /* eslint-disable no-unused-vars */
 function ProfileInfo() {
