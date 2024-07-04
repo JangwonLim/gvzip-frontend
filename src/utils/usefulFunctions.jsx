@@ -14,7 +14,11 @@ export const useGoBack = () => {
   const navigate = useNavigate();
 
   return () => {
-    navigate(-1); // 이전 페이지로 이동
+    navigate(-1); // go back to the previous page
   };
 
+}
+
+export const calculateGeneration = (graduationYear) => {
+	
 }

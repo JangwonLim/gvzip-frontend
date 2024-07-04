@@ -8,6 +8,7 @@ import {
   GetCity,
 } from "react-country-state-city";
 import Introduction from "../../../../components/SignUpComponents/Introduction";
+
 /* eslint-disable no-unused-vars */
 function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPage }) {
   const fieldOptions = [
@@ -241,6 +242,7 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
         handleChange={handleChange}
         title={'한줄 소개'}
         placeholder={'ex. 지비집 프로덕트 디자이너, 지비대 학부생'}
+        name={"introduction"}
       />
 
       <div className="Profile--button-container navigate">

@@ -76,8 +76,8 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
         formData={formData}
         handleChange={handleChange}
         options={generateYearOptions}
-        title={"졸업 예정년도"}
-        placeholder={"졸업년도 선택"}
+        title={"졸업(예정)년도"}
+        placeholder={"졸업(예정)년도 선택"}
       />
 
       <Terms/>

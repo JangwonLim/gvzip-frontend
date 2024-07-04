@@ -56,6 +56,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
         handleChange={handleChange}
         title={"직무"}
         placeholder={"직무 입력 ex. 생활관 교사"}
+        name={"introduction"}
       />
 
       <Terms/>

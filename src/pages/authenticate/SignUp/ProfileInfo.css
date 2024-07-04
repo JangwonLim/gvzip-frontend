@@ -259,6 +259,12 @@
     opacity: 1;
   }
 
+  .Profile--header-title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
   /* .Profile--education-history-container {
     width: 100%; height: auto;
     display: flex;

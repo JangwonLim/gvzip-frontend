@@ -15,10 +15,14 @@ import { register } from "../../../service/postService";
 import ParentForm from "./Parent/ParentForm";
 import StudentForm from "./Student/StudentForm";
 import StaffForm from "./Staff/StaffForm";
+import { useGoBack } from '../../../utils/usefulFunctions';
+
 /* eslint-disable no-unused-vars */
 function ProfileInfo() {
   const navigate = useNavigate();
   const alumniType = useSelector((state) => state.alumniType);
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [formData, setFormData] = useState({
     korName: '',
@@ -31,7 +35,7 @@ function ProfileInfo() {
     campus: '',
     graduationYear: '',
     expectedGraduationYear: '',
-    generation: 0,
+    generation: '',
     country: '',
     state: '',
     city: '',
@@ -41,41 +45,9 @@ function ProfileInfo() {
     introduction: '',
     alumniType: null,
     sns: 'www.instagram.com',
-    entranceYear: '',
-    // educations: [{ schoolName: '', degree: '', status: '', major: '', entranceYear: '', graduationYear: '' }],
-    educations: [
-      {
-        "schoolName": "Seoul National University",
-        "degree": "Bachelor's",
-        "status": "Graduated",
-        "major": "Computer Science",
-        "entranceYear": 2008,
-        "graduationYear": 2012
-      },
-      {
-        "schoolName": "Korea University",
-        "degree": "Master's",
-        "status": "Graduated",
-        "major": "AI",
-        "entranceYear": 2013,
-        "graduationYear": 2015
-      }
-    ],
-    // careers: [{ companyName: '', position: '', startYear: '', duration: '' }],
-    "careers": [
-      {
-        "companyName": "Samsung Electronics",
-        "position": "Software Engineer",
-        "startYear": 2015,
-        "duration": 3
-      },
-      {
-        "companyName": "LG Electronics",
-        "position": "Senior Software Engineer",
-        "startYear": 2018,
-        "duration": 5
-      }
-    ]
+    entranceYear: 0,
+    educations: [],
+    careers: []
   });
 
   useEffect(() => {
@@ -95,22 +67,26 @@ function ProfileInfo() {
     const { name, value } = e.target;
 
     if (
-          name === 'graduationYear' || 
-          name === 'expectedGraduationYear' ||
-          name === 'entranceYear'
-      ){
+      name === 'graduationYear' ||
+      name === 'expectedGraduationYear' ||
+      name === 'entranceYear'
+    ) {
+      
       setFormData((prevState) => ({
         ...prevState,
         [name]: parseInt(value),
-      }))
+      }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
         [name]: value,
       }));
-
     }
   };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   const handleBornYearChange = (e) => {
     const { name, value } = e.target;
@@ -157,6 +133,15 @@ function ProfileInfo() {
       setIsValidEmail(false);
     }
   }
+
+  const handleArrayData = (arrayName, value) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [arrayName]: [...prevState[arrayName], value]
+    }))
+    handleBackButton();
+  }
+
   const [profileImage, setProfileImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
 
@@ -181,13 +166,55 @@ function ProfileInfo() {
     }
   }
 
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handleEducationClick = () => {
+    setCurrentPage(5);
+  }
+
+  const headerTitle = () => {
+    switch (currentPage) {
+      case(5):
+        return "학력 추가";
+      case(6):
+        return "경력/경험 추가";
+      default:
+        return "회원가입";
+    }
+  }
+
+  const handleBackButton = () => {
+    switch (currentPage) {
+      case(5):
+        setCurrentPage(2);
+        break;
+      case(6):
+        setCurrentPage(4);
+        break;
+      default:
+        navigate(-1);
+    }
+  }
+
+
+
+
   return (
     <div className="Profile--container">
       <div className="Profile--header">
-        <button className="Profile--header-back-button">
+        <button 
+          className="Profile--header-back-button"
+          onClick={handleBackButton}
+        >
           <img src={require("../../../assets/profile-header-back-button.png")} alt="back-button" />
         </button> 
-        <span className="h3-20-b">회원가입</span>
+        <span className="Profile--header-title">{headerTitle()}</span>
       </div>
 
       {
@@ -204,6 +231,11 @@ function ProfileInfo() {
             profileImage={profileImage}
             previewImage={previewImage}
             handleProfileImage={handleProfileImage}
+            currentPage={currentPage}
+            goToNextPage={goToNextPage}
+            goToPreviousPage={goToPreviousPage}
+            handleEducationClick={handleEducationClick}
+            handleArrayData={handleArrayData}
           />
         )
       }
@@ -222,6 +254,11 @@ function ProfileInfo() {
             profileImage={profileImage}
             previewImage={previewImage}
             handleProfileImage={handleProfileImage}
+            currentPage={currentPage}
+            goToNextPage={goToNextPage}
+            goToPreviousPage={goToPreviousPage}
+            handleEducationClick={handleEducationClick}
+            handleArrayData={handleArrayData}
           />
         )
       }
@@ -237,6 +274,8 @@ function ProfileInfo() {
             handleEmail={handleEmail}
             isValidEmail={isValidEmail}
             registerUser={registerUser}
+            goToNextPage={goToNextPage}
+            goToPreviousPage={goToPreviousPage}
           />
         )
       }
@@ -252,6 +291,8 @@ function ProfileInfo() {
             handleEmail={handleEmail}
             isValidEmail={isValidEmail}
             registerUser={registerUser}
+            goToNextPage={goToNextPage}
+            goToPreviousPage={goToPreviousPage}
           />
         )
       }

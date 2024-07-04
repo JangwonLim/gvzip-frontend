@@ -1,19 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ParentFirstPage from "./ParentFirstPage";
 import AlumniSecondPage from "../Alumni/AlumniSecondPage";
 import AlumniThirdPage from "../Alumni/AlumniThirdPage";
 import AlumniFourthPage from "../Alumni/AlumniFourthPage";
 
-function ParentForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage}) {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const goToNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
+function ParentForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData}) {
 
   return(
     <>
@@ -39,6 +30,8 @@ function ParentForm({formData, handleChange, handleBornYearChange, handleBornMon
             handleChange={handleChange}
             goToNextPage={goToNextPage}
             goToPreviousPage={goToPreviousPage}
+            handleEducationClick={handleEducationClick}
+            handleArrayData={handleArrayData}
           />
         )
       }
@@ -64,6 +57,7 @@ function ParentForm({formData, handleChange, handleBornYearChange, handleBornMon
             profileImage={profileImage}
             previewImage={previewImage}
             handleProfileImage={handleProfileImage}
+            handleArrayData={handleArrayData}
           />
         )
       }

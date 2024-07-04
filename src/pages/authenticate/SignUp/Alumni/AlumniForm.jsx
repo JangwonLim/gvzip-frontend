@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import AlumniFirstPage from "./AlumniFirstPage";
 import AlumniSecondPage from "./AlumniSecondPage";
 import AlumniThirdPage from "./AlumniThirdPage";
 import AlumniFourthPage from "./AlumniFourthPage";
+import Education from "../Education";
 
-function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage}) {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const goToNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const goToPreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
+function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData}) {
 
   return(
     <>
@@ -38,6 +30,8 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             handleChange={handleChange}
             goToNextPage={goToNextPage}
             goToPreviousPage={goToPreviousPage}
+            handleEducationClick={handleEducationClick}
+            handleArrayData={handleArrayData}
           />
         )
       }
@@ -63,6 +57,23 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             profileImage={profileImage}
             previewImage={previewImage}
             handleProfileImage={handleProfileImage}
+            handleArrayData={handleArrayData}
+          />
+        )
+      }
+
+      {
+        currentPage === 5 && (
+          <Education
+            handleChange={handleArrayData}
+          />
+        )
+      }
+
+      {
+        currentPage === 6 && (
+          <Education
+            handleChange={handleArrayData}
           />
         )
       }

@@ -2,7 +2,7 @@ import React from "react";
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 import '../../styles/defaultDesign.css';
 
-function Introduction({formData, handleChange, title, placeholder}) {
+function Introduction({formData, handleChange, title, placeholder, name}) {
   return (
     <div className="Profile--content-section narrow-gap">
       <div>
@@ -14,7 +14,7 @@ function Introduction({formData, handleChange, title, placeholder}) {
         className="Profile--text-input-box"
         type="text" 
         placeholder={placeholder}
-        name="introduction"
+        name={name}
         value={formData.introduction}
         onChange={handleChange}
       />

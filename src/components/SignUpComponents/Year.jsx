@@ -3,6 +3,7 @@ import '../../styles/defaultDesign.css';
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
 function Year({formData, handleChange, options, title, placeholder}) {
+  console.log(title)
   const getSelectProps = (title) => {
     switch (title) {
       case "졸업년도":
@@ -19,7 +20,7 @@ function Year({formData, handleChange, options, title, placeholder}) {
           value: formData.entranceYear,
           onChange: handleChange,
         };
-      case "졸업 예정년도":
+      case "졸업(예정)년도":
         return {
           name: "expectedGraduationYear",
           className: `Profile--dropdown-menu${formData.expectedGraduationYear === "" ? " placeholder" : ""}`,
@@ -32,6 +33,8 @@ function Year({formData, handleChange, options, title, placeholder}) {
   };
 
   const selectProps = getSelectProps(title);
+
+  console.log(selectProps)
 
   return (
     <div className="Profile--content-section wide-gap">
