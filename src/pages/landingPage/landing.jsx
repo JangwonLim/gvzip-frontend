@@ -6,11 +6,13 @@ import InfiniteSlider from "../../components/InfiniteSlider/InfiniteSlider";
 import MobileSlider from "../../components/InfiniteSlider/MobileSlider";
 import Footer from "../../components/Footer/Footer";
 import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from "react-router-dom";
 
 function Landing() {
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-
+  
+  const navigate = useNavigate();
   return(
     <div style={{ minWidth: "390px"}}>
       <div className="Landing--poster">
@@ -26,7 +28,7 @@ function Landing() {
       <div className="Landing--values">
 
         <div className="Landing--values-container">
-          <div className="Landing--values-picture"/>
+          <div className="Landing--values-picture value-1"/>
           <div className={"Landing--values-content" + ( isMobile ? "" : " to-right")}>
             {
               isMobile ?
@@ -58,7 +60,7 @@ function Landing() {
         </div>
 
         <div className="Landing--values-container">
-          { isMobile && <div className="Landing--values-picture"/> }
+          { isMobile && <div className="Landing--values-picture value-2"/> }
           <div className="Landing--values-content">
             { isMobile ?
               <>
@@ -122,6 +124,7 @@ function Landing() {
               color="white"
               width="180px"
               height="60px"
+              onClick={() => navigate('/signup')}
             >
               <span className="pc-button fs-20">회원 가입</span>
             </Button>
