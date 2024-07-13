@@ -22,7 +22,10 @@ function SignIn() {
       />
 
       <div className="SignIn--button-container">
-        <button className="SignIn--google-button">
+        <button 
+          className="SignIn--google-button"
+          onClick={() => navigate('https://gvzip.com/oauth2/authorize/google')}
+        >
           <img src={require('../../../assets/google-logo.png')} alt="" />
           <span className="h2-18-sb">
             구글 로그인

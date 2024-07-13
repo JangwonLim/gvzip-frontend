@@ -2,7 +2,7 @@ import React from "react";
 import '../../styles/defaultDesign.css';
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
-function ButtonSelection({formData, handleChange, title, name, list, isMandatory, color, image}) {
+function ButtonSelection({formData, handleChange, title, name, list, isMandatory, color}) {
   return (
     <div className="Profile--content-section wide-gap">
       <div style={{ display: "flex", alignContent: "center", gap: "4px" }}>

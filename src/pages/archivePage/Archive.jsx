@@ -17,14 +17,14 @@ import MobileFilterContent from "../../components/Filter/MobileFilterContent";
 
 
 function Archive() {
-  const [membership, setMembership] = useState(null);
+  const [membership, setMembership] = useState([]);
   const [campus, setCampus] = useState(null);
   const [fields, setFields] = useState(null);
   const [filterOptions, setFilterOptions] = useState([]);
   const [info, setInfo] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
   const [isFiltered, setIsFilter] = useState(false);
@@ -33,7 +33,8 @@ function Archive() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const [filterData, setFilterData] = useState({
-    alumniType: [],
+    searchingWord: "",
+    membership: [],
     campus: [],
     country: "",
     state: "",
@@ -42,9 +43,19 @@ function Archive() {
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    // let newValue = "";
+    
+
     setFilterData((prevState) => {
       const currentField = prevState[name];
+      // if (name === "membership" && value === "동문") {
+      //   newValue = "true";
+      //   value = newValue;
+      // } else if (name === "membership" && value === "인기모") {
+      //   newValue = "false";
+      //   value = newValue;
+      // }
       if (Array.isArray(currentField)) {
         // 배열인 경우
         return {
@@ -63,6 +74,10 @@ function Archive() {
     });
   };
 
+  useEffect(() => {
+    console.log(filterData);
+  }, [filterData])
+
   const contentProps = {
     data: filterData,
     handleChange: handleChange
@@ -78,13 +93,20 @@ function Archive() {
     setIsLoading(true);
 
     try {
-      const size = 24; // default
-      const direction = 'DESC'; // default
-      const responseData = await getInfo(membership, campus, fields, page, size, direction);
+      const size = 9; // default
+      const direction = 'ASC'; // default
+      const responseData = await getInfo(
+        page, size, direction, filterData.searchingWord,
+        filterData.membership, filterData.campus, filterData.country,
+        filterData.state, filterData.city, filterData.fields
+      );
       /* need to implement setting the total page */
-      if (isFiltered) {
-        setInfo(responseData.data);
-      } else {
+      // if (isFiltered) {
+      //   setInfo(responseData.data);
+      // } else {
+      //   setInfo(prevInfo => [...prevInfo, ...responseData.data]);
+      // }
+      if (responseData.data.message === "Success") {
         setInfo(prevInfo => [...prevInfo, ...responseData.data]);
       }
     } catch (error) {
@@ -92,7 +114,7 @@ function Archive() {
     } finally {
       setIsLoading(false);
     }    
-  }, [fields, campus, membership, page, isFiltered]);
+  }, [page, filterData.searchingWord, filterData.membership, filterData.campus, filterData.country, filterData.state, filterData.city, filterData.fields]);
 
   // close the modal
   const closeModal = (e) => {
@@ -103,7 +125,7 @@ function Archive() {
 
   // set the current page
   const handlePageClick = (currPage) => {
-    setPage(currPage);
+    setPage(currPage-1);
   };
 
   // Filter animation

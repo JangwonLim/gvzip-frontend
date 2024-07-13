@@ -97,11 +97,10 @@ function MobileFilterContent({contentProps}) {
         formData={contentProps.data}
         handleChange={contentProps.handleChange}
         title={"멤버십"}
-        name={"alumniType"}
+        name={"membership"}
         list={memberList}
         isMandatory={false}
         color={"black"}
-        image={"../../assets/filter-membership.png"}
       />
       
       {/* Campus */}
@@ -113,7 +112,6 @@ function MobileFilterContent({contentProps}) {
         list={campusList}
         isMandatory={false}
         color={"black"}
-        image={"../../assets/filter-campus.png"}
       />
 
       {/* Location */}

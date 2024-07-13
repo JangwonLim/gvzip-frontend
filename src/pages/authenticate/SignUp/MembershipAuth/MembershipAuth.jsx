@@ -5,12 +5,22 @@ import '../../../../styles/defaultDesign.css';
 import { validateDateOfBirth } from "../../../../utils/validate";
 import { handleCopyClipBoard } from "../../../../utils/usefulFunctions";
 import { useGoBack } from "../../../../utils/usefulFunctions";
+import { getChildInfo } from "../../../../service/getService";
+import { useNavigate } from "react-router-dom";
 
 function MembershipAuth() {
+  const navigate = useNavigate();
+
   const alumniType = useSelector((state) => state.alumniType);
 
   const studentCode = "W2@#33s2LoVE88";
   const staffCode = "Jj$$2704sl3HOPE";
+
+  const principals = [
+    "이영석", "Jesse Newman", "John Dunlavey", 
+    "조성률", "조인진", "고영선", "문모세", "이정주", 
+    "강성봉", "박주영", "이명훈", "임혜준", "Joshua Kang"
+  ]
 
   const alumniTitle = () => {
     switch (alumniType) {
@@ -45,6 +55,11 @@ function MembershipAuth() {
   const [isValidDoB, setIsValidDoB] = useState(false);
   const [isValidAuth, setIsValidAuth] = useState(false);
 
+  const checkChildData = async () => {
+    const isChildDataValid = await getChildInfo(parentsAuth.name, parseInt(parentsAuth.dateOfBirth.year), parseInt(parentsAuth.dateOfBirth.month), parseInt(parentsAuth.dateOfBirth.day));
+
+    return isChildDataValid;
+  }
 
   const handleAlumni = (e) => {
     setAlumniAuth(e.target.value);
@@ -82,26 +97,43 @@ function MembershipAuth() {
   };
 
   const handleGoogleSignUp = () => {
-    window.location.href = 'https://gvzip.com/oauth2/authorize/google';
-  }
+    const navigateToGoogleAuth = () => navigate('/oauth2/authorize/google');
+    const navigateToFail = () => navigate('/signup/membership/fail');
+  
+    const isPrincipalAuthorized = () => principals.includes(alumniAuth);
+    const isChildDataValid = () => checkChildData();
+    const isStudentAuthorized = () => studentAuth === studentCode;
+    const isTeacherAuthorized = () => teacherAuth === staffCode;
+  
+    const authChecks = [
+      isPrincipalAuthorized,
+      isChildDataValid,
+      isStudentAuthorized,
+      isTeacherAuthorized,
+    ];
+  
+    const authCheck = authChecks[alumniType] || (() => false);
+  
+    if (authCheck()) {
+      navigateToGoogleAuth();
+    } else {
+      navigateToFail();
+    }
+  };
 
   const shareLink = "https://main--gvzip.netlify.app/";
 
+
   useEffect(() => {
-    const principals = [
-      "이영석", "Jesse Newman", "John Dunlavey", 
-      "조성률", "조인진", "고영선", "문모세", "이정주", 
-      "강성봉", "박주영", "이명훈", "임혜준", "Joshua Kang"
-    ]
     // Temporary logic
     if (alumniType === 0) {
-      setIsValidAuth(principals.includes(alumniAuth));
+      setIsValidAuth(alumniAuth.length > 0);
     } else if (alumniType === 1) {
       setIsValidAuth(parentsAuth.name && parentsAuth.dateOfBirth && isValidDoB);
     } else if (alumniType === 2) {
-      setIsValidAuth(studentAuth === studentCode);
+      setIsValidAuth(studentAuth.length > 0);
     } else if (alumniType === 3) {
-      setIsValidAuth(teacherAuth === staffCode);
+      setIsValidAuth(teacherAuth.length > 0);
     } else {
       setIsValidAuth(false);
     }
