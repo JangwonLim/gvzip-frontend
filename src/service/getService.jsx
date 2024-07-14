@@ -35,6 +35,7 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
 
 export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild) => {
   try {
+    console.log(nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild);
     const response = await axios.get(`${API_URL}/parent-test`, {
       params: {
         nameOfChild: nameOfChild,
@@ -43,8 +44,14 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
         bornDayOfChild: bornDayOfChild
       }
     });
+    console.log(response.data)
 
-    return response.data.isSuccess;
+    if (response.data.isSuccess) {
+      return true;
+    } else {
+      return false;
+    }
+    // return response.data.isSuccess;
   } catch (error) {
     console.log("Error occurred while fetching ChildInfo!")
     console.error(error);

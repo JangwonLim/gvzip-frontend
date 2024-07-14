@@ -105,7 +105,8 @@ function MembershipAuth() {
     const isChildDataValid = () => checkChildData();
     const isStudentAuthorized = () => studentAuth === studentCode;
     const isTeacherAuthorized = () => teacherAuth === staffCode;
-  
+    
+    console.log(checkChildData());  
     const authChecks = [
       isPrincipalAuthorized,
       isChildDataValid,
@@ -116,6 +117,7 @@ function MembershipAuth() {
     const authCheck = authChecks[alumniType] || (() => false);
   
     if (authCheck()) {
+      console.log(authChecks[alumniType]);
       navigateToGoogleAuth();
     } else {
       navigateToFail();
