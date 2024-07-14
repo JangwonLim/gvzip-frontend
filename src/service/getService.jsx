@@ -10,13 +10,13 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
         page: page,
         size: size,
         direction: direction,
-        searchingWord: searchingWord,
-        membership: membership,
-        campus: campus,
-        country: country,
-        state: state,
+        searchingWord: searchingWord?.length > 0 ? searchingWord : null,
+        membership: membership?.length > 0 ? membership : null,
+        campus: campus?.length > 0 ? campus : null,
+        country: country?.length > 0 ? country : null,
+        state: state?.length > 0 ? state : null,
         // city: city,
-        fields: fields
+        fields: fields?.length > 0 ? fields : null
       }, withCredentials: true
     })
     console.log("response: ", response)
