@@ -32,29 +32,66 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
   }
 }
 
+// export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild) => {
+//   try {
+//     console.log(nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild);
+//     const response = await axios.get(`${API_URL}/parent-test`, {
+//       params: {
+//         nameOfChild: nameOfChild,
+//         bornYearOfChild: bornYearOfChild,
+//         bornMonthOfChild: bornMonthOfChild,
+//         bornDayOfChild: bornDayOfChild
+//       }, withCredentials: true
+//     });
+//     console.log("childInfo result: ", response.data);
+
+//     if (response.data.isSuccess === true) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   } catch (error) {
+//     console.log("Error occurred while fetching ChildInfo!")
+//     console.error(error);
+//   }
+// }
+
 export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild) => {
   try {
-    console.log(nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild);
+    console.log("Request params:", { nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild });
+    
     const response = await axios.get(`${API_URL}/parent-test`, {
       params: {
-        nameOfChild: nameOfChild,
-        bornYearOfChild: bornYearOfChild,
-        bornMonthOfChild: bornMonthOfChild,
-        bornDayOfChild: bornDayOfChild
-      }, withCredentials: true
+        nameOfChild,
+        bornYearOfChild,
+        bornMonthOfChild,
+        bornDayOfChild
+      },
+      withCredentials: true
     });
-    console.log("childInfo result: ", response.data);
 
-    if (response.data.isSuccess === true) {
-      return true;
-    } else {
-      return false;
-    }
+    console.log("childInfo result:", response.data);
+
+    return response.data.isSuccess === true;
   } catch (error) {
-    console.log("Error occurred while fetching ChildInfo!")
-    console.error(error);
+    console.error("Error occurred while fetching ChildInfo!");
+
+    if (error.response) {
+      // Server responded with a status other than 2xx
+      console.error("Response error:", error.response.data);
+      console.error("Status code:", error.response.status);
+      console.error("Headers:", error.response.headers);
+    } else if (error.request) {
+      // Request was made but no response was received
+      console.error("Request error:", error.request);
+    } else {
+      // Something happened in setting up the request
+      console.error("Error message:", error.message);
+    }
+
+    return false;
   }
-}
+};
 
 export const getMyInfo = async () => {
   try {
