@@ -24,7 +24,7 @@ function Archive() {
   const [info, setInfo] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
   const [isFiltered, setIsFilter] = useState(false);
@@ -108,7 +108,7 @@ function Archive() {
       // }
 
       console.log(responseData)
-      if (responseData.data.message === "Success") {
+      if (responseData.message === "Success") {
         setInfo(prevInfo => [...prevInfo, ...responseData.data]);
       }
     } catch (error) {
@@ -127,7 +127,7 @@ function Archive() {
 
   // set the current page
   const handlePageClick = (currPage) => {
-    setPage(currPage-1);
+    setPage(currPage);
   };
 
   // Filter animation
