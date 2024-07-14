@@ -97,12 +97,12 @@ function MembershipAuth() {
     });
   };
 
-  const handleGoogleSignUp = () => {
+  const handleGoogleSignUp = async () => {
     const navigateToGoogleAuth = () => window.location.href = "https://gvzip.com/oauth2/authorization/google";
     const navigateToFail = () => navigate('/signup/membership/fail');
   
     const isPrincipalAuthorized = principals.includes(alumniAuth);
-    const isChildDataValid = checkChildData();
+    const isChildDataValid = await checkChildData();
     const isStudentAuthorized = studentAuth === studentCode;
     const isTeacherAuthorized = teacherAuth === staffCode;
     
