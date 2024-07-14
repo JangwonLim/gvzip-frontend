@@ -72,7 +72,7 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
 
     console.log("childInfo result:", response.data);
 
-    return response.data.success === true;
+    return response.data.isSuccess === true;
   } catch (error) {
     console.error("Error occurred while fetching ChildInfo!");
     return false;
