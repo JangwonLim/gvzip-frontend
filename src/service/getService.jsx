@@ -19,9 +19,10 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
         fields: fields
       }, withCredentials: true
     })
-    // console.log(response.data)
+    console.log("response: ", response)
+    console.log("response.data: ", response.data)
 
-    if (response && response.data) {
+    if (response.data) {
       console.log(response.data);
       return response.data;
     } else {
