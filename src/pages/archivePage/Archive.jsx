@@ -106,6 +106,8 @@ function Archive() {
       // } else {
       //   setInfo(prevInfo => [...prevInfo, ...responseData.data]);
       // }
+
+      console.log(responseData)
       if (responseData.data.message === "Success") {
         setInfo(prevInfo => [...prevInfo, ...responseData.data]);
       }

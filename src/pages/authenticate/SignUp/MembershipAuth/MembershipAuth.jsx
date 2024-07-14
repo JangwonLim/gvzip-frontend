@@ -101,12 +101,11 @@ function MembershipAuth() {
     const navigateToGoogleAuth = () => window.location.href = "https://gvzip.com/oauth2/authorization/google";
     const navigateToFail = () => navigate('/signup/membership/fail');
   
-    const isPrincipalAuthorized = () => principals.includes(alumniAuth);
-    const isChildDataValid = () => checkChildData();
-    const isStudentAuthorized = () => studentAuth === studentCode;
-    const isTeacherAuthorized = () => teacherAuth === staffCode;
+    const isPrincipalAuthorized = principals.includes(alumniAuth);
+    const isChildDataValid = checkChildData();
+    const isStudentAuthorized = studentAuth === studentCode;
+    const isTeacherAuthorized = teacherAuth === staffCode;
     
-    console.log(checkChildData());  
     const authChecks = [
       isPrincipalAuthorized,
       isChildDataValid,
@@ -114,10 +113,11 @@ function MembershipAuth() {
       isTeacherAuthorized,
     ];
   
-    const authCheck = authChecks[alumniType] || (() => false);
+    const authCheck = authChecks[alumniType];
+
+    console.log(authCheck);
   
-    if (authCheck()) {
-      console.log(authChecks[alumniType]);
+    if (authCheck === true) {
       navigateToGoogleAuth();
     } else {
       navigateToFail();
@@ -132,7 +132,8 @@ function MembershipAuth() {
     if (alumniType === 0) {
       setIsValidAuth(alumniAuth.length > 0);
     } else if (alumniType === 1) {
-      setIsValidAuth(parentsAuth.name && parentsAuth.dateOfBirth && isValidDoB);
+      console.log(parentsAuth)
+      setIsValidAuth(parentsAuth.name.length > 0 && parentsAuth.dateOfBirth.length > 0 && isValidDoB);
     } else if (alumniType === 2) {
       setIsValidAuth(studentAuth.length > 0);
     } else if (alumniType === 3) {

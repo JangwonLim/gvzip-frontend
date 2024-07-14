@@ -3,6 +3,7 @@ const API_URL = 'https://gvzip.com';
 
 
 export const getInfo = async (page, size, direction, searchingWord, membership, campus, country, state, city, fields ) => {
+  console.log(page, size, direction, searchingWord, membership, campus, country, state, fields)
   try {
     const response = await axios.get(`${API_URL}/archive`, {
       params: {
@@ -14,8 +15,8 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
         campus: campus,
         country: country,
         state: state,
-        city: city,
-        fields: fields,
+        // city: city,
+        fields: fields
       }, withCredentials: true
     })
     // console.log(response.data)
@@ -42,11 +43,11 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
         bornYearOfChild: bornYearOfChild,
         bornMonthOfChild: bornMonthOfChild,
         bornDayOfChild: bornDayOfChild
-      }
+      }, withCredentials: true
     });
-    console.log(response.data)
+    console.log(response.data);
 
-    if (response.data.isSuccess) {
+    if (response.data.isSuccess === true) {
       return true;
     } else {
       return false;
