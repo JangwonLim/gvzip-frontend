@@ -72,23 +72,9 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
 
     console.log("childInfo result:", response.data);
 
-    return response.data.isSuccess === true;
+    return response.data.success === true;
   } catch (error) {
     console.error("Error occurred while fetching ChildInfo!");
-
-    if (error.response) {
-      // Server responded with a status other than 2xx
-      console.error("Response error:", error.response.data);
-      console.error("Status code:", error.response.status);
-      console.error("Headers:", error.response.headers);
-    } else if (error.request) {
-      // Request was made but no response was received
-      console.error("Request error:", error.request);
-    } else {
-      // Something happened in setting up the request
-      console.error("Error message:", error.message);
-    }
-
     return false;
   }
 };
