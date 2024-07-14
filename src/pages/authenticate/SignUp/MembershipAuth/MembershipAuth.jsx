@@ -58,6 +58,7 @@ function MembershipAuth() {
   const checkChildData = async () => {
     const isChildDataValid = await getChildInfo(parentsAuth.name, parseInt(parentsAuth.dateOfBirth.year), parseInt(parentsAuth.dateOfBirth.month), parseInt(parentsAuth.dateOfBirth.day));
 
+    console.log(isChildDataValid);
     return isChildDataValid;
   }
 

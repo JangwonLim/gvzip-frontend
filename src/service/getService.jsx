@@ -51,6 +51,18 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
   }
 }
 
+export const getMyInfo = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/member`);
+    if (response.data) {
+      return response.data;
+    }
+  } catch (error) {
+    console.log("Error occurred while fetching MyInfo!")
+    console.error(error);
+  }
+}
+
 // const API_URL = 'https://gvzip.com';
 
 // export const getInfo = async (membership, campus, fields, page, size, direction) => {
