@@ -58,7 +58,7 @@ function MembershipAuth() {
   const checkChildData = async () => {
     const isChildDataValid = await getChildInfo(parentsAuth.name, parseInt(parentsAuth.dateOfBirth.year), parseInt(parentsAuth.dateOfBirth.month), parseInt(parentsAuth.dateOfBirth.day));
 
-    console.log(isChildDataValid);
+    console.log("isChildDataValid: ", isChildDataValid);
     return isChildDataValid;
   }
 
@@ -115,7 +115,7 @@ function MembershipAuth() {
   
     const authCheck = authChecks[alumniType];
 
-    console.log(authCheck);
+    console.log("authCheck: ", authCheck);
   
     if (authCheck === true) {
       navigateToGoogleAuth();

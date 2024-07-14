@@ -19,11 +19,8 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
         fields: fields?.length > 0 ? fields : null
       }, withCredentials: true
     })
-    console.log("response: ", response)
-    console.log("response.data: ", response.data)
 
     if (response.data) {
-      console.log(response.data);
       return response.data;
     } else {
       console.log('No response data received');
@@ -46,14 +43,13 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
         bornDayOfChild: bornDayOfChild
       }, withCredentials: true
     });
-    console.log(response.data);
+    console.log("childInfo result: ", response.data);
 
     if (response.data.isSuccess === true) {
       return true;
     } else {
       return false;
     }
-    // return response.data.isSuccess;
   } catch (error) {
     console.log("Error occurred while fetching ChildInfo!")
     console.error(error);

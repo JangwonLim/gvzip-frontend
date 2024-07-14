@@ -107,7 +107,6 @@ function Archive() {
       //   setInfo(prevInfo => [...prevInfo, ...responseData.data]);
       // }
 
-      console.log("responseData in client: ", responseData);
       if (responseData.message === "Success") {
         setInfo(prevInfo => [...prevInfo, ...responseData.data]);
       }
