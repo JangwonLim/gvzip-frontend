@@ -98,7 +98,7 @@ function MembershipAuth() {
   };
 
   const handleGoogleSignUp = () => {
-    const navigateToGoogleAuth = () => navigate('/oauth2/authorize/google');
+    const navigateToGoogleAuth = () => window.location.href = "https://gvzip.com/oauth2/authorization/google";
     const navigateToFail = () => navigate('/signup/membership/fail');
   
     const isPrincipalAuthorized = () => principals.includes(alumniAuth);

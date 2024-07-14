@@ -24,7 +24,7 @@ function SignIn() {
       <div className="SignIn--button-container">
         <button 
           className="SignIn--google-button"
-          onClick={() => navigate('/oauth2/authorize/google')}
+          onClick={() =>  window.location.href = "https://gvzip.com/oauth2/authorization/google"}
         >
           <img src={require('../../../assets/google-logo.png')} alt="" />
           <span className="h2-18-sb">
