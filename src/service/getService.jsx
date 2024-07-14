@@ -60,7 +60,7 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
   try {
     console.log("Request params:", { nameOfChild, bornYearOfChild, bornMonthOfChild, bornDayOfChild });
     
-    const response = await axios.get(`${API_URL}/parent-test`, {
+    const response = await axios.get(`${API_URL}/parents-test`, {
       params: {
         nameOfChild,
         bornYearOfChild,
