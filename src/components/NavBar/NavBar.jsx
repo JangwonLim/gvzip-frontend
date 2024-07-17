@@ -18,7 +18,7 @@ function NavBar() {
   };
 
   const onClickArchive = () => {
-    console.log("cookies: ", Cookies.get("JSESSIONID"));
+    console.log("cookies: ", Cookies.get());
     setActiveButton('/archive');
     navigate('/archive');
   };
