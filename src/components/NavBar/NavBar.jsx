@@ -20,7 +20,7 @@ function NavBar() {
   };
 
   const onClickArchive = () => {
-    console.log('cookies: ', cookies);
+    console.log('cookies: ', cookies.JSESSIONID);
     if (!cookies) {
       console.log("You don't have the cookie!");
     }
