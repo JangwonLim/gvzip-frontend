@@ -10,7 +10,7 @@ function NavBar() {
   const location = useLocation();
   const [activeButton, setActiveButton] = useState(location.pathname);
 
-  const [cookies] = useCookies(['JSESSIONID']);
+  const [cookies] = useCookies(['']);
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
@@ -22,7 +22,6 @@ function NavBar() {
   const onClickArchive = () => {
     console.log('cookies: ', cookies); // Debugging: check the whole cookies object
     console.log('cookies.JSESSIONID: ', cookies.JSESSIONID); // Debugging: check the specific cookie value
-    console.log('cookies.JSESSIONID: ', cookies.get('JSESSIONID')); // Debugging: check the specific cookie value
     if (!cookies) {
       console.log("You don't have the cookie!");
     }
