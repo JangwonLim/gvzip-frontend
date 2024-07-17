@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import './NavBar.css';
 import { useMediaQuery } from 'react-responsive';
+import { useCookies } from "react-cookie";
 
 
 function NavBar() {
@@ -9,8 +10,9 @@ function NavBar() {
   const location = useLocation();
   const [activeButton, setActiveButton] = useState(location.pathname);
 
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const [cookies] = useCookies(['JSESSIONID']);
 
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const onClickHome = () => {
     setActiveButton('/');
@@ -18,6 +20,10 @@ function NavBar() {
   };
 
   const onClickArchive = () => {
+    console.log('cookies: ', cookies);
+    if (!cookies) {
+      console.log("You don't have the cookie!");
+    }
     setActiveButton('/archive');
     navigate('/archive');
   };
