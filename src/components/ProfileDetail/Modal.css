@@ -46,7 +46,7 @@
 
   .Modal--content-container {
     width: auto; height: auto;
-    min-height: 201px;
+    /* min-height: 201px; */
     max-height: 467px;
     background-color: white;
     border: none;

@@ -23,6 +23,7 @@ function Archive() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const [isFiltered, setIsFilter] = useState(false);
   const [animating, setAnimating] = useState(false);
   // const [hasMore, setHasMore] = useState(true);
@@ -74,6 +75,8 @@ function Archive() {
   /* functions */
   // fetch the archive data from the database
   const fetchArchData = useCallback(async () => {
+    if (!hasMore) return;
+    
     setIsLoading(true);
 
     try {
@@ -86,25 +89,34 @@ function Archive() {
       );
 
       if (responseData.message === "Success") {
-        setInfo(prevInfo => [...prevInfo, ...responseData.data]);
+        const newData = responseData.data;
+        setInfo(prevInfo => [...prevInfo, ...newData]);
+
+        // Check if more data is available
+        if (newData.length < size) {
+          setHasMore(false);
+        }
+      } else {
+        setHasMore(false);
       }
     } catch (error) {
       console.error('Failed to fetch data. Please try again later: ', error);
+      setHasMore(false);
     } finally {
       setIsLoading(false);
     }    
-  }, [page, filterData.searchingWord, filterData.membership, filterData.campus, filterData.country, filterData.state, filterData.city, filterData.fields]);
+  }, [page, filterData.searchingWord, filterData.membership, filterData.campus, filterData.country, filterData.state, filterData.city, filterData.fields, hasMore]);
 
   // infinite scroll feature
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) return;
+      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading || !hasMore) return;
       setPage((prevPage) => prevPage + 1);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isLoading]);
+  }, [isLoading, hasMore]);
 
   // close the modal
   const closeModal = (e) => {
@@ -230,14 +242,6 @@ function Archive() {
         </div>
 
         { isLoading && <p>Loading...</p> }
-
-        {/* Pagination */}
-        {/* <Pagination 
-          page={page} 
-          totalPages={totalPages} 
-          handlePageClick={handlePageClick} 
-          isFiltered={isFiltered} 
-        /> */}
       </div>
       
       {/* Modal */}
