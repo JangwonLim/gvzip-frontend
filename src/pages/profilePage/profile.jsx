@@ -29,7 +29,7 @@ function Profile() {
 
   return (
     <div className="ProfilePage--container">
-      <MyInfoCard data={data}/>
+      <MyInfoCard data={data} setModal={setModal}/>
 
       <div className="ProfilePage--button-container">
         <button className="ProfilePage--button">
@@ -55,11 +55,10 @@ function Profile() {
   )
 }
 
-function MyInfoCard({data, setModal, setModalInfo}) {
+function MyInfoCard({data, setModal}) {
 
   const openModal = () => {
     setModal(true);
-    setModalInfo(data);
   }
 
   const membership = () => {
