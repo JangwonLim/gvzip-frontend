@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './profile.css';
-import Card from '../../components/Card/Card';
+// import Card from '../../components/Card/Card';
 import { getMyInfo } from "../../service/getService";
 
 function Profile() {
@@ -11,14 +11,15 @@ function Profile() {
       let result = await getMyInfo();
       console.log("result: ", result.data);
       setMyInfo(result.data);
+      console.log("myInfo: ", myInfo);
     }
 
     fetchMyInfo();
-  }, []);
+  }, [myInfo]);
 
   return (
     <div>
-      <Card data={myInfo}/>
+      {/* <Card data={myInfo}/> */}
     </div>
   )
 }
