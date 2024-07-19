@@ -3,10 +3,13 @@ import './profile.css';
 import { getMyInfo } from "../../service/getService";
 import './../../styles/defaultDesign.css';
 import Modal from "../../components/ProfileDetail/Modal";
+import { useNavigate } from "react-router-dom";
+import { deleteAccount } from "../../service/deleteService";
 
 function Profile() {
   const [data, setData] = useState({});
   const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
 
   const fetchMyInfo = useCallback(async () => {
     try {
@@ -19,8 +22,26 @@ function Profile() {
     }
   }, [])
 
+  const deleteMyAccount = async () => {
+    try {
+      const result = await deleteAccount();
+
+      if (result.isSuccess) {
+        console.log("Successfully deleted your account!");
+      } else {
+        console.log("Failed in deleting your account!");
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   const closeModal = () => {
     setModal(false);
+  }
+
+  const logout = () => {
+    navigate('https://gvzip.com/logout');
   }
   
   useEffect(() => {
@@ -41,9 +62,19 @@ function Profile() {
       </div>
 
       <div className="b7-16-sb ProfilePage--bottom-button-container">
-        <span style={{ cursor: "pointer" }}>회원탈퇴</span>
+        <span 
+          onClick={deleteMyAccount}
+          style={{ cursor: "pointer" }}
+        >
+          회원탈퇴
+        </span>
         <span>|</span>
-        <span style={{ cursor: "pointer" }}>로그아웃</span>
+        <span 
+          onClick={logout}
+          style={{ cursor: "pointer" }}
+        >
+          로그아웃
+        </span>
       </div>
 
       { modal && (
