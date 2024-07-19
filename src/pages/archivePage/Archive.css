@@ -1,5 +1,9 @@
 @import '../../styles/colors.css';
 
+body {
+  background-color: var(--bg-grey);
+}
+
 .Archive--content-wrapper {
   display: flex;
   width: 100vw;

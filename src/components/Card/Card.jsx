@@ -17,11 +17,12 @@ function Card({data, setModal, setModalInfo}) {
     }
   }
 
+  const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
   return(
     <div className="Card--container" onClick={openModal}>
       <div className="Card--header-container">
         <div className="Card--header-text">
-          <span className="b0-10-m" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()} {data.city}, {data.country}</span>
+          <span className="b0-10-m" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()} {location}</span>
         </div>
 
         <img 

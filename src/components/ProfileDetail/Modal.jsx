@@ -14,6 +14,9 @@ function Modal({info, setModal}) {
     }
   }
 
+  const fields = [info.field1 ?? '', info.field2 ?? '', info.field3 ?? ''].filter(Boolean).join(', ');;
+  const location = [info.city ?? '', info.country ?? ''].filter(Boolean).join(', ');
+
   return(
     <div className="Modal--container">
       <div className="Modal--header">
@@ -55,10 +58,13 @@ function Modal({info, setModal}) {
                 src={require("../../assets/modal-job-icon.png")} 
                 alt="job" 
               />
+              {/* <span className="b1-12-m">
+                <span>{info.field1}, </span>
+                <span>{info.field2}, </span>
+                <span>{info.field3}</span>
+              </span> */}
               <span className="b1-12-m">
-                {info.field1}<span>, </span>
-                {info.field2}<span>, </span>
-                {info.field3}
+                {fields}
               </span>
             </div>
 
@@ -69,7 +75,7 @@ function Modal({info, setModal}) {
                 alt="location" 
               />
               <span className="b1-12-m">
-                {info.city}, {info.country}
+                {location}
               </span>
             </div>
           </div>
@@ -79,61 +85,69 @@ function Modal({info, setModal}) {
         <div className="Modal--additional-info">
 
           {/* education */}
-          <div className="Modal--basic-info">
-            <span  
-              className="Modal--addtional-info-title"
-            >
-              학력
-            </span>
-            {
-              info.educations.map((item, index) => {
-                return (
-                  <div className="Modal--education-content">
-                    <span 
-                      className="Modal--additional-info-title black-text"
-                    >
-                      {item.schoolName}
-                    </span>
-                    <span 
-                      className="b1-12-m"
-                      style={{ color: "#A8B3BD" }}
-                    >
-                      {item.degree} {item.status} | {item.major}
-                    </span>
-                  </div>
-                )
-              })
-            }
-          </div>
-
+          { 
+            info.educations.length > 0 ?? (
+              <div className="Modal--basic-info">
+                <span  
+                  className="Modal--addtional-info-title"
+                >
+                  학력
+                </span>
+                {
+                  info.educations.map((item, index) => {
+                    return (
+                      <div className="Modal--education-content">
+                        <span 
+                          className="Modal--additional-info-title black-text"
+                        >
+                          {item.schoolName}
+                        </span>
+                        <span 
+                          className="b1-12-m"
+                          style={{ color: "#A8B3BD" }}
+                        >
+                          {item.degree} {item.status} | {item.major}
+                        </span>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            )
+          }
+          
           {/* careers */}
-          <div className="Modal--basic-info">
-            <span  
-              className="Modal--addtional-info-title"
-            >
-              경력/경험
-            </span>
+          {
+            info.careers.length > 0 ?? (
+              <div className="Modal--basic-info">
+                <span  
+                  className="Modal--addtional-info-title"
+                >
+                  경력/경험
+                </span>
 
-            {
-              info.careers.map((item, index) => {
-                return (
-                  <div className="Modal--education-content">
-                    <span
-                      className="Modal--additional-info-title black-text"
-                    >
-                      {item.companyName} | {item.position}
-                    </span>
-                    <span
-                      className="b1-12-m"
-                      style={{ color: "#A8B3BD" }}
-                    >
-                      {item.startYear}년 · {item.duration}년
-                    </span>
-                  </div>
-                )
-              })
-            }
-          </div>
+                {
+                  info.careers.map((item, index) => {
+                    return (
+                      <div className="Modal--education-content">
+                        <span
+                          className="Modal--additional-info-title black-text"
+                        >
+                          {item.companyName} | {item.position}
+                        </span>
+                        <span
+                          className="b1-12-m"
+                          style={{ color: "#A8B3BD" }}
+                        >
+                          {item.startYear}년 · {item.duration}년
+                        </span>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            )
+          }
         </div>
       </div>
     </div>
