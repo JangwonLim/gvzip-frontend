@@ -5,12 +5,13 @@ import '../../styles/defaultDesign.css';
 function Card({data, setModal, setModalInfo}) {
 
   const openModal = () => {
-    setModal(true);
-    setModalInfo(data);
+    // setModal(true);
+    // setModalInfo(data);
+    console.log(data)
   }
 
   const membership = () => {
-    if (data.isAlumni) {
+    if (data.alumniType === 0) {
       return "졸업생";
     } else {
       return "인기모";
