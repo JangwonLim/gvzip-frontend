@@ -7,9 +7,15 @@ function Profile() {
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState({});
   const fetchMyInfo = useCallback(async () => {
-    let result = await getMyInfo();
-    console.log("result: ", result.data);
-    setData(result.data);
+    try {
+      const result = await getMyInfo();
+      if (result.message === "Success") {
+        console.log("result: ", result.data);
+        setData(result.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }, [])
   
   useEffect(() => {
