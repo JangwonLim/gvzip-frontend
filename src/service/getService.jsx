@@ -81,7 +81,7 @@ export const getChildInfo = async (nameOfChild, bornYearOfChild, bornMonthOfChil
 
 export const getMyInfo = async () => {
   try {
-    const response = await axios.get(`${API_URL}/member`);
+    const response = await axios.get(`${API_URL}/members`);
     if (response.data) {
       console.log(response.data);
       return response.data;
