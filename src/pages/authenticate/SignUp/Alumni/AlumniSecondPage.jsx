@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import './../Signup.css';
 import '../ProfileInfo.css';
 import './../../../../styles/defaultDesign.css';
 import HistoryDetail from "../../../../components/HistoryDetail/HistoryDetail";
-
+import EditBottomSheet from "../../../../components/BottomSheet/EditBottomSheet";
+import './../../../../components/BottomSheet/BottomSheet.css'
 function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPrevPage, handleEducationClick })
 {
+  const [edit, setEdit] = useState(false);
+
+  const openEdit = () => {
+    setEdit(true);
+  }
+
+  const closeEdit = (e) => {
+    e.preventDefault();
+    setEdit(false);
+  }
+
   return (
     <div className="Profile--content-container">
       {/* Education */}
@@ -25,6 +37,7 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPrevPage, 
                   detail2={data.status} 
                   content={data.major} 
                   index={index}
+                  openEdit={openEdit}
                 />
               )
             }
@@ -72,6 +85,20 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPrevPage, 
           <span className="h2-18-sb">다음</span>
         </button>
       </div>
+
+      {
+        edit && (
+          <div 
+            className="EditBottomSheet--modal-background"
+            onClick={(e) => closeEdit(e)}
+          >
+            <EditBottomSheet
+              closeEdit={closeEdit}
+              handleEducationClick={handleEducationClick}
+            />
+          </div>
+        )
+      }
     </div>
   )
   

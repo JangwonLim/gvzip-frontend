@@ -3,7 +3,6 @@ import '../../styles/defaultDesign.css';
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
 function Year({formData, handleChange, options, title, placeholder}) {
-  console.log(title)
   const getSelectProps = (title) => {
     switch (title) {
       case "졸업년도":

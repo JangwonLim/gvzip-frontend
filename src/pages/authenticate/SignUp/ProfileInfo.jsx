@@ -44,7 +44,7 @@ function ProfileInfo() {
     introduction: '',
     alumniType: null,
     sns: 'www.instagram.com',
-    entranceYear: 0,
+    entranceYear: '',
     educations: [],
     careers: []
   });
