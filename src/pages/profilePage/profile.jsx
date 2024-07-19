@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import './profile.css';
 // import Card from '../../components/Card/Card';
 import { getMyInfo } from "../../service/getService";
@@ -6,16 +6,16 @@ import { getMyInfo } from "../../service/getService";
 function Profile() {
   // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState({});
-
+  const fetchMyInfo = useCallback(async () => {
+    let result = await getMyInfo();
+    console.log("result: ", result.data);
+    setData(result.data);
+  }, [])
+  
   useEffect(() => {
-    const fetchMyInfo = async () => {
-      let result = await getMyInfo();
-      console.log("result: ", result.data);
-      setData(result.data);
-    }
-
+    console.log(data.campus)
     fetchMyInfo();
-  }, []);
+  }, [fetchMyInfo, data]);
 
   return (
     <div>
