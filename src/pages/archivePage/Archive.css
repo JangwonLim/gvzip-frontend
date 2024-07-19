@@ -127,13 +127,13 @@
 
 /* Mobile styling */
 
-.MobileArchive--wrapper {
+.Archive--wrapper {
   display: flex;
   justify-content: center;
   background-color: var(--bg-grey);
 }
 
-.MobileArchive--container {
+.Archive--container {
   width: 100%; height: auto;
   max-width: 358px;
   display: flex;
@@ -141,14 +141,14 @@
   gap: 8px;
 }
 
-.MobileArchive--header-container {
+.Archive--header-container {
   width: 100%; height: auto;
   display: flex;
   gap: 12px;
   margin-top: 20px;
 }
 
-.MobileArchive--filter-button {
+.Archive--filter-button {
   width: 80px; height: auto;
   min-width: 80px;
   border: 1.5px solid var(--grey1);
@@ -160,27 +160,27 @@
   gap: 8px;
 }
 
-.MobileArchive--mid-section-container {
+.Archive--mid-section-container {
   width: 100%; height: auto;
   display: flex;
   flex-direction: column;
   gap: 9px;
 }
 
-.MobileArchive--filter-options-wrapper {
+.Archive--filter-options-wrapper {
   display: flex;
   justify-content: flex-end;
   gap: 11px;
 }
 
-.MobileArchive--filter-options-container {
+.Archive--filter-options-container {
   width: 201px; height: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
 
-.MobileArchive--filter-options-delete-button {
+.Archive--filter-options-delete-button {
   background-color: transparent;
   border: none;
   width: 53px; height: 8px;
@@ -191,7 +191,7 @@
   color: #6b6b6b;
 }
 
-.MobileArchive--cards-container {
+.Archive--cards-container {
   width: 100%; height: auto;
   display: flex;
   flex-wrap: wrap;

@@ -6,17 +6,17 @@
 // import FilterOption from "../../components/Filter/FilterOption";
 // import Card from "../../components/Card/Card";
 
-// function MobileArchive() {
+// function Archive() {
 //   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 //   return(
-//     <div className="MobileArchive--wrapper">
-//       <div className="MobileArchive--container">
+//     <div className="Archive--wrapper">
+//       <div className="Archive--container">
 
 //         {/* Filter button and Search Bar */}
-//         <div className="MobileArchive--header-container">
+//         <div className="Archive--header-container">
 //           <button 
-//             className="MobileArchive--filter-button"
+//             className="Archive--filter-button"
 //           >
 //             <img
 //               alt="filter-button"
@@ -34,9 +34,9 @@
 //         </div>
 
 //         {/* Filter Options */}
-//         <div className="MobileArchive--mid-section-container">
-//           <div className="MobileArchive--filter-options-wrapper">
-//             <div className="MobileArchive--filter-options-container">
+//         <div className="Archive--mid-section-container">
+//           <div className="Archive--filter-options-wrapper">
+//             <div className="Archive--filter-options-container">
 //               {
 //                 filterOptions.map(item => 
 //                   <FilterOption title={item} setFilterOptions={setFilterOptions} />
@@ -44,7 +44,7 @@
 //               }
 //             </div>
             
-//             <button className="MobileArchive--filter-options-delete-button">모든 필터 지우기</button>
+//             <button className="Archive--filter-options-delete-button">모든 필터 지우기</button>
 //           </div>
 
 //           <span 
@@ -56,7 +56,7 @@
 //         </div>
 
 //         {/* Cards */}
-//         <div className="MobileArchive--cards-container">
+//         <div className="Archive--cards-container">
 //           {
 //             info.map((item, i) => {
 //               return (
@@ -84,4 +84,4 @@
 //   )
 // }
 
-// export default MobileArchive;
+// export default Archive;
