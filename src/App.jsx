@@ -12,6 +12,7 @@ import MembershipAuth from './pages/authenticate/SignUp/MembershipAuth/Membershi
 import BottomSheet from './components/BottomSheet/BottomSheet.jsx';
 import MembershipAuthFail from './pages/authenticate/SignUp/MembershipAuth/MembershipAuthFail.jsx';
 import Profile from './pages/profilePage/profile.jsx';
+import PopUp from './components/PopUp/PopUp.jsx';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/bottomsheet" element={<BottomSheet />}></Route>
         <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
         <Route path='/member' element={<Profile />}/>
+        <Route path='/popup' element={<PopUp />}/>
 
         {/* PrivateRouter Can be used to protect routes */}
       </Routes>

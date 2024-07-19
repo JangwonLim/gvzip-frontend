@@ -1,0 +1,57 @@
+@import './../../styles/colors.css';
+
+@media (max-width: 768px) {
+  .PopUp--container {
+    width: 327px; height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 3px 8px 15px 0px rgba(0, 0, 0, 0.07);
+    padding: 24px 0 20px 0;
+  }
+
+  .PopUp--text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .PopUp--title {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 120%;
+    text-align: center;
+    color: #181A1B;
+  }
+
+  .PopUp--disclaimer {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    text-align: center;
+    color: var(--grey3);
+  }
+
+  .PopUp--button-container {
+    display: flex;
+    gap: 8px;
+  }
+
+  .PopUp--button {
+    width: 139.5px; height: 52px;
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: white;
+    color: var(--black-text);
+
+    &.black {
+      background-color: black;
+      color: white;
+    }
+  }
+}

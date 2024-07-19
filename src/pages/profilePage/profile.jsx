@@ -3,11 +3,14 @@ import './profile.css';
 import { getMyInfo } from "../../service/getService";
 import './../../styles/defaultDesign.css';
 import Modal from "../../components/ProfileDetail/Modal";
-import { deleteAccount } from "../../service/deleteService";
+import './../archivePage/Archive.css';
+import PopUp from "../../components/PopUp/PopUp";
 
 function Profile() {
   const [data, setData] = useState({});
   const [modal, setModal] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  const [purpose, setPurpose] = useState('');
 
   const fetchMyInfo = useCallback(async () => {
     try {
@@ -20,27 +23,17 @@ function Profile() {
     }
   }, [])
 
-  const deleteMyAccount = async () => {
-    try {
-      const result = await deleteAccount();
-
-      if (result.isSuccess) {
-        console.log("Successfully deleted your account!");
-        window.location.href = 'https://gvzip.com/logout';
-      } else {
-        console.log("Failed in deleting your account!");
-      }
-    } catch(error) {
-      console.log(error);
-    }
-  }
-
   const closeModal = () => {
     setModal(false);
   }
 
-  const logout = () => {
-    window.location.href = 'https://gvzip.com/logout';
+  const openPopUp = (e) => {
+    setPurpose(e.target.textContent);
+    setPopUp(true);
+  }
+
+  const closePopUp = () => {
+    setPopUp(false);
   }
   
   useEffect(() => {
@@ -62,14 +55,14 @@ function Profile() {
 
       <div className="b7-16-sb ProfilePage--bottom-button-container">
         <span 
-          onClick={deleteMyAccount}
+          onClick={openPopUp}
           style={{ cursor: "pointer" }}
         >
           회원탈퇴
         </span>
         <span>|</span>
         <span 
-          onClick={logout}
+          onClick={openPopUp}
           style={{ cursor: "pointer" }}
         >
           로그아웃
@@ -81,6 +74,14 @@ function Profile() {
           <Modal info={data} setModal={setModal}/>
         </div>
       )}
+
+      {
+        popUp && (
+          <div className="Archive--modal-backdrop" onClick={closePopUp}>
+            <PopUp purpose={purpose}/>
+          </div>
+        )
+      }
     </div>
   )
 }
