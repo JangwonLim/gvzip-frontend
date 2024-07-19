@@ -4,22 +4,21 @@ import Card from '../../components/Card/Card';
 import { getMyInfo } from "../../service/getService";
 
 function Profile() {
-  const [myInfo, setMyInfo] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetchMyInfo = async () => {
       let result = await getMyInfo();
       console.log("result: ", result.data);
-      setMyInfo(result.data);
-      console.log("myInfo: ", myInfo);
+      setData(result.data);
     }
 
     fetchMyInfo();
-  }, [myInfo]);
+  }, []);
 
   return (
     <div>
-      <Card data={myInfo}/>
+      <Card data={data}/>
     </div>
   )
 }
