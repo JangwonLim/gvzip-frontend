@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './profile.css';
-import Card from '../../components/Card/Card';
+// import Card from '../../components/Card/Card';
 import { getMyInfo } from "../../service/getService";
 
 function Profile() {
@@ -14,11 +14,12 @@ function Profile() {
 
   useEffect(() => {
     fetchMyInfo();
-  }, []);
+    console.log("myInfo: ", myInfo);
+  }, [myInfo]);
 
   return (
     <div>
-      <Card data={myInfo}/>
+      {/* <Card data={myInfo}/> */}
     </div>
   )
 }
