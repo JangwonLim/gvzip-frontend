@@ -83,12 +83,12 @@ function Modal({info, setModal}) {
         
         {/* additional info */}
         {
-          (info.educations.length > 0 || info.careers.length > 0) ?? (
+          (info.educations.length > 0 || info.careers.length > 0) && (
             <div className="Modal--additional-info">
 
               {/* education */}
               { 
-                info.educations.length > 0 ?? (
+                info.educations.length > 0 && (
                   <div className="Modal--basic-info">
                     <span  
                       className="Modal--addtional-info-title"
@@ -120,7 +120,7 @@ function Modal({info, setModal}) {
               
               {/* careers */}
               {
-                info.careers.length > 0 ?? (
+                info.careers.length > 0 && (
                   <div className="Modal--basic-info">
                     <span  
                       className="Modal--addtional-info-title"
