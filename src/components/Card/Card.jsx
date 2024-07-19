@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Card.css'
 import '../../styles/defaultDesign.css';
 
 function Card({data, setModal, setModalInfo}) {
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   const openModal = () => {
     // setModal(true);
