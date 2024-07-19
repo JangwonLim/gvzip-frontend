@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './profile.css';
-// import Card from '../../components/Card';
+import Card from '../../components/Card/Card';
 import { getMyInfo } from "../../service/getService";
 
 function Profile() {
@@ -18,7 +18,7 @@ function Profile() {
 
   return (
     <div>
-      {myInfo ?? 'No data'}
+      <Card data={myInfo}/>
     </div>
   )
 }
