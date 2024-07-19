@@ -11,6 +11,7 @@ import { getInfo } from "../../service/getService";
 import { addFilters, clearFilters, deleteFilters, fetchFilters } from "../../redux/store";
 import BottomSheet from "../../components/BottomSheet/BottomSheet";
 import MobileFilterContent from "../../components/Filter/MobileFilterContent";
+import { useNavigate } from "react-router-dom";
 
 
 function Archive() {
@@ -26,6 +27,8 @@ function Archive() {
   const [animating, setAnimating] = useState(false);
   // const [hasMore, setHasMore] = useState(true);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const [filterData, setFilterData] = useState({
     searchingWord: "",
@@ -226,6 +229,8 @@ function Archive() {
             검색결과 {info.length}명
           </span>
         </div>
+
+        <button onClick={() => navigate('/member')}>button</button>
 
         {/* Cards */}
         <div className="Archive--cards-container">
