@@ -7,7 +7,7 @@ function Modal({info, setModal}) {
   const closeModal = () => {setModal(false)}
 
   const membership = () => {
-    if (info.isAlumni) {
+    if (info.alumniType === 0) {
       return "졸업생";
     } else {
       return "인기모";

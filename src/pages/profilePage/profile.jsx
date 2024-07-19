@@ -41,7 +41,7 @@ function Profile() {
   }
 
   const logout = () => {
-    navigate('https://gvzip.com/logout');
+    window.location.href = 'https://gvzip.com/logout';
   }
   
   useEffect(() => {

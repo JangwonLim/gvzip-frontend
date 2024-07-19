@@ -160,7 +160,7 @@ function ProfileInfo() {
   const registerUser = async (e) => {
     e.preventDefault();
     const result = await register(formData, profileImage);
-    if (result.success) {
+    if (result.isSuccess) {
       navigate('/archive');
     }
   }
