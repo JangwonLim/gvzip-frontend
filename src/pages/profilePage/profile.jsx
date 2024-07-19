@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './profile.css';
-import Card from '../../components/Card/Card';
+// import Card from '../../components/Card/Card';
 import { getMyInfo } from "../../service/getService";
 
 function Profile() {
-  const [data, setData] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchMyInfo = async () => {
@@ -18,7 +19,7 @@ function Profile() {
 
   return (
     <div>
-      <Card data={data}/>
+      {/* <Card data={data}/> */}
     </div>
   )
 }
