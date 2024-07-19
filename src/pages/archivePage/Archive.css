@@ -132,6 +132,7 @@
   display: flex;
   justify-content: center;
   background-color: var(--bg-grey);
+  margin-bottom: 20px;
 }
 
 .Archive--container {

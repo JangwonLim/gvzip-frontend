@@ -1,10 +1,23 @@
-import React from "react";
-import profile from './profile.css';
+import React, { useEffect, useState } from "react";
+import './profile.css';
+// import Card from '../../components/Card';
+import { getMyInfo } from "../../service/getService";
 
 function Profile() {
+  const [myInfo, setMyInfo] = useState(null);
+
+  const fetchMyInfo = async () => {
+    let result = await getMyInfo();
+    setMyInfo(result);
+    return result;
+  }
+
+  useEffect(() => {
+    console.log(fetchMyInfo());
+  }, []);
   return (
     <div>
-
+      {myInfo ?? 'No data'}
     </div>
   )
 }

@@ -3,11 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Archive.css';
 import './../../styles/defaultDesign.css';
 /* eslint-disable no-unused-vars */
-import Dropdown from "../../components/Filter/Dropdown";
 import Card from "../../components/Card/Card";
 import Modal from "../../components/ProfileDetail/Modal";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Pagination from "../../components/Pagination/Pagination";
 import FilterOption from "../../components/Filter/FilterOption";
 import { getInfo } from "../../service/getService";
 import { addFilters, clearFilters, deleteFilters, fetchFilters } from "../../redux/store";
@@ -106,6 +104,10 @@ function Archive() {
       setIsLoading(false);
     }    
   }, [page, filterData.searchingWord, filterData.membership, filterData.campus, filterData.country, filterData.state, filterData.city, filterData.fields, hasMore]);
+
+  useEffect(() => {
+    console.log(filterData.membership);
+  }, [filterData.membership])
 
   // infinite scroll feature
   useEffect(() => {
