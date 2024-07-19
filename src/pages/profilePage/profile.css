@@ -1,1 +1,77 @@
-@import './../../styles/colors.css'
+@import './../../styles/colors.css';
+
+@media (max-width: 768px) {
+  .ProfilePage--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw; height: 100vh;
+  }
+
+  .ProfilePage--button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .ProfilePage--button{
+    width: 342px; height: 52px;
+    border: 1.5px solid black;
+    color: var(--black-text);
+    border-radius: 30px;
+    background-color: white;
+
+    &.black {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  .ProfilePage--bottom-button-container {
+    width: 254px; height: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--grey3);
+    margin-top: 90px;
+  }
+
+
+  .MyInfoCard--container {
+    position: relative;
+    height: 268px;
+    width: 318px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 1px 34px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    gap: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .MyInfoCard--header-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .MyInfoCard--header-text {
+    width: 116px; height: auto;
+  }
+
+  .MyInfoCard--header-img {
+    height: 142px; width: 142px;
+    border-radius: 50%;
+  }
+
+  .MyInfoCard--content-container {
+    width: 278px; height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+}
