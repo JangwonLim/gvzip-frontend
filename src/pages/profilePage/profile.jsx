@@ -8,13 +8,14 @@ function Profile() {
 
   const fetchMyInfo = async () => {
     let result = await getMyInfo();
+    console.log(result);
     setMyInfo(result);
-    return result;
   }
 
   useEffect(() => {
-    console.log(fetchMyInfo());
+    fetchMyInfo();
   }, []);
+
   return (
     <div>
       {myInfo ?? 'No data'}
