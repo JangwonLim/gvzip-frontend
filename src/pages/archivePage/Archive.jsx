@@ -92,8 +92,9 @@ function Archive() {
   // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
   useEffect(() => {
     const fetchArchData = async () => {
+      console.log('here')
       if (!hasMore) return;
-    
+      console.log('there')
       setIsLoading(true);
     
       try {
