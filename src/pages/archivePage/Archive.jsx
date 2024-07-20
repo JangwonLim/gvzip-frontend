@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Archive.css';
 import './../../styles/defaultDesign.css';
@@ -73,9 +73,9 @@ function Archive() {
   const filters = useSelector(state => state.filter.filters);
 
   // 컴포넌트가 마운트될 때 로컬 스토리지에서 필터 데이터를 로드합니다.
-  // useEffect(() => {
-  //   dispatch(fetchFilters());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchFilters());
+  }, [dispatch]);
 
   // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
   useEffect(() => {
@@ -89,53 +89,49 @@ function Archive() {
   /* functions */
   // fetch the archive data from the database
 
-  // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
-  useEffect(() => {
-    const fetchArchData = async () => {
-      console.log('here')
-      if (!hasMore) return;
-      console.log('there')
-      setIsLoading(true);
-    
-      try {
-        console.log("fetching arch Data!");
-        console.log(filterData);
-        const size = 9; // default
-        const direction = 'ASC'; // default
-        const responseData = await getInfo(
-          page, size, direction, filterData.searchingWord,
-          filterData.membership, filterData.campus, filterData.country,
-          filterData.state, filterData.city, filterData.fields
-        );
-    
-        if (responseData && responseData.isSuccess) {
-          const newData = responseData.data;
-          setInfo(prevInfo => [...prevInfo, ...newData]);
-    
-          // Check if more data is available
-          if (newData.length < size) {
-            setHasMore(false);
-          }
-        } else {
+  const fetchArchData = useCallback(async () => {
+    if (!hasMore) return;
+
+    setIsLoading(true);
+
+    try {
+      const size = 9;
+      const direction = 'ASC';
+      const responseData = await getInfo(
+        page, size, direction, filterData.searchingWord,
+        filterData.membership, filterData.campus, filterData.country,
+        filterData.state, filterData.city, filterData.fields
+      );
+
+      if (responseData && responseData.isSuccess) {
+        const newData = responseData.data;
+        setInfo(prevInfo => [...prevInfo, ...newData]);
+
+        if (newData.length < size) {
           setHasMore(false);
         }
-      } catch (error) {
-        console.error('Failed to fetch data. Please try again later: ', error);
+      } else {
         setHasMore(false);
-      } finally {
-        setIsLoading(false);
       }
-    };
+    } catch (error) {
+      console.error('Failed to fetch data. Please try again later: ', error);
+      setHasMore(false);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [page, filterData, hasMore]);
 
+  // 필터 데이터나 페이지가 변경될 때마다 fetchArchData 함수 호출
+  useEffect(() => {
     fetchArchData();
-  }, [filterData, hasMore, page]);
+  }, [fetchArchData, page]);
   
   useEffect(() => {
     const handleScroll = debounce(() => {
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1 && !isLoading && hasMore) {
         setPage((prevPage) => prevPage + 1);
       }
-    }, 100); // Adjust the debounce time as needed
+    }, 100);
   
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -174,13 +170,11 @@ function Archive() {
     setIsBottomSheetOpen(false);
   };
 
-  const addFilterOptions = (newOption) => {
-    console.log(1)
-    dispatch(addFilters(newOption));
-    console.log(2)
-    // fetchArchData();
-    console.log(3)
-    setIsBottomSheetOpen(false);
+  const handleFilterChange = (newFilters) => {
+    dispatch(addFilters(newFilters));
+    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
+    setInfo([]); // 기존 데이터를 초기화
+    setHasMore(true); // 더 많은 데이터가 있음을 표시
   };
 
   // clear filter options
@@ -278,7 +272,7 @@ function Archive() {
         isBottomSheetOpen={isBottomSheetOpen}
         closeBottomSheet={closeBottomSheet}
         contentProps={contentProps}
-        onClickFilterOptions={addFilterOptions}
+        onClickFilterOptions={handleFilterChange}
       />
     </div>
   )
