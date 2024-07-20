@@ -5,7 +5,13 @@ const initialUserState = {
 };
 
 const initialFilterState = {
-  filters: []
+  searchingWord: "",
+  membership: [],
+  campus: [],
+  country: "",
+  state: "",
+  city: "",
+  fields: ""
 };
 
 let userInfo = createSlice({
@@ -38,7 +44,7 @@ let filters = createSlice({
       localStorage.setItem('filters', JSON.stringify(state.filters));
     },
     fetchFilters: (state) => {
-      const storedFilters = JSON.parse(localStorage.getItem('filters')) || {};
+      const storedFilters = JSON.parse(localStorage.getItem('filters')) || initialFilterState;
       state.filters = storedFilters;
     }
   }

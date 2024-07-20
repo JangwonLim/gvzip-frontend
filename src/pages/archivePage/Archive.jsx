@@ -175,13 +175,14 @@ function Archive() {
 
   // clear filter options
   const deleteAllFilters = () => {
-    dispatch(clearFilters)
+    dispatch(clearFilters);
+    fetchArchData();
   }
 
   // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
   useEffect(() => {
     fetchArchData();
-  }, [fetchArchData]);
+  }, [fetchArchData, filterData]);
 
   return(
     <div className="Archive--wrapper">
