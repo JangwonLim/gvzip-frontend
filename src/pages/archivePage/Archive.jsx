@@ -12,6 +12,7 @@ import { addFilters, clearFilters, deleteFilters, fetchFilters } from "../../red
 import BottomSheet from "../../components/BottomSheet/BottomSheet";
 import MobileFilterContent from "../../components/Filter/MobileFilterContent";
 import { useNavigate } from "react-router-dom";
+import debounce from 'lodash.debounce';
 
 
 function Archive() {
@@ -25,7 +26,6 @@ function Archive() {
   const [hasMore, setHasMore] = useState(true);
   const [isFiltered, setIsFilter] = useState(false);
   const [animating, setAnimating] = useState(false);
-  // const [hasMore, setHasMore] = useState(true);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -76,12 +76,12 @@ function Archive() {
   /* functions */
   // fetch the archive data from the database
   const fetchArchData = useCallback(async () => {
-    console.log("fetching arch Data!")
     if (!hasMore) return;
-    
+  
     setIsLoading(true);
-
+  
     try {
+      console.log("fetching arch Data!");
       console.log(filterData);
       const size = 9; // default
       const direction = 'ASC'; // default
@@ -90,11 +90,11 @@ function Archive() {
         filterData.membership, filterData.campus, filterData.country,
         filterData.state, filterData.city, filterData.fields
       );
-
-      if (responseData.message === "Success") {
+  
+      if (responseData && responseData.isSuccess) {
         const newData = responseData.data;
         setInfo(prevInfo => [...prevInfo, ...newData]);
-
+  
         // Check if more data is available
         if (newData.length < size) {
           setHasMore(false);
@@ -107,16 +107,16 @@ function Archive() {
       setHasMore(false);
     } finally {
       setIsLoading(false);
-    }    
+    }
   }, [page, hasMore, filterData]);
-
-  // infinite scroll feature
+  
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading || !hasMore) return;
-      setPage((prevPage) => prevPage + 1);
-    };
-
+    const handleScroll = debounce(() => {
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 1 && !isLoading && hasMore) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    }, 100); // Adjust the debounce time as needed
+  
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isLoading, hasMore]);
