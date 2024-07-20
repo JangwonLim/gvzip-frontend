@@ -81,6 +81,7 @@ function Archive() {
   // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
   useEffect(() => {
     if (filters) {
+      console.log("filters: ", filters)
       setFilterData(filters);
     }
   }, [filters]);
@@ -180,7 +181,7 @@ function Archive() {
   // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
   useEffect(() => {
     fetchArchData();
-  }, [fetchArchData, filterData]);
+  }, [fetchArchData]);
 
   return(
     <div className="Archive--wrapper">
