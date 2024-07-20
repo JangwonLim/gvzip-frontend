@@ -43,7 +43,6 @@ function Archive() {
   const handleChange = (e) => {
     let { name, value } = e.target;
     
-
     setFilterData((prevState) => {
       const currentField = prevState[name];
       if (Array.isArray(currentField)) {
@@ -77,6 +76,15 @@ function Archive() {
   useEffect(() => {
     dispatch(fetchFilters());
   }, [dispatch]);
+
+  // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
+  useEffect(() => {
+    if (filters) {
+      console.log("filters: ", filters)
+      setFilterData(filters);
+      console.log("filterData: ", filterData);
+    }
+  }, [filters, filterData]);
 
   /* functions */
   // fetch the archive data from the database
@@ -114,15 +122,6 @@ function Archive() {
       setIsLoading(false);
     }
   }, [page, hasMore, filterData]);
-
-  // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
-  useEffect(() => {
-    if (filters) {
-      console.log("filters: ", filters)
-      setFilterData(filters);
-      fetchArchData();
-    }
-  }, [filters, fetchArchData]);
   
   useEffect(() => {
     const handleScroll = debounce(() => {
