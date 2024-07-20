@@ -78,14 +78,6 @@ function Archive() {
     dispatch(fetchFilters());
   }, [dispatch]);
 
-  // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
-  useEffect(() => {
-    if (filters) {
-      console.log("filters: ", filters)
-      setFilterData(filters);
-    }
-  }, [filters]);
-
   /* functions */
   // fetch the archive data from the database
   const fetchArchData = useCallback(async () => {
@@ -122,6 +114,15 @@ function Archive() {
       setIsLoading(false);
     }
   }, [page, hasMore, filterData]);
+
+  // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
+  useEffect(() => {
+    if (filters) {
+      console.log("filters: ", filters)
+      setFilterData(filters);
+      fetchArchData();
+    }
+  }, [filters, fetchArchData]);
   
   useEffect(() => {
     const handleScroll = debounce(() => {
