@@ -82,6 +82,7 @@ function Archive() {
     setIsLoading(true);
 
     try {
+      console.log(filterData);
       const size = 9; // default
       const direction = 'ASC'; // default
       const responseData = await getInfo(
@@ -107,11 +108,7 @@ function Archive() {
     } finally {
       setIsLoading(false);
     }    
-  }, [page, filterData.searchingWord, filterData.membership, filterData.campus, filterData.country, filterData.state, filterData.city, filterData.fields, hasMore]);
-
-  useEffect(() => {
-    console.log(filterData.membership);
-  }, [filterData.membership])
+  }, [page, hasMore, filterData]);
 
   // infinite scroll feature
   useEffect(() => {

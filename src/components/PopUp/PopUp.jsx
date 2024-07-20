@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 function PopUp({purpose}) {
   const navigate = useNavigate();
 
-  console.log(purpose);
-
   const title = () => {
     switch (purpose) {
       case "회원탈퇴":
