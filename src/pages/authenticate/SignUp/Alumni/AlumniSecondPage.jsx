@@ -5,7 +5,7 @@ import './../../../../styles/defaultDesign.css';
 import HistoryDetail from "../../../../components/HistoryDetail/HistoryDetail";
 import EditBottomSheet from "../../../../components/BottomSheet/EditBottomSheet";
 import './../../../../components/BottomSheet/BottomSheet.css'
-function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPrevPage, handleEducationClick })
+function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPage, handleEducationClick })
 {
   const [edit, setEdit] = useState(false);
 
@@ -74,7 +74,7 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPrevPage, 
       <div className="Profile--button-container navigate">
         <button 
           className="Profile--navigate-button prev"
-          onClick={goToPrevPage}
+          onClick={goToPreviousPage}
         >
           <span className="h2-18-sb">이전</span>
         </button>

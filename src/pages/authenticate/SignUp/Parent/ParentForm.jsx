@@ -3,8 +3,10 @@ import ParentFirstPage from "./ParentFirstPage";
 import AlumniSecondPage from "../Alumni/AlumniSecondPage";
 import AlumniThirdPage from "../Alumni/AlumniThirdPage";
 import AlumniFourthPage from "../Alumni/AlumniFourthPage";
+import Education from "../Education";
+import Career from "../Career";
 
-function ParentForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData}) {
+function ParentForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick}) {
 
   return(
     <>
@@ -58,6 +60,23 @@ function ParentForm({formData, handleChange, handleBornYearChange, handleBornMon
             previewImage={previewImage}
             handleProfileImage={handleProfileImage}
             handleArrayData={handleArrayData}
+            handleCareerClick={handleCareerClick}
+          />
+        )
+      }
+
+      {
+        currentPage === 5 && (
+          <Education
+            handleChange={handleArrayData}
+          />
+        )
+      }
+
+      {
+        currentPage === 6 && (
+          <Career
+            handleChange={handleArrayData}
           />
         )
       }

@@ -33,7 +33,7 @@ function Year({formData, handleChange, options, title, placeholder}) {
 
   const selectProps = getSelectProps(title);
 
-  console.log(selectProps)
+  // console.log(selectProps)
 
   return (
     <div className="Profile--content-section wide-gap">

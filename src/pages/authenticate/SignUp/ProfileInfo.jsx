@@ -176,6 +176,9 @@ function ProfileInfo() {
   const handleEducationClick = () => {
     setCurrentPage(5);
   }
+  const handleCareerClick = () => {
+    setCurrentPage(6);
+  }
 
   const headerTitle = () => {
     switch (currentPage) {
@@ -235,6 +238,7 @@ function ProfileInfo() {
             goToPreviousPage={goToPreviousPage}
             handleEducationClick={handleEducationClick}
             handleArrayData={handleArrayData}
+            handleCareerClick={handleCareerClick}
           />
         )
       }
@@ -258,6 +262,7 @@ function ProfileInfo() {
             goToPreviousPage={goToPreviousPage}
             handleEducationClick={handleEducationClick}
             handleArrayData={handleArrayData}
+            handleCareerClick={handleCareerClick}
           />
         )
       }
