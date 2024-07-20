@@ -95,6 +95,7 @@ function Archive() {
     setIsLoading(true);
 
     try {
+      console.log(filterData)
       const size = 9;
       const direction = 'ASC';
       const responseData = await getInfo(
