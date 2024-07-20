@@ -76,6 +76,7 @@ function Archive() {
   /* functions */
   // fetch the archive data from the database
   const fetchArchData = useCallback(async () => {
+    console.log("fetching arch Data!")
     if (!hasMore) return;
     
     setIsLoading(true);
@@ -157,12 +158,9 @@ function Archive() {
   };
 
   // toggle filter options
-  const onClickFilterOptions = (newOption) => {
-    if (filters.includes(newOption)) {
-      dispatch(deleteFilters(newOption));
-    } else {
-      dispatch(addFilters(newOption));
-    }
+  const addFilterOptions = (newOption) => {
+    dispatch(addFilters(newOption));
+    setIsBottomSheetOpen(false);
   };
 
   // clear filter options
@@ -263,6 +261,7 @@ function Archive() {
         isBottomSheetOpen={isBottomSheetOpen}
         closeBottomSheet={closeBottomSheet}
         contentProps={contentProps}
+        onClickFilterOptions={addFilterOptions}
       />
     </div>
   )

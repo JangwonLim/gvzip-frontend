@@ -45,11 +45,18 @@ function Education({handleChange}) {
 
   const handleYearData = (e) => {
     const { name, value } = e.target;
-
-    setYearData((prevYearData) => ({
-      ...prevYearData,
-      [name]: value
-    }));
+    
+    if (name === "entranceYear" || name === "graduationYear" || name === "expectedGraduationYear") {
+      setYearData((prevYearData) => ({
+        ...prevYearData,
+        [name]: parseInt(value)
+      }));
+    } else {
+      setYearData((prevYearData) => ({
+        ...prevYearData,
+        [name]: value
+      }));
+    }
   }
 
   useEffect(() => {

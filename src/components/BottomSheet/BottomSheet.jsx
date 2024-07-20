@@ -4,7 +4,7 @@ import { useDrag } from 'react-use-gesture';
 import './BottomSheet.css';
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
-function BottomSheet({Content, isBottomSheetOpen, closeBottomSheet, contentProps}) {
+function BottomSheet({Content, isBottomSheetOpen, closeBottomSheet, contentProps, onClickFilterOptions}) {
   const [{ y, height }, set] = useSpring(() => ({ y: 0, height: window.innerHeight }));
   const bottomSheetRef = useRef(null);
   const openHeight = window.innerHeight; // Bottom Sheet 열림 높이 (px)
@@ -43,7 +43,7 @@ function BottomSheet({Content, isBottomSheetOpen, closeBottomSheet, contentProps
       >
         <div className="bottom-sheet-handle"></div>
         <div className="Profile--content-container">
-          <Content contentProps={contentProps}/>
+          <Content contentProps={contentProps} onClickFilterOptions={onClickFilterOptions}/>
         </div>
       </animated.div>
     </>

@@ -8,7 +8,7 @@ import {
   GetCity,
 } from "react-country-state-city";
 
-function MobileFilterContent({contentProps}) {
+function MobileFilterContent({contentProps, onClickFilterOptions}) {
   const memberList = ["동문", "인기모"];
   const campusList = ["음성", "문경", "미국"];
 
@@ -203,6 +203,7 @@ function MobileFilterContent({contentProps}) {
       </div>
 
       <button
+        onClick={() => onClickFilterOptions(contentProps.data)}
         className="Profile--navigate-button"
       >
         <span className="b7-16-sb">필터 적용</span>

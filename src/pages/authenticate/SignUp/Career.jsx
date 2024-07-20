@@ -27,7 +27,7 @@ function Career({handleChange}) {
       if (/^\d*$/.test(value) && value.length <= 4) {
         setCareerData(prevState => ({
           ...prevState,
-          [name]: value
+          [name]: parseInt(value)
         }));
       }
     } else {

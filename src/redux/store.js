@@ -26,19 +26,19 @@ let filters = createSlice({
   initialState: initialFilterState,
   reducers: {
     addFilters: (state, action) => {
-      state.filters.push(action.payload);
+      state.filters = action.payload;
       localStorage.setItem('filters', JSON.stringify(state.filters));
     },
-    deleteFilters: (state, action) => {
-      state.filters = state.filters.filter(filter => filter !== action.payload);
+    deleteFilters: (state) => {
+      state.filters = {};
       localStorage.setItem('filters', JSON.stringify(state.filters));
     },
     clearFilters: (state) => {
-      state.filters = [];
+      state.filters = {};
       localStorage.setItem('filters', JSON.stringify(state.filters));
     },
     fetchFilters: (state) => {
-      const storedFilters = JSON.parse(localStorage.getItem('filters')) || [];
+      const storedFilters = JSON.parse(localStorage.getItem('filters')) || {};
       state.filters = storedFilters;
     }
   }
