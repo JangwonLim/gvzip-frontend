@@ -88,40 +88,46 @@ function Archive() {
 
   /* functions */
   // fetch the archive data from the database
-  const fetchArchData = (async () => {
-    if (!hasMore) return;
-  
-    setIsLoading(true);
-  
-    try {
-      console.log("fetching arch Data!");
-      console.log(filterData);
-      const size = 9; // default
-      const direction = 'ASC'; // default
-      const responseData = await getInfo(
-        page, size, direction, filterData.searchingWord,
-        filterData.membership, filterData.campus, filterData.country,
-        filterData.state, filterData.city, filterData.fields
-      );
-  
-      if (responseData && responseData.isSuccess) {
-        const newData = responseData.data;
-        setInfo(prevInfo => [...prevInfo, ...newData]);
-  
-        // Check if more data is available
-        if (newData.length < size) {
+
+  // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
+  useEffect(() => {
+    const fetchArchData = async () => {
+      if (!hasMore) return;
+    
+      setIsLoading(true);
+    
+      try {
+        console.log("fetching arch Data!");
+        console.log(filterData);
+        const size = 9; // default
+        const direction = 'ASC'; // default
+        const responseData = await getInfo(
+          page, size, direction, filterData.searchingWord,
+          filterData.membership, filterData.campus, filterData.country,
+          filterData.state, filterData.city, filterData.fields
+        );
+    
+        if (responseData && responseData.isSuccess) {
+          const newData = responseData.data;
+          setInfo(prevInfo => [...prevInfo, ...newData]);
+    
+          // Check if more data is available
+          if (newData.length < size) {
+            setHasMore(false);
+          }
+        } else {
           setHasMore(false);
         }
-      } else {
+      } catch (error) {
+        console.error('Failed to fetch data. Please try again later: ', error);
         setHasMore(false);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error('Failed to fetch data. Please try again later: ', error);
-      setHasMore(false);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [page, hasMore, filterData]);
+    };
+
+    fetchArchData();
+  }, [filterData, hasMore, page]);
   
   useEffect(() => {
     const handleScroll = debounce(() => {
@@ -171,7 +177,7 @@ function Archive() {
     console.log(1)
     dispatch(addFilters(newOption));
     console.log(2)
-    fetchArchData();
+    // fetchArchData();
     console.log(3)
     setIsBottomSheetOpen(false);
   };
@@ -179,13 +185,8 @@ function Archive() {
   // clear filter options
   const deleteAllFilters = () => {
     dispatch(clearFilters);
-    fetchArchData();
+    // fetchArchData();
   }
-
-  // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
-  useEffect(() => {
-    fetchArchData();
-  }, [fetchArchData, filterData]);
 
   return(
     <div className="Archive--wrapper">
