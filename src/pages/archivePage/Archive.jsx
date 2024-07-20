@@ -73,6 +73,18 @@ function Archive() {
   const dispatch = useDispatch();
   const filters = useSelector(state => state.filter.filters);
 
+  // 컴포넌트가 마운트될 때 로컬 스토리지에서 필터 데이터를 로드합니다.
+  useEffect(() => {
+    dispatch(fetchFilters());
+  }, [dispatch]);
+
+  // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
+  useEffect(() => {
+    if (filters) {
+      setFilterData(filters);
+    }
+  }, [filters]);
+
   /* functions */
   // fetch the archive data from the database
   const fetchArchData = useCallback(async () => {
@@ -154,7 +166,6 @@ function Archive() {
     setIsBottomSheetOpen(false);
   };
 
-  // toggle filter options
   const addFilterOptions = (newOption) => {
     dispatch(addFilters(newOption));
     fetchArchData();
@@ -166,9 +177,10 @@ function Archive() {
     dispatch(clearFilters)
   }
 
+  // 필터 데이터가 변경될 때마다 fetchArchData 함수 호출
   useEffect(() => {
     fetchArchData();
-  }, [fetchArchData]);
+  }, [fetchArchData, filterData]);
 
   return(
     <div className="Archive--wrapper">
