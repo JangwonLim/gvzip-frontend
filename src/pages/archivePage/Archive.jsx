@@ -157,6 +157,7 @@ function Archive() {
   // toggle filter options
   const addFilterOptions = (newOption) => {
     dispatch(addFilters(newOption));
+    fetchArchData();
     setIsBottomSheetOpen(false);
   };
 
