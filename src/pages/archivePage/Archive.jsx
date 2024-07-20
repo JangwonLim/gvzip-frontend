@@ -73,9 +73,9 @@ function Archive() {
   const filters = useSelector(state => state.filter.filters);
 
   // 컴포넌트가 마운트될 때 로컬 스토리지에서 필터 데이터를 로드합니다.
-  useEffect(() => {
-    dispatch(fetchFilters());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchFilters());
+  // }, [dispatch]);
 
   // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
   useEffect(() => {
