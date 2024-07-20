@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import './Archive.css';
 import './../../styles/defaultDesign.css';
@@ -88,7 +88,7 @@ function Archive() {
 
   /* functions */
   // fetch the archive data from the database
-  const fetchArchData = useCallback(async () => {
+  const fetchArchData = (async () => {
     if (!hasMore) return;
   
     setIsLoading(true);
@@ -168,8 +168,11 @@ function Archive() {
   };
 
   const addFilterOptions = (newOption) => {
+    console.log(1)
     dispatch(addFilters(newOption));
+    console.log(2)
     fetchArchData();
+    console.log(3)
     setIsBottomSheetOpen(false);
   };
 
