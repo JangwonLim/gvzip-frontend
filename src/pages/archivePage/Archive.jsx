@@ -78,13 +78,13 @@ function Archive() {
   // }, [dispatch]);
 
   // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
-  useEffect(() => {
-    if (filters) {
-      console.log("filters: ", filters)
-      setFilterData(filters);
-      console.log("filterData: ", filterData);
-    }
-  }, [filters, filterData]);
+  // useEffect(() => {
+  //   if (filters) {
+  //     console.log("filters: ", filters)
+  //     setFilterData(filters);
+  //     console.log("filterData: ", filterData);
+  //   }
+  // }, [filters, filterData]);
 
   /* functions */
   // fetch the archive data from the database
@@ -172,7 +172,7 @@ function Archive() {
   };
 
   const handleFilterChange = (newFilters) => {
-    dispatch(addFilters(newFilters));
+    // dispatch(addFilters(newFilters));
     setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
     setInfo([]); // 기존 데이터를 초기화
     setHasMore(true); // 더 많은 데이터가 있음을 표시
