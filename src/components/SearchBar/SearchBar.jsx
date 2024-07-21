@@ -4,8 +4,6 @@ import './SearchBar.css';
 function SearchBar({openSearch, formData, handleChange, onEnterPress}) {
   const inputRef = useRef(null);
 
-  console.log(formData)
-
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();

@@ -12,6 +12,7 @@ import MobileFilterContent from "../../components/Filter/MobileFilterContent";
 import { useNavigate } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import Search from "./Search";
+import NoResult from "./NoResult";
 
 
 function Archive() {
@@ -166,100 +167,102 @@ function Archive() {
     setHasMore(true); // 더 많은 데이터가 있음을 표시
   };
 
-  useEffect(() => {
-    console.log("filterData: ", filterData)
-  }, [filterData])
-
   return(
     <>
-        <div className="Archive--wrapper">
-      <div className="Archive--container">
+      <div className="Archive--wrapper">
+        <div className="Archive--container">
 
-        {/* Filter button and Search Bar */}
-        <div className="Archive--header-container">
-          <button 
-            className="Archive--filter-button"
-            onClick={openBottomSheet}
-          >
-            <img
-              alt="filter-button"
-              src={require('../../assets/archive-filter-button.png')}
-            />
-            <span 
-              className="b1-12-m" 
-              style={{ color: "#2f2f2f"}}
+          {/* Filter button and Search Bar */}
+          <div className="Archive--header-container">
+            <button 
+              className="Archive--filter-button"
+              onClick={openBottomSheet}
             >
-              필터
-            </span>
-          </button>
+              <img
+                alt="filter-button"
+                src={require('../../assets/archive-filter-button.png')}
+              />
+              <span 
+                className="b1-12-m" 
+                style={{ color: "#2f2f2f"}}
+              >
+                필터
+              </span>
+            </button>
 
-          <SearchBar 
-            openSearch={toggleSearch}
-            formData={filterData} 
-            handleChange={handleChange}
-          />
-        </div>
-
-        {/* Filter Options */}
-        <div className="Archive--mid-section-container">
-          <div className="Archive--filter-options-wrapper">
-            <div className="Archive--filter-options-container">
-              {
-                filterOptions.length > 0 && (
-                  filterOptions.map((item, index) => (
-                    <FilterOption 
-                      title={item} 
-                      setFilterOptions={setFilterOptions}
-                      setFilterData={setFilterData}
-                      setPage={setPage}
-                      setInfo={setInfo}
-                      setHasMore={setHasMore}
-                    />
-                  ))
-                )
-              }
-            </div>
-            {
-              (filterOptions.length > 0) && (
-                <button 
-                  onClick={clearAllFilters}
-                  className="Archive--filter-options-delete-button"
-                >
-                  모든 필터 지우기
-                </button>
-              )
-            }
-            
+            <SearchBar 
+              openSearch={toggleSearch}
+              formData={filterData} 
+              handleChange={handleChange}
+            />
           </div>
 
-          <span 
-            className="b0-10-m"
-            style={{ color: "#66707A"}}
-          >
-            검색결과 {info.length}명
-          </span>
-        </div>
+          {/* Filter Options */}
+          <div className="Archive--mid-section-container">
+            <div className="Archive--filter-options-wrapper">
+              <div className="Archive--filter-options-container">
+                {
+                  filterOptions.length > 0 && (
+                    filterOptions.map((item, index) => (
+                      <FilterOption 
+                        title={item} 
+                        setFilterOptions={setFilterOptions}
+                        setFilterData={setFilterData}
+                        setPage={setPage}
+                        setInfo={setInfo}
+                        setHasMore={setHasMore}
+                      />
+                    ))
+                  )
+                }
+              </div>
+              {
+                (filterOptions.length > 0) && (
+                  <button 
+                    onClick={clearAllFilters}
+                    className="Archive--filter-options-delete-button"
+                  >
+                    모든 필터 지우기
+                  </button>
+                )
+              }
+              
+            </div>
 
-        <button onClick={() => navigate('/member')}>button</button>
+            <span 
+              className="b0-10-m"
+              style={{ color: "#66707A"}}
+            >
+              검색결과 {info.length}명
+            </span>
+          </div>
 
-        {/* Cards */}
-        <div className="Archive--cards-container">
-          {
-            info.map((item, i) => {
-              return (
-                <Card 
-                  key={i} 
-                  data={item}
-                  setModal={setModal}
-                  setModalInfo={setModalInfo}
-                />
-              )
-            })
-          }
-        </div>
+          <button onClick={() => navigate('/member')}>button</button>
+
+          {/* Cards */}
+          <div className="Archive--cards-container">
+            {
+              (filterData.searchingWord.length > 0 && info.length === 0) 
+                ? (
+                    <NoResult searchingWord={filterData.searchingWord}/>
+                  )
+                : (
+                    info.map((item, i) => {
+                      return (
+                        <Card 
+                          key={i} 
+                          data={item}
+                          setModal={setModal}
+                          setModalInfo={setModalInfo}
+                        />
+                      )
+                    })
+                  )
+            }
+          </div>
 
         { isLoading && <p>Loading...</p> }
-      </div>
+        </div>
       
       {/* Modal */}
       { modal && (

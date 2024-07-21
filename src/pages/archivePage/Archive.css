@@ -229,4 +229,21 @@
     border: none;
     padding: 0;
   }
+
+  .NoResult--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .NoResult--content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: var(--grey3);
+  }
 }
