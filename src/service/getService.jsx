@@ -3,7 +3,6 @@ const API_URL = 'https://gvzip.com';
 
 
 export const getInfo = async (page, size, direction, searchingWord, membership, campus, country, state, city, fields ) => {
-  console.log(page, size, direction, searchingWord, membership, campus, country, state, fields, city)
   try {
     const response = await axios.get(`${API_URL}/archive`, {
       params: {
@@ -11,8 +10,8 @@ export const getInfo = async (page, size, direction, searchingWord, membership, 
         size: size,
         direction: direction,
         searchingWord: searchingWord?.length > 0 ? searchingWord : null,
-        membership: membership?.length > 0 ? membership : null,
-        campus: campus?.length > 0 ? campus : null,
+        membership: membership?.length > 0 ? membership.join(',') : null,
+        campus: campus?.length > 0 ? campus.join(',') : null,
         country: country?.length > 0 ? country : null,
         state: state?.length > 0 ? state : null,
         // city: city,

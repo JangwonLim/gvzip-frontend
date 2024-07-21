@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from 'react-redux';
 import './Archive.css';
 import './../../styles/defaultDesign.css';
 /* eslint-disable no-unused-vars */
@@ -8,7 +7,6 @@ import Modal from "../../components/ProfileDetail/Modal";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import FilterOption from "../../components/Filter/FilterOption";
 import { getInfo } from "../../service/getService";
-import { addFilters, clearFilters, deleteFilters, fetchFilters } from "../../redux/store";
 import BottomSheet from "../../components/BottomSheet/BottomSheet";
 import MobileFilterContent from "../../components/Filter/MobileFilterContent";
 import { useNavigate } from "react-router-dom";
@@ -68,34 +66,15 @@ function Archive() {
     handleChange: handleChange
   }
 
-  /* redux */
-  const dispatch = useDispatch();
-  const filters = useSelector(state => state.filter.filters);
-
-  // 컴포넌트가 마운트될 때 로컬 스토리지에서 필터 데이터를 로드합니다.
-  // useEffect(() => {
-  //   dispatch(fetchFilters());
-  // }, [dispatch]);
-
-  // Redux 상태의 필터 데이터를 로컬 상태에 설정합니다.
-  // useEffect(() => {
-  //   if (filters) {
-  //     console.log("filters: ", filters)
-  //     setFilterData(filters);
-  //     console.log("filterData: ", filterData);
-  //   }
-  // }, [filters, filterData]);
-
   /* functions */
   // fetch the archive data from the database
-
   const fetchArchData = useCallback(async () => {
     if (!hasMore) return;
 
     setIsLoading(true);
 
     try {
-      console.log(filterData)
+      // console.log(filterData)
       const size = 9;
       const direction = 'ASC';
       const responseData = await getInfo(
@@ -122,7 +101,6 @@ function Archive() {
     }
   }, [page, filterData, hasMore]);
 
-  // 필터 데이터나 페이지가 변경될 때마다 fetchArchData 함수 호출
   useEffect(() => {
     fetchArchData();
   }, [fetchArchData, page]);
@@ -172,17 +150,10 @@ function Archive() {
   };
 
   const handleFilterChange = (newFilters) => {
-    // dispatch(addFilters(newFilters));
     setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
     setInfo([]); // 기존 데이터를 초기화
     setHasMore(true); // 더 많은 데이터가 있음을 표시
   };
-
-  // clear filter options
-  const deleteAllFilters = () => {
-    dispatch(clearFilters);
-    // fetchArchData();
-  }
 
   return(
     <div className="Archive--wrapper">
@@ -222,7 +193,6 @@ function Archive() {
             {
               (filterOptions.length > 0) && (
                 <button 
-                  onClick={deleteAllFilters}
                   className="Archive--filter-options-delete-button"
                 >
                   모든 필터 지우기
