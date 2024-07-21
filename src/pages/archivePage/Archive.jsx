@@ -11,6 +11,7 @@ import BottomSheet from "../../components/BottomSheet/BottomSheet";
 import MobileFilterContent from "../../components/Filter/MobileFilterContent";
 import { useNavigate } from "react-router-dom";
 import debounce from 'lodash.debounce';
+import Search from "./Search";
 
 
 function Archive() {
@@ -22,6 +23,7 @@ function Archive() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [search, setSearch] = useState(false);
 
   const navigate = useNavigate();
 
@@ -153,12 +155,24 @@ function Archive() {
     setFilterOptions([]);
   };
 
+  const toggleSearch = () => {
+    setSearch(!search);
+  }
+
+  const handleEnterPress = () => {
+    setSearch(false);
+    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
+    setInfo([]); // 기존 데이터를 초기화
+    setHasMore(true); // 더 많은 데이터가 있음을 표시
+  };
+
   useEffect(() => {
-    console.log(filterOptions)
-  }, [filterOptions])
+    console.log("filterData: ", filterData)
+  }, [filterData])
 
   return(
-    <div className="Archive--wrapper">
+    <>
+        <div className="Archive--wrapper">
       <div className="Archive--container">
 
         {/* Filter button and Search Bar */}
@@ -179,7 +193,11 @@ function Archive() {
             </span>
           </button>
 
-          <SearchBar />
+          <SearchBar 
+            openSearch={toggleSearch}
+            formData={filterData} 
+            handleChange={handleChange}
+          />
         </div>
 
         {/* Filter Options */}
@@ -262,6 +280,18 @@ function Archive() {
         )
       }
     </div>
+
+    {
+      search && (
+        <Search 
+          closeSearch={toggleSearch}
+          formData={filterData}
+          handleChange={handleChange}
+          onEnterPress={handleEnterPress}
+        />
+      )
+    }
+    </>
   )
 }
 

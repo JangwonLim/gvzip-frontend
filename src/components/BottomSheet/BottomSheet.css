@@ -3,27 +3,20 @@
 @media (max-width: 768px) {
   .bottom-sheet {
     position: fixed;
-    bottom: -100%;
+    bottom: 0;
     left: 0;
     right: 0;
-    height: 100vh !important;
     background-color: white;
-    /* box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); */
-    /* transition: bottom 0.3s ease-in-out; */
     z-index: 10;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     border: none;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     touch-action: none; /* 터치 이벤트를 막음 */
     pointer-events: auto; /* 포인터 이벤트를 활성화 */
-  
-    &.open {
-      bottom: -12%;
-    }
+    will-change: transform, height; /* 애니메이션 성능 향상 */
   }
   
   .bottom-sheet-handle {
