@@ -203,7 +203,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
       </div>
 
       <button
-        onClick={() => onClickFilterOptions(contentProps.data)}
+        onClick={() => onClickFilterOptions()}
         className="Profile--navigate-button"
       >
         <span className="b7-16-sb">필터 적용</span>

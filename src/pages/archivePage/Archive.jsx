@@ -19,16 +19,13 @@ function Archive() {
   const [modal, setModal] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
-  const [isFiltered, setIsFilter] = useState(false);
-  const [animating, setAnimating] = useState(false);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const [filterData, setFilterData] = useState({
+  const initialFilterData = {
     searchingWord: "",
     membership: [],
     campus: [],
@@ -36,7 +33,9 @@ function Archive() {
     state: "",
     city: "",
     fields: ""
-  });
+  };
+
+  const [filterData, setFilterData] = useState(initialFilterData);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -123,24 +122,6 @@ function Archive() {
     }
   };
 
-  // set the current page
-  const handlePageClick = (currPage) => {
-    setPage(currPage);
-  };
-
-  // Filter animation
-  const handleFilterClick = () => {
-    if (isFiltered) {
-      setAnimating(true);
-      setTimeout(() => {
-        setIsFilter(false);
-        setAnimating(false);
-      }, 300);
-    } else {
-      setIsFilter(true);
-    }
-  }
-
   const openBottomSheet = () => {
     setIsBottomSheetOpen(true);
   };
@@ -149,11 +130,29 @@ function Archive() {
     setIsBottomSheetOpen(false);
   };
 
-  const handleFilterChange = (newFilters) => {
+  const handleFilterChange = () => {
     setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
     setInfo([]); // 기존 데이터를 초기화
     setHasMore(true); // 더 많은 데이터가 있음을 표시
+    setIsBottomSheetOpen(false); // 바텀시트 닫음
+
+    Object.values(filterData).forEach((value) => {
+      if (Array.isArray(value)) {
+        value.map(item => setFilterOptions((prevFilterData) => [...prevFilterData, item]))
+      } else if (value) {
+        setFilterOptions((prevFilterData) => [...prevFilterData, value]);
+      }
+    })
   };
+
+  const clearAllFilters = () => {
+    setFilterData(initialFilterData);
+    setFilterOptions([]);
+  };
+
+  useEffect(() => {
+    console.log(filterOptions)
+  }, [filterOptions])
 
   return(
     <div className="Archive--wrapper">
@@ -185,14 +184,21 @@ function Archive() {
           <div className="Archive--filter-options-wrapper">
             <div className="Archive--filter-options-container">
               {
-                filterOptions.map(item => 
-                  <FilterOption title={item} setFilterOptions={setFilterOptions} />
+                filterOptions.length > 0 && (
+                  filterOptions.map((item, index) => (
+                    <FilterOption 
+                      title={item} 
+                      setFilterOptions={setFilterOptions}
+                      setFilterData={setFilterData}
+                    />
+                  ))
                 )
               }
             </div>
             {
               (filterOptions.length > 0) && (
                 <button 
+                  onClick={clearAllFilters}
                   className="Archive--filter-options-delete-button"
                 >
                   모든 필터 지우기
