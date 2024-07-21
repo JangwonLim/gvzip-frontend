@@ -18,6 +18,8 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    touch-action: none; /* 터치 이벤트를 막음 */
+    pointer-events: auto; /* 포인터 이벤트를 활성화 */
   
     &.open {
       bottom: -12%;
@@ -41,6 +43,8 @@
     bottom: 0;
     background: rgba(43, 55, 68, 0.7);
     z-index: 5;
+    touch-action: none; /* 터치 이벤트를 막음 */
+    pointer-events: auto; /* 포인터 이벤트를 활성화 */
   }
   
   .bottom-sheet-content {
@@ -71,6 +75,8 @@
     border-top-right-radius: 16px;
     z-index: 100;
     background-color: white;
+    touch-action: none; /* 터치 이벤트를 막음 */
+    pointer-events: auto; /* 포인터 이벤트를 활성화 */
   }
 
   .EditBottomSheet--content {
@@ -93,5 +99,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    touch-action: none; /* 터치 이벤트를 막음 */
+    pointer-events: auto; /* 포인터 이벤트를 활성화 */
   }
 }
