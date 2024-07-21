@@ -238,13 +238,17 @@ function Archive() {
         </div>
       )}
 
-      <BottomSheet
-        Content={MobileFilterContent}
-        isBottomSheetOpen={isBottomSheetOpen}
-        closeBottomSheet={closeBottomSheet}
-        contentProps={contentProps}
-        onClickFilterOptions={handleFilterChange}
-      />
+      {
+        isBottomSheetOpen && (
+          <BottomSheet
+            Content={MobileFilterContent}
+            isBottomSheetOpen={isBottomSheetOpen}
+            closeBottomSheet={closeBottomSheet}
+            contentProps={contentProps}
+            onClickFilterOptions={handleFilterChange}
+          />
+        )
+      }
     </div>
   )
 }
