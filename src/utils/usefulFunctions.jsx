@@ -22,3 +22,14 @@ export const useGoBack = () => {
 export const calculateGeneration = (graduationYear) => {
 	
 }
+
+export const getCookie = (name) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+export const isLoggedIn = () => {
+  const sessionId = getCookie('JSESSIONID');
+  return sessionId !== undefined;
+}

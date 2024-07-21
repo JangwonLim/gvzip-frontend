@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './landing.css';
 import './../../styles/defaultDesign.css';
 import Button from "./../../components/Button/Button";
 import Footer from "../../components/Footer/Footer";
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../../utils/usefulFunctions";
 
 function Landing() {
+  const [loggedIn, setLoggedIn] = useState(false);
 
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, []);
+
+  useEffect(() => {
+    console.log(loggedIn)
+  }, [loggedIn])
+  
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   
   const navigate = useNavigate();
