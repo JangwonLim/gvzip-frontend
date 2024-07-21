@@ -146,6 +146,9 @@ function Archive() {
   };
 
   const clearAllFilters = () => {
+    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
+    setInfo([]); // 기존 데이터를 초기화
+    setHasMore(true); // 더 많은 데이터가 있음을 표시
     setFilterData(initialFilterData);
     setFilterOptions([]);
   };
@@ -190,6 +193,9 @@ function Archive() {
                       title={item} 
                       setFilterOptions={setFilterOptions}
                       setFilterData={setFilterData}
+                      setPage={setPage}
+                      setInfo={setInfo}
+                      setHasMore={setHasMore}
                     />
                   ))
                 )

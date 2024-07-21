@@ -2,7 +2,7 @@ import React from "react";
 import './FilterOption.css';
 import './../../styles/defaultDesign.css';
 
-function FilterOption({title, setFilterOptions, setFilterData}) {
+function FilterOption({title, setFilterOptions, setFilterData, setPage, setInfo, setHasMore}) {
   const deleteOption = (title) => {
     // filterOptions 업데이트
     setFilterOptions(options => options.filter(option => option !== title));
@@ -19,6 +19,10 @@ function FilterOption({title, setFilterOptions, setFilterData}) {
       });
       return newData;
     });
+
+    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
+    setInfo([]); // 기존 데이터를 초기화
+    setHasMore(true); // 더 많은 데이터가 있음을 표시
   }
 
   return (
