@@ -99,7 +99,8 @@
   }
 
   .Card--header-text {
-    width: 66px; height: auto;
+    width: auto; height: auto;
+    max-width: 68px;
   }
 
   .Card--header-img-container {
