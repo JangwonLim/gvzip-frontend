@@ -36,7 +36,7 @@ function Terms({handleTermClick}){
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b6-16-m" style={{ color: "#2F2F2F"}}>
-          [필수] <span onClick={handleTermClick} style={{ textDecoration: "underline", cursor: "pointer" }}>개인정보 수집 및 이용 </span>동의
+          [필수] <span onClick={() => handleTermClick()} style={{ textDecoration: "underline", cursor: "pointer" }}>개인정보 수집 및 이용 </span>동의
         </span>
       </label>
 

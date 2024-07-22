@@ -1,5 +1,6 @@
 import React from "react";
 import './../../../../styles/defaultDesign.css';
+import './Agreement.css';
 
 function Privacy() {
   return (

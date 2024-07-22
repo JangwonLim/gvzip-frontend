@@ -204,6 +204,9 @@ function ProfileInfo() {
       case(6):
         setCurrentPage(4);
         break;
+      case(7):
+        setCurrentPage(4);
+        break;
       default:
         navigate(-1);
     }
