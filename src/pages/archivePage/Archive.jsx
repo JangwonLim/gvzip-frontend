@@ -25,6 +25,7 @@ function Archive() {
   const [hasMore, setHasMore] = useState(true);
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [search, setSearch] = useState(false);
+  const [totalNumber, setTotalNumber] = useState(0);
 
   const navigate = useNavigate();
 
@@ -86,8 +87,9 @@ function Archive() {
       );
 
       if (responseData && responseData.isSuccess) {
-        const newData = responseData.data;
+        const newData = responseData.data.profiles;
         setInfo(prevInfo => [...prevInfo, ...newData]);
+        setTotalNumber(responseData.data.totalElements);
 
         if (newData.length < size) {
           setHasMore(false);
@@ -233,7 +235,7 @@ function Archive() {
               className="b0-10-m"
               style={{ color: "#66707A"}}
             >
-              검색결과 {info.length}명
+              검색결과 {totalNumber}명
             </span>
           </div>
 

@@ -58,11 +58,6 @@ function Modal({info, setModal}) {
                 src={require("../../assets/modal-job-icon.png")} 
                 alt="job" 
               />
-              {/* <span className="b1-12-m">
-                <span>{info.field1}, </span>
-                <span>{info.field2}, </span>
-                <span>{info.field3}</span>
-              </span> */}
               <span className="b1-12-m">
                 {fields}
               </span>
