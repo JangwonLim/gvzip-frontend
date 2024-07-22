@@ -5,8 +5,9 @@ import AlumniThirdPage from "./AlumniThirdPage";
 import AlumniFourthPage from "./AlumniFourthPage";
 import Education from "../Education";
 import Career from "../Career";
+import Privacy from "../Agreement/Privacy";
 
-function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick}) {
+function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick, handleTermClick}) {
 
   return(
     <>
@@ -60,6 +61,7 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             handleProfileImage={handleProfileImage}
             handleArrayData={handleArrayData}
             handleCareerClick={handleCareerClick}
+            handleTermClick={handleTermClick}
           />
         )
       }
@@ -77,6 +79,12 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
           <Career
             handleChange={handleArrayData}
           />
+        )
+      }
+
+      {
+        currentPage === 7 && (
+          <Privacy/>
         )
       }
     </>

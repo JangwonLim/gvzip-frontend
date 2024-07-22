@@ -9,7 +9,7 @@ import Introduction from "../../../../components/SignUpComponents/Introduction";
 import Terms from "../../../../components/Terms/Terms";
 import ButtonSelection from "../../../../components/SignUpComponents/ButtonSelection";
 
-function StaffForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser}) {
+function StaffForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, handleTermClick}) {
   const campusList = ['음성', '문경', '미국'];
 
   return (
@@ -59,7 +59,9 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
         name={"introduction"}
       />
 
-      <Terms/>
+      <Terms
+        handleTermClick={handleTermClick}
+      />
 
       <button 
         className="Profile--navigate-button"

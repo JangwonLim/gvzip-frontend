@@ -2,7 +2,7 @@ import React from "react";
 import './Terms.css';
 import '../../styles/defaultDesign.css';
 
-function Terms(){
+function Terms({handleTermClick}){
   return(
     <div className="Terms--container">
       <span className="b1-12-m" style={{ color: "#66707A"}}>약관 동의</span>
@@ -36,7 +36,7 @@ function Terms(){
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b6-16-m" style={{ color: "#2F2F2F"}}>
-          [필수] <span style={{ textDecoration: "underline" }}>개인정보 수집 및 이용 </span>동의
+          [필수] <span onClick={handleTermClick} style={{ textDecoration: "underline", cursor: "pointer" }}>개인정보 수집 및 이용 </span>동의
         </span>
       </label>
 

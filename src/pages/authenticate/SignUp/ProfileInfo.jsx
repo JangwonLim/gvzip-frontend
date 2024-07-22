@@ -179,6 +179,9 @@ function ProfileInfo() {
   const handleCareerClick = () => {
     setCurrentPage(6);
   }
+  const handleTermClick = () => {
+    setCurrentPage(7);
+  }
 
   const headerTitle = () => {
     switch (currentPage) {
@@ -186,6 +189,8 @@ function ProfileInfo() {
         return "학력 추가";
       case(6):
         return "경력/경험 추가";
+      case(7):
+        return "개인정보 처리방침";
       default:
         return "회원가입";
     }
@@ -239,6 +244,7 @@ function ProfileInfo() {
             handleEducationClick={handleEducationClick}
             handleArrayData={handleArrayData}
             handleCareerClick={handleCareerClick}
+            handleTermClick={handleTermClick}
           />
         )
       }
@@ -263,6 +269,7 @@ function ProfileInfo() {
             handleEducationClick={handleEducationClick}
             handleArrayData={handleArrayData}
             handleCareerClick={handleCareerClick}
+            handleTermClick={handleTermClick}
           />
         )
       }
@@ -280,6 +287,7 @@ function ProfileInfo() {
             registerUser={registerUser}
             goToNextPage={goToNextPage}
             goToPreviousPage={goToPreviousPage}
+            handleTermClick={handleTermClick}
           />
         )
       }
@@ -297,6 +305,7 @@ function ProfileInfo() {
             registerUser={registerUser}
             goToNextPage={goToNextPage}
             goToPreviousPage={goToPreviousPage}
+            handleTermClick={handleTermClick}
           />
         )
       }

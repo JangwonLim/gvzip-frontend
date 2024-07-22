@@ -110,7 +110,7 @@ function MyInfoCard({data, setModal}) {
 
         <img 
           className="MyInfoCard--header-img"
-          src={require("../../assets/card-image.png")} 
+          src={data.profileImageURL} 
           alt="card-img" 
         />
       </div>

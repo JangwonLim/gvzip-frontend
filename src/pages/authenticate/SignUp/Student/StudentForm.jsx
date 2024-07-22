@@ -9,7 +9,7 @@ import ButtonSelection from "../../../../components/SignUpComponents/ButtonSelec
 import Year from "../../../../components/SignUpComponents/Year";
 import Terms from "../../../../components/Terms/Terms";
 
-function StudentForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser}) {
+function StudentForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, handleTermClick}) {
   const campusList = ['음성', '문경', '미국'];
 
   // List of graduation year
@@ -80,7 +80,9 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
         placeholder={"졸업(예정)년도 선택"}
       />
 
-      <Terms/>
+      <Terms
+        handleTermClick={handleTermClick}
+      />
 
       <button 
         className="Profile--navigate-button"

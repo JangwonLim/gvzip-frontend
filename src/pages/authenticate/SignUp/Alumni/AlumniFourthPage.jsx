@@ -8,7 +8,7 @@ import Terms from "../../../../components/Terms/Terms";
 import EditBottomSheet from "../../../../components/BottomSheet/EditBottomSheet";
 import './../../../../components/BottomSheet/BottomSheet.css';
 
-function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUser, profileImage, previewImage, handleProfileImage, handleArrayData, handleCareerClick }) {
+function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUser, profileImage, previewImage, handleProfileImage, handleArrayData, handleCareerClick, handleTermClick }) {
 
   const [edit, setEdit] = useState(false);
 
@@ -84,7 +84,9 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
       </div> */}
 
       {/* Terms and Agreement */}
-      <Terms />
+      <Terms
+        handleTermClick={handleTermClick}
+      />
 
       {/* Navigate Button */}
       <div className="Profile--button-container navigate">

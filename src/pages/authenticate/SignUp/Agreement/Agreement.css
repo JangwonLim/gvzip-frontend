@@ -1,0 +1,30 @@
+@import './../../../../styles/colors.css';
+
+.Privacy--container {
+  height: auto; width: auto;
+  margin: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  color: var(--black-text);
+}
+
+.Privacy--title-container {
+  height: 100%; width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Privacy--title {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+}
+
+.Privacy--content {
+  height: 100%; width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
