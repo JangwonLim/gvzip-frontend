@@ -20,6 +20,7 @@ export const useGoBack = () => {
 }
 
 export const calculateGeneration = (campus, graduationYear) => {
+	console.log(campus, graduationYear)
 	switch (campus) {
 		case "음성":
 			return parseInt(graduationYear) - 2005;
