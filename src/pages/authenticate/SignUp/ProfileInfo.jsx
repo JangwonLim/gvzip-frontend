@@ -65,7 +65,7 @@ function ProfileInfo() {
 
   // calculate generation
   useEffect(() => {
-    console.log('here')
+    console.log(formData.campus.length, formData.graduationYear.length)
     if (formData.campus.length > 0 && formData.graduationYear.length > 0) {
       const result = calculateGeneration(formData.campus, formData.graduationYear);
       
