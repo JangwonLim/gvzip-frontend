@@ -101,6 +101,7 @@ function MyInfoCard({data, setModal}) {
   }
 
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
+  
   return(
     <div className="MyInfoCard--container" onClick={openModal}>
       <div className="MyInfoCard--header-container">

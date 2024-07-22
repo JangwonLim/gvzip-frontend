@@ -37,10 +37,10 @@ function Card({data, setModal, setModalInfo}) {
       <div className="Card--content-container">
         <span className="Card--content-name">{data.korName} | {data.engName}</span>
         <span 
-          className="b1-12-m" 
+          className="b1-12-m Card--content-intro" 
           style={{ color: "#66707A"}}
         >
-          소설을 주로 쓰는 작가이면서..
+          {data.introduction}
         </span>
       </div>
     </div>
