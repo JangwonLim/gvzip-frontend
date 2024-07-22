@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  .SignUpSuccess--container {
+    width: 342px; height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    margin: 164px 24px;
+  }
+  .fade-in {
+    opacity: 0; /* 초기 투명도 설정 */
+    animation: fadeIn 3s forwards; /* 애니메이션 설정 */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0; /* 시작 시 투명도 */
+    }
+    to {
+      opacity: 1; /* 끝날 때 투명도 */
+    }
+  }
+}
