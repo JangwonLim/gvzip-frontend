@@ -42,6 +42,7 @@
   .Modal--profile-picture {
     width: 88px; height: 88px;
     margin-bottom: 16px;
+    border-radius: 50%;
   }
 
   .Modal--content-container {
@@ -52,7 +53,7 @@
     border: none;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    padding: 32px 24px 32px 24px;
+    padding: 32px 24px;
     display: flex;
     flex-direction: column;
     gap: 44px;
@@ -94,7 +95,7 @@
     flex-direction: column;
     gap: 20px;
     width: auto; height: auto;
-    max-height: 262px;
+    max-height: 228px;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: var(--grey1) transparent;
