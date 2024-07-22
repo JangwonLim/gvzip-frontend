@@ -27,7 +27,7 @@ function Card({data, setModal, setModalInfo}) {
 
         <img 
           className="Card--header-img"
-          src={require("../../assets/card-image.png")} 
+          src={data.profileImageURL}
           alt="card-img" 
         />
       </div>
