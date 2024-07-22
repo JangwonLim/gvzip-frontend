@@ -70,7 +70,7 @@ function ProfileInfo() {
       
       setFormData((prevFormData) => ({
         ...prevFormData,
-        'generation': result
+        generation: result
       }));
     }
   }, [formData.graduationYear, formData.campus]);
