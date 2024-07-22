@@ -27,11 +27,13 @@ function Modal({info, setModal}) {
           />
         </div>
 
-        <img 
-          className="Modal--profile-picture"
-          src={info.profileImageURL}
-          alt="profile-pic"
-        />
+        <div className="Modal--profile-picture-container">
+          <img 
+            className="Modal--profile-picture"
+            src={info.profileImageURL}
+            alt="profile-pic"
+          />
+        </div>
         
         <span 
           className="b0-10-m"
