@@ -3,6 +3,7 @@
     width: 100vw; height: 100vh;
     display: flex;
     justify-content: center;
+    min-width: 390px;
   }
 
   .SignUpSuccess--container {
@@ -11,6 +12,7 @@
     flex-direction: column;
     gap: 40px;
     justify-content: center;
+    align-items: center;
     margin: 164px 24px;
   }
   .fade-in {
