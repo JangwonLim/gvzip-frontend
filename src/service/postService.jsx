@@ -25,7 +25,7 @@ export const register = async (formData, profileImage) => {
       withCredentials: true
     });
 
-    if (response.data.success) {
+    if (response.data.isSuccess) {
       console.log(response.data);
       return response.data;
     }
