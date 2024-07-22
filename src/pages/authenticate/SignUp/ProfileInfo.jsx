@@ -15,6 +15,7 @@ import { register } from "../../../service/postService";
 import ParentForm from "./Parent/ParentForm";
 import StudentForm from "./Student/StudentForm";
 import StaffForm from "./Staff/StaffForm";
+import { calculateGeneration } from "../../../utils/usefulFunctions";
 
 /* eslint-disable no-unused-vars */
 function ProfileInfo() {
@@ -43,7 +44,7 @@ function ProfileInfo() {
     field3: '',
     introduction: '',
     alumniType: null,
-    sns: 'www.instagram.com',
+    sns: '',
     entranceYear: '',
     educations: [],
     careers: []
@@ -60,7 +61,19 @@ function ProfileInfo() {
   const [isValidYear, setIsValidYear] = useState(false);
   const [isValidMonth, setIsValidMonth] = useState(false);
   const [isValidDay, setIsValidDay] = useState(false);
-  // const [generation, setGeneration] = useState(15); // fixed now, but needs to be changed
+
+
+  // calculate generation
+  useEffect(() => {
+    if (formData.campus.length > 0 && formData.graduationYear.length > 0) {
+      const result = calculateGeneration(formData.campus, formData.graduationYear);
+      
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        'generation': result
+      }));
+    }
+  }, [formData.graduationYear, formData.campus]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +83,6 @@ function ProfileInfo() {
       name === 'expectedGraduationYear' ||
       name === 'entranceYear'
     ) {
-      
       setFormData((prevState) => ({
         ...prevState,
         [name]: parseInt(value),

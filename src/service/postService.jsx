@@ -12,7 +12,6 @@ export const register = async (formData, profileImage) => {
     if (profileImage) {
       data.append('profileImage', profileImage);
     }
-
     
     // FormData 확인
     for (let [key, value] of data.entries()) {

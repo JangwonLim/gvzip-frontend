@@ -19,8 +19,17 @@ export const useGoBack = () => {
 
 }
 
-export const calculateGeneration = (graduationYear) => {
-	
+export const calculateGeneration = (campus, graduationYear) => {
+	switch (campus) {
+		case "음성":
+			return parseInt(graduationYear) - 2005;
+		case "문경":
+			return parseInt(graduationYear) - 2013;
+		case "미국":
+			return parseInt(graduationYear) - 2016;
+		default:
+			return 0;
+	}
 }
 
 export const getCookie = (name) => {
