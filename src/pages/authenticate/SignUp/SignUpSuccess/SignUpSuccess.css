@@ -1,4 +1,10 @@
 @media (max-width: 768px) {
+  .SignUpSuccess--wrapper {
+    width: 100vw; height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
   .SignUpSuccess--container {
     width: 342px; height: auto;
     display: flex;

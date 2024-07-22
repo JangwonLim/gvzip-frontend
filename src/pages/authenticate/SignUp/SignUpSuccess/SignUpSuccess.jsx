@@ -40,26 +40,28 @@ function SignUpSuccess() {
   }, [fetchMyInfo]);
 
   return (
-    <div className="SignUpSuccess--container">
-      <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
-        지비집의 식구가 되신 것을 환영합니다<br />
-        아카이브에서 프로필을 확인해보세요!
-      </span>
+    <div className="SignUpSuccess--wrapper">
+      <div className="SignUpSuccess--container">
+        <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
+          지비집의 식구가 되신 것을 환영합니다<br />
+          아카이브에서 프로필을 확인해보세요!
+        </span>
 
-      <div className="fade-in">
-        <MyInfoCard data={data} setModal={setModal}/>
-      </div>
+        <div className="fade-in">
+          <MyInfoCard data={data} setModal={setModal}/>
+        </div>
 
-      <div className="ProfilePage--button-container">
-        <button className="ProfilePage--button">
-          <span className="h2-18-sb">오브제 변경</span>
-        </button>
-        <button 
-          // onClick={}
-          className="ProfilePage--button black"
-        >
-          <span className="h2-18-sb">아카이브 확인</span>
-        </button>
+        <div className="ProfilePage--button-container">
+          <button className="ProfilePage--button">
+            <span className="h2-18-sb">오브제 변경</span>
+          </button>
+          <button 
+            // onClick={}
+            className="ProfilePage--button black"
+          >
+            <span className="h2-18-sb">아카이브 확인</span>
+          </button>
+        </div>
       </div>
     </div>
   )
