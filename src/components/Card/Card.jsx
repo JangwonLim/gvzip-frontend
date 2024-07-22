@@ -25,11 +25,13 @@ function Card({data, setModal, setModalInfo}) {
           <span className="b0-10-m" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()} {location}</span>
         </div>
 
-        <img 
-          className="Card--header-img"
-          src={data.profileImageURL}
-          alt="card-img" 
-        />
+        <div className="Card--header-img-container">
+          <img 
+            className="Card--header-img"
+            src={data.profileImageURL}
+            alt="card-img" 
+          />
+        </div>
       </div>
 
       <div className="Card--content-container">

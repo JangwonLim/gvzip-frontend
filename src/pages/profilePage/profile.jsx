@@ -108,11 +108,13 @@ function MyInfoCard({data, setModal}) {
           <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
         </div>
 
-        <img 
-          className="MyInfoCard--header-img"
-          src={data.profileImageURL} 
-          alt="card-img" 
-        />
+        <div className="MyInfoCard--header-img-container">
+          <img 
+            className="MyInfoCard--header-img"
+            src={data.profileImageURL} 
+            alt="card-img" 
+          />
+        </div>
       </div>
 
       <div className="MyInfoCard--content-container">
