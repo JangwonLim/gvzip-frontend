@@ -174,7 +174,7 @@ function ProfileInfo() {
     e.preventDefault();
     const result = await register(formData, profileImage);
     if (result.isSuccess) {
-      navigate('/archive');
+      navigate('/signup/success');
     }
   }
 

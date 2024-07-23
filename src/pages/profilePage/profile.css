@@ -86,4 +86,43 @@
     flex-direction: column;
     gap: 3px;
   }
+
+  .objet-wrapper {
+    width: 272px; height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 40px; row-gap: 32px;
+    margin-top: 36px;
+    margin-bottom: 40px;
+  }
+
+  .objet-container {
+    width: 64px; height: 64px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .objet {
+    display: block;
+    margin: auto;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+  }
+
+  .objet-preview-container {
+    width: 142px; height: 142px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
 }

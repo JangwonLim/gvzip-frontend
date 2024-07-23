@@ -12,6 +12,7 @@ import MembershipAuth from './pages/authenticate/SignUp/MembershipAuth/Membershi
 import BottomSheet from './components/BottomSheet/BottomSheet.jsx';
 import MembershipAuthFail from './pages/authenticate/SignUp/MembershipAuth/MembershipAuthFail.jsx';
 import Profile from './pages/profilePage/profile.jsx';
+import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
 
 
@@ -34,7 +35,8 @@ function App() {
         <Route path="/bottomsheet" element={<BottomSheet />}></Route>
         <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
         <Route path='/member' element={<Profile />}/>
-        <Route path='/success' element={<SignUpSuccess />}/>
+        <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
+        <Route path='/signup/success' element={<SignUpSuccess />}/>
 
         {/* PrivateRouter Can be used to protect routes */}
       </Routes>

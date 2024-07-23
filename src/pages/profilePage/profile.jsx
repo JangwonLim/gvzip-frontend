@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useState } from "react";
 import './profile.css';
 import { getMyInfo } from "../../service/getService";
@@ -5,23 +6,32 @@ import './../../styles/defaultDesign.css';
 import Modal from "../../components/ProfileDetail/Modal";
 import './../archivePage/Archive.css';
 import PopUp from "../../components/PopUp/PopUp";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { storeUserInfo } from "../../redux/store";
+
 
 function Profile() {
   const [data, setData] = useState({});
   const [modal, setModal] = useState(false);
   const [popUp, setPopUp] = useState(false);
   const [purpose, setPurpose] = useState('');
+  const dispatch = useDispatch();
+  const userInfo = useSelector(state => state.user.userInfo);
+
+  const navigate = useNavigate();
 
   const fetchMyInfo = useCallback(async () => {
     try {
       const result = await getMyInfo();
       if (result.message === "Success") {
         setData(result.data);
+        dispatch(storeUserInfo(result.data));
       }
     } catch (error) {
       console.log(error);
     }
-  }, [])
+  }, [dispatch])
 
   const closeModal = () => {
     setModal(false);
@@ -35,6 +45,10 @@ function Profile() {
   const closePopUp = () => {
     setPopUp(false);
   }
+
+  const changeObjet = () => {
+    navigate('/signup/edit-objet');
+  }
   
   useEffect(() => {
     fetchMyInfo();
@@ -45,7 +59,10 @@ function Profile() {
       <MyInfoCard data={data} setModal={setModal}/>
 
       <div className="ProfilePage--button-container">
-        <button className="ProfilePage--button">
+        <button 
+          onClick={changeObjet}
+          className="ProfilePage--button"
+        >
           <span className="h2-18-sb">오브제 변경</span>
         </button>
         <button className="ProfilePage--button black">
@@ -101,7 +118,7 @@ function MyInfoCard({data, setModal}) {
   }
 
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
-  
+
   return(
     <div className="MyInfoCard--container" onClick={openModal}>
       <div className="MyInfoCard--header-container">
@@ -124,7 +141,7 @@ function MyInfoCard({data, setModal}) {
           className="pc-body fs-16" 
           style={{ color: "#66707A"}}
         >
-          소설을 주로 쓰는 작가이면서 식물을 사랑하..
+          {data.introduction}
         </span>
       </div>
     </div>
