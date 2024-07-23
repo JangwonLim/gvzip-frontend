@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { updateInfoAndProfilePicture } from "../../service/putService";
 
 function EditProfilePicture() {
-  let [selectedObjet, setSelectedObjet] = useState('profile-pic-11');
+  let [selectedObjet, setSelectedObjet] = useState(null);
   const userInfo = useSelector(state => state.user.userInfo);
 
   console.log("redux userInfo: ", userInfo);
