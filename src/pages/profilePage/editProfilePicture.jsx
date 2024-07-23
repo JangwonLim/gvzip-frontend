@@ -17,6 +17,7 @@ function EditProfilePicture() {
       let formData = rest;
       console.log(formData);
       // let profileImage = selectedObjet;
+      console.log(selectedObjet);
 
       const result = await updateInfoAndProfilePicture(formData, selectedObjet);
 
