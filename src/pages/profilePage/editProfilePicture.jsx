@@ -54,9 +54,14 @@ function EditProfilePicture() {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedObjet(imageUrl);
-    }
+      setSelectedObjet(file);
+      const reader = new FileReader();
+      // reader.onloadend = () => {
+      //   console.log(reader);
+      //   setPreviewImage(reader.result);
+      // };
+      reader.readAsDataURL(file);
+  }
   };
 
   return (
