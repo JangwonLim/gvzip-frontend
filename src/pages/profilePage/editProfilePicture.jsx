@@ -3,12 +3,12 @@ import './profile.css';
 import './../../styles/defaultDesign.css';
 import { useGoBack } from "../../utils/usefulFunctions";
 import { useSelector } from "react-redux";
-import { updateInfoAndProfilePicture, updateUserInfo } from "../../service/putService";
+import { updateInfoAndProfilePicture } from "../../service/putService";
 
 function EditProfilePicture() {
   let [selectedObjet, setSelectedObjet] = useState(null);
   const userInfo = useSelector(state => state.user.userInfo);
-  const [newUserInfo, setNewUserInfo] = useState(userInfo);
+  // const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
   console.log("redux userInfo: ", userInfo);
 
@@ -69,23 +69,23 @@ function EditProfilePicture() {
   }
   };
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-    setNewUserInfo((prevState) => ({...prevState, 
-      [name]: value})
-    )
-  }
+  // const handleChange = (e) => {
+  //   const {name, value} = e.target;
+  //   setNewUserInfo((prevState) => ({...prevState, 
+  //     [name]: value})
+  //   )
+  // }
 
-  const updateProfile = async () => {
-    try {
-      console.log(newUserInfo);
-      const result = await updateUserInfo(newUserInfo);
+  // const updateProfile = async () => {
+  //   try {
+  //     console.log(newUserInfo);
+  //     const result = await updateUserInfo(newUserInfo);
 
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <div className="Profile--container">
@@ -114,15 +114,15 @@ function EditProfilePicture() {
         onChange={handleImageChange} 
       />
 
-      <input type="text" name="korName" onChange={(e) => handleChange(e)}/>
+      {/* <input type="text" name="korName" onChange={(e) => handleChange(e)}/> */}
 
       <div className="objet-wrapper">
         { profilePictures() }
       </div>
 
       <button 
-        // onClick={changeProfilePicture}
-        onClick={updateProfile}
+        onClick={changeProfilePicture}
+        // onClick={updateProfile}
         className="ProfilePage--button black"
       >
         <span className="h2-18-sb">저장</span>
