@@ -80,7 +80,7 @@ function EditProfilePicture() {
     try {
       const result = await updateUserInfo(newUserInfo);
 
-      console.log(result.data);
+      console.log(result);
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +113,7 @@ function EditProfilePicture() {
         onChange={handleImageChange} 
       />
 
-      <input type="text" value={userInfo.korName} name="korName" onChange={(e) => handleChange(e)}/>
+      <input type="text" name="korName" onChange={(e) => handleChange(e)}/>
 
       <div className="objet-wrapper">
         { profilePictures() }
