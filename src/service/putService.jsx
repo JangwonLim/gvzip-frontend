@@ -7,6 +7,8 @@ export const updateInfoAndProfilePicture = async (formData, profileImage) => {
     const data = new FormData();
     const json = JSON.stringify(formData);
 
+    console.log(json);
+
     const blob = new Blob([json], { type: 'application/json' });
     data.append('ProfileUpdateRequest', blob);
 
