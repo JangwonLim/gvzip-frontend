@@ -3,11 +3,10 @@ const API_URL = 'https://gvzip.com';
 
 export const updateInfoAndProfilePicture = async (formData, profileImage) => {
   try {
-    console.log(formData);
+    console.log(JSON.stringify(formData));
     const data = new FormData();
     const json = JSON.stringify(formData);
 
-    console.log(json);
 
     const blob = new Blob([json], { type: 'application/json' });
     data.append('ProfileUpdateRequest', blob);
@@ -21,7 +20,7 @@ export const updateInfoAndProfilePicture = async (formData, profileImage) => {
       console.log(key, value);
     }
 
-    const response = await axios.post(`${API_URL}/profile-image`, data, {
+    const response = await axios.put(`${API_URL}/profile-image`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
