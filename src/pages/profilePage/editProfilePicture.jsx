@@ -55,7 +55,7 @@ function EditProfilePicture() {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setSelectedImage(imageUrl);
+      setSelectedObjet(imageUrl);
     }
   };
 
