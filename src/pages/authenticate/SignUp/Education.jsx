@@ -65,8 +65,8 @@ function Education({handleChange}) {
     const isDegreeValid = yearData.degree.length > 0;
     const isStatusValid = yearData.status.length > 0;
     const isMajorValid = yearData.major.length > 0;
-    const isEntranceYearValid = yearData.entranceYear.length > 0;
-    const isGradYearValid = yearData.graduationYear.length > 0 || yearData.expectedGraduationYear.length > 0;
+    const isEntranceYearValid = String(yearData.entranceYear).length > 0;
+    const isGradYearValid = String(yearData.graduationYear).length > 0 || String(yearData.expectedGraduationYear).length > 0;
     
 
     console.log(isSchoolNameValid, isDegreeValid, isStatusValid, isMajorValid, isEntranceYearValid, isGradYearValid)
