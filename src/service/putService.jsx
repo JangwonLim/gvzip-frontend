@@ -36,3 +36,19 @@ export const updateInfoAndProfilePicture = async (formData, profileImage) => {
     console.error(error);
   }
 }
+
+export const updateUserInfo = async (data) => {
+  try {
+    const response = await axios.put(`${API_URL}/profile`, data, {
+      withCredentials: true
+    });
+
+    if (response.data.isSuccess) {
+      console.log(response.data);
+      return response.data;
+    }
+  } catch(error) {
+    console.log("Error occurred while updating the user info!");
+    console.error(error);
+  }
+}
