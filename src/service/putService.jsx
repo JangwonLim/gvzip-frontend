@@ -3,6 +3,7 @@ const API_URL = 'https://gvzip.com';
 
 export const updateInfoAndProfilePicture = async (formData, profileImage) => {
   try {
+    console.log(formData);
     const data = new FormData();
     const json = JSON.stringify(formData);
 
