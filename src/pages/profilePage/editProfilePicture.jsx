@@ -13,7 +13,8 @@ function EditProfilePicture() {
 
   const changeProfilePicture = async () => {
     try {
-      let formData = userInfo;
+      const { profileImageURL, ...rest } = userInfo;
+      let formData = rest;
       let profileImage = `./../../assets/${selectedObjet}.png`;
 
       const result = await updateInfoAndProfilePicture(formData, profileImage);
