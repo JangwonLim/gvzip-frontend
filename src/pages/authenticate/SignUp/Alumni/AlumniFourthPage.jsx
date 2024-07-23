@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './../Signup.css';
 import './../ProfileInfo.css';
 import './../../../../styles/defaultDesign.css';
@@ -8,9 +8,15 @@ import Terms from "../../../../components/Terms/Terms";
 import EditBottomSheet from "../../../../components/BottomSheet/EditBottomSheet";
 import './../../../../components/BottomSheet/BottomSheet.css';
 
-function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUser, profileImage, previewImage, handleProfileImage, handleArrayData, handleCareerClick, handleTermClick }) {
+function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUser, profileImage, previewImage, handleProfileImage, handleArrayData, handleCareerClick, handleTermClick, handleTermOfUseClick }) {
 
   const [edit, setEdit] = useState(false);
+  const [termOfUse, setTermOfUse] = useState(false);
+  const [privacy, setPrivacy] = useState(false);
+  const [optionalPrivacy, setOptionalPrivacy] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [clickCount, setClickCount] = useState(0);
+  const [isValid, setIsValid] = useState(false);
 
   const openEdit = () => {
     setEdit(true);
@@ -21,13 +27,41 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
     setEdit(false);
   }
 
+  const agreeAll = () => {
+    setClickCount(prevCount => {
+      const newCount = prevCount + 1;
+      const isOddClick = newCount % 2 !== 0;
+
+      setTermOfUse(isOddClick);
+      setPrivacy(isOddClick);
+      setOptionalPrivacy(isOddClick);
+
+      console.log(isOddClick, isOddClick, isOddClick);
+
+      return newCount;
+    });
+  }
+
+  const toggleTermOfUse = () => {
+    setTermOfUse(!termOfUse);
+  }
+  const togglePrivacy = () => {
+    setPrivacy(!privacy);
+  }
+  const toggleOptionalPrivacy = () => {
+    setOptionalPrivacy(!optionalPrivacy);
+  }
+
+  useEffect(() => {
+    setIsValid(termOfUse && privacy);
+  }, [termOfUse, privacy])
+
   return(
     <div className="Profile--content-container">
       {/* Picture */}
       <div className="Profile--content-section wide-gap">
         <div>
           <span className="b7-16-sb" style={{ color: "#66707A"}}>사진 (선택) </span>
-          <span style={{ color: "#FE3C2A"}}>*</span>
         </div>
 
         <PictureUploader picFile={previewImage} onChangePicture={handleProfileImage}/>
@@ -86,6 +120,14 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
       {/* Terms and Agreement */}
       <Terms
         handleTermClick={handleTermClick}
+        handleTermOfUseClick={handleTermOfUseClick}
+        agreeAll={agreeAll}
+        setTermsOfUse={toggleTermOfUse}
+        setPrivacy={togglePrivacy}
+        setOptionalPrivacy={toggleOptionalPrivacy}
+        termOfUse={termOfUse}
+        privacy={privacy}
+        optionalPrivacy={optionalPrivacy}
       />
 
       {/* Navigate Button */}
@@ -99,6 +141,7 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
         <button 
           className="Profile--navigate-button"
           onClick={registerUser}
+          disabled={!isValid}
         >
           <span className="h2-18-sb">완료</span>
         </button>

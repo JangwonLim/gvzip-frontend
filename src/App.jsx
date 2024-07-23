@@ -38,6 +38,7 @@ function App() {
         <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
         <Route path='/signup/success' element={<SignUpSuccess />}/>
 
+
         {/* PrivateRouter Can be used to protect routes */}
       </Routes>
     </Router>

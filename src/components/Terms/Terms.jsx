@@ -2,15 +2,19 @@ import React from "react";
 import './Terms.css';
 import '../../styles/defaultDesign.css';
 
-function Terms({handleTermClick}){
+function Terms({handleTermClick, handleTermOfUseClick, agreeAll, setTermsOfUse, setPrivacy, setOptionalPrivacy, termOfUse, privacy, optionalPrivacy}){
   return(
     <div className="Terms--container">
       <span className="b1-12-m" style={{ color: "#66707A"}}>약관 동의</span>
 
-      <label className="Terms--checkbox-input">
+      <label 
+        className="Terms--checkbox-input"
+      >
         <input 
           type="checkbox" 
           id="checkbox"
+          onChange={agreeAll}
+          checked={termOfUse && privacy && optionalPrivacy}
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>모두 동의</span>
@@ -22,10 +26,12 @@ function Terms({handleTermClick}){
         <input 
           type="checkbox" 
           id="checkbox"
+          onChange={setTermsOfUse}
+          checked={termOfUse}
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b6-16-m" style={{ color: "#2F2F2F"}}>
-          [필수] <span style={{ textDecoration: "underline" }}>이용약관 </span>동의
+          [필수] <span onClick={() => handleTermOfUseClick()} style={{ textDecoration: "underline" }}>이용약관 </span>동의
         </span>
       </label>
 
@@ -33,6 +39,8 @@ function Terms({handleTermClick}){
         <input 
           type="checkbox" 
           id="checkbox"
+          onChange={setPrivacy}
+          checked={privacy}
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b6-16-m" style={{ color: "#2F2F2F"}}>
@@ -44,10 +52,12 @@ function Terms({handleTermClick}){
         <input 
           type="checkbox" 
           id="checkbox"
+          onChange={setOptionalPrivacy}
+          checked={optionalPrivacy}
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b6-16-m" style={{ color: "#2F2F2F"}}>
-          [선택] <span style={{ textDecoration: "underline" }}>개인정보 제 3자 제공 </span>동의
+          [선택] <span  onClick={() => handleTermClick()} style={{ textDecoration: "underline" }}>개인정보 제 3자 제공 </span>동의
         </span>
       </label>
 

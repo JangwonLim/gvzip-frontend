@@ -9,7 +9,7 @@ import Introduction from "../../../../components/SignUpComponents/Introduction";
 import Terms from "../../../../components/Terms/Terms";
 import ButtonSelection from "../../../../components/SignUpComponents/ButtonSelection";
 
-function StaffForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, handleTermClick}) {
+function StaffForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, handleTermClick, handleTermOfUseClick}) {
   const campusList = ['음성', '문경', '미국'];
 
   return (
@@ -61,6 +61,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
 
       <Terms
         handleTermClick={handleTermClick}
+        handleTermOfUseClick={handleTermOfUseClick}
       />
 
       <button 
