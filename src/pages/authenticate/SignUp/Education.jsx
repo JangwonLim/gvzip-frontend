@@ -68,11 +68,15 @@ function Education({handleChange}) {
     const isEntranceYearValid = yearData.entranceYear.length > 0;
     const isGradYearValid = yearData.graduationYear.length > 0 || yearData.expectedGraduationYear.length > 0;
     
+
+    console.log(isSchoolNameValid, isDegreeValid, isStatusValid, isMajorValid, isEntranceYearValid, isGradYearValid)
     if ( isSchoolNameValid && isStatusValid && isMajorValid && isEntranceYearValid && isGradYearValid && isDegreeValid ) {
       setIsDataValid(true);
     } else {
       setIsDataValid(false);
     }
+
+    console.log(yearData)
   },[yearData])
 
   return(
