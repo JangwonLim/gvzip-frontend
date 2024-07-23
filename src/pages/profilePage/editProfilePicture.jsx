@@ -7,11 +7,12 @@ import { updateInfoAndProfilePicture, updateUserInfo } from "../../service/putSe
 
 function EditProfilePicture() {
   let [selectedObjet, setSelectedObjet] = useState(null);
-  const [newUserInfo, setNewUserInfo] = useState(userInfo);
   const userInfo = useSelector(state => state.user.userInfo);
+  const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
   console.log("redux userInfo: ", userInfo);
 
+  // eslint-disable-next-line no-unused-vars
   const changeProfilePicture = async () => {
     try {
       const { profileImageURL, ...rest } = userInfo;
