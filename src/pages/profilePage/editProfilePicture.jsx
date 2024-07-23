@@ -80,7 +80,7 @@ function EditProfilePicture() {
       <div className="objet-preview-container">
         <img 
           className="objet"
-          src={require(`./../../assets/${selectedObjet}.png`)} 
+          // src={require(`./../../assets/${selectedObjet}.png`)} 
           alt="selected-objet" 
         />
       </div>
