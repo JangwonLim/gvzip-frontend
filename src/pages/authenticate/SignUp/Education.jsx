@@ -8,6 +8,7 @@ import Year from "../../../components/SignUpComponents/Year";
 
 function Education({handleChange}) {
   const statusList = ["재학", "휴학", "졸업"];
+  const degreeList = ["학사", "석사", "박사"];
 
   const generateYearOptions = () => {
     const yearOptions = [];
@@ -61,13 +62,13 @@ function Education({handleChange}) {
 
   useEffect(() => {
     const isSchoolNameValid = yearData.schoolName.length > 0;
-    // const isDegreeValid = yearData.degree.length > 0;
+    const isDegreeValid = yearData.degree.length > 0;
     const isStatusValid = yearData.status.length > 0;
     const isMajorValid = yearData.major.length > 0;
     const isEntranceYearValid = yearData.entranceYear.length > 0;
     const isGradYearValid = yearData.graduationYear.length > 0 || yearData.expectedGraduationYear.length > 0;
     
-    if ( isSchoolNameValid && isStatusValid && isMajorValid && isEntranceYearValid && isGradYearValid ) {
+    if ( isSchoolNameValid && isStatusValid && isMajorValid && isEntranceYearValid && isGradYearValid && isDegreeValid ) {
       setIsDataValid(true);
     } else {
       setIsDataValid(false);
@@ -76,9 +77,6 @@ function Education({handleChange}) {
 
   return(
     <div className="Profile--content-container">
-      {/* Degree */}
-
-
       {/* School Name */}
       <Introduction
         formData={yearData}
@@ -95,6 +93,16 @@ function Education({handleChange}) {
         title={"전공"}
         placeholder={"전공 입력 ex. 경영학과"}
         name={"major"}
+      />
+
+      {/* Degree */}
+      <ButtonSelection
+        formData={yearData}
+        handleChange={handleYearData}
+        title={"학위"}
+        name={"degree"}
+        list={degreeList}
+        isMandatory={true}
       />
 
       {/* Status */}
