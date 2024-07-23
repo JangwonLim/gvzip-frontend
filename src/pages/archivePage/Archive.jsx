@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import Search from "./Search";
 import NoResult from "./NoResult";
+import Cookies from 'js-cookie'
 
 
 function Archive() {
@@ -168,6 +169,10 @@ function Archive() {
     setInfo([]); // 기존 데이터를 초기화
     setHasMore(true); // 더 많은 데이터가 있음을 표시
   };
+
+  useEffect(() => {
+    console.log("cookies: ", Cookies.get());
+  })
 
   return(
     <>

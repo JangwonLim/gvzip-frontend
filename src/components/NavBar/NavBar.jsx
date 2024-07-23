@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import './NavBar.css';
 import { useMediaQuery } from 'react-responsive';
-import Cookies from 'js-cookie'
 
 function NavBar() {
   const navigate = useNavigate();
@@ -18,7 +17,6 @@ function NavBar() {
   };
 
   const onClickArchive = () => {
-    console.log("cookies: ", Cookies.get());
     setActiveButton('/archive');
     navigate('/archive');
   };
