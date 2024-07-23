@@ -16,9 +16,9 @@ function EditProfilePicture() {
       const { profileImageURL, ...rest } = userInfo;
       let formData = rest;
       console.log(formData);
-      let profileImage = `./../../assets/${selectedObjet}.png`;
+      // let profileImage = selectedObjet;
 
-      const result = await updateInfoAndProfilePicture(formData, profileImage);
+      const result = await updateInfoAndProfilePicture(formData, selectedObjet);
 
       if (result) {
         console.log('successfully update the picture')
