@@ -43,7 +43,7 @@ export const updateUserInfo = async (data) => {
     const response = await axios.put(`${API_URL}/profile`, data, {
       withCredentials: true
     });
-
+    console.log(response);
     if (response.data.isSuccess) {
       console.log(response.data);
       return response.data;
