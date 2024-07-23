@@ -19,7 +19,7 @@ export const updateInfoAndProfilePicture = async (formData, profileImage) => {
       console.log(key, value);
     }
 
-    const response = await axios.put(`${API_URL}/profile-image`, data, {
+    const response = await axios.post(`${API_URL}/profile-image`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
