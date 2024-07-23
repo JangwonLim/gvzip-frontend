@@ -48,6 +48,17 @@ function EditProfilePicture() {
     setSelectedObjet(e.target.alt);
   }
 
+  // eslint-disable-next-line no-unused-vars
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
+    }
+  };
+
   return (
     <div className="Profile--container">
       <div className="Profile--header">
@@ -67,6 +78,13 @@ function EditProfilePicture() {
           alt="selected-objet" 
         />
       </div>
+
+      <input 
+        type="file" 
+        id="imageUpload" 
+        accept="image/*" 
+        onChange={handleImageChange} 
+      />
 
       <div className="objet-wrapper">
         { profilePictures() }
