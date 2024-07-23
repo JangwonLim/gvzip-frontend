@@ -3,12 +3,28 @@ import './profile.css';
 import './../../styles/defaultDesign.css';
 import { useGoBack } from "../../utils/usefulFunctions";
 import { useSelector } from "react-redux";
+import { updateInfoAndProfilePicture } from "../../service/putService";
 
 function EditProfilePicture() {
   let [selectedObjet, setSelectedObjet] = useState('profile-pic-11');
   const userInfo = useSelector(state => state.user.userInfo);
 
   console.log("redux userInfo: ", userInfo);
+
+  const changeProfilePicture = async () => {
+    try {
+      let formData = userInfo;
+      let profileImage = `./../../assets/${selectedObjet}.png`;
+
+      const result = await updateInfoAndProfilePicture(formData, profileImage);
+
+      if (result) {
+        console.log('successfully update the picture')
+      }
+    } catch(error) {
+      console.log('Failed in updating the picture')
+    }
+  }
 
   const profilePictures = () => {
     const objets = []
@@ -55,7 +71,7 @@ function EditProfilePicture() {
       </div>
 
       <button 
-        // onClick={}
+        onClick={changeProfilePicture}
         className="ProfilePage--button black"
       >
         <span className="h2-18-sb">저장</span>

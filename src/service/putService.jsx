@@ -1,0 +1,31 @@
+import axios from "axios";
+const API_URL = 'https://gvzip.com';
+
+export const updateInfoAndProfilePicture = async (formData, profileImage) => {
+  try {
+    const data = new FormData();
+    const json = JSON.stringify(formData);
+
+    const blob = new Blob([json], { type: 'application/json' });
+    data.append('ProfileUpdateRequest', blob);
+
+    if (profileImage) {
+      data.append('profileImage', profileImage);
+    }
+
+    const response = await axios.put(`${API_URL}/profile-image`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true
+    });
+
+    if (response.data.isSuccess) {
+      console.log(response.data);
+      return response.data;
+    }
+  } catch (error) {
+    console.log("Error occurred while updating the user info including the profile picture!");
+    console.error(error);
+  }
+}
