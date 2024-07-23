@@ -13,10 +13,10 @@ function EditProfilePicture() {
 
   const changeProfilePicture = async () => {
     try {
-      const { profileImageURL, entranceYear, expectedGraduationYear,  ...rest } = userInfo;
-      const updatedUserInfo = { ...rest, entranceYear: entranceYear || "", expectedGraduationYear: expectedGraduationYear || "" };
+      const { profileImageURL, ...rest } = userInfo;
+      // const updatedUserInfo = { ...rest, entranceYear: entranceYear || "", expectedGraduationYear: expectedGraduationYear || "" };
 
-      let formData = updatedUserInfo;
+      let formData = rest;
       console.log(formData);
       // let profileImage = selectedObjet;
       console.log(selectedObjet);
