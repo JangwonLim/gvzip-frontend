@@ -15,7 +15,7 @@ function Introduction({formData, handleChange, title, placeholder, name}) {
         type="text" 
         placeholder={placeholder}
         name={name}
-        value={`formData.${name}`}
+        value={formData[name]}
         onChange={handleChange}
       />
     </div>
