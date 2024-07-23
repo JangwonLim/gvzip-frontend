@@ -78,6 +78,7 @@ function EditProfilePicture() {
 
   const updateProfile = async () => {
     try {
+      console.log(newUserInfo);
       const result = await updateUserInfo(newUserInfo);
 
       console.log(result);

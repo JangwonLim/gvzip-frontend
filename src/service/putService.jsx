@@ -39,6 +39,7 @@ export const updateInfoAndProfilePicture = async (formData, profileImage) => {
 
 export const updateUserInfo = async (data) => {
   try {
+    console.log(data);
     const response = await axios.put(`${API_URL}/profile`, data, {
       withCredentials: true
     });
