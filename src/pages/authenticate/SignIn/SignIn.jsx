@@ -34,9 +34,9 @@ function SignIn() {
 
         <span className="b6-16-m" style={{ color: "#2f2f2f"}}>
           지비집이 처음이신가요?&nbsp;
-          <a href="/signup" className="SignIn--signup-link">
+          <span onClick={() =>  window.location.href = "https://gvzip.com/oauth2/authorization/google"} className="SignIn--signup-link">
             가입하기
-          </a>
+          </span>
         </span>
       </div>
       
