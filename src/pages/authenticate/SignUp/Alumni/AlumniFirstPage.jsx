@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './../Signup.css';
 import '../ProfileInfo.css';
 import './../../../../styles/defaultDesign.css';
@@ -6,27 +6,23 @@ import Name from "../../../../components/SignUpComponents/Name";
 import DateOfBirth from "../../../../components/SignUpComponents/DateOfBirth";
 import Gender from "../../../../components/SignUpComponents/Gender";
 import Email from "../../../../components/SignUpComponents/Email";
-import Year from "../../../../components/SignUpComponents/Year";
-import ButtonSelection from "../../../../components/SignUpComponents/ButtonSelection";
 
-function AlumniFirstPage({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, goToNextPage}) {
-  const campusList = ['음성', '문경', '미국'];
+function AlumniFirstPage({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, goToNextPage, isValidYear, isValidMonth, isValidDay}) {
 
-  // List of graduation year
-  const generateYearOptions = () => {
-    const yearOptions = [];
-    for (let year = 2003; year <= 2023; year++) {
-      yearOptions.push(
-        <option key={year} value={year}>
-          {year}
-        </option>
-      );
-    }
-    return yearOptions;
-  };
+  const [isFirstDone, setIsFirstDone] = useState(false);
+
+  useEffect(() => {
+    setIsFirstDone(
+      formData["korName"].length > 0 &&
+      formData["engName"].length > 0 &&
+      isValidDay && isValidMonth && isValidYear &&
+      formData["sex"].length > 0 && 
+      isValidEmail
+    )
+  }, [formData, isValidYear, isValidMonth, isValidDay, isValidEmail]);
   
   return (
-    <div className="Profile--content-container">
+    <div className="Profile--content-container huge-gap">
       {/* Name */}
       <Name 
         formData={formData}
@@ -49,32 +45,14 @@ function AlumniFirstPage({formData, handleChange, handleBornYearChange, handleBo
 
       {/* Email */}
       <Email
+        formData={formData}
         handleEmail={handleEmail}
         isValidEmail={isValidEmail}
       />
 
-      {/* Campus */}
-      <ButtonSelection 
-        formData={formData}
-        handleChange={handleChange}
-        title={"졸업한 캠퍼스"}
-        name={"campus"}
-        list={campusList}
-        isMandatory={true}
-      />
-
-      {/* Graduation year */}
-      <Year 
-        formData={formData}
-        handleChange={handleChange}
-        options={generateYearOptions}
-        title={"졸업년도"}
-        placeholder={"졸업년도 선택"}
-      />
-
       <button 
         className="Profile--navigate-button"
-        // disabled={!isFirstDone}
+        disabled={!isFirstDone}
         onClick={goToNextPage}
       >
         <span className="h2-18-sb">다음</span>

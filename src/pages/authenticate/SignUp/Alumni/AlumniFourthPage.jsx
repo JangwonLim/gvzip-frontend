@@ -3,29 +3,17 @@ import './../Signup.css';
 import './../ProfileInfo.css';
 import './../../../../styles/defaultDesign.css';
 import PictureUploader from "../../../../components/PictureUploader/PictureUploader";
-import HistoryDetail from "../../../../components/HistoryDetail/HistoryDetail";
 import Terms from "../../../../components/Terms/Terms";
-import EditBottomSheet from "../../../../components/BottomSheet/EditBottomSheet";
 import './../../../../components/BottomSheet/BottomSheet.css';
 
-function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUser, profileImage, previewImage, handleProfileImage, handleArrayData, handleCareerClick, handleTermClick, handleTermOfUseClick }) {
+function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUser, profileImage, previewImage, handleProfileImage, handleArrayData, handleTermClick, handleTermOfUseClick }) {
 
-  const [edit, setEdit] = useState(false);
   const [termOfUse, setTermOfUse] = useState(false);
   const [privacy, setPrivacy] = useState(false);
   const [optionalPrivacy, setOptionalPrivacy] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [clickCount, setClickCount] = useState(0);
   const [isValid, setIsValid] = useState(false);
-
-  const openEdit = () => {
-    setEdit(true);
-  }
-
-  const closeEdit = (e) => {
-    e.preventDefault();
-    setEdit(false);
-  }
 
   const agreeAll = () => {
     setClickCount(prevCount => {
@@ -57,7 +45,9 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
   }, [termOfUse, privacy])
 
   return(
-    <div className="Profile--content-container">
+    <div 
+      className="Profile--content-container huge-gap"
+    >
       {/* Picture */}
       <div className="Profile--content-section wide-gap">
         <div>
@@ -67,42 +57,8 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
         <PictureUploader picFile={previewImage} onChangePicture={handleProfileImage}/>
       </div>
 
-      {/* Career */}
-      <div className="Profile--content-section huge-gap">
-        <div>
-          <span className="b7-16-sb" style={{ color: "#66707A"}}>경력/경험 (선택) </span>
-        </div>
 
-        {
-          formData.careers.length > 0 && (
-            formData.careers.map((data, index) => {
-              return (
-                <HistoryDetail 
-                  title={data.companyName} 
-                  detail1={data.startYear+"년"} 
-                  detail2={data.duration} 
-                  content={data.position} 
-                  index={index}
-                  openEdit={openEdit}
-                />
-              )
-            }
-          ))
-        }
-
-        <button 
-          className="Profile--add-education"
-          onClick={() => handleCareerClick()}
-        >
-          <span className="b6-16-m">경험/경력 추가</span>
-          <img 
-            alt="add-education"
-            src={require("../../../../assets/profile-add-edu.png")}
-          />
-        </button>
-      </div>
-
-      {/* <div className="Profile--content-section wide-gap">
+      <div className="Profile--content-section wide-gap">
         <div>
           <span className="b7-16-sb" style={{ color: "#66707A"}}>링크 (선택) </span>
         </div>
@@ -110,12 +66,12 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
         <input 
           className="Profile--text-input-box"
           type="text" 
-          placeholder={"링크 (선택)"}
-          name={}
-          value={}
+          placeholder={"링크 붙여넣기"}
+          name={"sns"}
+          value={formData['sns']}
           onChange={handleChange}
         />
-      </div> */}
+      </div>
 
       {/* Terms and Agreement */}
       <Terms
@@ -146,20 +102,6 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
           <span className="h2-18-sb">완료</span>
         </button>
       </div>
-
-      {
-        edit && (
-          <div 
-            className="EditBottomSheet--modal-background"
-            onClick={(e) => closeEdit(e)}
-          >
-            <EditBottomSheet
-              closeEdit={closeEdit}
-              handleEducationClick={handleCareerClick}
-            />
-          </div>
-        )
-      }
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from "react";
 import '../../styles/defaultDesign.css';
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
-function Email({handleEmail, isValidEmail}) {
+function Email({formData, handleEmail, isValidEmail}) {
   return(
     <div className="Profile--content-section narrow-gap">
       <div>
@@ -18,6 +18,7 @@ function Email({handleEmail, isValidEmail}) {
         placeholder="이메일 입력"
         name="email"
         onChange={handleEmail}
+        value={formData["email"]}
       />
       { 
         !isValidEmail && 

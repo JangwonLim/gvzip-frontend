@@ -2,6 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialUserState = {
   userInfo: null,
+  educations: []
 };
 
 // const initialFilterState = {
@@ -27,29 +28,6 @@ let userInfo = createSlice({
   }
 });
 
-// let filters = createSlice({
-//   name: 'filter',
-//   initialState: initialFilterState,
-//   reducers: {
-//     addFilters: (state, action) => {
-//       state.filters = action.payload;
-//       localStorage.setItem('filters', JSON.stringify(state.filters));
-//     },
-//     deleteFilters: (state) => {
-//       state.filters = {};
-//       localStorage.setItem('filters', JSON.stringify(state.filters));
-//     },
-//     clearFilters: (state) => {
-//       state.filters = {};
-//       localStorage.setItem('filters', JSON.stringify(state.filters));
-//     },
-//     fetchFilters: (state) => {
-//       const storedFilters = JSON.parse(localStorage.getItem('filters')) || initialFilterState;
-//       state.filters = storedFilters;
-//     }
-//   }
-// });
-
 let alumniType = createSlice({
   name: 'alumniType',
   initialState: 0,
@@ -58,15 +36,35 @@ let alumniType = createSlice({
   },
 });
 
+let educations = createSlice({
+  name: 'educations',
+  initialState: initialUserState,
+  reducers: {
+    addEducation: (state, action) => {
+      state.educations.push(action.payload);
+    },
+    updateEducation: (state, action) => {
+      const { index, updatedEducation } = action.payload;
+      state.educations[index] = updatedEducation;
+    },
+    deleteEducation: (state, action) => {
+      state.educations.splice(action.payload, 1);
+    },
+    reset: () => initialUserState // 상태를 초기화하는 리듀서
+  }
+});
+
+
 
 export let { storeUserInfo, clearUserInfo } = userInfo.actions;
-// export let { addFilters, deleteFilters, clearFilters, fetchFilters } = filters.actions;
 export let { setAlumniType } = alumniType.actions;
+export let { addEducation, updateEducation, deleteEducation, reset } = educations.actions;
+
 
 export default configureStore({
   reducer: {
     user: userInfo.reducer,
-    // filter: filters.reducer,
     alumniType: alumniType.reducer,
+    educations: educations.reducer
   }
 });

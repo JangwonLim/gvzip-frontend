@@ -7,8 +7,9 @@ import Education from "../Education";
 import Career from "../Career";
 import Privacy from "../Agreement/Privacy";
 import TermsOfUse from "../Agreement/TermsOfUse";
+import EditEducation from "../EditEducation";
 
-function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick, handleTermClick, handleTermOfUseClick}) {
+function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick, handleTermClick, handleTermOfUseClick, isValidYear, isValidMonth, isValidDay, educationNumber, closeEditEducation, setEducationNumber, openEditEducation}) {
 
   return(
     <>
@@ -22,6 +23,9 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             handleEmail={handleEmail}
             isValidEmail={isValidEmail}
             goToNextPage={goToNextPage}
+            isValidYear={isValidYear}
+            isValidMonth={isValidMonth}
+            isValidDay={isValidDay}
           />
         )
       }
@@ -35,6 +39,10 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             goToPreviousPage={goToPreviousPage}
             handleEducationClick={handleEducationClick}
             handleArrayData={handleArrayData}
+            handleCareerClick={handleCareerClick}
+            setEducationNumber={setEducationNumber} 
+            educationNumber={educationNumber}
+            openEditEducation={openEditEducation}
           />
         )
       }
@@ -61,7 +69,6 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             previewImage={previewImage}
             handleProfileImage={handleProfileImage}
             handleArrayData={handleArrayData}
-            handleCareerClick={handleCareerClick}
             handleTermClick={handleTermClick}
             handleTermOfUseClick={handleTermOfUseClick}
           />
@@ -93,6 +100,15 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
       {
         currentPage === 8 && (
           <TermsOfUse/>
+        )
+      }
+      {
+        currentPage === 9 && (
+          <EditEducation
+            handleChange={handleChange}
+            index={educationNumber}
+            closeEditEducation={closeEditEducation}
+          />
         )
       }
     </>

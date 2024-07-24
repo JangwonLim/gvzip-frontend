@@ -36,10 +36,22 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
   const [cityList, setCityList] = useState([]);
 
   const [isValidLocation, setIsValidLocation] = useState(false);
-  // const [isThirdDone, setIsThirdDone] = useState(false);
+  const [isThirdDone, setIsThirdDone] = useState(false);
 
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
+
+  useEffect(() => {
+    setIsThirdDone(
+      isValidLocation && 
+      (
+        formData["field1"].length > 0 || 
+        formData["field2"].length > 0 || 
+        formData["field3"].length > 0
+      ) &&
+      formData["introduction"].length > 0 
+    )
+  }, [formData, isValidLocation]);
 
   // Load countries on component mount
   useEffect(() => {
@@ -143,12 +155,8 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
     });
   };
 
-  const onClickNext = () => {
-    console.log(formData);
-  }
-
   return (
-    <div className="Profile--content-container">
+    <div className="Profile--content-container huge-gap">
       {/* Location */}
       <div className="Profile--content-section wide-gap">
         <div>
@@ -221,11 +229,12 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
 
         <div className="Profile--button-container fields">
           {
-            fieldOptions.map((option) => (
+            fieldOptions.map((option, index) => (
               <button 
                 className={"Profile--button field" + ([fields.field1, fields.field2, fields.field3].includes(option) ? " selected" : "")}
                 key={option}
                 onClick={() => onClickFields(option)}
+                value={formData["field1"]}
               >
                 <span className="b7-16-sb">
                   {option}
@@ -255,6 +264,7 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
         <button 
           className="Profile--navigate-button"
           onClick={goToNextPage}
+          disabled={!isThirdDone}
         >
           <span className="h2-18-sb">다음</span>
         </button>

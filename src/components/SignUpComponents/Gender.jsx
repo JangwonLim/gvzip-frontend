@@ -4,7 +4,7 @@ import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
 function Gender({formData, handleChange}) {
   return(
-    <div className="Profile--content-section wide-gap">
+    <div className="Profile--content-section narrow-gap">
       <div>
         <span className="b7-16-sb" style={{ color: "#66707A"}}>성별 </span>
         <span style={{ color: "#FE3C2A"}}>*</span>

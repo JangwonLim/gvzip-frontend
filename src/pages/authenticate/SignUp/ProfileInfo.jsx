@@ -57,15 +57,27 @@ function ProfileInfo() {
     }));
   }, [alumniType]);
 
-  const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidYear, setIsValidYear] = useState(false);
   const [isValidMonth, setIsValidMonth] = useState(false);
   const [isValidDay, setIsValidDay] = useState(false);
+  const [isFirstDone, setIsFirstDone] = useState(false);
+  const [isSecondDone, setIsSecondDone] = useState(false);
+  const [isThirdDone, setIsThirdDone] = useState(false);
+  const [isFourthDone, setIsFourthDone] = useState(false);
 
+  const [educationNumber, setEducationNumber] = useState(null);
+  const [editEducation, setEditEducation] = useState(false);
+
+  const openEditEducation = () => {
+    setCurrentPage(9);
+  }
+  const closeEditEducation = () => {
+    setCurrentPage(2);
+  }
 
   // calculate generation
   useEffect(() => {
-    console.log(formData.campus.length, String(formData.graduationYear).length)
     if (formData.campus.length > 0 && String(formData.graduationYear).length > 0) {
       const result = calculateGeneration(formData.campus, formData.graduationYear);
       
@@ -76,23 +88,39 @@ function ProfileInfo() {
     }
   }, [formData.graduationYear, formData.campus]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (
-      name === 'graduationYear' ||
-      name === 'expectedGraduationYear' ||
-      name === 'entranceYear'
-    ) {
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: parseInt(value),
-      }));
+  const handleChange = (e, actionType = 'update', index = null, updatedEducation = null) => {
+    if (actionType === 'delete' && index !== null) {
+      // Delete specific education entry
+      setFormData((prevState) => {
+        const updatedEducations = prevState.educations.filter((_, i) => i !== parseInt(index));
+        return { ...prevState, educations: updatedEducations };
+      });
+    } else if (actionType === 'update' && index !== null && updatedEducation !== null) {
+      // Update specific education entry
+      setFormData((prevState) => {
+        const updatedEducations = prevState.educations.map((education, i) => 
+          i === parseInt(index) ? updatedEducation : education
+        );
+        return { ...prevState, educations: updatedEducations };
+      });
     } else {
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
+      const { name, value } = e.target;
+  
+      if (
+        name === 'graduationYear' ||
+        name === 'expectedGraduationYear' ||
+        name === 'entranceYear'
+      ) {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: parseInt(value),
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      }
     }
   };
 
@@ -135,13 +163,15 @@ function ProfileInfo() {
         ...prevState,
         [name]: value
       }));
-    } else if (value === "") {
-      setIsValidEmail(true);
-      setFormData((prevState) => ({
-        ...prevState,
-        [name]: ""
-      }));
-    } else {
+    } 
+    // else if (value === "") {
+    //   setIsValidEmail(true);
+    //   setFormData((prevState) => ({
+    //     ...prevState,
+    //     [name]: ""
+    //   }));
+    // } 
+    else {
       setIsValidEmail(false);
     }
   }
@@ -209,6 +239,8 @@ function ProfileInfo() {
         return "개인정보 처리방침";
       case(8):
         return "이용약관";
+      case(9):
+        return "학력 수정";
       default:
         return "회원가입";
     }
@@ -220,13 +252,16 @@ function ProfileInfo() {
         setCurrentPage(2);
         break;
       case(6):
-        setCurrentPage(4);
+        setCurrentPage(2);
         break;
       case(7):
         setCurrentPage(4);
         break;
       case(8):
         setCurrentPage(4);
+        break;
+      case(9):
+        setCurrentPage(2);
         break;
       default:
         navigate(-1);
@@ -270,6 +305,13 @@ function ProfileInfo() {
             handleCareerClick={handleCareerClick}
             handleTermClick={handleTermClick}
             handleTermOfUseClick={handleTermOfUseClick}
+            isValidYear={isValidYear}
+            isValidMonth={isValidMonth}
+            isValidDay={isValidDay}
+            educationNumber={educationNumber}
+            closeEditEducation={closeEditEducation}
+            setEducationNumber={setEducationNumber} 
+            openEditEducation={openEditEducation}
           />
         )
       }
@@ -296,6 +338,10 @@ function ProfileInfo() {
             handleCareerClick={handleCareerClick}
             handleTermClick={handleTermClick}
             handleTermOfUseClick={handleTermOfUseClick}
+            educationNumber={educationNumber}
+            closeEditEducation={closeEditEducation}
+            setEducationNumber={setEducationNumber} 
+            openEditEducation={openEditEducation}
           />
         )
       }

@@ -1,10 +1,21 @@
 import React from "react"
+import { useDispatch } from "react-redux";
+import { deleteEducation } from "../../redux/store";
 
-function EditBottomSheet({closeEdit, handleEducationClick}) {
+function EditBottomSheet({closeEdit, openEditEducation, handleChange, index}) {
+  const dispatch = useDispatch();
+
   const handleEdit = (e) => {
     closeEdit(e);
-    handleEducationClick();
+    openEditEducation();
   }
+
+  const deleteEducationHandler = (e) => {
+    // Delete the local state and Redux state
+    handleChange(null, 'delete', index);
+    dispatch(deleteEducation(index));
+    closeEdit(e);
+  };
 
   return (
     <div 
@@ -13,7 +24,7 @@ function EditBottomSheet({closeEdit, handleEducationClick}) {
     >
       <div className="EditBottomSheet--content">
         <span className="b6-16-m" onClick={(e)=>handleEdit(e)} style={{ cursor: "pointer" }}>수정</span>
-        <span className="b6-16-m" style={{ color: "#FE3C2A", cursor: "pointer" }}>삭제</span>
+        <span className="b6-16-m" onClick={(e) => deleteEducationHandler(e)} style={{ color: "#FE3C2A", cursor: "pointer" }}>삭제</span>
       </div>
     </div>
   )

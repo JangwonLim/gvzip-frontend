@@ -51,7 +51,7 @@ function Career({handleChange}) {
   };
 
   return (
-    <div className="Profile--content-container">
+    <div className="Profile--content-container huge-gap">
       {/* Company Name */}
       <div className="Profile--content-section narrow-gap">
         <div>

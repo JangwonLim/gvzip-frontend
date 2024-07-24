@@ -3,16 +3,16 @@ import './ProfileInfo.css';
 import '../../../styles/defaultDesign.css';
 import Introduction from "../../../components/SignUpComponents/Introduction";
 import ButtonSelection from "../../../components/SignUpComponents/ButtonSelection";
-import { useDispatch } from "react-redux";
-import { addEducation } from "../../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { updateEducation } from "../../../redux/store";
 
-function Education({handleChange}) {
+function EditEducation({handleChange, index, closeEditEducation}) {
   const dispatch = useDispatch();
 
   const statusList = ["재학", "휴학", "졸업"];
   const degreeList = ["학사", "석사", "박사"];
   
-  // const educations = useSelector((state) => state.educations.educations);
+  const educations = useSelector((state) => state.educations.educations);
 
   const [yearData, setYearData] = useState({
     schoolName: '', 
@@ -26,17 +26,25 @@ function Education({handleChange}) {
   const handleYearData = (e) => {
     const { name, value } = e.target;
     
-    console.log(value);
     setYearData((prevYearData) => ({
       ...prevYearData,
       [name]: value
     }));
   }
 
-  const saveData = () => {
-    handleChange("educations", yearData);
-    dispatch(addEducation(yearData));
-  }
+  const updateEducationHandler = () => {
+    // Update the local state and Redux state
+    handleChange(null, 'update', index, yearData);
+    dispatch(updateEducation({ index, updatedEducation: yearData }));
+    closeEditEducation();
+  };
+
+  useEffect(() => {
+    if (educations[index]) {
+      setYearData(educations[index]);
+    }
+  }, [index, educations]);
+
 
   useEffect(() => {
     const isSchoolNameValid = yearData.schoolName.length > 0;
@@ -92,7 +100,7 @@ function Education({handleChange}) {
       <button 
         className="Profile--navigate-button"
         disabled={!isDataValid}
-        onClick={saveData}
+        onClick={updateEducationHandler}
       >
         <span className="h2-18-sb">저장</span>
       </button>
@@ -100,4 +108,4 @@ function Education({handleChange}) {
   )
 }
 
-export default Education;
+export default EditEducation;
