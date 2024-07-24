@@ -27,11 +27,14 @@
   }
   
   .MembershipAuth--link-share {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 18px;
-    color: var(--grey3);
-    text-decoration: underline;
+    color: var(--black-text);
     cursor: pointer;
   }
 }

@@ -55,4 +55,24 @@
       color: white;
     }
   }
+
+  .Copy--container {
+    position: absolute;
+    top: 50%;
+    width: 343px; height: 57px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--grey4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+
+  .Copy--content {
+    font-size: 14px;
+    line-height: 120%;
+    font-weight: 600;
+    color: white;
+  }
 }

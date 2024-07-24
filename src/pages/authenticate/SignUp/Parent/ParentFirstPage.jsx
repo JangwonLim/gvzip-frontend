@@ -9,7 +9,7 @@ import Email from "../../../../components/SignUpComponents/Email";
 function ParentFirstPage({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, goToNextPage}) {
 
   return (
-    <div className="Profile--content-container">
+    <div className="Profile--content-container huge-gap">
       {/* Name */}
       <Name 
         formData={formData}

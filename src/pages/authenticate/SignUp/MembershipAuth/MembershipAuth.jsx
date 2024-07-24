@@ -7,6 +7,7 @@ import { handleCopyClipBoard } from "../../../../utils/usefulFunctions";
 import { useGoBack } from "../../../../utils/usefulFunctions";
 import { getChildInfo } from "../../../../service/getService";
 import { useNavigate } from "react-router-dom";
+import Copy from "../../../../components/PopUp/Copy";
 
 function MembershipAuth() {
   const navigate = useNavigate();
@@ -54,11 +55,20 @@ function MembershipAuth() {
 
   const [isValidDoB, setIsValidDoB] = useState(false);
   const [isValidAuth, setIsValidAuth] = useState(false);
+  const [copy, setCopy] = useState(false);
+
+  const popUpCopy = () => {
+    handleCopyClipBoard(shareLink);
+    setCopy(true);
+
+    setTimeout(() => {
+      setCopy(false);
+    }, 500);
+  };
 
   const checkChildData = async () => {
     const isChildDataValid = await getChildInfo(parentsAuth.name, parseInt(parentsAuth.dateOfBirth.year), parseInt(parentsAuth.dateOfBirth.month), parseInt(parentsAuth.dateOfBirth.day));
 
-    console.log("isChildDataValid: ", isChildDataValid);
     return isChildDataValid;
   }
 
@@ -114,8 +124,6 @@ function MembershipAuth() {
     ];
   
     const authCheck = authChecks[alumniType];
-
-    console.log("authCheck: ", authCheck);
   
     if (authCheck === true) {
       navigateToGoogleAuth();
@@ -143,7 +151,7 @@ function MembershipAuth() {
   }, [alumniType, alumniAuth, parentsAuth, studentAuth, teacherAuth, isValidDoB]);
 
   return (
-    <div className="Profile--container">
+    <div className="Profile--container" style={{position: "relative"}}>
       <div className="Profile--header">
         <button 
           className="Profile--header-back-button"
@@ -179,66 +187,77 @@ function MembershipAuth() {
       {/* Parents */}
       {
         alumniType === 1 && (
-          <div className="Profile--content-container" style={{ gap: "44px", marginTop: "4px"}}>
-            <span className="b3-14-m" style={{ color: "#66707A" }}>
-              *필독* <br />
-              자녀의 정보가 지비집 서비스에 등록되어 있는 경우에만 인증이 <br />가능합니다. 지비집의 소중한 정보 자산이 유출되지 않도록
-              <br />미연에 방지하고자 함이니 너른 양해 부탁드립니다 :)
-            </span>
-            <div className="Profile--content-section narrow-gap">
-              <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>자녀 이름</span>
+            <div className="Profile--content-container huge-gap">
+              <div style={{ display: "flex", flexDirection: "column", gap:"20px"}}>
+                <span className="b3-14-m" style={{ color: "#66707A" }}>
+                  *필독* <br />
+                  자녀의 정보가 지비집 서비스에 등록되어 있는 경우에만 인증이 <br />가능합니다. 지비집의 소중한 정보 자산이 유출되지 않도록
+                  <br />미연에 방지하고자 함이니 너른 양해 부탁드립니다 :)
+                </span>
 
-              <input 
-                className="Profile--text-input-box"
-                placeholder="자녀명 입력"
-                type="text" 
-                onChange={(e) => handleParents(e)}
-              />
-            </div>
+                <div 
+                  className="MembershipAuth--link-share"
+                  onClick={popUpCopy}
+                >
+                  <span>초대 링크 복사</span>
+                  <img src={require("./../../../../assets/copy.png")} alt="copy" />
+                </div>
+              </div>
 
-            <div 
-              className="Profile--content-section huge-gap"
-              style={{ marginBottom: "40px" }}
-            >
-              <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>자녀 생년월일</span>
+              <div className="Profile--content-section narrow-gap">
+                <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>자녀 이름</span>
 
-              <div className="Profile--content-section narrow-gap row">
                 <input 
-                  className="Profile--text-input-box center"
-                  placeholder="YYYY" 
+                  className="Profile--text-input-box"
+                  placeholder="자녀명 입력"
                   type="text" 
-                  minLength="4"
-                  maxLength="4" 
-                  pattern="^\d{4}$"
-                  name="year"
-                  value={kidDateOfBirth.year}
-                  onChange={(e) => handleKidDateOfBirth(e)}
-                />
-                <input 
-                  className="Profile--text-input-box center" 
-                  placeholder="MM" 
-                  type="text" 
-                  minLength="2"
-                  maxLength="2"
-                  pattern="^(0[1-9]|1[0-2])$"
-                  name="month"
-                  value={kidDateOfBirth.month}
-                  onChange={(e) => handleKidDateOfBirth(e)}
-                />
-                <input 
-                  className="Profile--text-input-box center" 
-                  placeholder="DD" 
-                  type="text" 
-                  minLength="2"
-                  maxLength="2" 
-                  pattern="^(0[1-9]|[12][0-9]|3[01])$"
-                  name="day"
-                  value={kidDateOfBirth.day}
-                  onChange={(e) => handleKidDateOfBirth(e)}
+                  onChange={(e) => handleParents(e)}
                 />
               </div>
+
+              <div 
+                className="Profile--content-section huge-gap"
+                style={{ marginBottom: "40px" }}
+              >
+                <span className="b7-16-sb" style={{ color: "#2F2F2F"}}>자녀 생년월일</span>
+
+                <div className="Profile--content-section narrow-gap row">
+                  <input 
+                    className="Profile--text-input-box center"
+                    placeholder="YYYY" 
+                    type="text" 
+                    minLength="4"
+                    maxLength="4" 
+                    pattern="^\d{4}$"
+                    name="year"
+                    value={kidDateOfBirth.year}
+                    onChange={(e) => handleKidDateOfBirth(e)}
+                  />
+                  <input 
+                    className="Profile--text-input-box center" 
+                    placeholder="MM" 
+                    type="text" 
+                    minLength="2"
+                    maxLength="2"
+                    pattern="^(0[1-9]|1[0-2])$"
+                    name="month"
+                    value={kidDateOfBirth.month}
+                    onChange={(e) => handleKidDateOfBirth(e)}
+                  />
+                  <input 
+                    className="Profile--text-input-box center" 
+                    placeholder="DD" 
+                    type="text" 
+                    minLength="2"
+                    maxLength="2" 
+                    pattern="^(0[1-9]|[12][0-9]|3[01])$"
+                    name="day"
+                    value={kidDateOfBirth.day}
+                    onChange={(e) => handleKidDateOfBirth(e)}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
         )
       }
 
@@ -271,12 +290,9 @@ function MembershipAuth() {
       >
         <span className="h2-18-sb">인증하고 구글로 시작</span>
       </button>
-
       {
-        alumniType === 1 && (
-          <div onClick={() => handleCopyClipBoard(shareLink)}>
-            <span className="MembershipAuth--link-share">자녀에게 가입 링크 공유하기</span>
-          </div>
+        copy && (
+          <Copy/>
         )
       }
     </div>

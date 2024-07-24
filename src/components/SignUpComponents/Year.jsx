@@ -19,7 +19,7 @@ function Year({formData, handleChange, options, title, placeholder}) {
           value: formData.entranceYear,
           onChange: handleChange,
         };
-      case "졸업(예정)년도":
+      case "졸업 예정년도":
         return {
           name: "expectedGraduationYear",
           className: `Profile--dropdown-menu${formData.expectedGraduationYear === "" ? " placeholder" : ""}`,

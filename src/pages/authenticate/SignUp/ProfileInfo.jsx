@@ -376,6 +376,9 @@ function ProfileInfo() {
             goToPreviousPage={goToPreviousPage}
             handleTermClick={handleTermClick}
             handleTermOfUseClick={handleTermOfUseClick}
+            isValidYear={isValidYear}
+            isValidMonth={isValidMonth}
+            isValidDay={isValidDay}
           />
         )
       }
@@ -395,6 +398,9 @@ function ProfileInfo() {
             goToPreviousPage={goToPreviousPage}
             handleTermClick={handleTermClick}
             handleTermOfUseClick={handleTermOfUseClick}
+            isValidYear={isValidYear}
+            isValidMonth={isValidMonth}
+            isValidDay={isValidDay}
           />
         )
       }

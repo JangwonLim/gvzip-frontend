@@ -67,7 +67,7 @@ function SignUpSuccess() {
               <span className="h2-18-sb">오브제 변경</span>
             </button>
             <button 
-              // onClick={}
+              onClick={() => navigate('/archive')}
               className="ProfilePage--button black"
             >
               <span className="h2-18-sb">아카이브 확인</span>

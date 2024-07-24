@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import '../ProfileInfo.css';
 import '../../../../styles/defaultDesign.css';
 import Name from "../../../../components/SignUpComponents/Name";
@@ -9,11 +9,55 @@ import Introduction from "../../../../components/SignUpComponents/Introduction";
 import Terms from "../../../../components/Terms/Terms";
 import ButtonSelection from "../../../../components/SignUpComponents/ButtonSelection";
 
-function StaffForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, handleTermClick, handleTermOfUseClick}) {
+function StaffForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, handleTermClick, handleTermOfUseClick, isValidYear, isValidMonth, isValidDay}) {
   const campusList = ['음성', '문경', '미국'];
+  const [isValid, setIsValid] = useState(false);
+  const [termOfUse, setTermOfUse] = useState(false);
+  const [privacy, setPrivacy] = useState(false);
+  const [optionalPrivacy, setOptionalPrivacy] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [clickCount, setClickCount] = useState(0);
+
+  const agreeAll = () => {
+    setClickCount(prevCount => {
+      const newCount = prevCount + 1;
+      const isOddClick = newCount % 2 !== 0;
+
+      setTermOfUse(isOddClick);
+      setPrivacy(isOddClick);
+      setOptionalPrivacy(isOddClick);
+
+      console.log(isOddClick, isOddClick, isOddClick);
+
+      return newCount;
+    });
+  }
+
+  const toggleTermOfUse = () => {
+    setTermOfUse(!termOfUse);
+  }
+  const togglePrivacy = () => {
+    setPrivacy(!privacy);
+  }
+  const toggleOptionalPrivacy = () => {
+    setOptionalPrivacy(!optionalPrivacy);
+  }
+
+  useEffect(() => {
+    setIsValid(
+      formData["korName"].length > 0 &&
+      formData["engName"].length > 0 &&
+      isValidYear && isValidMonth && isValidDay &&
+      formData["sex"].length > 0 &&
+      isValidEmail &&
+      formData["campus"].length > 0 &&
+      formData["introduction"].length > 0 
+    )
+  }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay]);
+  
 
   return (
-    <div className="Profile--content-container">
+    <div className="Profile--content-container huge-gap">
       {/* Name */}
       <Name 
         formData={formData}
@@ -62,11 +106,18 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
       <Terms
         handleTermClick={handleTermClick}
         handleTermOfUseClick={handleTermOfUseClick}
+        agreeAll={agreeAll}
+        setTermsOfUse={toggleTermOfUse}
+        setPrivacy={togglePrivacy}
+        setOptionalPrivacy={toggleOptionalPrivacy}
+        termOfUse={termOfUse}
+        privacy={privacy}
+        optionalPrivacy={optionalPrivacy}
       />
 
       <button 
         className="Profile--navigate-button"
-        // disabled={!isFirstDone}
+        disabled={!isValid}
         onClick={registerUser}
       >
         <span className="h2-18-sb">완료</span>
