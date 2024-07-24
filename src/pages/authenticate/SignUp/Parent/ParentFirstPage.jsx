@@ -34,18 +34,9 @@ function ParentFirstPage({formData, handleChange, handleBornYearChange, handleBo
 
       {/* Email */}
       <Email
+        formData={formData}
         handleEmail={handleEmail}
         isValidEmail={isValidEmail}
-      />
-
-      {/* Campus */}
-      <ButtonSelection 
-        formData={formData}
-        handleChange={handleChange}
-        title={"자녀 캠퍼스"}
-        name={"campus"}
-        list={campusList}
-        isMandatory={true}
       />
 
       <button 

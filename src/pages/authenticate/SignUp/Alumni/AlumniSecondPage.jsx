@@ -56,14 +56,27 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
   return (
     <div className="Profile--content-container huge-gap">
       {/* Campus */}
-      <ButtonSelection 
-        formData={formData}
-        handleChange={handleChange}
-        title={"졸업한 캠퍼스"}
-        name={"campus"}
-        list={campusList}
-        isMandatory={true}
-      />
+      {
+        formData.alumniType === 0 ?
+          <ButtonSelection 
+            formData={formData}
+            handleChange={handleChange}
+            title={"졸업한 캠퍼스"}
+            name={"campus"}
+            list={campusList}
+            isMandatory={true}
+          /> :
+          <ButtonSelection 
+            formData={formData}
+            handleChange={handleChange}
+            title={"자녀 캠퍼스(복수 선택 가능)"}
+            name={"campus"}
+            list={campusList}
+            isMandatory={true}
+          />
+      }
+
+
 
       {/* Graduation year */}
       <Year 

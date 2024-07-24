@@ -86,15 +86,8 @@ function Career({handleChange}) {
       </div>
 
       <div className="Profile--content-section narrow-gap">
-        <div>
-          <div>
-            <span className="b7-16-sb" style={{ color: "#66707A"}}>시작 연도 </span>
-            <span style={{ color: "#FE3C2A"}}>*</span>
-          </div>
-          <div style={{ marginTop: "8px", color: "#66707A" }}>
-            <span className="b1-12-m">일을 시작한 연도를 숫자 4자리로 입력해 주세요.</span>
-          </div>
-        </div>
+        <span className="b7-16-sb" style={{ color: "#66707A"}}>시작 연도 </span>
+        <span style={{ color: "#FE3C2A"}}>*</span>
 
         <input 
           className="Profile--text-input-box"
