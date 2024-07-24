@@ -67,13 +67,16 @@ function ProfileInfo() {
   const [isFourthDone, setIsFourthDone] = useState(false);
 
   const [educationNumber, setEducationNumber] = useState(null);
-  const [editEducation, setEditEducation] = useState(false);
+  const [careerNumber, setCareerNumber] = useState(null);
 
   const openEditEducation = () => {
     setCurrentPage(9);
   }
   const closeEditEducation = () => {
     setCurrentPage(2);
+  }
+  const openEditCareer = () => {
+    setCurrentPage(10);
   }
 
   // calculate generation
@@ -88,21 +91,22 @@ function ProfileInfo() {
     }
   }, [formData.graduationYear, formData.campus]);
 
-  const handleChange = (e, actionType = 'update', index = null, updatedEducation = null) => {
-    if (actionType === 'delete' && index !== null) {
-      // Delete specific education entry
-      setFormData((prevState) => {
-        const updatedEducations = prevState.educations.filter((_, i) => i !== parseInt(index));
-        return { ...prevState, educations: updatedEducations };
-      });
-    } else if (actionType === 'update' && index !== null && updatedEducation !== null) {
-      // Update specific education entry
-      setFormData((prevState) => {
-        const updatedEducations = prevState.educations.map((education, i) => 
-          i === parseInt(index) ? updatedEducation : education
-        );
-        return { ...prevState, educations: updatedEducations };
-      });
+  const handleChange = (e, actionType = 'update', index = null, updatedData = null, type = 'educations') => {
+    const updateState = (prevState, type) => {
+      const dataToUpdate = prevState[type];
+      let updatedDataList;
+  
+      if (actionType === 'delete' && index !== null) {
+        updatedDataList = dataToUpdate.filter((_, i) => i !== parseInt(index));
+      } else if (actionType === 'update' && index !== null && updatedData !== null) {
+        updatedDataList = dataToUpdate.map((item, i) => i === parseInt(index) ? updatedData : item);
+      }
+  
+      return { ...prevState, [type]: updatedDataList };
+    };
+  
+    if (actionType === 'delete' || (actionType === 'update' && index !== null && updatedData !== null)) {
+      setFormData((prevState) => updateState(prevState, type));
     } else {
       const { name, value } = e.target;
   
@@ -241,6 +245,8 @@ function ProfileInfo() {
         return "이용약관";
       case(9):
         return "학력 수정";
+      case(10):
+        return "경력/경험 수정";
       default:
         return "회원가입";
     }
@@ -261,6 +267,9 @@ function ProfileInfo() {
         setCurrentPage(4);
         break;
       case(9):
+        setCurrentPage(2);
+        break;
+      case(10):
         setCurrentPage(2);
         break;
       default:
@@ -312,6 +321,9 @@ function ProfileInfo() {
             closeEditEducation={closeEditEducation}
             setEducationNumber={setEducationNumber} 
             openEditEducation={openEditEducation}
+            careerNumber={careerNumber}
+            setCareerNumber={setCareerNumber}
+            openEditCareer={openEditCareer}
           />
         )
       }
@@ -342,6 +354,9 @@ function ProfileInfo() {
             closeEditEducation={closeEditEducation}
             setEducationNumber={setEducationNumber} 
             openEditEducation={openEditEducation}
+            careerNumber={careerNumber}
+            setCareerNumber={setCareerNumber}
+            openEditCareer={openEditCareer}
           />
         )
       }

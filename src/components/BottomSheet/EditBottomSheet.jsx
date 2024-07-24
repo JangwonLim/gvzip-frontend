@@ -1,8 +1,8 @@
 import React from "react"
 import { useDispatch } from "react-redux";
-import { deleteEducation } from "../../redux/store";
+import { deleteCareer, deleteEducation } from "../../redux/store";
 
-function EditBottomSheet({closeEdit, openEditEducation, handleChange, index}) {
+function EditBottomSheet({closeEdit, openEditEducation, handleChange, index, type}) {
   const dispatch = useDispatch();
 
   const handleEdit = (e) => {
@@ -12,8 +12,13 @@ function EditBottomSheet({closeEdit, openEditEducation, handleChange, index}) {
 
   const deleteEducationHandler = (e) => {
     // Delete the local state and Redux state
-    handleChange(null, 'delete', index);
-    dispatch(deleteEducation(index));
+    if (type === "education") {
+      handleChange(null, 'delete', index);
+      dispatch(deleteEducation(index));
+    } else {
+      handleChange(null, 'delete', index, null, "careers");
+      dispatch(deleteCareer(index));
+    }
     closeEdit(e);
   };
 

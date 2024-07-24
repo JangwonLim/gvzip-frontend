@@ -2,7 +2,8 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialUserState = {
   userInfo: null,
-  educations: []
+  educations: [],
+  careers: []
 };
 
 // const initialFilterState = {
@@ -54,17 +55,38 @@ let educations = createSlice({
   }
 });
 
+let careers = createSlice({
+  name: 'careers',
+  initialState: initialUserState,
+  reducers: {
+    addCareer: (state, action) => {
+      state.careers.push(action.payload);
+    },
+    updateCareer: (state, action) => {
+      const { index, updatedCareer } = action.payload;
+      state.careers[index] = updatedCareer;
+    },
+    deleteCareer: (state, action) => {
+      state.careers.splice(action.payload, 1);
+    },
+    resetCareer: () => initialUserState // 상태를 초기화하는 리듀서
+  }
+});
+
 
 
 export let { storeUserInfo, clearUserInfo } = userInfo.actions;
 export let { setAlumniType } = alumniType.actions;
 export let { addEducation, updateEducation, deleteEducation, reset } = educations.actions;
+export let { addCareer, updateCareer, deleteCareer, resetCareer } = careers.actions;
+
 
 
 export default configureStore({
   reducer: {
     user: userInfo.reducer,
     alumniType: alumniType.reducer,
-    educations: educations.reducer
+    educations: educations.reducer,
+    careers: careers.reducer
   }
 });

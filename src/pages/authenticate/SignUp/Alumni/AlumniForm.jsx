@@ -8,8 +8,9 @@ import Career from "../Career";
 import Privacy from "../Agreement/Privacy";
 import TermsOfUse from "../Agreement/TermsOfUse";
 import EditEducation from "../EditEducation";
+import EditCareer from "../EditCareer";
 
-function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick, handleTermClick, handleTermOfUseClick, isValidYear, isValidMonth, isValidDay, educationNumber, closeEditEducation, setEducationNumber, openEditEducation}) {
+function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMonthChange, handleBornDayChange, handleEmail, isValidEmail, registerUser, profileImage, previewImage, handleProfileImage, currentPage, goToNextPage, goToPreviousPage, handleEducationClick, handleArrayData, handleCareerClick, handleTermClick, handleTermOfUseClick, isValidYear, isValidMonth, isValidDay, educationNumber, closeEditEducation, setEducationNumber, openEditEducation, careerNumber, setCareerNumber, openEditCareer}) {
 
   return(
     <>
@@ -43,6 +44,9 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
             setEducationNumber={setEducationNumber} 
             educationNumber={educationNumber}
             openEditEducation={openEditEducation}
+            careerNumber={careerNumber}
+            setCareerNumber={setCareerNumber}
+            openEditCareer={openEditCareer}
           />
         )
       }
@@ -107,6 +111,15 @@ function AlumniForm({formData, handleChange, handleBornYearChange, handleBornMon
           <EditEducation
             handleChange={handleChange}
             index={educationNumber}
+            closeEditEducation={closeEditEducation}
+          />
+        )
+      }
+      {
+        currentPage === 10 && (
+          <EditCareer
+            handleChange={handleChange}
+            index={careerNumber}
             closeEditEducation={closeEditEducation}
           />
         )

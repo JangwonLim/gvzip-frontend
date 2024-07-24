@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import './ProfileInfo.css';
 import { validateYear } from "../../../utils/validate";
-import { useDispatch } from "react-redux";
-import { addCareer } from "../../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCareer } from "../../../redux/store";
 
-function Career({handleChange}) {
+function EditCareer({handleChange, index, closeEditEducation}) {
   const dispatch = useDispatch();
+
+  const careers = useSelector((state) => state.careers.careers);
 
   const [careerData, setCareerData] = useState({
     companyName: "",
@@ -42,6 +44,19 @@ function Career({handleChange}) {
     }
   }
 
+  const updateCareerHandler = () => {
+    // Update the local state and Redux state
+    handleChange(null, 'update', index, careerData, 'careers');
+    dispatch(updateCareer({ index, updatedCareer: careerData }));
+    closeEditEducation();
+  };
+
+  useEffect(() => {
+    if (careers[index]) {
+      setCareerData(careers[index]);
+    }
+  }, [index, careers]);
+
   const generateDurationOptions = () => {
     const yearOptions = ["단기", "3개월 이하", "6개월 이하", '6개월~1년', '1년~2년', '2년~3년', '3년 이상', '5년 이상', '10년 이상', '30년 이상'];
 
@@ -53,11 +68,6 @@ function Career({handleChange}) {
       ))
     )
   };
-
-  const saveData = () => {
-    handleChange("careers", careerData);
-    dispatch(addCareer(careerData));
-  }
 
   return (
     <div className="Profile--content-container huge-gap">
@@ -131,7 +141,8 @@ function Career({handleChange}) {
       <button 
         className="Profile--navigate-button"
         disabled={!isDataValid}
-        onClick={saveData}
+        onClick={updateCareerHandler}
+        // onClick={console.log(careerData)}
       >
         <span className="h2-18-sb">저장</span>
       </button>
@@ -139,4 +150,4 @@ function Career({handleChange}) {
   )
 }
 
-export default Career;
+export default EditCareer;

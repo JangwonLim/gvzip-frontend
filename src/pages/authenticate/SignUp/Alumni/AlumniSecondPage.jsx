@@ -10,9 +10,10 @@ import Year from "../../../../components/SignUpComponents/Year";
 import { useDispatch } from "react-redux";
 import { reset } from "../../../../redux/store";
 
-function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPage, handleEducationClick, handleCareerClick, setEducationNumber, educationNumber, openEditEducation })
+function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPage, handleEducationClick, handleCareerClick, setEducationNumber, educationNumber, openEditEducation, careerNumber, setCareerNumber, openEditCareer })
 {
-  const [edit, setEdit] = useState(false);
+  const [educationMenu, setEducationMenu] = useState(false);
+  const [careerMenu, setCareerMenu] = useState(false);
   const [isSecondDone, setIsSecondDone] = useState(false);
 
   const dispatch = useDispatch();
@@ -28,14 +29,24 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
     )
   }, [formData]);
 
-  const openEdit = (e) => {
-    setEdit(true);
+  const openEducationMenu = (e) => {
+    setEducationMenu(true);
     setEducationNumber(e.target.id);
   }
 
-  const closeEdit = (e) => {
+  const closeEducationMenu = (e) => {
     e.preventDefault();
-    setEdit(false);
+    setEducationMenu(false);
+  }
+
+  const openCareerMenu = (e) => {
+    setCareerMenu(true);
+    setCareerNumber(e.target.id);
+  }
+
+  const closeCareerMenu = (e) => {
+    e.preventDefault();
+    setCareerMenu(false);
   }
 
   const campusList = ['음성', '문경', '미국'];
@@ -69,7 +80,7 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
           <ButtonSelection 
             formData={formData}
             handleChange={handleChange}
-            title={"자녀 캠퍼스(복수 선택 가능)"}
+            title={"자녀 캠퍼스"}
             name={"campus"}
             list={campusList}
             isMandatory={true}
@@ -100,7 +111,7 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
                   detail2={data.status} 
                   content={data.major} 
                   index={index}
-                  openEdit={openEdit}
+                  openEdit={openEducationMenu}
                 />
               )
             }
@@ -135,7 +146,7 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
                   detail2={data.duration} 
                   content={data.position} 
                   index={index}
-                  openEdit={openEdit}
+                  openEdit={openCareerMenu}
                 />
               )
             }
@@ -173,16 +184,33 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
       </div>
 
       {
-        edit && (
+        educationMenu && (
           <div 
             className="EditBottomSheet--modal-background"
-            onClick={(e) => closeEdit(e)}
+            onClick={(e) => closeEducationMenu(e)}
           >
             <EditBottomSheet
-              closeEdit={closeEdit}
+              closeEdit={closeEducationMenu}
               openEditEducation={openEditEducation}
               handleChange={handleChange}
               index={educationNumber}
+              type={"education"}
+            />
+          </div>
+        )
+      }
+      {
+        careerMenu && (
+          <div 
+            className="EditBottomSheet--modal-background"
+            onClick={(e) => closeCareerMenu(e)}
+          >
+            <EditBottomSheet
+              closeEdit={closeCareerMenu}
+              openEditEducation={openEditCareer}
+              handleChange={handleChange}
+              index={careerNumber}
+              type={"career"}
             />
           </div>
         )
