@@ -9,7 +9,7 @@ export const updateInfoAndProfilePicture = async (formData, profileImage) => {
 
 
     const blob = new Blob([json], { type: 'application/json' });
-    data.append('ProfileUpdateRequest', blob);
+    data.append('profileUpdateRequest', blob);
 
     if (profileImage) {
       data.append('profileImage', profileImage);
