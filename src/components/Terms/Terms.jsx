@@ -57,7 +57,7 @@ function Terms({handleTermClick, handleTermOfUseClick, agreeAll, setTermsOfUse, 
         />
         <span className="checkmark" style={{ border: "1px solid #C5CAD2" }}></span>
         <span className="b6-16-m" style={{ color: "#2F2F2F"}}>
-          [선택] <span  onClick={() => handleTermClick()} style={{ textDecoration: "underline" }}>개인정보 제 3자 제공 </span>동의
+          [필수] <span  onClick={() => handleTermClick()} style={{ textDecoration: "underline" }}>개인정보 제 3자 제공 </span>동의
         </span>
       </label>
 

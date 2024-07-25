@@ -14,7 +14,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
   const [isValid, setIsValid] = useState(false);
   const [termOfUse, setTermOfUse] = useState(false);
   const [privacy, setPrivacy] = useState(false);
-  const [optionalPrivacy, setOptionalPrivacy] = useState(false);
+  const [providePrivacy, setProvidePrivacy] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [clickCount, setClickCount] = useState(0);
 
@@ -25,7 +25,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
 
       setTermOfUse(isOddClick);
       setPrivacy(isOddClick);
-      setOptionalPrivacy(isOddClick);
+      setProvidePrivacy(isOddClick);
 
       console.log(isOddClick, isOddClick, isOddClick);
 
@@ -40,7 +40,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
     setPrivacy(!privacy);
   }
   const toggleOptionalPrivacy = () => {
-    setOptionalPrivacy(!optionalPrivacy);
+    setProvidePrivacy(!providePrivacy);
   }
 
   useEffect(() => {
@@ -51,9 +51,10 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
       formData["sex"].length > 0 &&
       isValidEmail &&
       formData["campus"].length > 0 &&
-      formData["introduction"].length > 0 
+      formData["introduction"].length > 0 &&
+      termOfUse && privacy && providePrivacy
     )
-  }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay]);
+  }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay, termOfUse, privacy, providePrivacy]);
   
 
   return (
@@ -112,7 +113,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
         setOptionalPrivacy={toggleOptionalPrivacy}
         termOfUse={termOfUse}
         privacy={privacy}
-        optionalPrivacy={optionalPrivacy}
+        optionalPrivacy={providePrivacy}
       />
 
       <button 

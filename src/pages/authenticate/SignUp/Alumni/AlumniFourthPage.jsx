@@ -10,7 +10,7 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
 
   const [termOfUse, setTermOfUse] = useState(false);
   const [privacy, setPrivacy] = useState(false);
-  const [optionalPrivacy, setOptionalPrivacy] = useState(false);
+  const [providePrivacy, setProvidePrivacy] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [clickCount, setClickCount] = useState(0);
   const [isValid, setIsValid] = useState(false);
@@ -22,7 +22,7 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
 
       setTermOfUse(isOddClick);
       setPrivacy(isOddClick);
-      setOptionalPrivacy(isOddClick);
+      setProvidePrivacy(isOddClick);
 
       console.log(isOddClick, isOddClick, isOddClick);
 
@@ -37,12 +37,12 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
     setPrivacy(!privacy);
   }
   const toggleOptionalPrivacy = () => {
-    setOptionalPrivacy(!optionalPrivacy);
+    setProvidePrivacy(!providePrivacy);
   }
 
   useEffect(() => {
-    setIsValid(termOfUse && privacy);
-  }, [termOfUse, privacy])
+    setIsValid(termOfUse && privacy && providePrivacy);
+  }, [termOfUse, privacy, providePrivacy])
 
   return(
     <div 
@@ -83,7 +83,7 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
         setOptionalPrivacy={toggleOptionalPrivacy}
         termOfUse={termOfUse}
         privacy={privacy}
-        optionalPrivacy={optionalPrivacy}
+        optionalPrivacy={providePrivacy}
       />
 
       {/* Navigate Button */}

@@ -14,7 +14,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
   const [isValid, setIsValid] = useState(false);
   const [termOfUse, setTermOfUse] = useState(false);
   const [privacy, setPrivacy] = useState(false);
-  const [optionalPrivacy, setOptionalPrivacy] = useState(false);
+  const [providePrivacy, setProvidePrivacy] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [clickCount, setClickCount] = useState(0);
 
@@ -25,7 +25,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
 
       setTermOfUse(isOddClick);
       setPrivacy(isOddClick);
-      setOptionalPrivacy(isOddClick);
+      setProvidePrivacy(isOddClick);
 
       console.log(isOddClick, isOddClick, isOddClick);
 
@@ -40,7 +40,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
     setPrivacy(!privacy);
   }
   const toggleOptionalPrivacy = () => {
-    setOptionalPrivacy(!optionalPrivacy);
+    setProvidePrivacy(!providePrivacy);
   }
 
   useEffect(() => {
@@ -52,9 +52,10 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
       isValidEmail &&
       formData["campus"].length > 0 &&
       String(formData["entranceYear"]).length > 0 &&
-      String(formData["expectedGraduationYear"]).length > 0 
+      String(formData["expectedGraduationYear"]).length > 0 &&
+      termOfUse && privacy && providePrivacy
     )
-  }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay]);
+  }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay, termOfUse, privacy, providePrivacy]);
 
   // List of graduation year
   const generateYearOptions = () => {
@@ -133,7 +134,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
         setOptionalPrivacy={toggleOptionalPrivacy}
         termOfUse={termOfUse}
         privacy={privacy}
-        optionalPrivacy={optionalPrivacy}
+        optionalPrivacy={providePrivacy}
       />
 
       <button 
