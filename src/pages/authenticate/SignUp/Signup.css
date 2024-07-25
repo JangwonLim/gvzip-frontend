@@ -21,15 +21,6 @@
     justify-content: center;
   }
 
-  /* .SignUp--triangle {
-    width: 0;
-    height: 0;
-    border-left: 263px solid transparent;
-    border-right: 263px solid transparent;
-    border-bottom: 276px solid var(--secondary-yellow);
-    font-size: 20px;
-    line-height: 28px;
-  } */
   .SignUp--triangle {
     position: relative;
     width: 526px;
@@ -60,6 +51,7 @@
     line-height: 28px;
     font-weight: bold;
     text-align: center;
+    color: white;
   }
 
   .SignUp--rectangle {
@@ -83,7 +75,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.5px solid var(--grey3);
+    border: none;
     border-radius: 6px;
     background-color: white;
     color: var(--black-text);
