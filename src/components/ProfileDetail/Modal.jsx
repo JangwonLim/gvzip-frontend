@@ -255,24 +255,30 @@ function Modal({info, setModal}) {
                   >
                     학력
                   </span>
-                  <div className="Modal--education-content">
+                  {
+                    info.educations.map((item, index) => {
+                      return (
+                        <div className="Modal--education-content" key={index}>
                           <span 
                             className="Modal--additional-info-title b4-14-sb"
                           >
-                            {info.educations.schoolName}
+                            {item.educations.schoolName}
                           </span>
                           <span
                             className="b1-12-m"
                           >
-                            {info.educations.major}
+                            {item.educations.major}
                           </span>
                           <span 
                             className="b1-12-m"
                             style={{ color: "#A8B3BD" }}
                           >
-                            {info.educations.degree} · {info.educations.status}
+                            {item.educations.degree} · {info.educations.status}
                           </span>
                         </div>
+                      )
+                    })
+                  }
                 </div>
               )
             }
@@ -286,22 +292,28 @@ function Modal({info, setModal}) {
                   >
                     경력/경험
                   </span>
-                  <div className="Modal--education-content">
-                    <span
-                      className="Modal--additional-info-title b4-14-sb"
-                    >
-                      {info.careers.companyName}
-                    </span>
-                    <span className="b1-12-m">
-                      {info.careers.position}
-                    </span>
-                    <span
-                      className="b1-12-m"
-                      style={{ color: "#A8B3BD" }}
-                    >
-                      {info.careers.startYear}년 · {info.careers.duration}
-                    </span>
-                  </div>
+                  {
+                    info.careers.map((item, index) => {
+                      return (
+                        <div className="Modal--education-content" key={index}>
+                          <span
+                            className="Modal--additional-info-title b4-14-sb"
+                          >
+                            {item.careers.companyName}
+                          </span>
+                          <span className="b1-12-m">
+                            {item.careers.position}
+                          </span>
+                          <span
+                            className="b1-12-m"
+                            style={{ color: "#A8B3BD" }}
+                          >
+                            {item.careers.startYear}년 · {item.careers.duration}
+                          </span>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               )
             }
