@@ -190,17 +190,21 @@ function Modal({info, setModal}) {
           {info.email}
         </span>
         
-        <div 
-          onClick={(e) => handleCopyClipBoard(e.target.textContent)}
-          className="Modal--profile-header-link">
-          <div className="Modal--profile-header-link-button"/>
-          <span 
-            className="b0-10-m link"
-            style={{ color: "#2B3744"}}
-          >
-            {info.sns}
-          </span>
-        </div>
+        {
+          info.sns.length > 0 && (
+            <div 
+              onClick={(e) => handleCopyClipBoard(e.target.textContent)}
+              className="Modal--profile-header-link">
+              <div className="Modal--profile-header-link-button"/>
+              <span 
+                className="b0-10-m link"
+                style={{ color: "#2B3744"}}
+              >
+                {info.sns}
+              </span>
+            </div>
+          )
+        }
       </div>
     </div>
 
@@ -273,7 +277,7 @@ function Modal({info, setModal}) {
                             className="b1-12-m"
                             style={{ color: "#A8B3BD" }}
                           >
-                            {item.degree} · {info.status}
+                            {item.degree} · {item.status}
                           </span>
                         </div>
                       )
