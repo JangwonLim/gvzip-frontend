@@ -262,18 +262,18 @@ function Modal({info, setModal}) {
                           <span 
                             className="Modal--additional-info-title b4-14-sb"
                           >
-                            {item.educations.schoolName}
+                            {item.schoolName}
                           </span>
                           <span
                             className="b1-12-m"
                           >
-                            {item.educations.major}
+                            {item.major}
                           </span>
                           <span 
                             className="b1-12-m"
                             style={{ color: "#A8B3BD" }}
                           >
-                            {item.educations.degree} · {info.educations.status}
+                            {item.degree} · {info.status}
                           </span>
                         </div>
                       )
@@ -299,16 +299,16 @@ function Modal({info, setModal}) {
                           <span
                             className="Modal--additional-info-title b4-14-sb"
                           >
-                            {item.careers.companyName}
+                            {item.companyName}
                           </span>
                           <span className="b1-12-m">
-                            {item.careers.position}
+                            {item.position}
                           </span>
                           <span
                             className="b1-12-m"
                             style={{ color: "#A8B3BD" }}
                           >
-                            {item.careers.startYear}년 · {item.careers.duration}
+                            {item.startYear}년 · {item.duration}
                           </span>
                         </div>
                       )
