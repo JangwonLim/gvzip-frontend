@@ -224,7 +224,7 @@ function Modal({info, setModal}) {
               alt="job" 
             />
             <span className="b1-12-m">
-              {fields()}
+              {fields}
             </span>
           </div>
 
@@ -235,7 +235,7 @@ function Modal({info, setModal}) {
               alt="location" 
             />
             <span className="b1-12-m">
-              {location()}
+              {location}
             </span>
           </div>
         </div>
