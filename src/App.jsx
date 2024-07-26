@@ -14,6 +14,7 @@ import MembershipAuthFail from './pages/authenticate/SignUp/MembershipAuth/Membe
 import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
+import Modal from './components/ProfileDetail/Modal.jsx';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='/member' element={<Profile />}/>
         <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
         <Route path='/signup/success' element={<SignUpSuccess />}/>
+        <Route path='modal' element={<Modal/>}/>
 
 
         {/* PrivateRouter Can be used to protect routes */}

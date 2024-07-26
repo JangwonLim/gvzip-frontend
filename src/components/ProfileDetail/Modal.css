@@ -3,7 +3,7 @@
 @media (max-width: 768px) {
   .Modal--container {
     width: 254px; height: auto;
-    max-height: 654px;
+    max-height: 674px;
     background-color: white;
     border: none;
     border-radius: 16px;
@@ -12,13 +12,44 @@
   }
   
   .Modal--header {
-    width: 100%; height: 187px;
+    width: 100%; height: auto;
     background-color: var(--secondary-yellow);
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .Modal--profile-header-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: auto; height: auto;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .Modal--profile-header-link {
+    display: flex;
+    gap: 4px;
+    align-items: end;
+  }
+
+  .link {
+    width: 138px; height: auto;
+    white-space: nowrap; /* 텍스트를 한 줄로 표시 */
+    overflow: hidden; /* 넘치는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 ...로 표시 */
+  }
+
+  .Modal--profile-header-link-button {
+    width: 12px; height: 12px;
+    border: none;
+    background-image: url('./../../assets/link.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
   }
 
   .Modal--close-button-container {
