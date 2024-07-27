@@ -281,7 +281,6 @@ function Archive() {
             )}
           </div>
 
-          { isLoading && <p>Loading...</p> }
         </div>
       
         {/* Modal */}
