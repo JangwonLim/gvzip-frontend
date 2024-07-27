@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import Search from "./Search";
 import NoResult from "./NoResult";
-import Cookies from 'js-cookie'
 
 
 function Archive() {
@@ -27,11 +26,6 @@ function Archive() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [search, setSearch] = useState(false);
   const [totalNumber, setTotalNumber] = useState(0);
-
-  function getCookie(key) {
-    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
-    return b ? b.pop() : "";
-  }
 
   const navigate = useNavigate();
 
@@ -179,10 +173,6 @@ function Archive() {
     setHasMore(true); // 더 많은 데이터가 있음을 표시
   };
 
-  useEffect(() => {
-    console.log("cookies: ", Cookies.get());
-  }, [])
-
   return(
     <>
       <div className="Archive--wrapper">
@@ -212,10 +202,6 @@ function Archive() {
               handleChange={handleChange}
             />
           </div>
-
-          <span>
-            cookie: {getCookie("JSESSIONID")}
-          </span>
 
           {/* Filter Options */}
           <div className="Archive--mid-section-container">

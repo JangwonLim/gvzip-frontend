@@ -6,9 +6,12 @@ import Footer from "../../components/Footer/Footer";
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from "react-router-dom";
 import { isLoggedIn } from "../../utils/usefulFunctions";
+import Cookies from 'js-cookie'
+
 
 function Landing() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [cookie, setCookie] = useState(null);
 
   useEffect(() => {
     setLoggedIn(isLoggedIn());
@@ -17,6 +20,11 @@ function Landing() {
   useEffect(() => {
     console.log(loggedIn)
   }, [loggedIn])
+
+  useEffect(() => {
+    console.log("cookies: ", Cookies.get());
+    setCookie(Cookies.get("JSESSIONID"));
+  }, [])
   
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   
@@ -64,6 +72,12 @@ function Landing() {
       role: "Planner"
     },
   ]
+
+  function getCookie(key) {
+    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    return b ? b.pop() : "";
+  }
+
   return(
     <div style={{ minWidth: "390px"}}>
       <div className="Landing--poster">
@@ -73,6 +87,11 @@ function Landing() {
       <div className="Landing--about">
         <span className="Landing--about-content">
           지비집은 GVCS 커뮤니티 활성화를 위한 플랫폼입니다.
+          <span>
+            cookie: {getCookie("JSESSIONID")}
+            <br />
+            another Cookie: {cookie}
+          </span>
         </span>
       </div>
 
