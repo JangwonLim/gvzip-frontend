@@ -132,7 +132,8 @@
     display: flex;
     justify-content: center;
     background-color: var(--bg-grey);
-    margin-bottom: 20px;
+    width: 100vw; height: 100vh;
+    padding-bottom: 20px;
   }
   
   .Archive--container {
