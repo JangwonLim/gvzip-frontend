@@ -27,13 +27,13 @@
     text-align: center;
     width: auto; height: auto;
     gap: 5px;
-    margin-bottom: 10px;
   }
 
   .Modal--profile-header-link {
     display: flex;
     gap: 4px;
     align-items: end;
+    margin-bottom: 10px;
   }
 
   .link {
