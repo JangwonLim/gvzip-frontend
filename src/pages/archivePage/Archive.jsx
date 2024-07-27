@@ -254,7 +254,11 @@ function Archive() {
               className="b0-10-m"
               style={{ color: "#66707A"}}
             >
-              검색결과 {totalNumber}명
+              검색결과
+              {
+                loading ? 0 : {totalNumber}
+              }
+              명
             </span>
           </div>
 

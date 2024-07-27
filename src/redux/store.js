@@ -37,23 +37,35 @@ let alumniType = createSlice({
   },
 });
 
+const sortEducations = (educations) => {
+  const degreeOrder = ['박사', '석사', '학사'];
+  return educations.sort((a, b) => degreeOrder.indexOf(a.degree) - degreeOrder.indexOf(b.degree));
+};
+
 let educations = createSlice({
   name: 'educations',
   initialState: initialUserState,
   reducers: {
     addEducation: (state, action) => {
       state.educations.push(action.payload);
+      state.educations = sortEducations(state.educations);
     },
     updateEducation: (state, action) => {
       const { index, updatedEducation } = action.payload;
       state.educations[index] = updatedEducation;
+      state.educations = sortEducations(state.educations);
     },
     deleteEducation: (state, action) => {
       state.educations.splice(action.payload, 1);
+      state.educations = sortEducations(state.educations);
     },
-    reset: () => initialUserState // 상태를 초기화하는 리듀서
+    reset: () => initialUserState
   }
 });
+
+const sortCareers = (careers) => {
+  return careers.sort((a, b) => b.startYear - a.startYear);
+};
 
 let careers = createSlice({
   name: 'careers',
@@ -61,19 +73,20 @@ let careers = createSlice({
   reducers: {
     addCareer: (state, action) => {
       state.careers.push(action.payload);
+      state.careers = sortCareers(state.careers);
     },
     updateCareer: (state, action) => {
       const { index, updatedCareer } = action.payload;
       state.careers[index] = updatedCareer;
+      state.careers = sortCareers(state.careers);
     },
     deleteCareer: (state, action) => {
       state.careers.splice(action.payload, 1);
+      state.careers = sortCareers(state.careers);
     },
-    resetCareer: () => initialUserState // 상태를 초기화하는 리듀서
+    resetCareer: () => initialUserState
   }
 });
-
-
 
 export let { storeUserInfo, clearUserInfo } = userInfo.actions;
 export let { setAlumniType } = alumniType.actions;
