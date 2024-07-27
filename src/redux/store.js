@@ -1,8 +1,14 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialUserState = {
-  userInfo: null,
-  educations: [],
+  userInfo: null
+};
+
+const initialEducationState = {
+  educations: []
+};
+
+const initialCareerState = {
   careers: []
 };
 
@@ -44,7 +50,7 @@ const sortEducations = (educations) => {
 
 let educations = createSlice({
   name: 'educations',
-  initialState: initialUserState,
+  initialState: initialEducationState,
   reducers: {
     addEducation: (state, action) => {
       state.educations.push(action.payload);
@@ -59,7 +65,7 @@ let educations = createSlice({
       state.educations.splice(action.payload, 1);
       state.educations = sortEducations(state.educations);
     },
-    reset: () => initialUserState
+    reset: () => initialEducationState
   }
 });
 
@@ -69,7 +75,7 @@ const sortCareers = (careers) => {
 
 let careers = createSlice({
   name: 'careers',
-  initialState: initialUserState,
+  initialState: initialCareerState,
   reducers: {
     addCareer: (state, action) => {
       state.careers.push(action.payload);
@@ -84,7 +90,7 @@ let careers = createSlice({
       state.careers.splice(action.payload, 1);
       state.careers = sortCareers(state.careers);
     },
-    resetCareer: () => initialUserState
+    resetCareer: () => initialCareerState
   }
 });
 
