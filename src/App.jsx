@@ -12,32 +12,39 @@ import MembershipAuthFail from './pages/authenticate/SignUp/MembershipAuth/Membe
 import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
+import { AuthProvider } from './utils/AuthContext.jsx';
+import PrivateRoute from './utils/PrivateRouter.jsx';
+import PopUp from './components/PopUp/PopUp.jsx';
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  // eslint-disable-next-line no-unused-vars
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
 
   return (
-    <Router>
-      <NavBarController isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
-        <Route path="/" element={<Landing/>}/>
-        <Route path="/signin" element={<SignIn setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signup/membership" element={<MembershipAuth />} />
-        <Route path="/signup/info" element={<ProfileInfo />} />
-        <Route path="/archive" element={<Archive />} />
-        <Route path="/card" element={<Card />} />
-        <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
-        <Route path='/member' element={<Profile />}/>
-        <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
-        <Route path='/signup/success' element={<SignUpSuccess />}/>
-
-
-        {/* PrivateRouter Can be used to protect routes */}
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <NavBarController />
+        <Routes>
+          <Route path="/" element={<Landing/>}/>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup/membership" element={<MembershipAuth />} />
+          <Route path="/signup/info" element={<ProfileInfo />} />
+          <PrivateRoute path="/archive" element={<Archive />} />
+          <Route path="/card" element={<Card />} />
+          <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
+          <Route path='/member' element={<Profile />}/>
+          <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
+          <Route path='/signup/success' element={<SignUpSuccess />}/>
+        </Routes>
+        {showPopup && <PopUp purpose={"로그인"}/>}
+      </Router>
+    </AuthProvider>
   );
 }
 
