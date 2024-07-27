@@ -25,7 +25,12 @@ function NavBar() {
 
   const onClickLogin = () => {
     setActiveButton('/signin');
-    navigate('/signin');
+    
+    if (isAuthenticated) {
+      navigate('/profile')
+    } else {
+      navigate('/signin');
+    }
   };
 
   return (

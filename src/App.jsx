@@ -29,7 +29,7 @@ function App() {
           <Route path="/archive" element={<Archive/>} />
           <Route path="/card" element={<Card />} />
           <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
-          <Route path='/member' element={<Profile />}/>
+          <Route path='/profile' element={<Profile />}/>
           <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
           <Route path='/signup/success' element={<SignUpSuccess />}/>
         </Routes>

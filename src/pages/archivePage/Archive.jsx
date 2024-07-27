@@ -243,8 +243,6 @@ function Archive() {
             </span>
           </div>
 
-          <button onClick={() => navigate('/member')}>button</button>
-
           {/* Cards */}
           <div className="Archive--cards-container">
             {
