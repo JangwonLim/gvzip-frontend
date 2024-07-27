@@ -261,26 +261,27 @@ function Archive() {
           {/* Cards */}
           <div className="Archive--cards-container">
             {
-              (filterData.searchingWord.length > 0 && info.length === 0) 
-                ? (
-                    <NoResult searchingWord={filterData.searchingWord}/>
-                  )
-                : (
-                    info.map((item, i) => {
-                      return (
-                        <Card 
-                          key={i} 
-                          data={item}
-                          setModal={setModal}
-                          setModalInfo={setModalInfo}
-                        />
-                      )
-                    })
-                  )
-            }
+              isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                (filterData.searchingWord.length > 0 && info.length === 0) ? (
+                  <NoResult searchingWord={filterData.searchingWord}/>
+                ) : (
+                  info.map((item, i) => {
+                    return (
+                      <Card 
+                        key={i} 
+                        data={item}
+                        setModal={setModal}
+                        setModalInfo={setModalInfo}
+                      />
+                    )
+                  })
+                )
+            )}
           </div>
 
-        { isLoading && <p>Loading...</p> }
+          { isLoading && <p>Loading...</p> }
         </div>
       
         {/* Modal */}
