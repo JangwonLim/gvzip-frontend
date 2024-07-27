@@ -72,6 +72,7 @@ export const getMyInfo = async () => {
 
 export const getIsLogIn = async () => {
   try {
+    console.log("request IsLogIn info!")
     const response = await axios.get(`${API_URL}/isLogin`, {
       withCredentials: true
     });
