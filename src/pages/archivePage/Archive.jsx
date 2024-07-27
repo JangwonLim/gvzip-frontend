@@ -28,6 +28,11 @@ function Archive() {
   const [search, setSearch] = useState(false);
   const [totalNumber, setTotalNumber] = useState(0);
 
+  function getCookie(key) {
+    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+    return b ? b.pop() : "";
+  }
+
   const navigate = useNavigate();
 
   const initialFilterData = {
@@ -64,6 +69,10 @@ function Archive() {
       }
     });
   };
+
+  const resetFilter = () => {
+    setFilterData(initialFilterData);
+  }
 
   const contentProps = {
     data: filterData,
@@ -172,7 +181,7 @@ function Archive() {
 
   useEffect(() => {
     console.log("cookies: ", Cookies.get());
-  })
+  }, [])
 
   return(
     <>
@@ -203,6 +212,10 @@ function Archive() {
               handleChange={handleChange}
             />
           </div>
+
+          <span>
+            cookie: {getCookie("JSESSIONID")}
+          </span>
 
           {/* Filter Options */}
           <div className="Archive--mid-section-container">
@@ -286,6 +299,7 @@ function Archive() {
             closeBottomSheet={closeBottomSheet}
             contentProps={contentProps}
             onClickFilterOptions={handleFilterChange}
+            resetFilter={resetFilter}
           />
         )
       }

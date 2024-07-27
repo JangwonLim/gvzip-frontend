@@ -1,0 +1,63 @@
+
+@media (max-width: 768px) {
+  .FilterOption--container {
+    width: auto; height: auto;
+    border: 1px solid #d9d9d9;
+    border-radius: 11.12px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 4px 11px;
+  }
+  
+  .FilterOption--img {
+    width: auto; height: auto;
+    padding: 4px;
+  }
+  
+  .FilterOption--text {
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 100%;
+    color: #6B6B6B;
+    display: flex;
+    gap: 3px;
+  }
+
+  .MobileFilterContent--button-container {
+    width: 100%; height: auto;
+    display: flex;
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .MobileFilterContent--button-reset {
+    width: 52px; height: 52px;
+    border: 1.5px solid black;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    &.disable {
+      opacity: 0.3;
+      border: 1.5px solid rgba(0, 0, 0, 0.7);
+    }
+  }
+
+  .MobileFilterContent--button {
+    width: 282px; height: 52px;
+    border: none;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+
+    &.disable {
+      opacity: 0.4;
+      color: rgba(256, 256, 256, 0.6);
+    }
+  }
+}

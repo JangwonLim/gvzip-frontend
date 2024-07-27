@@ -170,8 +170,8 @@ function Landing() {
           </> : 
           <>
             <span className="Landing--connect-title">
-              간편 회원가입하고<br/> 
-              지금 바로 지비 가족들과 연결되기
+              간편 회원가입하고 지금 바로<br/> 
+              지비 가족들과 연결되기
             </span>
             <Button
               radius="30px"
@@ -196,7 +196,7 @@ function Landing() {
               <span className="b3-14-m">
                 안녕하세요, 연결이 필요한 곳을 찾아 통로를 내는 팀,<br/>
                 DDG(두더지)입니다. 저희는 소통의 부재로 인한 사회의<br/>
-                단절, 혐오, 소외에 대해 맞서 싸우며,함께하는 기쁨을<br/> 
+                단절, 혐오, 소외에 대해 맞서 싸우며, 함께하는 기쁨을<br/> 
                 전하는 것을 목표로 합니다.
               </span>
             </> :
@@ -204,7 +204,7 @@ function Landing() {
               <span className="pc-head fs-42">TEAM DDG</span>
               <span className="pc-body fs-18">
                 안녕하세요, 연결이 필요한 곳을 찾아 통로를 내는 팀, DDG(두더지)입니다.<br/>
-                저희는 소통의 부재로 인한 사회의 단절, 혐오, 소외에 대해 맞서 싸우며,<br/>
+                저희는 소통의 부재로 인한 사회의 단절, 혐오, 소외에 대해 맞서 싸우며, <br/>
                 함께하는 기쁨을 전하는 것을 목표로 합니다.
               </span>
             </>

@@ -1,5 +1,5 @@
 import React from "react";
-import './FilterOption.css';
+import './Filter.css';
 import './../../styles/defaultDesign.css';
 
 function FilterOption({title, setFilterOptions, setFilterData, setPage, setInfo, setHasMore}) {

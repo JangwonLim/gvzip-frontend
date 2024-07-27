@@ -8,7 +8,7 @@ import {
   GetCity,
 } from "react-country-state-city";
 
-function MobileFilterContent({contentProps, onClickFilterOptions}) {
+function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) {
   const memberList = ["동문", "인기모"];
   const campusList = ["음성", "문경", "미국"];
 
@@ -18,6 +18,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
 
   const [countryid, setCountryid] = useState(0);
   const [stateid, setStateid] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [cityid, setCityid] = useState(0);
 
   const [countriesList, setCountriesList] = useState([]);
@@ -27,6 +28,8 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
 
+  const [isAnyFilterSelected, setIsAnyFilterSelected] = useState(false);
+
   const fieldOptions = [
     '영업', '경영/사무', '마케팅',
     '생산/제조', '연구/설계', 'IT/개발',
@@ -35,6 +38,16 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
     '미디어', '전문/특수직', '법률',
     '금융', '농림/어업', '기타'
   ]
+
+  useEffect(() => {
+    setIsAnyFilterSelected(
+      contentProps.data["membership"].length > 0 ||
+      contentProps.data["campus"].length > 0 ||
+      contentProps.data["country"].length > 0 ||
+      contentProps.data["state"].length > 0 ||
+      contentProps.data["fields"].length > 0
+    )
+  }, [contentProps]);
 
   // Load countries on component mount
   useEffect(() => {
@@ -129,9 +142,9 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
           id="country"
           className={"Profile--dropdown-menu" + (country === "" ? " placeholder" : "")}
           onChange={(e) => onClickCountry(e)}
-          value={countryid}
+          value={contentProps.data.country}
         >
-          <option value="0" disabled>
+          <option value="" disabled>
             국가 선택
           </option>
           {countriesList.map((item) => (
@@ -146,10 +159,10 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
           id="state"
           className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
           onChange={(e) => onClickState(e)}
-          value={stateid}
+          value={contentProps.data.state}
           disabled={!countryid || (stateList.length === 0)}
         >
-          <option value="0" disabled>
+          <option value="" disabled>
             주 선택
           </option>
           {stateList.map((item) => (
@@ -164,10 +177,10 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
           id="city"
           className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
           onChange={(e) => onClickCity(e)}
-          value={cityid}
+          value={contentProps.data.city}
           disabled={!stateid || (cityList.length === 0)}
         >
-          <option value="0" disabled>
+          <option value="" disabled>
             도시 선택
           </option>
           {cityList.map((item) => (
@@ -202,12 +215,22 @@ function MobileFilterContent({contentProps, onClickFilterOptions}) {
         </select>
       </div>
 
-      <button
-        onClick={() => onClickFilterOptions()}
-        className="Profile--navigate-button"
-      >
-        <span className="b7-16-sb">필터 적용</span>
-      </button>
+      <div className="MobileFilterContent--button-container">
+        <button
+          onClick={() => resetFilter()}
+          className={"MobileFilterContent--button-reset " + (!isAnyFilterSelected ? "disable" : "")}
+          disabled={!isAnyFilterSelected}
+        >
+          <img src={require("./../../assets/reset-black.png")} alt="reset" />
+        </button>
+        <button
+          onClick={() => onClickFilterOptions()}
+          className={"MobileFilterContent--button " + (!isAnyFilterSelected ? "disable" : "")}
+          disabled={!isAnyFilterSelected}
+        >
+          <span className="b7-16-sb">필터 적용</span>
+        </button>
+      </div>
     </div>
   )
 }
