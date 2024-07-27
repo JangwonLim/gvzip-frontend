@@ -5,17 +5,16 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       try {
         const result = await getIsLogIn();
-        setIsAuthenticated(result.isSuccess);
+        setTimeout(() => {
+          setIsAuthenticated(result.isSuccess);
+        }, 1000)
       } catch (error) {
         console.log("error in checkAuth")
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -23,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, loading }}>
+    <AuthContext.Provider value={{ isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

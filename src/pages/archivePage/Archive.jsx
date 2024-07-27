@@ -30,15 +30,6 @@ function Archive() {
   const [totalNumber, setTotalNumber] = useState(0);
 
   const { isAuthenticated } = useAuth();
-  const [showPopUp, setShowPopUp] = useState(false);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setShowPopUp(true);
-    } else {
-      setShowPopUp(false);
-    }
-  }, [isAuthenticated]);
 
   const initialFilterData = {
     searchingWord: "",
