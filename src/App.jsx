@@ -13,8 +13,6 @@ import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
 import { AuthProvider } from './utils/AuthContext.jsx';
-import PrivateRoute from './utils/PrivateRouter.jsx';
-
 
 function App() {
 
@@ -28,7 +26,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/membership" element={<MembershipAuth />} />
           <Route path="/signup/info" element={<ProfileInfo />} />
-          <PrivateRoute path="/archive" element={<Archive />} />
+          <Route path="/archive" element={<Archive/>} />
           <Route path="/card" element={<Card />} />
           <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
           <Route path='/member' element={<Profile />}/>
