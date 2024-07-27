@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Landing from './pages/landingPage/landing';
@@ -13,11 +13,8 @@ import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
 import { AuthProvider } from './utils/AuthContext.jsx';
-import PrivateRoute from './utils/PrivateRouter.jsx';
-import PopUp from './components/PopUp/PopUp.jsx';
 
 function App() {
-  const [showPopUp, setShowPopUp] = useState(false);
 
   return (
     <AuthProvider>
@@ -29,15 +26,13 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/membership" element={<MembershipAuth />} />
           <Route path="/signup/info" element={<ProfileInfo />} />
-          {/* <Route path="/archive" element={<Archive/>} /> */}
-          <PrivateRoute path={"/archive"} setShowPopUp={setShowPopUp} element={<Archive/>}/>
+          <Route path="/archive" element={<Archive/>} />
           <Route path="/card" element={<Card />} />
           <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
           <Route path='/profile' element={<Profile />}/>
           <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
           <Route path='/signup/success' element={<SignUpSuccess />}/>
         </Routes>
-        { showPopUp && <PopUp purpose={"로그인"}/>}
       </Router>
     </AuthProvider>
   );

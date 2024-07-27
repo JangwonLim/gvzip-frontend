@@ -3,6 +3,7 @@ import './PopUp.css';
 import './../../styles/defaultDesign.css';
 import { deleteAccount } from "../../service/deleteService";
 import { useNavigate } from "react-router-dom";
+import { useGoBack } from "../../utils/usefulFunctions";
 
 function PopUp({purpose}) {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ function PopUp({purpose}) {
       <div className="PopUp--text-container">
         <span className="PopUp--title">{title()}</span>
         {
-          (purpose === "회원탈퇴" || purpose === "로그인") && (
+          (purpose === "회원탈퇴") && (
             <span className="PopUp--disclaimer">
               탈퇴 버튼 선택 시, 계정은 삭제되며<br />
               복구되지 않습니다.
@@ -84,6 +85,7 @@ function PopUp({purpose}) {
 
       <div className="PopUp--button-container">
         <button 
+          onClick={useGoBack()}
           className="PopUp--button b7-16-sb"
         >
           취소

@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import Search from "./Search";
 import NoResult from "./NoResult";
+import { useAuth } from "../../utils/AuthContext";
+import PopUp from "../../components/PopUp/PopUp";
 
 
 function Archive() {
@@ -27,7 +29,16 @@ function Archive() {
   const [search, setSearch] = useState(false);
   const [totalNumber, setTotalNumber] = useState(0);
 
-  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const [showPopUp, setShowPopUp] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setShowPopUp(true);
+    } else {
+      setShowPopUp(false);
+    }
+  }, [isAuthenticated]);
 
   const initialFilterData = {
     searchingWord: "",
@@ -268,37 +279,45 @@ function Archive() {
         { isLoading && <p>Loading...</p> }
         </div>
       
-      {/* Modal */}
-      { modal && (
-        <div className="Archive--modal-backdrop" onClick={closeModal}>
-          <Modal info={modalInfo} setModal={setModal}/>
-        </div>
-      )}
+        {/* Modal */}
+        { modal && (
+          <div className="Archive--modal-backdrop" onClick={closeModal}>
+            <Modal info={modalInfo} setModal={setModal}/>
+          </div>
+        )}
+
+        {
+          isBottomSheetOpen && (
+            <BottomSheet
+              Content={MobileFilterContent}
+              isBottomSheetOpen={isBottomSheetOpen}
+              closeBottomSheet={closeBottomSheet}
+              contentProps={contentProps}
+              onClickFilterOptions={handleFilterChange}
+              resetFilter={resetFilter}
+            />
+          )
+        }
+      </div>
 
       {
-        isBottomSheetOpen && (
-          <BottomSheet
-            Content={MobileFilterContent}
-            isBottomSheetOpen={isBottomSheetOpen}
-            closeBottomSheet={closeBottomSheet}
-            contentProps={contentProps}
-            onClickFilterOptions={handleFilterChange}
-            resetFilter={resetFilter}
+        search && (
+          <Search 
+            closeSearch={toggleSearch}
+            formData={filterData}
+            handleChange={handleChange}
+            onEnterPress={handleEnterPress}
           />
         )
       }
-    </div>
 
-    {
-      search && (
-        <Search 
-          closeSearch={toggleSearch}
-          formData={filterData}
-          handleChange={handleChange}
-          onEnterPress={handleEnterPress}
-        />
-      )
-    }
+      { 
+        !isAuthenticated && (
+          <div className="Archive--popup-backdrop">
+            <PopUp purpose={"로그인"}/>
+          </div>
+        )
+      }
     </>
   )
 }
