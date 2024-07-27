@@ -62,7 +62,7 @@ function PopUp({purpose}) {
         logout();
         break;
       case "로그인":
-        navigate('/signup');
+        navigate('/signin');
         break;
       default:
         break;
