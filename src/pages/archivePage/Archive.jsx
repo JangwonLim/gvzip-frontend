@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import './Archive.css';
 import './../../styles/defaultDesign.css';
 /* eslint-disable no-unused-vars */
@@ -9,7 +9,6 @@ import FilterOption from "../../components/Filter/FilterOption";
 import { getInfo } from "../../service/getService";
 import BottomSheet from "../../components/BottomSheet/BottomSheet";
 import MobileFilterContent from "../../components/Filter/MobileFilterContent";
-import { useNavigate } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import Search from "./Search";
 import NoResult from "./NoResult";
@@ -77,39 +76,41 @@ function Archive() {
 
   /* functions */
   // fetch the archive data from the database
-  const fetchArchData = useCallback(async () => {
-    if (!hasMore) return;
+  const fetchArchData = useMemo(
+    () => debounce(async (page, filterData) => {
+      if (!hasMore) return;
 
-    setIsLoading(true);
+      setIsLoading(true);
 
-    try {
-      // console.log(filterData)
-      const size = 9;
-      const direction = 'ASC';
-      const responseData = await getInfo(
-        page, size, direction, filterData.searchingWord,
-        filterData.membership, filterData.campus, filterData.country,
-        filterData.state, filterData.city, filterData.fields
-      );
+      try {
+        const size = 9;
+        const direction = 'ASC';
+        const responseData = await getInfo(
+          page, size, direction, filterData.searchingWord,
+          filterData.membership, filterData.campus, filterData.country,
+          filterData.state, filterData.city, filterData.fields
+        );
 
-      if (responseData && responseData.isSuccess) {
-        const newData = responseData.data.profiles;
-        setInfo(prevInfo => [...prevInfo, ...newData]);
-        setTotalNumber(responseData.data.totalElements);
+        if (responseData && responseData.isSuccess) {
+          const newData = responseData.data.profiles;
+          setInfo(prevInfo => [...prevInfo, ...newData]);
+          setTotalNumber(responseData.data.totalElements);
 
-        if (newData.length < size) {
+          if (newData.length < size) {
+            setHasMore(false);
+          }
+        } else {
           setHasMore(false);
         }
-      } else {
+      } catch (error) {
+        console.error('Failed to fetch data. Please try again later: ', error);
         setHasMore(false);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (error) {
-      console.error('Failed to fetch data. Please try again later: ', error);
-      setHasMore(false);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [page, filterData, hasMore]);
+    }, 300),
+    [hasMore]
+  );
 
   useEffect(() => {
     fetchArchData();
