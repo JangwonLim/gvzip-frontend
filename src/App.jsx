@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import Landing from './pages/landingPage/landing';
@@ -14,16 +14,9 @@ import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
 import { AuthProvider } from './utils/AuthContext.jsx';
 import PrivateRoute from './utils/PrivateRouter.jsx';
-import PopUp from './components/PopUp/PopUp.jsx';
 
 
 function App() {
-  const [showPopup, setShowPopup] = useState(false);
-
-  // eslint-disable-next-line no-unused-vars
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
 
   return (
     <AuthProvider>
@@ -42,7 +35,6 @@ function App() {
           <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
           <Route path='/signup/success' element={<SignUpSuccess />}/>
         </Routes>
-        {showPopup && <PopUp purpose={"로그인"}/>}
       </Router>
     </AuthProvider>
   );
