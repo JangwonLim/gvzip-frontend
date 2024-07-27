@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import React from 'react';
 import { useAuth } from '../utils/AuthContext';
+import { Route } from 'react-router-dom';
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+const PrivateRoute = ({ element: Component, path, setShowPopUp }) => {
   const { isAuthenticated } = useAuth();
-  // eslint-disable-next-line no-unused-vars
-  const [showPopup, setShowPopup] = useState(false);
+
+  const handlePopUp = () => {
+    setShowPopUp(true);
+  }
 
   return (
-    <Route
-      {...rest}
-      element={
-        isAuthenticated ? (
-          <Element />
-        ) : (
-          <>
-            {setShowPopup(true)}
-            <Navigate to="/" replace />
-          </>
-        )
-      }
-    />
+    <>
+      {isAuthenticated ? (
+        <Route path={path} element={<Component />} />
+      ) : (
+        {handlePopUp}
+      )}
+    </>
   );
 };
 
