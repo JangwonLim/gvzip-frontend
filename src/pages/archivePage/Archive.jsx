@@ -29,7 +29,7 @@ function Archive() {
   const [search, setSearch] = useState(false);
   const [totalNumber, setTotalNumber] = useState(0);
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
 
   const initialFilterData = {
     searchingWord: "",
@@ -174,6 +174,18 @@ function Archive() {
     setInfo([]); // 기존 데이터를 초기화
     setHasMore(true); // 더 많은 데이터가 있음을 표시
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="Archive--popup-backdrop">
+        <PopUp purpose={"로그인"} />
+      </div>
+    );
+  }
 
   return(
     <>
