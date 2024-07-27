@@ -113,8 +113,8 @@ function Archive() {
   );
 
   useEffect(() => {
-    fetchArchData();
-  }, [fetchArchData, page]);
+    fetchArchData(page, filterData);
+  }, [fetchArchData, page, filterData]);
   
   useEffect(() => {
     const handleScroll = debounce(() => {
