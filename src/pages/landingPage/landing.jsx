@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import './landing.css';
 import './../../styles/defaultDesign.css';
 import Button from "./../../components/Button/Button";
 import Footer from "../../components/Footer/Footer";
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from "react-router-dom";
-import { isLoggedIn } from "../../utils/usefulFunctions";
-import Cookies from 'js-cookie'
-
+// import { isLoggedIn } from "../../utils/usefulFunctions";
+import { getIsLogIn } from "../../service/getService";
 
 function Landing() {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [cookie, setCookie] = useState(null);
+  // const [loggedIn, setLoggedIn] = useState(false);
+
+  // useEffect(() => {
+  //   setLoggedIn(isLoggedIn());
+  // }, []);
+
+  const checkAuth = async () => {
+    try {
+      const result = await getIsLogIn();
+
+      return result;
+    } catch (error) {
+      console.log("error in checkAuth")
+    }
+  }
 
   useEffect(() => {
-    setLoggedIn(isLoggedIn());
-  }, []);
-
-  useEffect(() => {
-    console.log(loggedIn)
-  }, [loggedIn])
-
-  useEffect(() => {
-    console.log("cookies: ", Cookies.get());
-    setCookie(Cookies.get("JSESSIONID"));
+    checkAuth();
   }, [])
   
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -73,11 +76,6 @@ function Landing() {
     },
   ]
 
-  function getCookie(key) {
-    var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
-    return b ? b.pop() : "";
-  }
-
   return(
     <div style={{ minWidth: "390px"}}>
       <div className="Landing--poster">
@@ -87,11 +85,6 @@ function Landing() {
       <div className="Landing--about">
         <span className="Landing--about-content">
           지비집은 GVCS 커뮤니티 활성화를 위한 플랫폼입니다.
-          <span>
-            cookie: {getCookie("JSESSIONID")}
-            <br />
-            another Cookie: {cookie}
-          </span>
         </span>
       </div>
 

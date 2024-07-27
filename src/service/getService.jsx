@@ -69,3 +69,14 @@ export const getMyInfo = async () => {
     console.error(error);
   }
 }
+
+export const getIsLogIn = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/isLogin`);
+    console.log(response.data);
+    return response.data;
+  } catch(error) {
+    console.log("Error occurred while checking isLogIn!")
+    console.error(error);
+  }
+}
