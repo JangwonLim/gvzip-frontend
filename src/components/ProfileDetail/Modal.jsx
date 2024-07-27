@@ -185,7 +185,7 @@ function Modal({info, setModal}) {
       <div className="Modal--profile-header-content">
         <span 
           className="b0-10-m"
-          style={{ color: "#2B3744", marginBottom: '21px' }}
+          style={{ color: "#2B3744", marginBottom: '19px' }}
         >
           {info.email}
         </span>
