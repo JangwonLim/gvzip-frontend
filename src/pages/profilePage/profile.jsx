@@ -129,7 +129,7 @@ function MyInfoCard({data, setModal}) {
         <div className="MyInfoCard--header-img-container">
           <img 
             className="MyInfoCard--header-img"
-            src={data.profileImageURL} 
+            src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
             alt="card-img" 
           />
         </div>

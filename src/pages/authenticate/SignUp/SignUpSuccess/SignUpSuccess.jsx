@@ -49,31 +49,31 @@ function SignUpSuccess() {
 
   return (    
       <div className="SignUpSuccess--wrapper">
-        <div className="SignUpSuccess--container">
-          <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
-            지비집의 식구가 되신 것을 환영합니다<br />
-            아카이브에서 프로필을 확인해보세요!
-          </span>
+        <div className="SignUpSuccess--background">
+          <div className="SignUpSuccess--container">
+            <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
+              지비집의 식구가 되신 것을 환영합니다<br />
+              아카이브에서 프로필을 확인해보세요!
+            </span>
 
-          <div className="fade-in">
-            <MyInfoCard data={data} setModal={setModal}/>
+            <div className="fade-in">
+              <MyInfoCard data={data} setModal={setModal}/>
+            </div>
+
           </div>
+        </div>
 
-          <div className="ProfilePage--button-container">
-            <button 
-              onClick={changeObjet}
-              className="ProfilePage--button"
-            >
-              <span className="h2-18-sb">오브제 변경</span>
+        <div className="SignUpSuccess--button-container" style={{ padding: "12px 0" }}>
+            <button className="SignUpSuccess--button-objet">
+              <img src={require('./../../../../assets/objet-background-1.png')} alt="select-objet" />
             </button>
             <button 
               onClick={() => navigate('/archive')}
-              className="ProfilePage--button black"
+              className="SignUpSuccess--button"
             >
-              <span className="h2-18-sb">아카이브 확인</span>
+              <span className="h2-18-sb">아카이브로 이동</span>
             </button>
           </div>
-        </div>
       </div>
   )
 }
@@ -95,22 +95,22 @@ function MyInfoCard({data, setModal}) {
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
   
   return(
-    <div className="MyInfoCard--container" onClick={openModal}>
-      <div className="MyInfoCard--header-container">
-        <div className="MyInfoCard--header-text">
+    <div className="SuccessCard--container" onClick={openModal}>
+      <div className="SuccessCard--header-container">
+        <div className="SuccessCard--header-text">
           <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
         </div>
 
-        <div className="MyInfoCard--header-img-container">
+        <div className="SuccessCard--header-img-container">
           <img 
-            className="MyInfoCard--header-img"
-            src={data.profileImageURL} 
+            className="SuccessCard--header-img"
+            src={data.profileImageURL || require("./../../../../assets/profile-pic-11.png")} 
             alt="card-img" 
           />
         </div>
       </div>
 
-      <div className="MyInfoCard--content-container">
+      <div className="SuccessCard--content-container">
         <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
         <span 
           className="pc-body fs-16" 

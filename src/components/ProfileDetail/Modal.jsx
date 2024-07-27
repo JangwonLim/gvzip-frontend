@@ -177,7 +177,7 @@ function Modal({info, setModal}) {
       <div className="Modal--profile-picture-container">
         <img 
           className="Modal--profile-picture"
-          src={require("./../../assets/profile-pic-1.png")}
+          src={info.profileImageURL || require("./../../assets/profile-pic-11.png")}
           alt="profile-pic"
         />
       </div>

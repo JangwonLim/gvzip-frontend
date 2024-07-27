@@ -3,7 +3,22 @@
     width: 100vw; height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     min-width: 390px;
+    flex-direction: column;
+    gap: 52px;
+  }
+
+  .SignUpSuccess--background {
+    width: 100%; height: 100%;
+    background-image: url('./../../../../assets/membership-background-yellow.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .SignUpSuccess--container {
@@ -13,8 +28,37 @@
     gap: 40px;
     justify-content: center;
     align-items: center;
-    margin: 164px 24px;
+    margin-bottom: 30px;
   }
+
+  .SignUpSuccess--button-container {
+    width: 342px; height: auto;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .SignUpSuccess--button-objet {
+    width: 52px; height: 52px;
+    border: 1.5px solid black;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .SignUpSuccess--button {
+    width: 282px; height: 52px;
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 0;
+  }
+
   .fade-in {
     opacity: 0; /* 초기 투명도 설정 */
     animation: fadeIn 3s forwards; /* 애니메이션 설정 */
@@ -27,5 +71,54 @@
     to {
       opacity: 1; /* 끝날 때 투명도 */
     }
+  }
+
+  .SuccessCard--container {
+    position: relative;
+    height: 222px;
+    width: 260px;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 1px 34px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    gap: 34.79px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .SuccessCard--header-container {
+    display: flex;
+    gap: 25.82px;
+  }
+
+  .SuccessCard--header-text {
+    width: 99.19px; height: auto;
+  }
+
+  .SuccessCard--header-img-container {
+    height: 96px; width: 96.18px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .SuccessCard--header-img {
+    object-fit: cover;
+    width: 100%; height: 100%;
+    display: block;
+    margin: auto;
+  }
+
+  .SuccessCard--content-container {
+    width: 223.93px; height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4.51px;
   }
 }

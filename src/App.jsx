@@ -7,14 +7,11 @@ import SignUp from './pages/authenticate/SignUp/Signup';
 import ProfileInfo from './pages/authenticate/SignUp/ProfileInfo';
 import Archive from './pages/archivePage/Archive';
 import Card from './components/Card/Card';
-import Dropdown from './components/Filter/Dropdown';
 import MembershipAuth from './pages/authenticate/SignUp/MembershipAuth/MembershipAuth';
-import BottomSheet from './components/BottomSheet/BottomSheet.jsx';
 import MembershipAuthFail from './pages/authenticate/SignUp/MembershipAuth/MembershipAuthFail.jsx';
 import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
-import Modal from './components/ProfileDetail/Modal.jsx';
 
 
 function App() {
@@ -32,13 +29,10 @@ function App() {
         <Route path="/signup/info" element={<ProfileInfo />} />
         <Route path="/archive" element={<Archive />} />
         <Route path="/card" element={<Card />} />
-        <Route path="/filter" element={<Dropdown />}></Route>
-        <Route path="/bottomsheet" element={<BottomSheet />}></Route>
         <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
         <Route path='/member' element={<Profile />}/>
         <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
         <Route path='/signup/success' element={<SignUpSuccess />}/>
-        <Route path='modal' element={<Modal/>}/>
 
 
         {/* PrivateRouter Can be used to protect routes */}

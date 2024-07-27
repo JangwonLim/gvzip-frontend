@@ -66,39 +66,30 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
 
   return (
     <div className="Profile--content-container huge-gap">
-      {/* Campus */}
+      {/* Campus and Graduation Year*/}
       {
-        formData.alumniType === 0 ?
-          <ButtonSelection 
-            formData={formData}
-            handleChange={handleChange}
-            title={"졸업한 캠퍼스"}
-            name={"campus"}
-            list={campusList}
-            isMandatory={true}
-          /> :
-          <ButtonSelection 
-            formData={formData}
-            handleChange={handleChange}
-            title={"자녀 캠퍼스"}
-            name={"campus"}
-            list={campusList}
-            isMandatory={true}
-          />
+        formData.alumniType === 0 && (
+          <>
+            <ButtonSelection 
+              formData={formData}
+              handleChange={handleChange}
+              title={"졸업한 캠퍼스"}
+              name={"campus"}
+              list={campusList}
+              isMandatory={true}
+            />
+            <Year 
+              formData={formData}
+              handleChange={handleChange}
+              options={generateYearOptions}
+              title={"졸업년도"}
+              placeholder={"졸업년도 선택"}
+            />
+          </>
+        )
       }
-
-
-
-      {/* Graduation year */}
-      <Year 
-        formData={formData}
-        handleChange={handleChange}
-        options={generateYearOptions}
-        title={"졸업년도"}
-        placeholder={"졸업년도 선택"}
-      />
-
-
+      
+      {/* Education */}
       <div className="Profile--content-section wide-gap">
         <span className="b7-16-sb" style={{ color: "#66707A"}}>학력 (선택)</span>
         {

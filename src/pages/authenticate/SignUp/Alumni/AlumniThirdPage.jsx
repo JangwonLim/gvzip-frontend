@@ -250,7 +250,7 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
         formData={formData}
         handleChange={handleChange}
         title={'한줄 소개'}
-        placeholder={'ex. 지비집 프로덕트 디자이너, 지비대 학부생'}
+        placeholder={'ex. 게임을 좋아하는 지비집 프로덕트 디자이너'}
         name={"introduction"}
       />
 

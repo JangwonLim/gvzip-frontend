@@ -54,7 +54,10 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
           <span className="b7-16-sb" style={{ color: "#66707A"}}>사진 (선택) </span>
         </div>
 
-        <PictureUploader picFile={previewImage} onChangePicture={handleProfileImage}/>
+        <PictureUploader 
+          picFile={previewImage} 
+          onChangePicture={handleProfileImage}
+        />
       </div>
 
 
@@ -66,7 +69,7 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
         <input 
           className="Profile--text-input-box"
           type="text" 
-          placeholder={"링크 붙여넣기"}
+          placeholder={"나를 소개하는 링크 입력"}
           name={"sns"}
           value={formData['sns']}
           onChange={handleChange}
