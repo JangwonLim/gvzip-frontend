@@ -1,37 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './landing.css';
 import './../../styles/defaultDesign.css';
 import Button from "./../../components/Button/Button";
 import Footer from "../../components/Footer/Footer";
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from "react-router-dom";
-// import { isLoggedIn } from "../../utils/usefulFunctions";
-import { getIsLogIn } from "../../service/getService";
+import { useAuth } from "../../utils/AuthContext";
 
 function Landing() {
-  // const [loggedIn, setLoggedIn] = useState(false);
-
-  // useEffect(() => {
-  //   setLoggedIn(isLoggedIn());
-  // }, []);
-
-  const checkAuth = async () => {
-    try {
-      const result = await getIsLogIn();
-
-      return result;
-    } catch (error) {
-      console.log("error in checkAuth")
-    }
-  }
-
-  useEffect(() => {
-    checkAuth();
-  }, [])
+  const { isAuthenticated } = useAuth();
   
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   
   const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    if (isAuthenticated) {
+      navigate('/archive');
+    } else {
+      navigate('/signup');
+    }
+  };
 
   const DDG = [
     {
@@ -165,35 +154,51 @@ function Landing() {
         {
           isMobile ?
           <>
-            <span className="Landing--connect-title">
-              간편 가입하고 지금 바로<br/> 
-              지비 가족들과 연결되기
-            </span>
+            {
+              isAuthenticated ?
+                <span className="Landing--connect-title">
+                  업데이트된 지비 가족들의<br/>소식 둘러보기
+                </span>
+              :
+                <span className="Landing--connect-title">
+                  간편 가입하고 지금 바로<br/>지비 가족들과 연결되기
+                </span>
+            }
             <Button
               radius="30px"
               bg="black"
               color="white"
               width="167px"
               height="52px"
-              onClick={() => navigate('/signup')}
+              onClick={handleNavigation}
             >
-              <span className="h2-18-sb">회원가입</span>
+              <span className="h2-18-sb">
+                {isAuthenticated ? "보러가기" : "회원가입"}
+              </span>
             </Button>
           </> : 
           <>
-            <span className="Landing--connect-title">
-              간편 회원가입하고 지금 바로<br/> 
-              지비 가족들과 연결되기
-            </span>
+            {
+              isAuthenticated ?
+                <span className="Landing--connect-title">
+                  업데이트된 지비 가족들의<br/>소식 둘러보기
+                </span>
+              :
+                <span className="Landing--connect-title">
+                  간편 가입하고 지금 바로<br/>지비 가족들과 연결되기
+                </span>
+            }
             <Button
               radius="30px"
               bg="black"
               color="white"
               width="180px"
               height="60px"
-              onClick={() => navigate('/signup')}
+              onClick={handleNavigation}
             >
-              <span className="pc-button fs-20">회원 가입</span>
+              <span className="pc-button fs-20">
+                {isAuthenticated ? "보러가기" : "회원가입"}
+              </span>
             </Button>
           </>
         }

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import './NavBar.css';
 import { useMediaQuery } from 'react-responsive';
+import { useAuth } from "../../utils/AuthContext";
 
 function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeButton, setActiveButton] = useState(location.pathname);
 
+  const { isAuthenticated } = useAuth();
 
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
@@ -55,7 +57,9 @@ function NavBar() {
           className={`Navbar--buttons-box ${activeButton === '/signin' ? 'active' : ''}`}
           onClick={onClickLogin}
         >
-          <span className={isMobile ? "b4-14-sb" : "pc-button fs-16"}>My</span>
+          <span className={isMobile ? "b4-14-sb" : "pc-button fs-16"}>
+            {isAuthenticated ? "My" : "Login"}
+          </span>
         </div>
       </div>
     </nav>
