@@ -3,10 +3,10 @@ import './profile.css';
 import './../../styles/defaultDesign.css';
 import { useGoBack } from "../../utils/usefulFunctions";
 import { useSelector } from "react-redux";
-import { updateInfoAndProfilePicture } from "../../service/putService";
+import { updateProfilePicture } from "../../service/putService";
 
 function EditProfilePicture() {
-  let [selectedObjet, setSelectedObjet] = useState(null);
+  let [selectedObjet, setSelectedObjet] = useState('profile-pic-11');
   const userInfo = useSelector(state => state.user.userInfo);
   // const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
@@ -23,7 +23,7 @@ function EditProfilePicture() {
       // let profileImage = selectedObjet;
       console.log(selectedObjet);
 
-      const result = await updateInfoAndProfilePicture(formData, selectedObjet);
+      const result = await updateProfilePicture(formData, selectedObjet);
 
       if (result) {
         console.log('successfully update the picture')
@@ -54,20 +54,20 @@ function EditProfilePicture() {
   }
 
   // eslint-disable-next-line no-unused-vars
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState('profile-pic-11');
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedObjet(file);
-      const reader = new FileReader();
-      // reader.onloadend = () => {
-      //   console.log(reader);
-      //   setPreviewImage(reader.result);
-      // };
-      reader.readAsDataURL(file);
-  }
-  };
+  // const handleImageChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     setSelectedObjet(file);
+  //     const reader = new FileReader();
+  //     // reader.onloadend = () => {
+  //     //   console.log(reader);
+  //     //   setPreviewImage(reader.result);
+  //     // };
+  //     reader.readAsDataURL(file);
+  // }
+  // };
 
   // const handleChange = (e) => {
   //   const {name, value} = e.target;
@@ -88,7 +88,7 @@ function EditProfilePicture() {
   // }
 
   return (
-    <div className="Profile--container">
+    <div className="Profile--container" style={{ gap: '0px'}}>
       <div className="Profile--header">
         <button 
           className="Profile--header-back-button"
@@ -102,17 +102,17 @@ function EditProfilePicture() {
       <div className="objet-preview-container">
         <img 
           className="objet"
-          // src={require(`./../../assets/${selectedObjet}.png`)} 
+          src={require(`./../../assets/${selectedObjet}.png`)} 
           alt="selected-objet" 
         />
       </div>
 
-      <input 
+      {/* <input 
         type="file" 
         id="imageUpload" 
         accept="image/*" 
         onChange={handleImageChange} 
-      />
+      /> */}
 
       {/* <input type="text" name="korName" onChange={(e) => handleChange(e)}/> */}
 
@@ -120,13 +120,20 @@ function EditProfilePicture() {
         { profilePictures() }
       </div>
 
-      <button 
-        onClick={changeProfilePicture}
-        // onClick={updateProfile}
-        className="ProfilePage--button black"
-      >
-        <span className="h2-18-sb">저장</span>
-      </button>
+      <div className="ProfilePage--button-container">
+        <button 
+          onClick={useGoBack()}
+          className="ProfilePage--button"
+        >
+          <span className="h2-18-sb">취소</span>
+        </button>
+        <button 
+          onClick={changeProfilePicture}
+          className="ProfilePage--button black"
+        >
+          <span className="h2-18-sb">저장</span>
+        </button>
+      </div>
     </div>
   )
 }

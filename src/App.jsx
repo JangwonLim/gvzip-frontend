@@ -13,6 +13,7 @@ import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
 import { AuthProvider } from './utils/AuthContext.jsx';
+import EditAlumAndParentInfo from './pages/profilePage/editProfileInfo/EditAlumAndParentInfo.jsx';
 
 function App() {
 
@@ -30,8 +31,9 @@ function App() {
           <Route path="/card" element={<Card />} />
           <Route path="/signup/membership/fail" element={<MembershipAuthFail />}></Route>
           <Route path='/profile' element={<Profile />}/>
-          <Route path='/signup/edit-objet' element={<EditProfilePicture />}/>
+          <Route path='/profile/editObjet' element={<EditProfilePicture />}/>
           <Route path='/signup/success' element={<SignUpSuccess />}/>
+          <Route path='/profile/editInfo' element={<EditAlumAndParentInfo/>}/>
         </Routes>
       </Router>
     </AuthProvider>

@@ -7,7 +7,7 @@ import Modal from "../../components/ProfileDetail/Modal";
 import './../archivePage/Archive.css';
 import PopUp from "../../components/PopUp/PopUp";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { storeUserInfo } from "../../redux/store";
 
 
@@ -17,7 +17,6 @@ function Profile() {
   const [popUp, setPopUp] = useState(false);
   const [purpose, setPurpose] = useState('');
   const dispatch = useDispatch();
-  const userInfo = useSelector(state => state.user.userInfo);
 
   const navigate = useNavigate();
 
@@ -47,7 +46,7 @@ function Profile() {
   }
 
   const changeObjet = () => {
-    navigate('/signup/edit-objet');
+    navigate('/profile/edit-objet');
   }
   
   useEffect(() => {
@@ -58,6 +57,8 @@ function Profile() {
     <div className="ProfilePage--container">
       <MyInfoCard data={data} setModal={setModal}/>
 
+      <div style={{ width: "auto", height: "80px"}}/>
+
       <div className="ProfilePage--button-container">
         <button 
           onClick={changeObjet}
@@ -65,26 +66,19 @@ function Profile() {
         >
           <span className="h2-18-sb">오브제 변경</span>
         </button>
-        <button className="ProfilePage--button black">
+        <button 
+          onClick={() => navigate('/profile/editInfo')}
+          className="ProfilePage--button black">
           <span className="h2-18-sb">프로필 편집</span>
         </button>
       </div>
 
-      <div className="b7-16-sb ProfilePage--bottom-button-container">
-        <span 
-          onClick={openPopUp}
-          style={{ cursor: "pointer" }}
-        >
-          회원탈퇴
-        </span>
-        <span>|</span>
-        <span 
-          onClick={openPopUp}
-          style={{ cursor: "pointer" }}
-        >
-          로그아웃
-        </span>
-      </div>
+      <span 
+        onClick={openPopUp}
+        className="ProfilePage--logout"
+      >
+        로그아웃
+      </span>
 
       { modal && (
         <div className="Archive--modal-backdrop" onClick={closeModal}>
@@ -118,30 +112,34 @@ function MyInfoCard({data, setModal}) {
   }
 
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
-
+  
   return(
     <div className="MyInfoCard--container" onClick={openModal}>
       <div className="MyInfoCard--header-container">
         <div className="MyInfoCard--header-text">
-          <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
+          {/* <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span> */}
+          <span className="pc-body fs-14" style={{ color: "#66707A"}}>음성 15회 졸업생<br />Georgia, United States</span>
         </div>
 
         <div className="MyInfoCard--header-img-container">
           <img 
             className="MyInfoCard--header-img"
-            src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
+            // src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
+            src={require("./../../assets/profile-pic-11.png")}
             alt="card-img" 
           />
         </div>
       </div>
 
       <div className="MyInfoCard--content-container">
-        <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
+        {/* <span className="pc-head fs-20">{data.korName} | {data.engName}</span> */}
+        <span className="pc-head fs-20">임장원 | Jangwon Lim</span>
         <span 
           className="pc-body fs-16" 
           style={{ color: "#66707A"}}
         >
-          {data.introduction}
+          {/* {data.introduction} */}
+          안녕하세요. 테스트입니다.
         </span>
       </div>
     </div>

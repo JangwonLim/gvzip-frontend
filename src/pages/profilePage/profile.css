@@ -10,14 +10,14 @@
   }
 
   .ProfilePage--button-container {
+    width: 342px; height: auto;
+    padding: 12px 0;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 40px;
+    gap: 8px;
   }
 
   .ProfilePage--button{
-    width: 342px; height: 52px;
+    width: 100%; height: 52px;
     border: 1.5px solid black;
     color: var(--black-text);
     border-radius: 30px;
@@ -29,24 +29,25 @@
     }
   }
 
-  .ProfilePage--bottom-button-container {
-    width: 254px; height: 20px;
-    display: flex;
-    justify-content: space-between;
+  .ProfilePage--logout {
     color: var(--grey3);
-    margin-top: 90px;
+    text-decoration: underline;
+    margin-top: 120px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    cursor: pointer;
   }
-
 
   .MyInfoCard--container {
     position: relative;
-    height: 268px;
-    width: 318px;
+    height: 222px;
+    width: 260px;
     border: none;
     background-color: white;
     box-shadow: 0px 1px 34px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    gap: 30px;
+    gap: 34.79px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -56,15 +57,15 @@
 
   .MyInfoCard--header-container {
     display: flex;
-    gap: 20px;
+    gap: 25.82px;
   }
 
   .MyInfoCard--header-text {
-    width: 116px; height: auto;
+    width: 99.19px; height: auto;
   }
 
   .MyInfoCard--header-img-container {
-    height: 142px; width: 142px;
+    height: 96px; width: 96.18px;
     border-radius: 50%;
     border: 1px solid black;
     display: flex;
@@ -81,23 +82,23 @@
   }
 
   .MyInfoCard--content-container {
-    width: 278px; height: auto;
+    width: 223.93px; height: auto;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4.51px;
   }
 
   .objet-wrapper {
-    width: 272px; height: auto;
+    width: 308px; height: auto;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 40px; row-gap: 32px;
-    margin-top: 36px;
-    margin-bottom: 40px;
+    gap: 12px;
+    margin-top: 53px;
+    margin-bottom: 20px;
   }
 
   .objet-container {
-    width: 64px; height: 64px;
+    width: 68px; height: 68px;
     border: none;
     border-radius: 50%;
     display: flex;
@@ -117,12 +118,12 @@
   }
 
   .objet-preview-container {
-    width: 142px; height: 142px;
+    width: 180px; height: 180px;
     border: none;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 32px;
   }
 }

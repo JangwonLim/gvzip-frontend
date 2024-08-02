@@ -144,8 +144,6 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
           ))
         }
         
-        <button onClick={handleReset}>clear</button>
-
         <button 
           className="Profile--add-education"
           onClick={() => handleCareerClick()}

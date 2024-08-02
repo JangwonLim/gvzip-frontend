@@ -1,23 +1,22 @@
 import axios from "axios";
 const API_URL = 'https://gvzip.com';
 
-export const updateInfoAndProfilePicture = async (formData, profileImage) => {
+export const updateProfilePicture = async (formData, profileImage) => {
   try {
     console.log(JSON.stringify(formData));
     const data = new FormData();
     const json = JSON.stringify(formData);
+
+    const convertedProfileImage = `./../assets/${profileImage}.png`
 
 
     const blob = new Blob([json], { type: 'application/json' });
     data.append('profileUpdateRequest', blob);
 
     if (profileImage) {
-      data.append('profileImage', profileImage);
-    }
-
-    // FormData 확인
-    for (let [key, value] of data.entries()) {
-      console.log(key, value);
+      data.append('profileImage', convertedProfileImage);
+    } else {
+      throw new Error("No profile picture changed!");
     }
 
     const response = await axios.put(`${API_URL}/profile-image`, data, {
