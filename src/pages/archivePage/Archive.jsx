@@ -94,7 +94,6 @@ function Archive() {
         if (responseData && responseData.isSuccess) {
           const newData = responseData.data.profiles;
           setInfo(prevInfo => [...prevInfo, ...newData]);
-          console.log(responseData.data.totalElements);
           setTotalNumber(responseData.data.totalElements);
 
           if (newData.length < size) {
@@ -256,9 +255,9 @@ function Archive() {
               style={{ color: "#66707A"}}
             >
               검색결과
-              {/* {
-                loading ? 0 : {totalNumber}
-              } */}
+              {
+                loading ? 0 : totalNumber
+              }
               명
             </span>
           </div>
