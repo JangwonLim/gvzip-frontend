@@ -7,20 +7,12 @@ import EditBottomSheet from "../../../../components/BottomSheet/EditBottomSheet"
 import './../../../../components/BottomSheet/BottomSheet.css'
 import ButtonSelection from "../../../../components/SignUpComponents/ButtonSelection";
 import Year from "../../../../components/SignUpComponents/Year";
-import { useDispatch } from "react-redux";
-import { reset } from "../../../../redux/store";
 
 function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPage, handleEducationClick, handleCareerClick, setEducationNumber, educationNumber, openEditEducation, careerNumber, setCareerNumber, openEditCareer })
 {
   const [educationMenu, setEducationMenu] = useState(false);
   const [careerMenu, setCareerMenu] = useState(false);
   const [isSecondDone, setIsSecondDone] = useState(false);
-
-  const dispatch = useDispatch();
-
-  const handleReset = () => {
-    dispatch(reset());
-  };
 
   useEffect(() => {
     setIsSecondDone(
