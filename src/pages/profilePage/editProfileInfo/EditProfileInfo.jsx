@@ -50,7 +50,9 @@ function EditProfileInfo() {
               userInfo={userInfo}
             />
           ) : (
-            <StudentAndStaffInfo/>
+            <StudentAndStaffInfo
+              userInfo={userInfo}
+            />
           )
         }
 
