@@ -7,11 +7,15 @@ import AlumAndParentInfo from "./AlumAndParentInfo";
 import PopUp from "../../../components/PopUp/PopUp";
 import { useGoBack } from "../../../utils/usefulFunctions";
 import StudentAndStaffInfo from "./StudentAndStaffInfo";
+import { useSelector } from "react-redux";
 
 function EditProfileInfo() {
   const [popUp, setPopUp] = useState(false);
   const [education, setEducation] = useState(false);
   const [career, setCareer] = useState(false);
+
+  const userInfo = useSelector(state => state.user.userInfo);
+  console.log(userInfo);
 
   const togglePopUp = () => {
     setPopUp(!popUp);
@@ -38,12 +42,17 @@ function EditProfileInfo() {
           <span className="Profile--header-title">프로필 편집</span>
         </div>
 
-        {/* <AlumAndParentInfo
-          toggleEducation={toggleEducation}
-          toggleCareer={toggleCareer}
-        /> */}
-
-        <StudentAndStaffInfo/>
+        {
+          (userInfo.alumniType === 0 || userInfo.alumniType === 1) ? (
+            <AlumAndParentInfo
+              toggleEducation={toggleEducation}
+              toggleCareer={toggleCareer}
+              userInfo={userInfo}
+            />
+          ) : (
+            <StudentAndStaffInfo/>
+          )
+        }
 
         <button 
           className="EditProfileInfo--delete-account"

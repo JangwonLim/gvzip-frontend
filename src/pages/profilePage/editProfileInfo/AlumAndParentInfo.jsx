@@ -3,41 +3,39 @@ import './editProfileInfo.css';
 import './../../../styles/defaultDesign.css';
 import PictureUploader from "../../../components/PictureUploader/PictureUploader";
 import Introduction from "../../../components/SignUpComponents/Introduction";
-import { useSelector } from "react-redux";
 import Email from "../../../components/SignUpComponents/Email";
 import HistoryDetail from "../../../components/HistoryDetail/HistoryDetail";
 import './../../authenticate/SignUp/ProfileInfo.css';
 import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/cjs";
 import { useGoBack } from "../../../utils/usefulFunctions";
 
-function AlumAndParentInfo({toggleEducation, toggleCareer}) {
-  const userInfo = useSelector(state => state.user.userInfo);
-  console.log(userInfo);
-  const formData = {
-    korName: '',
-    engName: '',
-    bornYear: '',
-    bornMonth: '',
-    bornDay: '',
-    sex: '',
-    email: '',
-    campus: '',
-    graduationYear: '',
-    expectedGraduationYear: '',
-    generation: '',
-    country: '',
-    state: '',
-    city: '',
-    field1: '',
-    field2: '',
-    field3: '',
-    introduction: '',
-    alumniType: null,
-    sns: '',
-    entranceYear: '',
-    educations: [],
-    careers: []
-  };
+function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
+
+  // const formData = {
+  //   korName: '',
+  //   engName: '',
+  //   bornYear: '',
+  //   bornMonth: '',
+  //   bornDay: '',
+  //   sex: '',
+  //   email: '',
+  //   campus: '',
+  //   graduationYear: '',
+  //   expectedGraduationYear: '',
+  //   generation: '',
+  //   country: '',
+  //   state: '',
+  //   city: '',
+  //   field1: '',
+  //   field2: '',
+  //   field3: '',
+  //   introduction: '',
+  //   alumniType: null,
+  //   sns: '',
+  //   entranceYear: '',
+  //   educations: [],
+  //   careers: []
+  // };
 
   return (
     <div className="EditProfileInfo--container">
@@ -50,7 +48,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer}) {
       </div>
 
       <Introduction
-        formData={formData}
+        formData={userInfo}
         title={"한줄 소개"}
         placeholder={"한줄 소개를 입력해 주세요."}
         name={"introduction"}
@@ -62,27 +60,31 @@ function AlumAndParentInfo({toggleEducation, toggleCareer}) {
           <span>생년월일</span>
           <span>성별</span>
           <span>캠퍼스</span>
-          <span>졸업년도</span>
+          {
+            userInfo.graduationYear && (
+              <span>졸업년도</span>
+            )
+          }
         </div>
         <div className="EditProfileInfo--basic-info-content b7-16-sb">
-          <span>박지비 | Jibi Park</span>
-          <span>2001년 11월 23일</span>
-          <span>여성</span>
-          <span>음성</span>
-          <span>2020</span>
+          <span>{userInfo.korName} | {userInfo.engName}</span>
+          <span>{userInfo.bornYear}년 {userInfo.bornMonth}월 {userInfo.bornDay}일</span>
+          <span>{userInfo.sex}</span>
+          <span>{userInfo.campus}</span>
+          <span>{userInfo.graduationYear}</span>
         </div>
       </div>
 
       <div className="EditProfileInfo--additional-info">
         <Email
-          formData={formData}
+          formData={userInfo}
         />
 
         <div className="Profile--content-section wide-gap">
           <span className="b7-16-sb" style={{ color: "#66707A"}}>학력</span>
           {
-            formData.educations.length > 0 && (
-              formData.educations.map((data, index) => {
+            userInfo.educations.length > 0 && (
+              userInfo.educations.map((data, index) => {
                 return (
                   <HistoryDetail 
                     title={data.schoolName} 
@@ -116,8 +118,8 @@ function AlumAndParentInfo({toggleEducation, toggleCareer}) {
           </div>
 
           {
-            formData.careers.length > 0 && (
-              formData.careers.map((data, index) => {
+            userInfo.careers.length > 0 && (
+              userInfo.careers.map((data, index) => {
                 return (
                   <HistoryDetail 
                     title={data.companyName} 
@@ -144,9 +146,9 @@ function AlumAndParentInfo({toggleEducation, toggleCareer}) {
           </button>
         </div>
 
-        <Location formData={formData}/>
+        <Location formData={userInfo}/>
 
-        <Fields formData={formData}/>
+        <Fields formData={userInfo}/>
 
         <div className="Profile--content-section wide-gap">
           <span className="b7-16-sb" style={{ color: "#66707A"}}>링크</span>
@@ -156,7 +158,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer}) {
             type="text" 
             placeholder={"나를 소개하는 링크 입력"}
             name={"sns"}
-            value={formData['sns']}
+            value={userInfo['sns']}
             // onChange={handleChange}
           />
         </div>

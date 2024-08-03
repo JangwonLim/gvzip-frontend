@@ -4,31 +4,30 @@ import './../../styles/defaultDesign.css';
 import { useGoBack } from "../../utils/usefulFunctions";
 import { useSelector } from "react-redux";
 import { updateProfilePicture } from "../../service/putService";
+import { useNavigate } from "react-router-dom";
 
 function EditProfilePicture() {
   const [selectedObjet, setSelectedObjet] = useState('');
   const [previewImage, setPreviewImage] = useState('');
+
+  const navigate = useNavigate();
   
   const userInfo = useSelector(state => state.user.userInfo);
   // const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
   console.log("redux userInfo: ", userInfo);
 
-  // eslint-disable-next-line no-unused-vars
   const changeProfilePicture = async () => {
     try {
       const { profileImageURL, ...rest } = userInfo;
-      // const updatedUserInfo = { ...rest, entranceYear: entranceYear || "", expectedGraduationYear: expectedGraduationYear || "" };
 
       let formData = rest;
-      console.log(formData);
-      // let profileImage = selectedObjet;
-      console.log(selectedObjet);
 
       const result = await updateProfilePicture(formData, selectedObjet);
 
       if (result) {
-        console.log('successfully update the picture')
+        console.log('successfully update the picture');
+        navigate('/profile');
       }
     } catch(error) {
       console.log('Failed in updating the picture')
