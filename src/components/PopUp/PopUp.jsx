@@ -3,6 +3,7 @@ import './PopUp.css';
 import './../../styles/defaultDesign.css';
 import { deleteAccount } from "../../service/deleteService";
 import { useNavigate } from "react-router-dom";
+import { persistor } from "../../redux/store";
 
 function PopUp({purpose, closePopUp}) {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ function PopUp({purpose, closePopUp}) {
       if (result.isSuccess) {
         console.log("Successfully deleted your account!");
         window.location.href = 'https://gvzip.com/logout';
+        persistor.purge();
       } else {
         console.log("Failed in deleting your account!");
       }
