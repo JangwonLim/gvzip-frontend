@@ -194,11 +194,17 @@ function Modal({info, setModal, setToast}) {
       <div className="Modal--profile-header-content">
         <span 
           className="b0-10-m"
-          style={{ color: "#2B3744", marginBottom: '19px' }}
+          style={{ color: "#2B3744" }}
         >
           {info.email}
         </span>
         
+        {
+          info.sns.length === 0 && (
+            <div style={{ width: "auto", height: "19px"}}/>
+          )
+        }
+
         {
           info.sns.length > 0 && (
             <div 
