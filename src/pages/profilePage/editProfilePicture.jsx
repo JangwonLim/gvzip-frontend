@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { updateProfilePicture } from "../../service/putService";
 
 function EditProfilePicture() {
-  const [selectedObjet, setSelectedObjet] = useState('profile-pic-11');
+  const [selectedObjet, setSelectedObjet] = useState('');
   const [previewImage, setPreviewImage] = useState('');
   
   const userInfo = useSelector(state => state.user.userInfo);
@@ -54,11 +54,12 @@ function EditProfilePicture() {
   const handleObjet = (e) => {
     setSelectedObjet(e.target.alt);
     const imageName = `${selectedObjet}.png`;
+    console.log(imageName)
     const imageUrl = require(`./../../assets/${imageName}`);
     fetch(imageUrl)
       .then(res => res.blob())
       .then(blob => {
-        const file = new File([blob], imageName, { type: 'image/png' });
+        const file = new File([blob], imageName, { type: 'image/*' });
         setSelectedObjet(file);
         const reader = new FileReader();
         reader.onloadend = () => {
