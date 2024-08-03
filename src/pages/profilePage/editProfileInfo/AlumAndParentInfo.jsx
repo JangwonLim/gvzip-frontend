@@ -10,7 +10,7 @@ import './../../authenticate/SignUp/ProfileInfo.css';
 import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/cjs";
 import { useGoBack } from "../../../utils/usefulFunctions";
 
-function EditAlumAndParentInfo() {
+function AlumAndParentInfo({toggleEducation, toggleCareer}) {
   const userInfo = useSelector(state => state.user.userInfo);
   console.log(userInfo);
   const formData = {
@@ -99,7 +99,7 @@ function EditAlumAndParentInfo() {
 
           <button 
             className="Profile--add-education"
-            // onClick={() => handleEducationClick()}
+            onClick={() => toggleEducation()}
           >
             <span className="b6-16-m">학력 추가</span>
             <img 
@@ -134,7 +134,7 @@ function EditAlumAndParentInfo() {
           
           <button 
             className="Profile--add-education"
-            // onClick={() => handleCareerClick()}
+            onClick={() => toggleCareer()}
           >
             <span className="b6-16-m">경험/경력 추가</span>
             <img 
@@ -149,9 +149,7 @@ function EditAlumAndParentInfo() {
         <Fields formData={formData}/>
 
         <div className="Profile--content-section wide-gap">
-          <div>
-            <span className="b7-16-sb" style={{ color: "#66707A"}}>링크</span>
-          </div>
+          <span className="b7-16-sb" style={{ color: "#66707A"}}>링크</span>
 
           <input 
             className="Profile--text-input-box"
@@ -407,4 +405,4 @@ function Location({formData, handleChange}) {
   )
 }
 
-export default EditAlumAndParentInfo;
+export default AlumAndParentInfo;

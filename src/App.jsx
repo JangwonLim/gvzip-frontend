@@ -13,8 +13,7 @@ import Profile from './pages/profilePage/profile.jsx';
 import EditProfilePicture from './pages/profilePage/editProfilePicture.jsx';
 import SignUpSuccess from './pages/authenticate/SignUp/SignUpSuccess/SignUpSuccess.jsx';
 import { AuthProvider } from './utils/AuthContext.jsx';
-import EditAlumAndParentInfo from './pages/profilePage/editProfileInfo/EditAlumAndParentInfo.jsx';
-
+import EditProfileInfo from './pages/profilePage/editProfileInfo/EditProfileInfo.jsx';
 function App() {
 
   return (
@@ -33,7 +32,7 @@ function App() {
           <Route path='/profile' element={<Profile />}/>
           <Route path='/profile/editObjet' element={<EditProfilePicture />}/>
           <Route path='/signup/success' element={<SignUpSuccess />}/>
-          <Route path='/profile/editInfo' element={<EditAlumAndParentInfo/>}/>
+          <Route path='/profile/editInfo' element={<EditProfileInfo/>}/>
         </Routes>
       </Router>
     </AuthProvider>
@@ -43,7 +42,7 @@ function App() {
 function NavBarController({ isLoggedIn, setIsLoggedIn }) {
   const location = useLocation();
 
-  const hideNavPaths = ['/signin', '/signup', '/auth/register'];
+  const hideNavPaths = ['/signin', '/signup', '/auth/register', '/profile/edit'];
 
   const shouldHideNav = hideNavPaths.some(path => location.pathname.startsWith(path));
 

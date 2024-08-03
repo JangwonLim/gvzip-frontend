@@ -46,7 +46,7 @@ function Profile() {
   }
 
   const changeObjet = () => {
-    navigate('/profile/edit-objet');
+    navigate('/profile/editObjet');
   }
   
   useEffect(() => {
