@@ -39,7 +39,7 @@ function EditProfilePicture() {
     const objets = []
     for (let i = 12; i >= 1; i--) {
       objets.push(
-        <div className="objet-container" key={i} onClick={(e) => handleObjet(e)}>
+        <div className="objet-container" key={i} onClick={handleObjet(i)}>
           <img
             className="objet"
             src={require(`./../../assets/profile-pic-${i}.png`)} 
@@ -51,8 +51,9 @@ function EditProfilePicture() {
     return objets;
   }
 
-  const handleObjet = (e) => {
-    setSelectedObjet(e.target.alt);
+  const handleObjet = async (index) => {
+    console.log(index)
+    setSelectedObjet(`profile-pic-${index}`);
     const imageName = `${selectedObjet}.png`;
     console.log(imageName)
     const imageUrl = require(`./../../assets/${imageName}`);
