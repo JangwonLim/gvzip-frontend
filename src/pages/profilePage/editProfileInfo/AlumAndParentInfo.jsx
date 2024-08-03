@@ -43,7 +43,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
         <span className="b7-16-sb">사진</span>
 
         <PictureUploader
-
+          picFile={userInfo.profileImageURL}
         />
       </div>
 
