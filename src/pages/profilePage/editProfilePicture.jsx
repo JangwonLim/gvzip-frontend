@@ -52,9 +52,7 @@ function EditProfilePicture() {
   }
 
   const handleObjet = async (index) => {
-    console.log(index)
-    setSelectedObjet(`profile-pic-${index}`);
-    const imageName = `${selectedObjet}.png`;
+    const imageName = `profile-pic-${index}.png`;
     console.log(imageName)
     const imageUrl = require(`./../../assets/${imageName}`);
     fetch(imageUrl)
