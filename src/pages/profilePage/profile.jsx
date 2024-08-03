@@ -117,29 +117,25 @@ function MyInfoCard({data, setModal}) {
     <div className="MyInfoCard--container" onClick={openModal}>
       <div className="MyInfoCard--header-container">
         <div className="MyInfoCard--header-text">
-          {/* <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span> */}
-          <span className="pc-body fs-14" style={{ color: "#66707A"}}>음성 15회 졸업생<br />Georgia, United States</span>
+          <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
         </div>
 
         <div className="MyInfoCard--header-img-container">
           <img 
             className="MyInfoCard--header-img"
-            // src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
-            src={require("./../../assets/profile-pic-11.png")}
+            src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
             alt="card-img" 
           />
         </div>
       </div>
 
       <div className="MyInfoCard--content-container">
-        {/* <span className="pc-head fs-20">{data.korName} | {data.engName}</span> */}
-        <span className="pc-head fs-20">임장원 | Jangwon Lim</span>
+        <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
         <span 
           className="pc-body fs-16" 
           style={{ color: "#66707A"}}
         >
-          {/* {data.introduction} */}
-          안녕하세요. 테스트입니다.
+          {data.introduction}
         </span>
       </div>
     </div>

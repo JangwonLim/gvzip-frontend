@@ -121,7 +121,7 @@ function EditProfilePicture() {
         ) : (
           <img
             className="objet"
-            src={require(`./../../assets/profile-pic-11.png`)}
+            src={userInfo.profileImageURL}
             alt="default-objet"
           />
         )}
