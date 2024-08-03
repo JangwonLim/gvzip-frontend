@@ -14,6 +14,7 @@ import Search from "./Search";
 import NoResult from "./NoResult";
 import { useAuth } from "../../utils/AuthContext";
 import PopUp from "../../components/PopUp/PopUp";
+import Toast from "../../components/PopUp/Toast";
 
 
 function Archive() {
@@ -27,6 +28,7 @@ function Archive() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
   const [search, setSearch] = useState(false);
   const [totalNumber, setTotalNumber] = useState(0);
+  const [toast, setToast] = useState(false);
 
   const { isAuthenticated, loading } = useAuth();
 
@@ -290,7 +292,11 @@ function Archive() {
         {/* Modal */}
         { modal && (
           <div className="Archive--modal-backdrop" onClick={closeModal}>
-            <Modal info={modalInfo} setModal={setModal}/>
+            <Modal 
+              info={modalInfo} 
+              setModal={setModal}
+              setToast={setToast}
+            />
           </div>
         )}
 
@@ -304,6 +310,12 @@ function Archive() {
               onClickFilterOptions={handleFilterChange}
               resetFilter={resetFilter}
             />
+          )
+        }
+
+        {
+          toast && (
+            <Toast purpose={"소개"}/>
           )
         }
       </div>

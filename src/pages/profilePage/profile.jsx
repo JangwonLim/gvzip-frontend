@@ -89,7 +89,7 @@ function Profile() {
       {
         popUp && (
           <div className="Archive--modal-backdrop" onClick={closePopUp}>
-            <PopUp purpose={purpose}/>
+            <PopUp purpose={purpose} closePopUp={closePopUp}/>
           </div>
         )
       }

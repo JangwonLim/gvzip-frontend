@@ -3,7 +3,7 @@ import './Modal.css';
 import '../../styles/defaultDesign.css';
 import { handleCopyClipBoard } from "../../utils/usefulFunctions";
 
-function Modal({info, setModal}) {
+function Modal({info, setModal, setToast}) {
 
   const closeModal = () => {setModal(false)}
 
@@ -13,6 +13,15 @@ function Modal({info, setModal}) {
     } else {
       return "인기모";
     }
+  }
+
+  const copyLink = (e) => {
+    handleCopyClipBoard(e.target.textContent);
+    setToast(true);
+
+    setTimeout(() => {
+      setToast(false);
+    }, 500);
   }
 
   const fields = [info.field1 ?? '', info.field2 ?? '', info.field3 ?? ''].filter(Boolean).join(', ');;
@@ -193,7 +202,7 @@ function Modal({info, setModal}) {
         {
           info.sns.length > 0 && (
             <div 
-              onClick={(e) => handleCopyClipBoard(e.target.textContent)}
+              onClick={(e) => copyLink(e)}
               className="Modal--profile-header-link">
               <div className="Modal--profile-header-link-button"/>
               <span 

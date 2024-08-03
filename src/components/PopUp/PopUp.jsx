@@ -3,9 +3,8 @@ import './PopUp.css';
 import './../../styles/defaultDesign.css';
 import { deleteAccount } from "../../service/deleteService";
 import { useNavigate } from "react-router-dom";
-import { useGoBack } from "../../utils/usefulFunctions";
 
-function PopUp({purpose}) {
+function PopUp({purpose, closePopUp}) {
   const navigate = useNavigate();
 
   const title = () => {
@@ -69,6 +68,14 @@ function PopUp({purpose}) {
     }
   }
 
+  const handleCancel = () => {
+    if (purpose === "로그인") {
+      navigate(-1);
+    } else {
+      closePopUp();
+    }
+  }
+
   return (
     <div className="PopUp--container">
       <div className="PopUp--text-container">
@@ -85,7 +92,7 @@ function PopUp({purpose}) {
 
       <div className="PopUp--button-container">
         <button 
-          onClick={useGoBack()}
+          onClick={handleCancel}
           className="PopUp--button b7-16-sb"
         >
           취소

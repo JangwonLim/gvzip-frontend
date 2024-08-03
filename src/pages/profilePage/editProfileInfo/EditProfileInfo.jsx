@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import './editProfileInfo.css';
 import './../../authenticate/SignUp/ProfileInfo.css';
+import './../../archivePage/Archive.css';
 import AlumAndParentInfo from "./AlumAndParentInfo";
 import PopUp from "../../../components/PopUp/PopUp";
 import { useGoBack } from "../../../utils/usefulFunctions";
@@ -12,8 +13,8 @@ function EditProfileInfo() {
   const [education, setEducation] = useState(false);
   const [career, setCareer] = useState(false);
 
-  const handlePopUp = () => {
-    setPopUp(true);
+  const togglePopUp = () => {
+    setPopUp(!popUp);
   }
 
   const toggleEducation = () => {
@@ -46,7 +47,7 @@ function EditProfileInfo() {
 
         <button 
           className="EditProfileInfo--delete-account"
-          onClick={handlePopUp}
+          onClick={togglePopUp}
         >
           회원탈퇴
         </button>
@@ -54,7 +55,9 @@ function EditProfileInfo() {
 
       {
         popUp && (
-          <PopUp purpose={"회원탈퇴"}/>
+          <div className="Archive--modal-backdrop" onClick={togglePopUp}>
+            <PopUp purpose={"회원탈퇴"} closePopUp={togglePopUp}/>
+          </div>
         )
       }
     </>

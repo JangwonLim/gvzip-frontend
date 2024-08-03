@@ -7,7 +7,7 @@ import { handleCopyClipBoard } from "../../../../utils/usefulFunctions";
 import { useGoBack } from "../../../../utils/usefulFunctions";
 import { getChildInfo } from "../../../../service/getService";
 import { useNavigate } from "react-router-dom";
-import Copy from "../../../../components/PopUp/Copy";
+import Toast from "../../../../components/PopUp/Toast";
 
 function MembershipAuth() {
   const navigate = useNavigate();
@@ -290,9 +290,10 @@ function MembershipAuth() {
       >
         <span className="h2-18-sb">인증하고 구글로 시작</span>
       </button>
+
       {
         copy && (
-          <Copy/>
+          <Toast purpose={'초대'}/>
         )
       }
     </div>
