@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import { updateProfilePicture } from "../../service/putService";
 
 function EditProfilePicture() {
-  let [selectedObjet, setSelectedObjet] = useState('profile-pic-11');
+  const [selectedObjet, setSelectedObjet] = useState('profile-pic-11');
+  const [previewImage, setPreviewImage] = useState('');
+  
   const userInfo = useSelector(state => state.user.userInfo);
   // const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
@@ -51,10 +53,20 @@ function EditProfilePicture() {
 
   const handleObjet = (e) => {
     setSelectedObjet(e.target.alt);
+    const imageName = `profile-pic-${selectedObjet}.png`;
+    const imageUrl = require(`./../../assets/${imageName}`);
+    fetch(imageUrl)
+      .then(res => res.blob())
+      .then(blob => {
+        const file = new File([blob], imageName, { type: 'image/png' });
+        setSelectedObjet(file);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviewImage(reader.result);
+        };
+        reader.readAsDataURL(file);
+      });
   }
-
-  // eslint-disable-next-line no-unused-vars
-  const [selectedImage, setSelectedImage] = useState('profile-pic-11');
 
   // const handleImageChange = (event) => {
   //   const file = event.target.files[0];
@@ -100,11 +112,19 @@ function EditProfilePicture() {
       </div>
 
       <div className="objet-preview-container">
-        <img 
-          className="objet"
-          src={require(`./../../assets/${selectedObjet}.png`)} 
-          alt="selected-objet" 
-        />
+        {previewImage ? (
+          <img
+            className="objet"
+            src={previewImage}
+            alt="selected-objet"
+          />
+        ) : (
+          <img
+            className="objet"
+            src={require(`./../../assets/profile-pic-11.png`)}
+            alt="default-objet"
+          />
+        )}
       </div>
 
       {/* <input 
