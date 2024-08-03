@@ -53,7 +53,7 @@ function EditProfilePicture() {
 
   const handleObjet = (e) => {
     setSelectedObjet(e.target.alt);
-    const imageName = `profile-pic-${selectedObjet}.png`;
+    const imageName = `${selectedObjet}.png`;
     const imageUrl = require(`./../../assets/${imageName}`);
     fetch(imageUrl)
       .then(res => res.blob())
