@@ -39,7 +39,7 @@ function EditProfilePicture() {
     const objets = []
     for (let i = 12; i >= 1; i--) {
       objets.push(
-        <div className="objet-container" key={i} onClick={handleObjet(i)}>
+        <div className="objet-container" key={i} onClick={() => handleObjet(i)}>
           <img
             className="objet"
             src={require(`./../../assets/profile-pic-${i}.png`)} 
