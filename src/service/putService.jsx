@@ -9,7 +9,6 @@ export const updateProfilePicture = async (formData, profileImage) => {
 
     const convertedProfileImage = `./../assets/${profileImage}.png`
 
-
     const blob = new Blob([json], { type: 'application/json' });
     data.append('profileUpdateRequest', blob);
 
@@ -19,6 +18,11 @@ export const updateProfilePicture = async (formData, profileImage) => {
       throw new Error("No profile picture changed!");
     }
 
+    // FormData 확인
+    for (let [key, value] of data.entries()) {
+      console.log(key, value);
+    }
+    
     const response = await axios.put(`${API_URL}/profile-image`, data, {
       headers: {
         'Content-Type': 'multipart/form-data',
