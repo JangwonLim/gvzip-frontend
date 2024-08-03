@@ -1,4 +1,7 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, createSlice } from '@reduxjs/toolkit';
+import persistReducer from 'redux-persist/es/persistReducer';
+import persistStore from 'redux-persist/es/persistStore';
+import storage from 'redux-persist/lib/storage';
 
 const initialUserState = {
   userInfo: null
@@ -87,11 +90,32 @@ export let { addCareer, updateCareer, deleteCareer, resetCareer } = careers.acti
 
 
 
-export default configureStore({
-  reducer: {
-    user: userInfo.reducer,
-    alumniType: alumniType.reducer,
-    educations: educations.reducer,
-    careers: careers.reducer
-  }
+// 리듀서 결합
+const rootReducer = combineReducers({
+  user: userInfo.reducer,
+  alumniType: alumniType.reducer,
+  educations: educations.reducer,
+  careers: careers.reducer
 });
+
+// Persist 설정
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user', 'educations', 'careers'] // 영속화할 리듀서 선택
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// 스토어 구성
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false, // redux-persist와 함께 사용하기 위해 serializableCheck 비활성화
+    }),
+});
+
+const persistor = persistStore(store);
+
+export { store, persistor };
