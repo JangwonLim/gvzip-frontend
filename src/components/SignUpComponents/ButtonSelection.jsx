@@ -39,7 +39,7 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
             <button
               className={"Profile--button" + ((Array.isArray(formData[name]) ? formData[name].includes(element) : formData[name] === element) ? " selected" : "")}
               key={element}
-              value={element}
+              defaultValue={element}
               name={name}
               onClick={handleChange}
             >

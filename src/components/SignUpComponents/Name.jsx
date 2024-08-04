@@ -14,14 +14,14 @@ function Name({formData, handleChange}) {
         className="Profile--text-input-box" 
         placeholder="한글명 ex.김지비"
         name="korName"
-        value={formData.korName}
+        defaultValue={formData.korName}
         onChange={handleChange}
       />
       <input 
         className="Profile--text-input-box"
         placeholder="영문명 ex.Jibi Kim"
         name="engName"
-        value={formData.engName}
+        defaultValue={formData.engName}
         onChange={handleChange}
       />
     </div>

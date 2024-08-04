@@ -9,21 +9,21 @@ function Year({formData, handleChange, options, title, placeholder}) {
         return {
           name: "graduationYear",
           className: `Profile--dropdown-menu${formData.graduationYear === "" ? " placeholder" : ""}`,
-          value: formData.graduationYear,
+          defaultValue: formData.graduationYear,
           onChange: handleChange,
         };
       case "입학년도":
         return {
           name: "entranceYear",
           className: `Profile--dropdown-menu${formData.entranceYear === "" ? " placeholder" : ""}`,
-          value: formData.entranceYear,
+          defaultValue: formData.entranceYear,
           onChange: handleChange,
         };
       case "졸업 예정년도":
         return {
           name: "expectedGraduationYear",
           className: `Profile--dropdown-menu${formData.expectedGraduationYear === "" ? " placeholder" : ""}`,
-          value: formData.expectedGraduationYear,
+          defaultValue: formData.expectedGraduationYear,
           onChange: handleChange,
         };
       default:

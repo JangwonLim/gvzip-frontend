@@ -13,7 +13,7 @@ function Gender({formData, handleChange}) {
       <div className="Profile--button-container wide-gap">
         <button 
           className={"Profile--button" + (formData.sex === "여성" ? " selected" : "")}
-          value="여성"
+          defaultValue="여성"
           name="sex"
           onClick={handleChange}
         >
@@ -21,7 +21,7 @@ function Gender({formData, handleChange}) {
         </button>
         <button 
           className={"Profile--button" + (formData.sex === "남성" ? " selected" : "")}
-          value="남성"
+          defaultValue="남성"
           name="sex"
           onClick={handleChange}
         >

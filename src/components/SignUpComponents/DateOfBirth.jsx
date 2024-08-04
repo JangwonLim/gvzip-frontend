@@ -19,7 +19,7 @@ function DateOfBirth({formData, handleBornYearChange, handleBornMonthChange, han
           maxLength="4" 
           pattern="^\d{4}$"
           name="bornYear"
-          value={formData.bornYear}
+          defaultValue={formData.bornYear}
           onChange={handleBornYearChange}
         />
         <input 
@@ -30,7 +30,7 @@ function DateOfBirth({formData, handleBornYearChange, handleBornMonthChange, han
           maxLength="2"
           pattern="^(0[1-9]|1[0-2])$"
           name="bornMonth"
-          value={formData.bornMonth}
+          defaultValue={formData.bornMonth}
           onChange={handleBornMonthChange}
         />
         <input 
@@ -41,7 +41,7 @@ function DateOfBirth({formData, handleBornYearChange, handleBornMonthChange, han
           maxLength="2" 
           pattern="^(0[1-9]|[12][0-9]|3[01])$"
           name="bornDay"
-          value={formData.bornDay}
+          defaultValue={formData.bornDay}
           onChange={handleBornDayChange}
         />
       </div>

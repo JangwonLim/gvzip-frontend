@@ -18,7 +18,7 @@ function Email({formData, handleEmail, isValidEmail}) {
         placeholder="이메일 입력"
         name="email"
         onChange={handleEmail}
-        value={formData["email"]}
+        defaultValue={formData["email"]}
       />
       { 
         !isValidEmail && 

@@ -62,7 +62,7 @@ function EditCareer({handleChange, index, closeEditEducation}) {
 
     return (
       yearOptions.map((item, index) => (
-        <option key={index} value={item}>
+        <option key={index} defaultValue={item}>
           {item}
         </option>
       ))
@@ -83,7 +83,7 @@ function EditCareer({handleChange, index, closeEditEducation}) {
           type="text" 
           placeholder={"일한 곳 입력"}
           name={"companyName"}
-          value={careerData.companyName}
+          defaultValue={careerData.companyName}
           onChange={handleCareerData}
         />
       </div>
@@ -99,7 +99,7 @@ function EditCareer({handleChange, index, closeEditEducation}) {
           type="text" 
           placeholder={"포지션 입력"}
           name={"position"}
-          value={careerData.position}
+          defaultValue={careerData.position}
           onChange={handleCareerData}
         />
       </div>
@@ -113,7 +113,7 @@ function EditCareer({handleChange, index, closeEditEducation}) {
           type="text"
           placeholder={"YYYY"}
           name={"startYear"}
-          value={careerData.startYear}
+          defaultValue={careerData.startYear}
           onChange={handleCareerData}
           length={4}
         />
@@ -128,7 +128,7 @@ function EditCareer({handleChange, index, closeEditEducation}) {
         <select 
           name="duration"
           className={`Profile--dropdown-menu${careerData.duration === "" ? " placeholder" : ""}`}
-          value={careerData.duration}
+          defaultValue={careerData.duration}
           onChange={handleCareerData}
         >
           <option value="" disabled>

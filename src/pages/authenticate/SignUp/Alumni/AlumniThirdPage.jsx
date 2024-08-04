@@ -234,7 +234,7 @@ function AlumniThirdPage({ formData, handleChange, goToNextPage, goToPreviousPag
                 className={"Profile--button field" + ([fields.field1, fields.field2, fields.field3].includes(option) ? " selected" : "")}
                 key={option}
                 onClick={() => onClickFields(option)}
-                value={formData["field1"]}
+                defaultValue={formData["field1"]}
               >
                 <span className="b7-16-sb">
                   {option}

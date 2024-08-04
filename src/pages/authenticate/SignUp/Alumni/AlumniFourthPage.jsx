@@ -71,7 +71,7 @@ function AlumniFourthPage({ formData, handleChange, goToPreviousPage, registerUs
           type="text" 
           placeholder={"나를 소개하는 링크 입력"}
           name={"sns"}
-          value={formData['sns']}
+          defaultValue={formData['sns']}
           onChange={handleChange}
         />
       </div>
