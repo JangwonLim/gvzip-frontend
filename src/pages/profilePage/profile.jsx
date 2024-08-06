@@ -32,8 +32,10 @@ function Profile() {
     }
   }, [dispatch])
 
-  const closeModal = () => {
-    setModal(false);
+  const closeModal = (e) => {
+    if (e.target.className === "Archive--modal-backdrop") {
+      setModal(false);
+    }
   }
 
   const openPopUp = (e) => {
@@ -81,7 +83,7 @@ function Profile() {
       </span>
 
       { modal && (
-        <div className="Archive--modal-backdrop" onClick={closeModal}>
+        <div className="Archive--modal-backdrop" onClick={(e) => closeModal(e)}>
           <Modal info={data} setModal={setModal}/>
         </div>
       )}

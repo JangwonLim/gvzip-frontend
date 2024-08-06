@@ -289,6 +289,8 @@ function Location({formData, handleChange}) {
     setStateList(result);
     setIsLoadingState(false); // End loading state
     handleChange({ target: { name: 'country', value: selectedCountry.name } });
+    handleChange({ target: { name: 'state', value: '' } });
+    handleChange({ target: { name: 'city', value: '' } });
   };
 
   // Update the state
@@ -305,6 +307,7 @@ function Location({formData, handleChange}) {
     setCityList(result);
     setIsLoadingCity(false); // End loading city
     handleChange({ target: { name: 'state', value: selectedState.name } });
+    handleChange({ target: { name: 'city', value: '' } });
   };
 
   // Update the city
