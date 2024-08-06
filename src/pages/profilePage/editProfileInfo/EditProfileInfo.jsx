@@ -11,6 +11,9 @@ import { useSelector } from "react-redux";
 import { updateProfilePicture, updateUserInfo } from "../../../service/putService";
 import validator from "validator";
 import { useNavigate } from "react-router-dom";
+import EditEducation from "../../authenticate/SignUp/EditEducation";
+import Education from "../../authenticate/SignUp/Education";
+import Career from "../../authenticate/SignUp/Career";
 
 function EditProfileInfo() {
   const [popUp, setPopUp] = useState(false);
@@ -123,14 +126,7 @@ function EditProfileInfo() {
         ...prevState,
         [name]: value
       }));
-    } 
-    // else if (value === "") {
-    //   setIsValidEmail(true);
-    //   setFormData((prevState) => ({
-    //     ...prevState,
-    //     [name]: ""
-    //   }));
-    // } 
+    }
     else {
       setIsValidEmail(false);
     }
@@ -150,7 +146,7 @@ function EditProfileInfo() {
         </div>
 
         {
-          (userInfo.alumniType === 0 || userInfo.alumniType === 1) ? (
+          ((userInfo.alumniType === 0 || userInfo.alumniType === 1) && (!education && !career)) ? (
             <AlumAndParentInfo
               toggleEducation={toggleEducation}
               toggleCareer={toggleCareer}
@@ -166,6 +162,22 @@ function EditProfileInfo() {
               userInfo={userInfo}
               handleChange={handleChange}
               updateProfile={updateProfile}
+            />
+          )
+        }
+
+        {
+          education && (
+            <Education
+              handleChange={handleChange}
+            />
+          )
+        }
+
+        {
+          career && (
+            <Career
+              handleChange={handleChange}
             />
           )
         }

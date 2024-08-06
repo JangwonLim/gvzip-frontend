@@ -12,8 +12,6 @@ function Education({handleChange}) {
   const statusList = ["재학", "휴학", "졸업"];
   const degreeList = ["학사", "석사", "박사"];
   
-  // const educations = useSelector((state) => state.educations.educations);
-
   const [yearData, setYearData] = useState({
     schoolName: '', 
     degree: '', 
