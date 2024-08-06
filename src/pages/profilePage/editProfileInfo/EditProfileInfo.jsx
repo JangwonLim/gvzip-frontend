@@ -146,7 +146,7 @@ function EditProfileInfo() {
         </div>
 
         {
-          ((userInfo.alumniType === 0 || userInfo.alumniType === 1) && (!education && !career)) ? (
+          (userInfo.alumniType === 0 && (!education && !career)) && (
             <AlumAndParentInfo
               toggleEducation={toggleEducation}
               toggleCareer={toggleCareer}
@@ -157,7 +157,11 @@ function EditProfileInfo() {
               previewImage={previewImage}
               handleEmail={handleEmail}
             />
-          ) : (
+          )
+        }
+
+        {
+          (userInfo.alumniType === 1 && (!education && !career)) && (
             <StudentAndStaffInfo
               userInfo={userInfo}
               handleChange={handleChange}
