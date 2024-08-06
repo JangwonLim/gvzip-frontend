@@ -9,6 +9,7 @@ import PopUp from "../../components/PopUp/PopUp";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { storeUserInfo } from "../../redux/store";
+import Toast from "../../components/PopUp/Toast";
 
 
 function Profile() {
@@ -16,6 +17,7 @@ function Profile() {
   const [modal, setModal] = useState(false);
   const [popUp, setPopUp] = useState(false);
   const [purpose, setPurpose] = useState('');
+  const [toast, setToast] = useState(false);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -62,12 +64,16 @@ function Profile() {
       <div style={{ width: "auto", height: "80px"}}/>
 
       <div className="ProfilePage--button-container">
-        <button 
-          onClick={changeObjet}
-          className="ProfilePage--button"
-        >
-          <span className="h2-18-sb">오브제 변경</span>
-        </button>
+        {
+          !data.profileImageURL && (
+            <button 
+              onClick={changeObjet}
+              className="ProfilePage--button"
+            >
+              <span className="h2-18-sb">오브제 변경</span>
+            </button>
+          )
+        }
         <button 
           onClick={() => navigate('/profile/editInfo')}
           className="ProfilePage--button black">
@@ -84,7 +90,7 @@ function Profile() {
 
       { modal && (
         <div className="Archive--modal-backdrop" onClick={(e) => closeModal(e)}>
-          <Modal info={data} setModal={setModal}/>
+          <Modal info={data} setModal={setModal} setToast={setToast}/>
         </div>
       )}
 
@@ -93,6 +99,12 @@ function Profile() {
           <div className="Archive--modal-backdrop" onClick={closePopUp}>
             <PopUp purpose={purpose} closePopUp={closePopUp}/>
           </div>
+        )
+      }
+
+      {
+        toast && (
+          <Toast purpose={"소개"}/>
         )
       }
     </div>

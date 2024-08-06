@@ -306,8 +306,13 @@ function Location({formData, handleChange}) {
     const result = await GetCity(countryid, selectedState.id);
     setCityList(result);
     setIsLoadingCity(false); // End loading city
-    handleChange({ target: { name: 'state', value: selectedState.name } });
-    handleChange({ target: { name: 'city', value: '' } });
+    if (selectedState.name === "Seoul") {
+      handleChange({ target: { name: 'state', value: selectedState.name } });
+      handleChange({ target: { name: 'city', value: selectedState.name } });
+    } else {
+      handleChange({ target: { name: 'state', value: selectedState.name } });
+      handleChange({ target: { name: 'city', value: '' } });
+    }
   };
 
   // Update the city
