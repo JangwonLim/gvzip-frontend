@@ -5,6 +5,7 @@ import { getMyInfo } from "../../service/getService";
 import './../../styles/defaultDesign.css';
 import Modal from "../../components/ProfileDetail/Modal";
 import './../archivePage/Archive.css';
+import './editProfileInfo/editProfileInfo.css';
 import PopUp from "../../components/PopUp/PopUp";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
@@ -65,7 +66,7 @@ function Profile() {
 
       <div className="ProfilePage--button-container">
         {
-          !data.profileImageURL && (
+          ((!data.profileImageURL && (data.alumniType === 0 || data.alumniType === 1))) && (
             <button 
               onClick={changeObjet}
               className="ProfilePage--button"
@@ -128,31 +129,53 @@ function MyInfoCard({data, setModal}) {
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
   
   return(
-    <div className="MyInfoCard--container" onClick={openModal}>
-      <div className="MyInfoCard--header-container">
-        <div className="MyInfoCard--header-text">
-          <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
-        </div>
+    <>
+      {
+        (data.alumniType === 0 || data.alumniType === 1) ? (
+          <div className="MyInfoCard--container" onClick={openModal}>
+            <div className="MyInfoCard--header-container">
+              <div className="MyInfoCard--header-text">
+                <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
+              </div>
+      
+              <div className="MyInfoCard--header-img-container">
+                <img 
+                  className="MyInfoCard--header-img"
+                  src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
+                  alt="card-img" 
+                />
+              </div>
+            </div>
+      
+            <div className="MyInfoCard--content-container">
+              <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
+              <span 
+                className="pc-body fs-16 MyInfoCard--content-intro" 
+                style={{ color: "#66707A"}}
+              >
+                {data.introduction}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="EditProfileInfo--basic-info">
+            <div className="EditProfileInfo--basic-info-category b6-16-m">
+              <span>이름</span>
+              <span>생년월일</span>
+              <span>성별</span>
+              <span>캠퍼스</span>
+            </div>
+            <div className="EditProfileInfo--basic-info-content b7-16-sb">
+              <span>{data.korName} | {data.engName}</span>
+              <span>{data.bornYear}년 {data.bornMonth}월 {data.bornDay}일</span>
+              <span>{data.sex}</span>
+              <span>{data.campus}</span>
+            </div>
+          </div>
+        )
+      }
+    </>
 
-        <div className="MyInfoCard--header-img-container">
-          <img 
-            className="MyInfoCard--header-img"
-            src={data.profileImageURL || require("./../../assets/profile-pic-11.png")} 
-            alt="card-img" 
-          />
-        </div>
-      </div>
-
-      <div className="MyInfoCard--content-container">
-        <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
-        <span 
-          className="pc-body fs-16 MyInfoCard--content-intro" 
-          style={{ color: "#66707A"}}
-        >
-          {data.introduction}
-        </span>
-      </div>
-    </div>
   )
 }
 

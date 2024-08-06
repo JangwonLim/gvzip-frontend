@@ -52,9 +52,9 @@
   }
 
   .SearchBar--input::placeholder {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 16px;
+    line-height: 20px;
     color: var(--grey3);
   }
 

@@ -191,7 +191,7 @@
     width: 201px; height: auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 8px;
   }
   
   .Archive--cards-container {

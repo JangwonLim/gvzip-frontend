@@ -47,7 +47,11 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
           <span>{userInfo.bornYear}년 {userInfo.bornMonth}월 {userInfo.bornDay}일</span>
           <span>{userInfo.sex}</span>
           <span>{userInfo.campus}</span>
-          <span>{userInfo.graduationYear}</span>
+          {
+            userInfo.graduationYear && (
+              <span>{userInfo.graduationYear}</span>
+            )
+          }
         </div>
       </div>
 

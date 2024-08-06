@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import './SearchBar.css';
 
-function SearchBar({openSearch, formData, handleChange, onEnterPress}) {
+function SearchBar({formData, handleChange, onEnterPress}) {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function SearchBar({openSearch, formData, handleChange, onEnterPress}) {
   };
 
   return (
-    <div className="SearchBar-container" onClick={openSearch}>
+    <div className="SearchBar-container">
       <button type="submit" className="SearchBar--icon"/>
       <input 
         className="SearchBar--input"  

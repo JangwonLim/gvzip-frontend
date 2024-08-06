@@ -161,24 +161,13 @@ function Archive() {
     })
   };
 
-  const clearAllFilters = () => {
-    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
-    setInfo([]); // 기존 데이터를 초기화
-    setHasMore(true); // 더 많은 데이터가 있음을 표시
-    setFilterData(initialFilterData);
-    setFilterOptions([]);
-  };
 
-  const toggleSearch = () => {
-    setSearch(!search);
-  }
-
-  const handleEnterPress = () => {
-    setSearch(false);
-    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
-    setInfo([]); // 기존 데이터를 초기화
-    setHasMore(true); // 더 많은 데이터가 있음을 표시
-  };
+  // const handleEnterPress = () => {
+  //   setSearch(false);
+  //   setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
+  //   setInfo([]); // 기존 데이터를 초기화
+  //   setHasMore(true); // 더 많은 데이터가 있음을 표시
+  // };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -213,7 +202,7 @@ function Archive() {
             </button>
 
             <SearchBar 
-              openSearch={toggleSearch}
+              // openSearch={toggleSearch}
               formData={filterData} 
               handleChange={handleChange}
             />
@@ -240,16 +229,20 @@ function Archive() {
               </div>
             </div>
 
-            <span 
-              className="b0-10-m"
-              style={{ color: "#66707A"}}
-            >
-              검색결과
-              {
-                loading ? 0 : totalNumber
-              }
-              명
-            </span>
+            {
+              info.length > 0 ?? (
+                <span 
+                  className="b0-10-m"
+                  style={{ color: "#66707A"}}
+                >
+                  검색결과
+                  {
+                    isLoading ? 0 : totalNumber
+                  }
+                  명
+                </span>
+              )
+            }
           </div>
 
           {/* Cards */}
@@ -308,7 +301,7 @@ function Archive() {
         }
       </div>
 
-      {
+      {/* {
         search && (
           <Search 
             closeSearch={toggleSearch}
@@ -317,7 +310,7 @@ function Archive() {
             onEnterPress={handleEnterPress}
           />
         )
-      }
+      } */}
 
       { 
         !isAuthenticated && (
