@@ -152,15 +152,27 @@
   }
   
   .Archive--filter-button {
-    width: 80px; height: auto;
+    width: 80px; height: 45px;
     min-width: 80px;
-    border: 1.5px solid var(--grey1);
-    border-radius: 20px;
+    border: 1px solid var(--grey1);
+    border-radius: 30px;
     background-color: var(--bg-grey);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 11px;
+
+    &.active {
+      background-color: black;
+      border: 1px solid black;
+      color: white;
+    }
+  }
+
+  .Archive--filter-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
   }
   
   .Archive--mid-section-container {

@@ -15,6 +15,8 @@ import NoResult from "./NoResult";
 import { useAuth } from "../../utils/AuthContext";
 import PopUp from "../../components/PopUp/PopUp";
 import Toast from "../../components/PopUp/Toast";
+import activeFilterButton from '../../assets/archive-filter-button-active.png';
+import filterButton from '../../assets/archive-filter-button.png';
 
 
 function Archive() {
@@ -203,12 +205,9 @@ function Archive() {
             >
               <img
                 alt="filter-button"
-                src={require('../../assets/archive-filter-button.png')}
+                src={filterOptions.length > 0 ? activeFilterButton : filterButton}
               />
-              <span 
-                className="b1-12-m" 
-                style={{ color: "#2f2f2f"}}
-              >
+              <span className="Archive--filter-text">
                 필터
               </span>
             </button>

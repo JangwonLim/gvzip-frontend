@@ -37,21 +37,34 @@ function SignUpSuccess() {
   return (    
       <div className="SignUpSuccess--wrapper">
         <div className="SignUpSuccess--container">
-          <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
-            지비집의 식구가 되신 것을 환영합니다<br />
-            아카이브에서 프로필을 확인해보세요!
-          </span>
+          {
+            (data.alumniType === 0 || data.alumniType === 1) && (
+              <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
+                지비집의 식구가 되신 것을 환영합니다<br />
+                아카이브에서 프로필을 확인해보세요!
+              </span>
+            )
+          }
 
           <div className="SignUpSuccess--background">
-            <div className="fade-in">
-              <MyInfoCard data={data}/>
-            </div>
+            {
+              (data.alumniType === 0 || data.alumniType === 1) ? (
+                <div className="fade-in">
+                  <MyInfoCard data={data}/>
+                </div>
+              ) : (
+                <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center", marginTop: "130px"}}>
+                  지비집의 식구가 되신 것을 환영합니다<br />
+                  아카이브에서 프로필을 확인해보세요!
+                </span>
+              )
+            }
           </div>
         </div>
         
         <div className="SignUpSuccess--button-container">
           {
-            !data.profileImageURL && (
+            ((!data.profileImageURL && (data.alumniType === 0 || data.alumniType === 1))) && (
               <button 
                 onClick={changeObjet}
                 className="SignUpSuccess--button white"
