@@ -24,7 +24,7 @@ function EditProfilePicture() {
 
       const result = await updateProfilePicture(formData, selectedObjet);
 
-      if (result) {
+      if (result.isSuccess) {
         console.log('successfully update the picture');
         navigate('/profile');
       }

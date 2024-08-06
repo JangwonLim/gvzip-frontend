@@ -10,12 +10,15 @@ import StudentAndStaffInfo from "./StudentAndStaffInfo";
 import { useSelector } from "react-redux";
 import { updateProfilePicture, updateUserInfo } from "../../../service/putService";
 import validator from "validator";
+import { useNavigate } from "react-router-dom";
 
 function EditProfileInfo() {
   const [popUp, setPopUp] = useState(false);
   const [education, setEducation] = useState(false);
   const [career, setCareer] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
+
+  const navigate = useNavigate();
 
   const userInfo = useSelector(state => state.user.userInfo);
 
@@ -93,9 +96,19 @@ function EditProfileInfo() {
       if (selectedPicture === userInfo.profileImageURL) {
         const result = await updateUserInfo(rest);
         console.log("no profile image changed: ", result);
+        console.log(result.isSuccess)
+        if (result.isSuccess) {
+          console.log('successfully update the picture');
+          navigate('/profile');
+        }
       } else {
         const result = await updateProfilePicture(rest, selectedPicture);
         console.log("profile image changed: ", result);
+        console.log(result.isSuccess)
+        if (result.isSuccess) {
+          console.log('successfully update the picture');
+          navigate('/profile');
+        }
       }
     } catch (error) {
       console.log(error);

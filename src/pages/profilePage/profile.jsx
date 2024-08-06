@@ -134,7 +134,7 @@ function MyInfoCard({data, setModal}) {
       <div className="MyInfoCard--content-container">
         <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
         <span 
-          className="pc-body fs-16" 
+          className="pc-body fs-16 MyInfoCard--content-intro" 
           style={{ color: "#66707A"}}
         >
           {data.introduction}
