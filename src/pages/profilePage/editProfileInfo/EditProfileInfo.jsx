@@ -89,20 +89,14 @@ function EditProfileInfo() {
   const updateProfile = async () => {
     try {
       console.log("New userInfo: ", newUserInfo);
-      const result = await updateUserInfo(newUserInfo);
-
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const updateProfileAndPicture = async () => {
-    try {
-      console.log("New userInfo: ", newUserInfo);
       const { profileImageURL, ...rest } = newUserInfo;
-      const result = await updateProfilePicture(rest, selectedPicture);
-      console.log(result);
+      if (selectedPicture === userInfo.profileImageURL) {
+        const result = await updateUserInfo(rest);
+        console.log("no profile image changed: ", result);
+      } else {
+        const result = await updateProfilePicture(rest, selectedPicture);
+        console.log("profile image changed: ", result);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -150,7 +144,7 @@ function EditProfileInfo() {
               userInfo={userInfo}
               handleImageChange={handleImageChange}
               handleChange={handleChange}
-              updateProfileAndPicture={updateProfileAndPicture}
+              updateProfile={updateProfile}
               previewImage={previewImage}
               handleEmail={handleEmail}
             />

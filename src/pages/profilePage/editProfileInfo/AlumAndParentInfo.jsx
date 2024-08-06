@@ -9,7 +9,7 @@ import './../../authenticate/SignUp/ProfileInfo.css';
 import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/cjs";
 import { useGoBack } from "../../../utils/usefulFunctions";
 
-function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfileAndPicture, previewImage, handleEmail}) {
+function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail}) {
 
   return (
     <div className="EditProfileInfo--container">
@@ -135,7 +135,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
             type="text" 
             placeholder={"나를 소개하는 링크 입력"}
             name={"sns"}
-            value={userInfo['sns']}
+            defaultValue={userInfo['sns']}
             onChange={handleChange}
           />
         </div>
@@ -148,7 +148,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
             <span className="h2-18-sb">취소</span>
           </button>
           <button 
-            onClick={updateProfileAndPicture}
+            onClick={updateProfile}
             className="ProfilePage--button black"
           >
             <span className="h2-18-sb">저장</span>
