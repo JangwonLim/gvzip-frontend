@@ -4,43 +4,30 @@ import './SignUpSuccess.css';
 import './../../../../styles/defaultDesign.css';
 import { getMyInfo } from "../../../../service/getService";
 import './../../../profilePage/profile.css';
-import EditProfilePicture from "../../../profilePage/editProfilePicture";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { storeUserInfo } from "../../../../redux/store";
 
 function SignUpSuccess() {
   const [data, setData] = useState({});
-  const [modal, setModal] = useState(false);
-  const [popUp, setPopUp] = useState(false);
-  const [purpose, setPurpose] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const fetchMyInfo = useCallback(async () => {
     try {
       const result = await getMyInfo();
       if (result.message === "Success") {
         setData(result.data);
+        dispatch(storeUserInfo(result.data));
       }
     } catch (error) {
       console.log(error);
     }
-  }, [])
-
-  const closeModal = () => {
-    setModal(false);
-  }
-
-  const openPopUp = (e) => {
-    setPurpose(e.target.textContent);
-    setPopUp(true);
-  }
-
-  const closePopUp = () => {
-    setPopUp(false);
-  }
+  }, [dispatch]);
 
   const changeObjet = () => {
-    navigate("/signup/edit-objet");
+    navigate("/profile/editObjet");
   }
   
   useEffect(() => {
@@ -49,41 +36,43 @@ function SignUpSuccess() {
 
   return (    
       <div className="SignUpSuccess--wrapper">
-        <div className="SignUpSuccess--background">
-          <div className="SignUpSuccess--container">
-            <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
-              지비집의 식구가 되신 것을 환영합니다<br />
-              아카이브에서 프로필을 확인해보세요!
-            </span>
+        <div className="SignUpSuccess--container">
+          <span className="h2-18-sb" style={{ color: "#2f2f2f", textAlign: "center"}}>
+            지비집의 식구가 되신 것을 환영합니다<br />
+            아카이브에서 프로필을 확인해보세요!
+          </span>
 
+          <div className="SignUpSuccess--background">
             <div className="fade-in">
-              <MyInfoCard data={data} setModal={setModal}/>
+              <MyInfoCard data={data}/>
             </div>
-
           </div>
         </div>
-
-        <div className="SignUpSuccess--button-container" style={{ padding: "12px 0" }}>
-            <button className="SignUpSuccess--button-objet">
-              <img src={require('./../../../../assets/objet-background-1.png')} alt="select-objet" />
-            </button>
-            <button 
-              onClick={() => navigate('/archive')}
-              className="SignUpSuccess--button"
-            >
-              <span className="h2-18-sb">아카이브로 이동</span>
-            </button>
-          </div>
+        
+        <div className="SignUpSuccess--button-container">
+          {
+            !data.profileImageURL && (
+              <button 
+                onClick={changeObjet}
+                className="SignUpSuccess--button white"
+              >
+                <span className="h2-18-sb">오브제 변경</span>
+              </button>
+            )
+          }
+          
+          <button 
+            onClick={() => navigate('/archive')}
+            className="SignUpSuccess--button"
+          >
+            <span className="h2-18-sb">아카이브로 이동</span>
+          </button>
+        </div>
       </div>
   )
 }
 
-function MyInfoCard({data, setModal}) {
-
-  const openModal = () => {
-    setModal(true);
-  }
-
+function MyInfoCard({data}) {
   const membership = () => {
     if (data.alumniType === 0) {
       return "졸업생";
@@ -95,7 +84,7 @@ function MyInfoCard({data, setModal}) {
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
   
   return(
-    <div className="SuccessCard--container" onClick={openModal}>
+    <div className="SuccessCard--container">
       <div className="SuccessCard--header-container">
         <div className="SuccessCard--header-text">
           <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
@@ -111,9 +100,11 @@ function MyInfoCard({data, setModal}) {
       </div>
 
       <div className="SuccessCard--content-container">
-        <span className="pc-head fs-20">{data.korName} | {data.engName}</span>
+        <span className="pc-head fs-20">
+          {data.korName} | {data.engName}
+        </span>
         <span 
-          className="pc-body fs-16" 
+          className="pc-body fs-16 SuccessCard--content-intro" 
           style={{ color: "#66707A"}}
         >
           {data.introduction}
