@@ -184,7 +184,6 @@
   
   .Archive--filter-options-wrapper {
     display: flex;
-    justify-content: flex-end;
     gap: 11px;
   }
   
@@ -193,17 +192,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-  }
-  
-  .Archive--filter-options-delete-button {
-    background-color: transparent;
-    border: none;
-    width: 53px; height: 8px;
-    font-size: 8px;
-    line-height: 100%;
-    font-weight: 600;
-    padding: 0;
-    color: #6b6b6b;
   }
   
   .Archive--cards-container {

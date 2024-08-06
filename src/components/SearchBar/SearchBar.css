@@ -22,7 +22,7 @@
 .SearchBar--icon {
   width: 24px;
   height: 24px;
-  background-image: url("./../../img/search-icon.png");
+  background-image: url("./../../assets/search-icon.png");
   background-position: center;
   background-size: cover;
   border: none;
@@ -44,9 +44,9 @@
 
   .SearchBar--input {
     width: 100%; height: 28px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 16px;
+    line-height: 20px;
     margin-left: 8px;
     margin-right: 10px;
   }

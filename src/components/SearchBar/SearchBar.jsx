@@ -20,7 +20,7 @@ function SearchBar({openSearch, formData, handleChange, onEnterPress}) {
     <div className="SearchBar-container" onClick={openSearch}>
       <button type="submit" className="SearchBar--icon"/>
       <input 
-        className="SearchBar--input pc-body fs-16"  
+        className="SearchBar--input"  
         placeholder="프로필 검색"
         name="searchingWord"
         type="search"

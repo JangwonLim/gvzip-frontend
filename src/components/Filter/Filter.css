@@ -1,28 +1,29 @@
+@import './../../styles/colors.css';
 
 @media (max-width: 768px) {
   .FilterOption--container {
     width: auto; height: auto;
-    border: 1px solid #d9d9d9;
-    border-radius: 11.12px;
+    border: 0.5px solid var(--grey1);
+    border-radius: 30px;
     background-color: transparent;
     display: flex;
     align-items: center;
     /* justify-content: center; */
-    padding: 4px 11px;
+    padding: 6px 10px;
   }
-  
+/*   
   .FilterOption--img {
     width: auto; height: auto;
     padding: 4px;
-  }
+  } */
   
   .FilterOption--text {
-    font-size: 8px;
-    font-weight: 600;
-    line-height: 100%;
-    color: #6B6B6B;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--grey3);
     display: flex;
-    gap: 3px;
+    gap: 4px;
   }
 
   .MobileFilterContent--button-container {

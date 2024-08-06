@@ -200,7 +200,7 @@ function Archive() {
           {/* Filter button and Search Bar */}
           <div className="Archive--header-container">
             <button 
-              className="Archive--filter-button"
+              className={"Archive--filter-button" + (filterOptions.length > 0 ? " active" : '')}
               onClick={openBottomSheet}
             >
               <img
@@ -238,17 +238,6 @@ function Archive() {
                   )
                 }
               </div>
-              {
-                (filterOptions.length > 0) && (
-                  <button 
-                    onClick={clearAllFilters}
-                    className="Archive--filter-options-delete-button"
-                  >
-                    모든 필터 지우기
-                  </button>
-                )
-              }
-              
             </div>
 
             <span 

@@ -29,7 +29,7 @@ function FilterOption({title, setFilterOptions, setFilterData, setPage, setInfo,
     <button className="FilterOption--container" onClick={() => deleteOption(title)}>
       <div className="FilterOption--text">
         <span>{title}</span>
-        <span>X</span>
+        <img src={require('./../../assets/filteroptions-delete.png')} alt="delete" />
       </div>
     </button>
   )
