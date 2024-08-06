@@ -100,7 +100,8 @@ function EditProfileInfo() {
   const updateProfileAndPicture = async () => {
     try {
       console.log("New userInfo: ", newUserInfo);
-      const result = await updateProfilePicture(newUserInfo, selectedPicture);
+      const { profileImageURL, ...rest } = newUserInfo;
+      const result = await updateProfilePicture(rest, selectedPicture);
       console.log(result);
     } catch (error) {
       console.log(error);
