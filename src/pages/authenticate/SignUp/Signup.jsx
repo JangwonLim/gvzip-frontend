@@ -50,24 +50,22 @@ function SignUp() {
         <span>멤버십 선택</span>
       </div>
 
-      <div className="SignUp--content-container">
-        <div className="SignUp--content-wrapper">
-          <span className="SignUp--triangle-text">지비집 식구가 되기 위한<br/>멤버십 인증을 진행해 주세요</span>
+      <span className="SignUp--title">지비집 식구가 되기 위한<br/>멤버십 인증을 진행해 주세요</span>
+      <div className="SignUp--content-background">
 
-          <div className="SignUp--button-container">
-            {
-              memberType.map((type) => {
-                return(
-                  <button 
-                    className="SignUp--button"
-                    onClick={goToInfo}
-                  >
-                    <span className="h2-18-sb">{type}</span>
-                  </button>
-                )
-              })
-            }
-          </div>
+        <div className="SignUp--button-container">
+          {
+            memberType.map((type) => {
+              return(
+                <button 
+                  className="SignUp--button"
+                  onClick={goToInfo}
+                >
+                  <span className="h2-18-sb">{type}</span>
+                </button>
+              )
+            })
+          }
         </div>
       </div>
     </div>
