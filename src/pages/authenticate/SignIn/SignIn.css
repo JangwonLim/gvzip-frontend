@@ -6,30 +6,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    /* background-image: url('../../../assets/login-logo.gif');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain; */
-  }
-
-  .SignIn--close-button-container {
-    width: 100%;
-    height: auto;
-  }
-
-  .SignIn--close-button {
-    width: 36px; height: 36px;
-    border: none;
-    background-color: transparent;
-    background-image: url('../../../assets/login-exit.png');
-    margin-top: 59px;
-    margin-left: 24px;
   }
 
   .SignIn--logo-gif {
     width: 100%; height: auto;
-    margin-bottom: 50px;
+    margin-top: 224px;
+    margin-bottom: 120px;
   }
 
   .SignIn--button-container {
@@ -55,11 +37,5 @@
       background-color: black;
       color: white;
     }
-  }
-
-  .SignIn--signup-link {
-    font-weight: bold;
-    text-decoration: underline;
-    color: var(--black-text);
   }
 }

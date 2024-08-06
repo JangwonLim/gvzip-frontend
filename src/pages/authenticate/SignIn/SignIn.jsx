@@ -1,21 +1,10 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import './SignIn.css';
-import { useNavigate } from "react-router-dom";
 import '../../../styles/defaultDesign.css';
 
 function SignIn() {
-  const navigate = useNavigate();
-  
   return(
     <div className="SignIn--container">
-      <div className="SignIn--close-button-container">
-        <button
-          className="SignIn--close-button"
-          onClick={() => navigate('/')}
-        />
-      </div>
-
       <img 
         className="SignIn--logo-gif"
         src={require('../../../assets/login-logo.gif')} 
