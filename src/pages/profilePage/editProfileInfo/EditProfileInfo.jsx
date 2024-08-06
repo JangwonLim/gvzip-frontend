@@ -8,14 +8,19 @@ import PopUp from "../../../components/PopUp/PopUp";
 import { useGoBack } from "../../../utils/usefulFunctions";
 import StudentAndStaffInfo from "./StudentAndStaffInfo";
 import { useSelector } from "react-redux";
+import { updateProfilePicture, updateUserInfo } from "../../../service/putService";
+import validator from "validator";
 
 function EditProfileInfo() {
   const [popUp, setPopUp] = useState(false);
   const [education, setEducation] = useState(false);
   const [career, setCareer] = useState(false);
+  const [isValidEmail, setIsValidEmail] = useState(false);
 
   const userInfo = useSelector(state => state.user.userInfo);
-  console.log(userInfo);
+
+  const [selectedPicture, setSelectedPicture] = useState(userInfo.profileImageURL);
+  const [previewImage, setPreviewImage] = useState(userInfo.profileImageURL);
 
   const togglePopUp = () => {
     setPopUp(!popUp);
@@ -27,6 +32,100 @@ function EditProfileInfo() {
 
   const toggleCareer = () => {
     setCareer(!career);
+  }
+
+  const [newUserInfo, setNewUserInfo] = useState(userInfo);
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedPicture(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        console.log(reader);
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleChange = (e, actionType = 'update', index = null, updatedData = null, type = 'educations') => {
+    const updateState = (prevState, type) => {
+      const dataToUpdate = prevState[type];
+      let updatedDataList;
+  
+      if (actionType === 'delete' && index !== null) {
+        updatedDataList = dataToUpdate.filter((_, i) => i !== parseInt(index));
+      } else if (actionType === 'update' && index !== null && updatedData !== null) {
+        updatedDataList = dataToUpdate.map((item, i) => i === parseInt(index) ? updatedData : item);
+      }
+  
+      return { ...prevState, [type]: updatedDataList };
+    };
+  
+    if (actionType === 'delete' || (actionType === 'update' && index !== null && updatedData !== null)) {
+      setNewUserInfo((prevState) => updateState(prevState, type));
+    } else {
+      const { name, value } = e.target;
+  
+      if (
+        name === 'graduationYear' ||
+        name === 'expectedGraduationYear' ||
+        name === 'entranceYear'
+      ) {
+        setNewUserInfo((prevState) => ({
+          ...prevState,
+          [name]: parseInt(value),
+        }));
+      } else {
+        setNewUserInfo((prevState) => ({
+          ...prevState,
+          [name]: value,
+        }));
+      }
+    }
+  };
+
+  const updateProfile = async () => {
+    try {
+      console.log("New userInfo: ", newUserInfo);
+      const result = await updateUserInfo(newUserInfo);
+
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const updateProfileAndPicture = async () => {
+    try {
+      console.log("New userInfo: ", newUserInfo);
+      const result = await updateProfilePicture(newUserInfo, selectedPicture);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleEmail = (event) => {
+    const { name, value } = event.target;
+    if (validator.isEmail(value)) {
+      setIsValidEmail(true);
+      setNewUserInfo((prevState) => ({
+        ...prevState,
+        [name]: value
+      }));
+    } 
+    // else if (value === "") {
+    //   setIsValidEmail(true);
+    //   setFormData((prevState) => ({
+    //     ...prevState,
+    //     [name]: ""
+    //   }));
+    // } 
+    else {
+      setIsValidEmail(false);
+    }
   }
 
   return(
@@ -48,10 +147,17 @@ function EditProfileInfo() {
               toggleEducation={toggleEducation}
               toggleCareer={toggleCareer}
               userInfo={userInfo}
+              handleImageChange={handleImageChange}
+              handleChange={handleChange}
+              updateProfileAndPicture={updateProfileAndPicture}
+              previewImage={previewImage}
+              handleEmail={handleEmail}
             />
           ) : (
             <StudentAndStaffInfo
               userInfo={userInfo}
+              handleChange={handleChange}
+              updateProfile={updateProfile}
             />
           )
         }

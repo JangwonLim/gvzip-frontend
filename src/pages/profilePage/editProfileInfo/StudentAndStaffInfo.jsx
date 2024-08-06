@@ -9,38 +9,12 @@ import { useGoBack } from "../../../utils/usefulFunctions";
 import Introduction from "../../../components/SignUpComponents/Introduction";
 
 function StudentAndStaffInfo({userInfo}) {
-
-  // const formData = {
-  //   korName: '',
-  //   engName: '',
-  //   bornYear: '',
-  //   bornMonth: '',
-  //   bornDay: '',
-  //   sex: '',
-  //   email: '',
-  //   campus: '',
-  //   graduationYear: '',
-  //   expectedGraduationYear: '',
-  //   generation: '',
-  //   country: '',
-  //   state: '',
-  //   city: '',
-  //   field1: '',
-  //   field2: '',
-  //   field3: '',
-  //   introduction: '',
-  //   alumniType: null,
-  //   sns: '',
-  //   entranceYear: '',
-  //   educations: [],
-  //   careers: []
-  // };
-
-  const campusList = ['음성', '문경', '미국'];
-
+  
   const handleChange = () => {
     //TODO
   }
+
+  const campusList = ['음성', '문경', '미국'];
 
   // List of graduation year
   const generateYearOptions = () => {

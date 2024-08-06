@@ -9,33 +9,7 @@ import './../../authenticate/SignUp/ProfileInfo.css';
 import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/cjs";
 import { useGoBack } from "../../../utils/usefulFunctions";
 
-function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
-
-  // const formData = {
-  //   korName: '',
-  //   engName: '',
-  //   bornYear: '',
-  //   bornMonth: '',
-  //   bornDay: '',
-  //   sex: '',
-  //   email: '',
-  //   campus: '',
-  //   graduationYear: '',
-  //   expectedGraduationYear: '',
-  //   generation: '',
-  //   country: '',
-  //   state: '',
-  //   city: '',
-  //   field1: '',
-  //   field2: '',
-  //   field3: '',
-  //   introduction: '',
-  //   alumniType: null,
-  //   sns: '',
-  //   entranceYear: '',
-  //   educations: [],
-  //   careers: []
-  // };
+function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfileAndPicture, previewImage, handleEmail}) {
 
   return (
     <div className="EditProfileInfo--container">
@@ -43,12 +17,14 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
         <span className="b7-16-sb">사진</span>
 
         <PictureUploader
-          picFile={userInfo.profileImageURL}
+          picFile={previewImage}
+          onChangePicture={handleImageChange}
         />
       </div>
 
       <Introduction
         formData={userInfo}
+        handleChange={handleChange}
         title={"한줄 소개"}
         placeholder={"한줄 소개를 입력해 주세요."}
         name={"introduction"}
@@ -78,6 +54,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
       <div className="EditProfileInfo--additional-info">
         <Email
           formData={userInfo}
+          handleEmail={handleEmail}
         />
 
         <div className="Profile--content-section wide-gap">
@@ -146,9 +123,9 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
           </button>
         </div>
 
-        <Location formData={userInfo}/>
+        <Location formData={userInfo} handleChange={handleChange}/>
 
-        <Fields formData={userInfo}/>
+        <Fields formData={userInfo} handleChange={handleChange}/>
 
         <div className="Profile--content-section wide-gap">
           <span className="b7-16-sb" style={{ color: "#66707A"}}>링크</span>
@@ -159,7 +136,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
             placeholder={"나를 소개하는 링크 입력"}
             name={"sns"}
             value={userInfo['sns']}
-            // onChange={handleChange}
+            onChange={handleChange}
           />
         </div>
 
@@ -171,8 +148,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo}) {
             <span className="h2-18-sb">취소</span>
           </button>
           <button 
-            // onClick={changeProfilePicture}
-            disabled
+            onClick={updateProfileAndPicture}
             className="ProfilePage--button black"
           >
             <span className="h2-18-sb">저장</span>

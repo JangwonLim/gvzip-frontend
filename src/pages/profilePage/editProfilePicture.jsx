@@ -13,7 +13,6 @@ function EditProfilePicture() {
   const navigate = useNavigate();
   
   const userInfo = useSelector(state => state.user.userInfo);
-  // const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
   console.log("redux userInfo: ", userInfo);
 
@@ -66,37 +65,6 @@ function EditProfilePicture() {
         reader.readAsDataURL(file);
       });
   }
-
-  // const handleImageChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     setSelectedObjet(file);
-  //     const reader = new FileReader();
-  //     // reader.onloadend = () => {
-  //     //   console.log(reader);
-  //     //   setPreviewImage(reader.result);
-  //     // };
-  //     reader.readAsDataURL(file);
-  // }
-  // };
-
-  // const handleChange = (e) => {
-  //   const {name, value} = e.target;
-  //   setNewUserInfo((prevState) => ({...prevState, 
-  //     [name]: value})
-  //   )
-  // }
-
-  // const updateProfile = async () => {
-  //   try {
-  //     console.log(newUserInfo);
-  //     const result = await updateUserInfo(newUserInfo);
-
-  //     console.log(result);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <div className="Profile--container" style={{ gap: '0px'}}>

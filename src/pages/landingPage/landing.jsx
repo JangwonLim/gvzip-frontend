@@ -1,13 +1,26 @@
-import React from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 import './landing.css';
+import './../authenticate/SignUp/ProfileInfo.css';
 import './../../styles/defaultDesign.css';
 import Button from "./../../components/Button/Button";
 import Footer from "../../components/Footer/Footer";
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/AuthContext";
+import TermsOfUse from "../authenticate/SignUp/Agreement/TermsOfUse";
+import Privacy from "../authenticate/SignUp/Agreement/Privacy";
 
 function Landing() {
+  const [terms, setTerms] = useState(false);
+  const [title, setTitle] = useState('');
+  
+  const handleTerms = (e) => {
+    setTerms(true);
+    console.log(e.target.textContent);
+    setTitle(e.target.textContent);
+  }
+
   const { isAuthenticated } = useAuth();
   
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -34,13 +47,13 @@ function Landing() {
       role: "Designer"
     },
     {
-      fileName: "dongwook",
-      name: "Dongwook Lee",
+      fileName: "dabin",
+      name: "Dabin Lee",
       role: "Developer"
     },
     {
-      fileName: "dabin",
-      name: "Dabin Lee",
+      fileName: "dongwook",
+      name: "Dongwook Lee",
       role: "Developer"
     },
     {
@@ -67,9 +80,7 @@ function Landing() {
 
   return(
     <div style={{ minWidth: "390px"}}>
-      <div className="Landing--poster">
-        {/* <img src={require("../../assets/landing-poster.png")} alt="" /> */}
-      </div>
+      <div className="Landing--poster"/>
 
       <div className="Landing--about">
         <span className="Landing--about-content">
@@ -85,17 +96,18 @@ function Landing() {
             {
               isMobile ?
               <>
-                <span className="h3-20-b title-margin">지비집의 탄생</span>
+                <span className="h4-28-b title-margin">지비집의 탄생</span>
                 <span 
-                  style={{ color: '#787878'}}
-                  className="b3-14-m"
+                  style={{ color: '#787878', marginBottom: "20px"}}
+                  className="m1-16"
                 >
                   TEAM DDG는 졸업 이후 GVCS 동문들이 전세계로 흩어지는 것이 강점인 동시에 약점이 되고 있는 지점을 발견했습니다. 이를 해결하기 위해 시간과 공간의 구애를 받지 않고 교류할 수 있는 온라인 공간, 지비집을 고안했습니다.
                 </span>
-                <span className="b7-16-sb subtitle-margin">zip & 집</span>
+                <span className="b3-20 subtitle-margin">zip & 집</span>
                 <span 
-                style={{ color: '#787878'}}
-                className="b3-14-m">
+                  style={{ color: '#787878'}}
+                  className="m1-16"
+                >
                   <span>
                     GVCS 구성원들의 정보가 ‘zip’ 파일처럼 한 곳에 압축되어 있다는 의미이자, 학창시절 우리가 먹고 자고 함께 생활했던 ‘집’을 나타내는 뜻으로 지비집에서 GVCS 공동체가 지속적으로 온기를 주고 받을 수 있게 합니다.
                   </span>
@@ -122,13 +134,13 @@ function Landing() {
           <div className="Landing--values-content">
             { isMobile ?
               <>
-                <span className="h3-20-b title-margin">연결의 힘</span>
-                <span className="b7-16-sb subtitle-margin">Re-connect</span>
+                <span className="h4-28-b" style={{ marginBottom: '20px'}}>연결의 힘</span>
+                <span className="b3-20 subtitle-margin">Re-connect</span>
                 <span 
                 style={{ color: '#787878'}}
-                className="b3-14-m">
-                  좋은 정보가 곧 경쟁력이 되는 시대를 살아가고 있습니다.
-                  <br />지비집을 통한 GVCS 커뮤니티의 ‘re-connection’이 좋은 정보의 순환을 이루어 우리 공동체에 잠재 되었던 빛을 발할 수 있기를 기대합니다.
+                className="m1-16">
+                  좋은 정보가 곧 경쟁력이 되는 시대를 살아가고<br />있습니다.
+                  지비집을 통한 GVCS 커뮤니티의 ‘re-connection’이 좋은 정보의 순환을 이루어 우리 공동체에 잠재 되었던 빛을 발할 수 있기를 기대합니다.
                 </span>
               </> :
               <>
@@ -157,11 +169,11 @@ function Landing() {
             {
               isAuthenticated ?
                 <span className="Landing--connect-title">
-                  업데이트된 지비 가족들의<br/>소식 둘러보기
+                  업데이트된 지비집 식구들의<br/>소식 둘러보기
                 </span>
               :
                 <span className="Landing--connect-title">
-                  간편 가입하고 지금 바로<br/>지비 가족들과 연결되기
+                  간편 가입하고 지금 바로<br/>지비집 식구들과 연결되기
                 </span>
             }
             <Button
@@ -181,11 +193,11 @@ function Landing() {
             {
               isAuthenticated ?
                 <span className="Landing--connect-title">
-                  업데이트된 지비 가족들의<br/>소식 둘러보기
+                  업데이트된 지비집 식구들의<br/>소식 둘러보기
                 </span>
               :
                 <span className="Landing--connect-title">
-                  간편 가입하고 지금 바로<br/>지비 가족들과 연결되기
+                  간편 가입하고 지금 바로<br/>지비집 식구들과 연결되기
                 </span>
             }
             <Button
@@ -209,11 +221,13 @@ function Landing() {
         <div className="Landing--ddg-title">
           { isMobile ?
             <>
-              <span className="h3-20-b" >TEAM DDG</span>
-              <span className="b3-14-m">
-                안녕하세요, 연결이 필요한 곳을 찾아 통로를 내는 팀,<br/>
-                DDG(두더지)입니다. 저희는 소통의 부재로 인한 사회의<br/>
-                단절, 혐오, 소외에 대해 맞서 싸우며, 함께하는 기쁨을<br/> 
+              <span className="h4-28-b" style={{ marginBottom: '20px'}}>
+                TEAM DDG
+              </span>
+              <span className="m1-16">
+                안녕하세요, 연결이 필요한 곳을 찾아 통로를 내는 팀,
+                DDG(두더지)입니다. 저희는 소통의 부재로 인한 사회의
+                단절, 혐오, 소외에 대해 맞서 싸우며, 함께하는 기쁨을
                 전하는 것을 목표로 합니다.
               </span>
             </> :
@@ -237,7 +251,12 @@ function Landing() {
         </div>
         
 
-        <Footer/>
+        <Footer handleTerms={handleTerms}/>
+        {/* {
+          terms && (
+            <Terms title={title}/>
+          )
+        } */}
       </div>
 
     </div>
@@ -262,4 +281,30 @@ function ProfileCard({fileName, name, role}) {
   )
 }
 
+function Terms({handleBackButton, title}) {
+
+  return (
+    <div className="Profile--container">
+      <div className="Profile--header">
+        <button 
+          className="Profile--header-back-button"
+          onClick={handleBackButton}
+        >
+          <img src={require("./../../assets/profile-header-back-button.png")} alt="back-button" />
+        </button> 
+        <span className="Profile--header-title">
+          {title}
+        </span>
+      </div>
+
+      {
+        title === "이용약관" ? (
+          <TermsOfUse/>
+        ) : (
+          <Privacy/>
+        )
+      }
+    </div>
+  )
+}
 export default Landing;
