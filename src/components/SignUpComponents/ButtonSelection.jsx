@@ -29,11 +29,13 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
         {
           list.map((element) => {
             const isSelected = Array.isArray(formData[name]) ? formData[name].includes(element) : formData[name] === element;
+            console.log(formData[name]);
+            console.log(element);
             return (
             <button
               className={`Profile--button${isSelected ? " selected" : ""}`}
               key={element}
-              defaultValue={element}
+              value={element}
               name={name}
               onClick={(e) => handleClick(e, element)}
             >
