@@ -81,6 +81,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
 
       {/* Email */}
       <Email
+        formData={formData}
         handleEmail={handleEmail}
         isValidEmail={isValidEmail}
       />
