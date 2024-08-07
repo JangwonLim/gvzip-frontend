@@ -112,16 +112,22 @@ function MembershipAuth() {
     const navigateToFail = () => navigate('/signup/membership/fail');
   
     const isPrincipalAuthorized = principals.includes(alumniAuth);
-    const isChildDataValid = await checkChildData();
     const isStudentAuthorized = studentAuth === studentCode;
     const isTeacherAuthorized = teacherAuth === staffCode;
     
-    const authChecks = [
-      isPrincipalAuthorized,
-      isChildDataValid,
-      isStudentAuthorized,
-      isTeacherAuthorized,
-    ];
+    let isChildDataValid = true; // 기본적으로 true로 설정
+  
+    // checkChildData 함수는 alumniType이 1일 때만 호출
+    if (alumniType === 1) {
+      isChildDataValid = await checkChildData();
+    }
+  
+    const authChecks = {
+      0: isPrincipalAuthorized,
+      1: isChildDataValid,
+      2: isStudentAuthorized,
+      3: isTeacherAuthorized,
+    };
   
     const authCheck = authChecks[alumniType];
   
