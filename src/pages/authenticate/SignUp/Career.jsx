@@ -4,11 +4,9 @@ import './Signup.css';
 import { validateYear } from "../../../utils/validate";
 import { useDispatch } from "react-redux";
 import { addCareer } from "../../../redux/store";
-import { useNavigate } from "react-router-dom";
 
 function Career({handleArrayData}) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [careerData, setCareerData] = useState({
     companyName: "",
@@ -66,7 +64,6 @@ function Career({handleArrayData}) {
   const saveData = () => {
     handleArrayData("careers", careerData);
     dispatch(addCareer(careerData));
-    navigate(-1);
   }
 
   return (
