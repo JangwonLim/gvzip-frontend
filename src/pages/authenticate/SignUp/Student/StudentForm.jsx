@@ -57,10 +57,23 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
     )
   }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay, termOfUse, privacy, providePrivacy]);
 
-  // List of graduation year
+  // List of entrance year
   const generateYearOptions = () => {
     const yearOptions = [];
-    for (let year = 2003; year <= 2023; year++) {
+    for (let year = 2003; year <= 2024; year++) {
+      yearOptions.push(
+        <option key={year} value={year}>
+          {year}
+        </option>
+      );
+    }
+    return yearOptions;
+  };
+
+  // List of grad year
+  const generateGradYearOptions = () => {
+    const yearOptions = [];
+    for (let year = 2003; year <= 2040; year++) {
       yearOptions.push(
         <option key={year} value={year}>
           {year}
@@ -121,7 +134,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
       <Year 
         formData={formData}
         handleChange={handleChange}
-        options={generateYearOptions}
+        options={generateGradYearOptions}
         title={"졸업 예정년도"}
         placeholder={"졸업 예정년도 선택"}
       />
