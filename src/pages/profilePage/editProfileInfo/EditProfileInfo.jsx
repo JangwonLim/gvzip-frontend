@@ -150,7 +150,7 @@ function EditProfileInfo() {
 
   const handleEmail = (event) => {
     const { name, value } = event.target;
-    if (validator.isEmail(value)) {
+    if (validator.isEmail(value) && userInfo.email.length === 0) {
       setIsValidEmail(true);
       setNewUserInfo((prevState) => ({
         ...prevState,
