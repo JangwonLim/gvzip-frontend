@@ -27,9 +27,11 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
 
       <div className="Profile--button-container">
         {
-          list.map((element) => (
+          list.map((element) => {
+            const isSelected = Array.isArray(formData[name]) ? formData[name].includes(element) : formData[name] === element;
+            return (
             <button
-              className={"Profile--button" + ((Array.isArray(formData[name]) ? formData[name].includes(element) : formData[name] === element) ? " selected" : "")}
+              className={`Profile--button${isSelected ? " selected" : ""}`}
               key={element}
               defaultValue={element}
               name={name}
@@ -37,7 +39,7 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
             >
               <span className="b7-16-sb">{element}</span>
             </button>
-          ))
+          )})
         }
       </div>
     </div>
