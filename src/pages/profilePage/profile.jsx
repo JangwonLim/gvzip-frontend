@@ -166,7 +166,7 @@ function MyInfoCard({data, setModal}) {
             </div>
           </div>
         ) : (
-          <div className="EditProfileInfo--basic-info">
+          <div className="EditProfileInfo--basic-info" style={{ width: "285px"}}>
             <div className="EditProfileInfo--basic-info-category b6-16-m">
               <span>이름</span>
               <span>생년월일</span>
