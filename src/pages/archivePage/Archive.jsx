@@ -230,8 +230,8 @@ function Archive() {
               </div>
             </div>
 
-            {
-              totalNumber > 0 ?? (
+            {/* {
+              totalNumber > 0 ?? ( */}
                 <span 
                   className="b0-10-m"
                   style={{ color: "#66707A"}}
@@ -242,8 +242,8 @@ function Archive() {
                   }
                   명
                 </span>
-              )
-            }
+              {/* )
+            } */}
           </div>
 
           {/* Cards */}
@@ -252,7 +252,7 @@ function Archive() {
               isLoading ? (
                 <p>Loading...</p>
               ) : (
-                (initialSearchingWord.length > 0 && info.length === 0) ? (
+                (filterData.searchingWord.length > 0 && info.length === 0) ? (
                   <NoResult searchingWord={initialSearchingWord}/>
                 ) : (
                   info.map((item, i) => {
