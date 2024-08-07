@@ -16,6 +16,10 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
   const [educationMenu, setEducationMenu] = useState(false);
   const [careerMenu, setCareerMenu] = useState(false);
 
+  const [isValidLocation, setIsValidLocation] = useState(false);
+
+  const [isValid, setIsValid] = useState(false);
+
   const openEducationMenu = (e) => {
     setEducationMenu(true);
     setEducationNumber(e.target.id);
@@ -35,6 +39,17 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
     e.preventDefault();
     setCareerMenu(false);
   }
+
+  useEffect(() => {
+    // 필수 입력 항목들 검증
+    const validateForm = () => {
+      const { introduction, email, country, state, city, field1, field2, field3 } = newUserInfo;
+      const isFormValid = introduction && email && isValidEmail && country && state && city && (field1 || field2 || field3);
+      setIsValid(isFormValid);
+    };
+
+    validateForm();
+  }, [newUserInfo, isValidEmail, isValidLocation]);
 
   return (
     <div className="EditProfileInfo--container">
@@ -153,7 +168,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
           </button>
         </div>
 
-        <Location formData={userInfo} handleChange={handleChange}/>
+        <Location formData={userInfo} handleChange={handleChange} setIsValidLocation={setIsValidLocation}/>
 
         <Fields formData={userInfo} handleChange={handleChange}/>
 
@@ -180,7 +195,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
           <button 
             onClick={updateProfile}
             className="ProfilePage--button black"
-            disabled
+            disabled={!isValid}
           >
             <span className="h2-18-sb">저장</span>
           </button>
@@ -300,7 +315,7 @@ function Fields({formData, handleChange}) {
   )
 }
 
-function Location({ formData, handleChange }) {
+function Location({ formData, handleChange, setIsValidLocation }) {
   const [country, setCountry] = useState(formData.country || '');
   const [state, setState] = useState(formData.state || '');
   const [city, setCity] = useState(formData.city || '');
@@ -313,7 +328,6 @@ function Location({ formData, handleChange }) {
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
 
-  const [isValidLocation, setIsValidLocation] = useState(false);
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
 
@@ -380,7 +394,7 @@ function Location({ formData, handleChange }) {
     } else {
       setIsValidLocation(false);
     }
-  }, [country, state, city, countriesList, stateList, cityList, isLoadingState, isLoadingCity]);
+  }, [country, state, city, countriesList, stateList, cityList, isLoadingState, isLoadingCity, setIsValidLocation]);
 
   const loadStates = async (countryId) => {
     setIsLoadingState(true);
