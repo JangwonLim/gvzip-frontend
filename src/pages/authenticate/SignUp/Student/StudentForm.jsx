@@ -155,6 +155,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
         className="Profile--navigate-button"
         disabled={!isValid}
         onClick={registerUser}
+        style={{ marginBottom: "32px" }}
       >
         <span className="h2-18-sb">완료</span>
       </button>
