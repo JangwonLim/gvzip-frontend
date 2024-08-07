@@ -92,6 +92,14 @@ function EditProfileInfo() {
     }
   };
 
+  const handleArrayData = (arrayName, value) => {
+    setNewUserInfo((prevState) => ({
+      ...prevState,
+      [arrayName]: [...prevState[arrayName], value]
+    }))
+    // handleBackButton();
+  }
+
   const updateProfile = async () => {
     try {
       console.log("New userInfo: ", newUserInfo);
@@ -175,7 +183,7 @@ function EditProfileInfo() {
             <>
               <div style={{ height: '22px', width: 'auto' }}/>
               <Education
-                handleChange={handleChange}
+                handleChange={handleArrayData}
               />
               <div style={{ height: '22px', width: 'auto' }}/>
             </>
@@ -187,7 +195,7 @@ function EditProfileInfo() {
             <>
               <div style={{ height: '22px', width: 'auto' }}/>
               <Career
-                handleChange={handleChange}
+                handleChange={handleArrayData}
               />
               <div style={{ height: '22px', width: 'auto' }}/>
             </>
