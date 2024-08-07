@@ -162,12 +162,12 @@ function Archive() {
   };
 
 
-  // const handleEnterPress = () => {
-  //   setSearch(false);
-  //   setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
-  //   setInfo([]); // 기존 데이터를 초기화
-  //   setHasMore(true); // 더 많은 데이터가 있음을 표시
-  // };
+  const handleEnterPress = () => {
+    setSearch(false);
+    setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
+    setInfo([]); // 기존 데이터를 초기화
+    setHasMore(true); // 더 많은 데이터가 있음을 표시
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -202,9 +202,9 @@ function Archive() {
             </button>
 
             <SearchBar 
-              // openSearch={toggleSearch}
               formData={filterData} 
               handleChange={handleChange}
+              onEnterPress={handleEnterPress}
             />
           </div>
 
@@ -230,7 +230,7 @@ function Archive() {
             </div>
 
             {
-              info.length > 0 ?? (
+              totalNumber > 0 ?? (
                 <span 
                   className="b0-10-m"
                   style={{ color: "#66707A"}}
