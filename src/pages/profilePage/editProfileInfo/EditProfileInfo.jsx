@@ -110,8 +110,8 @@ function EditProfileInfo() {
     setNewUserInfo((prevState) => ({
       ...prevState,
       [arrayName]: [...prevState[arrayName], value]
-    }))
-    // handleBackButton();
+    }));
+    console.log(newUserInfo);
   }
 
   const updateProfile = async () => {

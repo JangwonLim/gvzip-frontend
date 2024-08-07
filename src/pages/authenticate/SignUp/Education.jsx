@@ -42,6 +42,7 @@ function Education({handleArrayData}) {
   // }
 
   const saveData = () => {
+    console.log(yearData);
     handleArrayData("educations", yearData);
     dispatch(addEducation(yearData));
     navigate(-1);
