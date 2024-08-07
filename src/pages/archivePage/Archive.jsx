@@ -237,7 +237,7 @@ function Archive() {
                   className="b0-10-m"
                   style={{ color: "#66707A"}}
                 >
-                  검색결과
+                  검색결과&nbsp;
                   {
                     isLoading ? 0 : totalNumber
                   }
@@ -253,7 +253,7 @@ function Archive() {
               isLoading ? (
                 <p>Loading...</p>
               ) : (
-                (filterData.searchingWord.length > 0 && info.length === 0) ? (
+                (filterData.searchingWord.length >= 0 && info.length === 0) ? (
                   <NoResult searchingWord={initialSearchingWord}/>
                 ) : (
                   info.map((item, i) => {
