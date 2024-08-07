@@ -42,15 +42,18 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
 
   useEffect(() => {
     // 필수 입력 항목들 검증
-    const validateForm = () => {
-      const { introduction, email, country, state, city, field1, field2, field3 } = newUserInfo;
-      const isFormValid = introduction && email && isValidEmail && country && state && city && (field1 || field2 || field3) && isValidLocation;
-      console.log(isFormValid);
-      setIsValid(isFormValid);
-    };
-
-    validateForm();
-  }, [newUserInfo, isValidEmail, isValidLocation]);
+    setIsValid(
+      isValidEmail && isValidLocation &&
+      userInfo.introduction !== newUserInfo.introduction && 
+      userInfo.country !== newUserInfo.country &&
+      userInfo.state !== newUserInfo.state &&
+      userInfo.city !== newUserInfo.city &&
+      userInfo.field1 !== newUserInfo.field1 &&
+      userInfo.field2 !== newUserInfo.field2 &&
+      userInfo.field3 !== newUserInfo.field3 &&
+      userInfo.email !== newUserInfo.email
+    )
+  }, [newUserInfo, isValidEmail, isValidLocation, userInfo]);
 
   return (
     <div className="EditProfileInfo--container">
