@@ -55,6 +55,15 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
       String(formData["expectedGraduationYear"]).length > 0 &&
       termOfUse && privacy && providePrivacy
     )
+    console.log(formData["korName"].length > 0,
+      formData["engName"].length > 0,
+      isValidYear, isValidMonth, isValidDay,
+      formData["sex"].length > 0,
+      isValidEmail,
+      formData["campus"].length > 0,
+      String(formData["entranceYear"]).length > 0,
+      String(formData["expectedGraduationYear"]).length > 0,
+      termOfUse, privacy, providePrivacy)
   }, [formData, isValidEmail, isValidYear, isValidMonth, isValidDay, termOfUse, privacy, providePrivacy]);
 
   // List of entrance year

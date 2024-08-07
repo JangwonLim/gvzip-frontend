@@ -17,12 +17,24 @@ function Card({data, setModal, setModalInfo}) {
     }
   }
 
+  const generation = () => {
+    if (data.alumniType === 0) {
+      return data.generation + "회";
+    }
+  }
+
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
+  
   return(
     <div className="Card--container" onClick={openModal}>
       <div className="Card--header-container">
         <div className="Card--header-text">
-          <span className="b0-10-m" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()} <br />{location}</span>
+          <span className="b0-10-m" style={{ color: "#66707A"}}>
+            {data.campus} 
+            {generation()}
+            {membership()} <br />
+            {location}
+          </span>
         </div>
 
         <div className="Card--header-img-container">
