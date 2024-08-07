@@ -46,7 +46,7 @@ export const isLoggedIn = () => {
 }
 
 export const isDefaultProfileImage = (url) => {
-	if (url === null) {
+	if (url === null || url === undefined) {
 		return true;
 	}
   return url.endsWith('.png') && url.includes('profile-pic-');
