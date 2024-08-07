@@ -138,7 +138,7 @@ function MyInfoCard({data, setModal}) {
 
   const generation = () => {
     if (data.alumniType === 0) {
-      return data.generation + "회";
+      return data.generation + "회 ";
     }
   }
   
@@ -151,7 +151,7 @@ function MyInfoCard({data, setModal}) {
               <div className="MyInfoCard--header-text">
                 <span className="pc-body fs-14" style={{ color: "#66707A"}}>
                 {data.campus}&nbsp;
-                {generation()}&nbsp;
+                {generation()}
                 {membership()}<br />
                 {location}
                 </span>

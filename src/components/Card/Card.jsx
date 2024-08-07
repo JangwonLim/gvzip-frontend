@@ -19,7 +19,7 @@ function Card({data, setModal, setModalInfo}) {
 
   const generation = () => {
     if (data.alumniType === 0) {
-      return data.generation + "회";
+      return data.generation + "회 ";
     }
   }
 
@@ -31,7 +31,7 @@ function Card({data, setModal, setModalInfo}) {
         <div className="Card--header-text">
           <span className="b0-10-m" style={{ color: "#66707A"}}>
             {data.campus}&nbsp;
-            {generation()}&nbsp;
+            {generation()}
             {membership()}<br />
             {location}
           </span>
