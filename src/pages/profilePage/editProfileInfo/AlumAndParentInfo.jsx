@@ -45,6 +45,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
     const validateForm = () => {
       const { introduction, email, country, state, city, field1, field2, field3 } = newUserInfo;
       const isFormValid = introduction && email && isValidEmail && country && state && city && (field1 || field2 || field3) && isValidLocation;
+      console.log(isFormValid);
       setIsValid(isFormValid);
     };
 
