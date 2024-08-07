@@ -179,6 +179,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
           <button 
             onClick={updateProfile}
             className="ProfilePage--button black"
+            disabled
           >
             <span className="h2-18-sb">저장</span>
           </button>
@@ -299,9 +300,9 @@ function Fields({formData, handleChange}) {
 }
 
 function Location({formData, handleChange}) {
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
+  const [country, setCountry] = useState(formData.country || '');
+  const [state, setState] = useState(formData.state || '');
+  const [city, setCity] = useState(formData.city || '');
 
   const [countryid, setCountryid] = useState(0);
   const [stateid, setStateid] = useState(0);
@@ -342,6 +343,52 @@ function Location({formData, handleChange}) {
     }
   }, [country, state, city, countriesList, stateList, cityList, isLoadingState, isLoadingCity]);
 
+  useEffect(() => {
+    if (formData.country) {
+      const selectedCountry = countriesList.find(
+        (country) => country.name === formData.country
+      );
+      if (selectedCountry) {
+        setCountryid(selectedCountry.id);
+        setCountry(selectedCountry.name);
+        loadStates(selectedCountry.id);
+      }
+    }
+    if (formData.state) {
+      const selectedState = stateList.find(
+        (state) => state.name === formData.state
+      );
+      if (selectedState) {
+        setStateid(selectedState.id);
+        setState(selectedState.name);
+        loadCities(countryid, selectedState.id);
+      }
+    }
+    if (formData.city) {
+      const selectedCity = cityList.find(
+        (city) => city.name === formData.city
+      );
+      if (selectedCity) {
+        setCityid(selectedCity.id);
+        setCity(selectedCity.name);
+      }
+    }
+  }, [formData, countriesList, stateList, cityList, countryid]);
+
+  const loadStates = async (countryId) => {
+    setIsLoadingState(true);
+    const result = await GetState(countryId);
+    setStateList(result);
+    setIsLoadingState(false);
+  };
+  
+  const loadCities = async (countryId, stateId) => {
+    setIsLoadingCity(true);
+    const result = await GetCity(countryId, stateId);
+    setCityList(result);
+    setIsLoadingCity(false);
+  };
+
   // Update the country
   const onClickCountry = async (e) => {
     const selectedCountry = countriesList.find(
@@ -354,10 +401,7 @@ function Location({formData, handleChange}) {
     setCity('');
     setCityid(0);
     setCityList([]);
-    setIsLoadingState(true); // Start loading state
-    const result = await GetState(selectedCountry.id);
-    setStateList(result);
-    setIsLoadingState(false); // End loading state
+    await loadStates(selectedCountry.id);
     handleChange({ target: { name: 'country', value: selectedCountry.name } });
     handleChange({ target: { name: 'state', value: '' } });
     handleChange({ target: { name: 'city', value: '' } });
@@ -372,11 +416,7 @@ function Location({formData, handleChange}) {
     setStateid(selectedState.id);
     setCity('');
     setCityid(0);
-    setIsLoadingCity(true); // Start loading city
-    const result = await GetCity(countryid, selectedState.id);
-    setCityList(result);
-    setIsLoadingCity(false); // End loading city
-    
+    await loadCities(countryid, selectedState.id);
     handleChange({ target: { name: 'state', value: selectedState.name } });
     handleChange({ target: { name: 'city', value: '' } });
   };
