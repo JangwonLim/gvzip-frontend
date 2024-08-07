@@ -11,19 +11,24 @@ export const register = async (formData, profileImage) => {
 
     console.log("profileImage: ", profileImage);
 
-    if (profileImage) {
+    if (profileImage !== null) {
       data.append('profileImage', profileImage);
     } else {
-      console.log("no profile image")
-      const imageName = "profile-pic-11.png"
+      console.log("no profile image");
+      const imageName = "profile-pic-11.png";
       const imageUrl = require(`./../assets/profile-pic-11.png`);
-      fetch(imageUrl)
-        .then(res => res.blob())
-        .then(blob => {
-          const file = new File([blob], imageName, { type: 'image/*' });
-          console.log("file created!")
-          data.append('profileImage', file);
-      });
+
+      // 기본 이미지 파일을 가져오는 비동기 함수
+      const fetchDefaultImage = async () => {
+        const res = await fetch(imageUrl);
+        const blob = await res.blob();
+        const file = new File([blob], imageName, { type: 'image/*' });
+        console.log("file created!");
+        data.append('profileImage', file);
+      };
+
+      // 기본 이미지 추가
+      await fetchDefaultImage();
     }
     
     // FormData 확인
