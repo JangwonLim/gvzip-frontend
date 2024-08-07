@@ -200,7 +200,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
           id="country"
           className={"Profile--dropdown-menu" + (data.country === "" ? " placeholder" : "")}
           onChange={onClickCountry}
-          value={countryid}
+          value={data.country}
         >
           <option value="0" disabled>국가 선택</option>
           {countriesList.map(item => (
@@ -213,7 +213,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
           id="state"
           className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
           onChange={onClickState}
-          value={stateid}
+          value={data.state}
           disabled={!countryid || stateList.length === 0}
         >
           <option value="0" disabled>주 선택</option>
@@ -227,7 +227,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
           id="city"
           className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
           onChange={onClickCity}
-          value={cityid}
+          value={data.city}
           disabled={!stateid || cityList.length === 0}
         >
           <option value="0" disabled>도시 선택</option>
