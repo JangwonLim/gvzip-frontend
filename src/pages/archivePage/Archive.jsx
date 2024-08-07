@@ -231,8 +231,8 @@ function Archive() {
               </div>
             </div>
 
-            {/* {
-              totalNumber > 0 ?? ( */}
+            {
+              (!isLoading && totalNumber > 0) && (
                 <span 
                   className="b0-10-m"
                   style={{ color: "#66707A"}}
@@ -243,8 +243,8 @@ function Archive() {
                   }
                   명
                 </span>
-              {/* )
-            } */}
+              )
+            }
           </div>
 
           {/* Cards */}
