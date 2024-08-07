@@ -31,7 +31,6 @@ function EditProfileInfo() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    console.log(page)
     if (userInfo.alumniType === 0 && !education && !career) {
       setPage(0);
     } else if (userInfo.alumniType === 1 && !education && !career) {
@@ -43,10 +42,7 @@ function EditProfileInfo() {
     } else {
       setPage(4);
     }
-
-    console.log(page);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [userInfo, education, career]);
 
   const togglePopUp = () => {
     setPopUp(!popUp);
@@ -188,7 +184,7 @@ function EditProfileInfo() {
         <div className="Profile--header">
           <button 
             className="Profile--header-back-button"
-            onClick={handleBackButton()}
+            onClick={handleBackButton}
           >
             <img src={require("./../../../assets/profile-header-back-button.png")} alt="back-button" />
           </button> 
