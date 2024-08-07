@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from "react";
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 import '../../styles/defaultDesign.css';
@@ -12,19 +13,20 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
   const memberList = ["동문", "인기모"];
   const campusList = ["음성", "문경", "미국"];
 
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
+  const { data, handleChange } = contentProps;
+
+  const [country, setCountry] = useState(data.country || '');
+  const [state, setState] = useState(data.state || '');
+  const [city, setCity] = useState(data.city || '');
 
   const [countryid, setCountryid] = useState(0);
   const [stateid, setStateid] = useState(0);
-  // eslint-disable-next-line no-unused-vars
   const [cityid, setCityid] = useState(0);
 
   const [countriesList, setCountriesList] = useState([]);
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
-  /* eslint-disable no-unused-vars */
+
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
 
@@ -49,20 +51,87 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
     )
   }, [contentProps]);
 
-  // Load countries on component mount
   useEffect(() => {
     async function fetchCountries() {
       const result = await GetCountries();
       setCountriesList(result);
+
+      // 초기 formData에 따라 초기 state 설정
+      if (data.country) {
+        const selectedCountry = result.find(country => country.name === data.country);
+        if (selectedCountry) {
+          setCountryid(selectedCountry.id);
+          setCountry(selectedCountry.name);
+          loadStates(selectedCountry.id);
+        }
+      }
     }
     fetchCountries();
-  }, []);
+  }, [data.country]);
 
-  // Update the country
+  useEffect(() => {
+    async function syncStateAndCity() {
+      if (data.state && countryid) {
+        const states = await GetState(countryid);
+        setStateList(states);
+        const selectedState = states.find(state => state.name === data.state);
+        if (selectedState) {
+          setStateid(selectedState.id);
+          setState(selectedState.name);
+          loadCities(countryid, selectedState.id);
+        }
+      }
+    }
+    syncStateAndCity();
+  }, [countryid, data.state]);
+
+  useEffect(() => {
+    if (data.city && stateid) {
+      async function syncCity() {
+        const cities = await GetCity(countryid, stateid);
+        setCityList(cities);
+        const selectedCity = cities.find(city => city.name === data.city);
+        if (selectedCity) {
+          setCityid(selectedCity.id);
+          setCity(selectedCity.name);
+        }
+      }
+      syncCity();
+    }
+  }, [stateid, data.city, countryid]);
+
+  // useEffect(() => {
+  //   if (!isLoadingState && !isLoadingCity) {
+  //     if (country && state && city) {
+  //       setIsValidLocation(true);
+  //     } else if (country && state && cityList.length === 0) {
+  //       setIsValidLocation(true);
+  //     } else if (country && stateList.length === 0) {
+  //       setIsValidLocation(true);
+  //     } else {
+  //       setIsValidLocation(false);
+  //     }
+  //   } else {
+  //     setIsValidLocation(false);
+  //   }
+  // }, [country, state, city, countriesList, stateList, cityList, isLoadingState, isLoadingCity, setIsValidLocation]);
+
+  const loadStates = async (countryId) => {
+    setIsLoadingState(true);
+    const result = await GetState(countryId);
+    setStateList(result);
+    setIsLoadingState(false);
+  };
+
+  const loadCities = async (countryId, stateId) => {
+    setIsLoadingCity(true);
+    const result = await GetCity(countryId, stateId);
+    setCityList(result);
+    setIsLoadingCity(false);
+  };
+
   const onClickCountry = async (e) => {
-    const selectedCountry = countriesList.find(
-      (country) => country.id === parseInt(e.target.value, 10)
-    );
+    const selectedCountry = countriesList.find(country => country.id === parseInt(e.target.value, 10));
     setCountry(selectedCountry.name);
     setCountryid(selectedCountry.id);
     setState('');
@@ -70,37 +139,28 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
     setCity('');
     setCityid(0);
     setCityList([]);
-    setIsLoadingState(true); // Start loading state
-    const result = await GetState(selectedCountry.id);
-    setStateList(result);
-    setIsLoadingState(false); // End loading state
-    contentProps.handleChange({ target: { name: 'country', value: selectedCountry.name } });
+    await loadStates(selectedCountry.id);
+    handleChange({ target: { name: 'country', value: selectedCountry.name } });
+    handleChange({ target: { name: 'state', value: '' } });
+    handleChange({ target: { name: 'city', value: '' } });
   };
 
-  // Update the state
   const onClickState = async (e) => {
-    const selectedState = stateList.find(
-      (state) => state.id === parseInt(e.target.value, 10)
-    );
+    const selectedState = stateList.find(state => state.id === parseInt(e.target.value, 10));
     setState(selectedState.name);
     setStateid(selectedState.id);
     setCity('');
     setCityid(0);
-    setIsLoadingCity(true); // Start loading city
-    const result = await GetCity(countryid, selectedState.id);
-    setCityList(result);
-    setIsLoadingCity(false); // End loading city
-    contentProps.handleChange({ target: { name: 'state', value: selectedState.name } });
+    await loadCities(countryid, selectedState.id);
+    handleChange({ target: { name: 'state', value: selectedState.name } });
+    handleChange({ target: { name: 'city', value: '' } });
   };
 
-  // Update the city
   const onClickCity = (e) => {
-    const selectedCity = cityList.find(
-      (city) => city.id === parseInt(e.target.value, 10)
-    );
+    const selectedCity = cityList.find(city => city.id === parseInt(e.target.value, 10));
     setCity(selectedCity.name);
     setCityid(selectedCity.id);
-    contentProps.handleChange({ target: { name: 'city', value: selectedCity.name } });
+    handleChange({ target: { name: 'city', value: selectedCity.name } });
   };
 
   return(
@@ -132,27 +192,19 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
       {/* Location */}
       <div className="Profile--content-section wide-gap">
         <div style={{ display: "flex", alignContent: "center", gap: "4px" }}>
-          {/* <img 
-            style={{ height: "16px", width: "16px", marginTop: "2px" }}
-            src={require("../../assets/filter-location.png")} 
-            alt="location"
-          /> */}
           <span className="b7-16-sb">위치</span>
         </div>
+
         {/* Country selection */}
         <select
           id="country"
-          className={"Profile--dropdown-menu" + (country === "" ? " placeholder" : "")}
-          onChange={(e) => onClickCountry(e)}
-          value={contentProps.data.country}
+          className={"Profile--dropdown-menu" + (data.country === "" ? " placeholder" : "")}
+          onChange={onClickCountry}
+          value={countryid}
         >
-          <option value="" disabled>
-            국가 선택
-          </option>
-          {countriesList.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
+          <option value="0" disabled>국가 선택</option>
+          {countriesList.map(item => (
+            <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
 
@@ -160,17 +212,13 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
         <select
           id="state"
           className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
-          onChange={(e) => onClickState(e)}
-          value={contentProps.data.state}
-          disabled={!countryid || (stateList.length === 0)}
+          onChange={onClickState}
+          value={stateid}
+          disabled={!countryid || stateList.length === 0}
         >
-          <option value="" disabled>
-            주 선택
-          </option>
-          {stateList.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
+          <option value="0" disabled>주 선택</option>
+          {stateList.map(item => (
+            <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
 
@@ -178,17 +226,13 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
         <select
           id="city"
           className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
-          onChange={(e) => onClickCity(e)}
-          value={contentProps.data.city}
-          disabled={!stateid || (cityList.length === 0)}
+          onChange={onClickCity}
+          value={cityid}
+          disabled={!stateid || cityList.length === 0}
         >
-          <option value="" disabled>
-            도시 선택
-          </option>
-          {cityList.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
+          <option value="0" disabled>도시 선택</option>
+          {cityList.map(item => (
+            <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
       </div>
