@@ -3,27 +3,19 @@ import '../../styles/defaultDesign.css';
 import '../../pages/authenticate/SignUp/ProfileInfo.css';
 
 function ButtonSelection({formData, handleChange, title, name, list, isMandatory, color}) {
+  const handleClick = (event, element) => {
+    event.preventDefault(); // 이벤트의 기본 동작 방지
+    handleChange({
+      target: {
+        name: name,
+        value: element,
+      },
+    });
+  };
+
   return (
     <div className="Profile--content-section wide-gap">
       <div style={{ display: "flex", alignContent: "center", gap: "4px" }}>
-        {/* {
-          title === "멤버십" && (
-            <img 
-              style={{ height: "16px", width: "16px", marginTop: "2px" }}
-              src={require('../../assets/filter-membership.png')} 
-              alt={name}
-            />
-          )
-        }
-        {
-          title === "캠퍼스" && (
-            <img 
-              style={{ height: "16px", width: "16px", marginTop: "2px" }}
-              src={require('../../assets/filter-campus.png')} 
-              alt={name} 
-            />
-          )
-        } */}
         <span className="b7-16-sb" style={color === "black" ? {} : { color: "#66707A" }}>{title}</span>
         
         {
@@ -41,7 +33,7 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
               key={element}
               defaultValue={element}
               name={name}
-              onClick={handleChange}
+              onClick={(e) => handleClick(e, element)}
             >
               <span className="b7-16-sb">{element}</span>
             </button>
