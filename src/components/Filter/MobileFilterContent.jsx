@@ -163,6 +163,19 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
     handleChange({ target: { name: 'city', value: selectedCity.name } });
   };
 
+  const handleResetFilter = () => {
+    resetFilter();
+    setCountry('');
+    setState('');
+    setCity('');
+    setCountryid(0);
+    setStateid(0);
+    setCityid(0);
+    setCountriesList([]);
+    setStateList([]);
+    setCityList([]);
+  };
+
   return(
     <div className="Profile--content-container">
       {/* Membership */}
@@ -200,7 +213,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
           id="country"
           className={"Profile--dropdown-menu" + (data.country === "" ? " placeholder" : "")}
           onChange={onClickCountry}
-          value={data.country}
+          value={countryid}
         >
           <option value="0" disabled>국가 선택</option>
           {countriesList.map(item => (
@@ -213,7 +226,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
           id="state"
           className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
           onChange={onClickState}
-          value={data.state}
+          value={stateid}
           disabled={!countryid || stateList.length === 0}
         >
           <option value="0" disabled>주 선택</option>
@@ -227,7 +240,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
           id="city"
           className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
           onChange={onClickCity}
-          value={data.city}
+          value={cityid}
           disabled={!stateid || cityList.length === 0}
         >
           <option value="0" disabled>도시 선택</option>
@@ -263,7 +276,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
 
       <div className="MobileFilterContent--button-container">
         <button
-          onClick={() => resetFilter()}
+          onClick={handleResetFilter}
           className={"MobileFilterContent--button-reset " + (!isAnyFilterSelected ? "disable" : "")}
           disabled={!isAnyFilterSelected}
         >
