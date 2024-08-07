@@ -14,12 +14,14 @@ export const register = async (formData, profileImage) => {
     if (profileImage) {
       data.append('profileImage', profileImage);
     } else {
+      console.log("no profile image")
       const imageName = "profile-pic-11.png"
       const imageUrl = require(`./../assets/profile-pic-11.png`);
       fetch(imageUrl)
         .then(res => res.blob())
         .then(blob => {
           const file = new File([blob], imageName, { type: 'image/*' });
+          console.log("file created!")
           data.append('profileImage', file);
       });
     }
