@@ -35,9 +35,9 @@ function EditProfileInfo() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    if (userInfo.alumniType === 0 && !education && !career) {
+    if ((userInfo.alumniType === 0 || userInfo.alumniType === 1) && !education && !career) {
       setPage(0);
-    } else if (userInfo.alumniType === 1 && !education && !career) {
+    } else if ((userInfo.alumniType === 2 || userInfo.alumniType === 3) && !education && !career) {
       setPage(1);
     } else if (education) {
       setPage(2);

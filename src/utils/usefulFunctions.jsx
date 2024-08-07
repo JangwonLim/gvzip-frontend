@@ -44,3 +44,7 @@ export const isLoggedIn = () => {
   const sessionId = getCookie('JSESSIONID');
   return sessionId !== undefined;
 }
+
+export const isDefaultProfileImage = (url) => {
+  return url.endsWith('.png') && url.includes('profile-pic-');
+};

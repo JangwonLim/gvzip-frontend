@@ -7,6 +7,7 @@ import './../../../profilePage/profile.css';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { storeUserInfo } from "../../../../redux/store";
+import { isDefaultProfileImage } from "../../../../utils/usefulFunctions";
 
 function SignUpSuccess() {
   const [data, setData] = useState({});
@@ -61,10 +62,10 @@ function SignUpSuccess() {
             }
           </div>
         </div>
-        
+
         <div className="SignUpSuccess--button-container">
           {
-            ((!data.profileImageURL && (data.alumniType === 0 || data.alumniType === 1))) && (
+            ((isDefaultProfileImage(data.profileImageURL) && (data.alumniType === 0 || data.alumniType === 1))) && (
               <button 
                 onClick={changeObjet}
                 className="SignUpSuccess--button white"

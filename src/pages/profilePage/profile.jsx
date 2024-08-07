@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { storeUserInfo } from "../../redux/store";
 import Toast from "../../components/PopUp/Toast";
+import { isDefaultProfileImage } from "../../utils/usefulFunctions";
 
 
 function Profile() {
@@ -73,7 +74,7 @@ function Profile() {
 
       <div className="ProfilePage--button-container">
         {
-          ((!data.profileImageURL && (data.alumniType === 0 || data.alumniType === 1))) && (
+          ((isDefaultProfileImage(data.profileImageURL) && (data.alumniType === 0 || data.alumniType === 1))) && (
             <button 
               onClick={changeObjet}
               className="ProfilePage--button"
