@@ -66,7 +66,7 @@ function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmai
         />
 
         <ButtonSelection 
-          formData={userInfo}
+          formData={newUserInfo}
           handleChange={handleChange}
           title={title()}
           name={"campus"}
@@ -78,14 +78,14 @@ function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmai
           userInfo.alumniType === 2 && (
             <>
               <Year 
-                formData={userInfo}
+                formData={newUserInfo}
                 handleChange={handleChange}
                 options={generateYearOptions}
                 title={"입학년도"}
                 placeholder={"입학년도 선택"}
               />
               <Year 
-                formData={userInfo}
+                formData={newUserInfo}
                 handleChange={handleChange}
                 options={generateYearOptions}
                 title={"졸업 예정년도"}
