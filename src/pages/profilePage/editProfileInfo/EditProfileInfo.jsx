@@ -31,6 +31,7 @@ function EditProfileInfo() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
+    console.log(page)
     if (userInfo.alumniType === 0 && !education && !career) {
       setPage(0);
     } else if (userInfo.alumniType === 1 && !education && !career) {
@@ -44,7 +45,8 @@ function EditProfileInfo() {
     }
 
     console.log(page);
-  }, [userInfo, education, career, page]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const togglePopUp = () => {
     setPopUp(!popUp);
