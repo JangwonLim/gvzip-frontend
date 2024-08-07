@@ -312,7 +312,6 @@ function Location({ formData, handleChange }) {
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
 
-  // eslint-disable-next-line no-unused-vars
   const [isValidLocation, setIsValidLocation] = useState(false);
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
@@ -358,10 +357,13 @@ function Location({ formData, handleChange }) {
         const selectedState = stateList.find(
           (state) => state.name === formData.state
         );
+        const selectedCountry = countriesList.find(
+          (country) => country.name === formData.country
+        );
         if (selectedState) {
           setStateid(selectedState.id);
           setState(selectedState.name);
-          await loadCities(formData.country, selectedState.id);
+          await loadCities(selectedCountry.id, selectedState.id);
         }
       }
 
@@ -376,7 +378,7 @@ function Location({ formData, handleChange }) {
       }
     }
     syncFormData();
-  }, [formData, countriesList, stateList, cityList]);
+  }, [formData, countriesList, stateList]);
 
   const loadStates = async (countryId) => {
     setIsLoadingState(true);
