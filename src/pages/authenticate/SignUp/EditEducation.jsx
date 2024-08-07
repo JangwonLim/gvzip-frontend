@@ -8,6 +8,7 @@ import { updateEducation } from "../../../redux/store";
 
 function EditEducation({handleChange, index, closeEditEducation}) {
   const dispatch = useDispatch();
+  console.log("index: ", index);
 
   const statusList = ["재학", "휴학", "졸업"];
   const degreeList = ["학사", "석사", "박사"];

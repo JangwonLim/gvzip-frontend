@@ -168,6 +168,10 @@ function EditProfileInfo() {
         return "학력 추가";
       case 3:
         return "경력/경험 추가";
+      case 4:
+        return "학력 수정";
+      case 5:
+        return "경력/경험 수정";
       default:
         return "프로필 편집";
     }
@@ -180,6 +184,12 @@ function EditProfileInfo() {
         break;
       case 3:
         toggleCareer();
+        break;
+      case 4:
+        setPage(0);
+        break;
+      case 5:
+        setPage(0);
         break;
       default:
         navigate(-1);

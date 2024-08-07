@@ -6,6 +6,7 @@ import { updateCareer } from "../../../redux/store";
 
 function EditCareer({handleChange, index, closeEditEducation}) {
   const dispatch = useDispatch();
+  console.log("index: ", index);
 
   const careers = useSelector((state) => state.careers.careers);
 
