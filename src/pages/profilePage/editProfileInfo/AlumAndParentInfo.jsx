@@ -82,7 +82,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
 
           <button 
             className="Profile--add-education"
-            onClick={() => toggleEducation()}
+            onClick={toggleEducation}
           >
             <span className="b6-16-m">학력 추가</span>
             <img 
@@ -117,7 +117,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
           
           <button 
             className="Profile--add-education"
-            onClick={() => toggleCareer()}
+            onClick={toggleCareer}
           >
             <span className="b6-16-m">경험/경력 추가</span>
             <img 
