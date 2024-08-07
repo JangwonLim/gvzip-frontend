@@ -171,9 +171,9 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
     setCountryid(0);
     setStateid(0);
     setCityid(0);
-    setCountriesList([]);
-    setStateList([]);
-    setCityList([]);
+    // setCountriesList([]);
+    // setStateList([]);
+    // setCityList([]);
   };
 
   return(
