@@ -44,7 +44,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
     // 필수 입력 항목들 검증
     const validateForm = () => {
       const { introduction, email, country, state, city, field1, field2, field3 } = newUserInfo;
-      const isFormValid = introduction && email && isValidEmail && country && state && city && (field1 || field2 || field3);
+      const isFormValid = introduction && email && isValidEmail && country && state && city && (field1 || field2 || field3) && isValidLocation;
       setIsValid(isFormValid);
     };
 
