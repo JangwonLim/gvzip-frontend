@@ -9,7 +9,7 @@ import './../../authenticate/SignUp/ProfileInfo.css';
 import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/cjs";
 import { useGoBack } from "../../../utils/usefulFunctions";
 
-function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail}) {
+function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail, newUserInfo}) {
 
   return (
     <div className="EditProfileInfo--container">
@@ -64,8 +64,8 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
         <div className="Profile--content-section wide-gap">
           <span className="b7-16-sb" style={{ color: "#66707A"}}>학력</span>
           {
-            userInfo.educations.length > 0 && (
-              userInfo.educations.map((data, index) => {
+            newUserInfo.educations.length > 0 && (
+              newUserInfo.educations.map((data, index) => {
                 return (
                   <HistoryDetail 
                     title={data.schoolName} 
@@ -99,8 +99,8 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
           </div>
 
           {
-            userInfo.careers.length > 0 && (
-              userInfo.careers.map((data, index) => {
+            newUserInfo.careers.length > 0 && (
+              newUserInfo.careers.map((data, index) => {
                 return (
                   <HistoryDetail 
                     title={data.companyName} 
