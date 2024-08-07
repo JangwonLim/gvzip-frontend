@@ -299,7 +299,7 @@ function Fields({formData, handleChange}) {
   )
 }
 
-function Location({formData, handleChange}) {
+function Location({ formData, handleChange }) {
   const [country, setCountry] = useState(formData.country || '');
   const [state, setState] = useState(formData.state || '');
   const [city, setCity] = useState(formData.city || '');
@@ -317,7 +317,6 @@ function Location({formData, handleChange}) {
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
 
-  // Load countries on component mount
   useEffect(() => {
     async function fetchCountries() {
       const result = await GetCountries();
@@ -326,7 +325,6 @@ function Location({formData, handleChange}) {
     fetchCountries();
   }, []);
 
-  // Validate location based on current state
   useEffect(() => {
     if (!isLoadingState && !isLoadingCity) {
       if (country && state && city) {
@@ -344,36 +342,41 @@ function Location({formData, handleChange}) {
   }, [country, state, city, countriesList, stateList, cityList, isLoadingState, isLoadingCity]);
 
   useEffect(() => {
-    if (formData.country) {
-      const selectedCountry = countriesList.find(
-        (country) => country.name === formData.country
-      );
-      if (selectedCountry) {
-        setCountryid(selectedCountry.id);
-        setCountry(selectedCountry.name);
-        loadStates(selectedCountry.id);
+    async function syncFormData() {
+      if (formData.country) {
+        const selectedCountry = countriesList.find(
+          (country) => country.name === formData.country
+        );
+        if (selectedCountry) {
+          setCountryid(selectedCountry.id);
+          setCountry(selectedCountry.name);
+          await loadStates(selectedCountry.id);
+        }
+      }
+
+      if (formData.state) {
+        const selectedState = stateList.find(
+          (state) => state.name === formData.state
+        );
+        if (selectedState) {
+          setStateid(selectedState.id);
+          setState(selectedState.name);
+          await loadCities(formData.country, selectedState.id);
+        }
+      }
+
+      if (formData.city) {
+        const selectedCity = cityList.find(
+          (city) => city.name === formData.city
+        );
+        if (selectedCity) {
+          setCityid(selectedCity.id);
+          setCity(selectedCity.name);
+        }
       }
     }
-    if (formData.state) {
-      const selectedState = stateList.find(
-        (state) => state.name === formData.state
-      );
-      if (selectedState) {
-        setStateid(selectedState.id);
-        setState(selectedState.name);
-        loadCities(countryid, selectedState.id);
-      }
-    }
-    if (formData.city) {
-      const selectedCity = cityList.find(
-        (city) => city.name === formData.city
-      );
-      if (selectedCity) {
-        setCityid(selectedCity.id);
-        setCity(selectedCity.name);
-      }
-    }
-  }, [formData, countriesList, stateList, cityList, countryid]);
+    syncFormData();
+  }, [formData, countriesList, stateList, cityList]);
 
   const loadStates = async (countryId) => {
     setIsLoadingState(true);
@@ -381,7 +384,7 @@ function Location({formData, handleChange}) {
     setStateList(result);
     setIsLoadingState(false);
   };
-  
+
   const loadCities = async (countryId, stateId) => {
     setIsLoadingCity(true);
     const result = await GetCity(countryId, stateId);
@@ -389,7 +392,6 @@ function Location({formData, handleChange}) {
     setIsLoadingCity(false);
   };
 
-  // Update the country
   const onClickCountry = async (e) => {
     const selectedCountry = countriesList.find(
       (country) => country.id === parseInt(e.target.value, 10)
@@ -407,7 +409,6 @@ function Location({formData, handleChange}) {
     handleChange({ target: { name: 'city', value: '' } });
   };
 
-  // Update the state
   const onClickState = async (e) => {
     const selectedState = stateList.find(
       (state) => state.id === parseInt(e.target.value, 10)
@@ -421,7 +422,6 @@ function Location({formData, handleChange}) {
     handleChange({ target: { name: 'city', value: '' } });
   };
 
-  // Update the city
   const onClickCity = (e) => {
     const selectedCity = cityList.find(
       (city) => city.id === parseInt(e.target.value, 10)
@@ -431,70 +431,54 @@ function Location({formData, handleChange}) {
     handleChange({ target: { name: 'city', value: selectedCity.name } });
   };
 
-
   return (
-  <div className="Profile--content-section wide-gap">
-    <div>
-      <span className="b7-16-sb" style={{ color: "#66707A"}}>현재 활동 위치 </span>
-      <span style={{ color: "#FE3C2A"}}>*</span>
-    </div>
-
     <div className="Profile--content-section wide-gap">
-      {/* Country selection */}
-      <select
-        id="country"
-        className={"Profile--dropdown-menu" + (formData.country === "" ? " placeholder" : "")}
-        onChange={(e) => onClickCountry(e)}
-        defaultValue={countryid}
-      >
-        <option value="0" disabled>
-          국가 선택
-        </option>
-        {countriesList.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-      </select>
+      <div>
+        <span className="b7-16-sb" style={{ color: "#66707A" }}>현재 활동 위치 </span>
+        <span style={{ color: "#FE3C2A" }}>*</span>
+      </div>
 
-      {/* State selection */}
-      <select
-        id="state"
-        className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
-        onChange={(e) => onClickState(e)}
-        defaultValue={stateid}
-        disabled={!countryid || (stateList.length === 0)}
-      >
-        <option value="0" disabled>
-          주 선택
-        </option>
-        {stateList.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-      </select>
+      <div className="Profile--content-section wide-gap">
+        <select
+          id="country"
+          className={"Profile--dropdown-menu" + (formData.country === "" ? " placeholder" : "")}
+          onChange={(e) => onClickCountry(e)}
+          value={countryid}
+        >
+          <option value="0" disabled>국가 선택</option>
+          {countriesList.map((item) => (
+            <option key={item.id} value={item.id}>{item.name}</option>
+          ))}
+        </select>
 
-      {/* City selection */}
-      <select
-        id="city"
-        className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
-        onChange={(e) => onClickCity(e)}
-        defaultValue={cityid}
-        disabled={!stateid || (cityList.length === 0)}
-      >
-        <option value="0" disabled>
-          도시 선택
-        </option>
-        {cityList.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.name}
-          </option>
-        ))}
-      </select>
+        <select
+          id="state"
+          className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
+          onChange={(e) => onClickState(e)}
+          value={stateid}
+          disabled={!countryid || (stateList.length === 0)}
+        >
+          <option value="0" disabled>주 선택</option>
+          {stateList.map((item) => (
+            <option key={item.id} value={item.id}>{item.name}</option>
+          ))}
+        </select>
+
+        <select
+          id="city"
+          className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
+          onChange={(e) => onClickCity(e)}
+          value={cityid}
+          disabled={!stateid || (cityList.length === 0)}
+        >
+          <option value="0" disabled>도시 선택</option>
+          {cityList.map((item) => (
+            <option key={item.id} value={item.id}>{item.name}</option>
+          ))}
+        </select>
+      </div>
     </div>
-  </div>
-  )
+  );
 }
 
 export default AlumAndParentInfo;
