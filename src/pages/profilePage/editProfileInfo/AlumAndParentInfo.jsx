@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import './editProfileInfo.css';
 import './../../../styles/defaultDesign.css';
@@ -312,7 +313,6 @@ function Location({ formData, handleChange }) {
   const [stateList, setStateList] = useState([]);
   const [cityList, setCityList] = useState([]);
 
-  // eslint-disable-next-line no-unused-vars
   const [isValidLocation, setIsValidLocation] = useState(false);
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isLoadingCity, setIsLoadingCity] = useState(false);
@@ -321,9 +321,50 @@ function Location({ formData, handleChange }) {
     async function fetchCountries() {
       const result = await GetCountries();
       setCountriesList(result);
+
+      // 초기 formData에 따라 초기 state 설정
+      if (formData.country) {
+        const selectedCountry = result.find(country => country.name === formData.country);
+        if (selectedCountry) {
+          setCountryid(selectedCountry.id);
+          setCountry(selectedCountry.name);
+          loadStates(selectedCountry.id);
+        }
+      }
     }
     fetchCountries();
-  }, []);
+  }, [formData.country]);
+
+  useEffect(() => {
+    async function syncStateAndCity() {
+      if (formData.state && countryid) {
+        const states = await GetState(countryid);
+        setStateList(states);
+        const selectedState = states.find(state => state.name === formData.state);
+        if (selectedState) {
+          setStateid(selectedState.id);
+          setState(selectedState.name);
+          loadCities(countryid, selectedState.id);
+        }
+      }
+    }
+    syncStateAndCity();
+  }, [countryid, formData.state]);
+
+  useEffect(() => {
+    if (formData.city && stateid) {
+      async function syncCity() {
+        const cities = await GetCity(countryid, stateid);
+        setCityList(cities);
+        const selectedCity = cities.find(city => city.name === formData.city);
+        if (selectedCity) {
+          setCityid(selectedCity.id);
+          setCity(selectedCity.name);
+        }
+      }
+      syncCity();
+    }
+  }, [stateid, formData.city, countryid]);
 
   useEffect(() => {
     if (!isLoadingState && !isLoadingCity) {
@@ -341,46 +382,6 @@ function Location({ formData, handleChange }) {
     }
   }, [country, state, city, countriesList, stateList, cityList, isLoadingState, isLoadingCity]);
 
-  useEffect(() => {
-    async function syncFormData() {
-      if (formData.country) {
-        const selectedCountry = countriesList.find(
-          (country) => country.name === formData.country
-        );
-        if (selectedCountry) {
-          setCountryid(selectedCountry.id);
-          setCountry(selectedCountry.name);
-          await loadStates(selectedCountry.id);
-        }
-      }
-
-      if (formData.state) {
-        const selectedState = stateList.find(
-          (state) => state.name === formData.state
-        );
-        const selectedCountry = countriesList.find(
-          (country) => country.name === formData.country
-        );
-        if (selectedState) {
-          setStateid(selectedState.id);
-          setState(selectedState.name);
-          await loadCities(selectedCountry.id, selectedState.id);
-        }
-      }
-
-      if (formData.city) {
-        const selectedCity = cityList.find(
-          (city) => city.name === formData.city
-        );
-        if (selectedCity) {
-          setCityid(selectedCity.id);
-          setCity(selectedCity.name);
-        }
-      }
-    }
-    syncFormData();
-  }, [formData, countriesList, stateList, cityList]);
-
   const loadStates = async (countryId) => {
     setIsLoadingState(true);
     const result = await GetState(countryId);
@@ -396,9 +397,7 @@ function Location({ formData, handleChange }) {
   };
 
   const onClickCountry = async (e) => {
-    const selectedCountry = countriesList.find(
-      (country) => country.id === parseInt(e.target.value, 10)
-    );
+    const selectedCountry = countriesList.find(country => country.id === parseInt(e.target.value, 10));
     setCountry(selectedCountry.name);
     setCountryid(selectedCountry.id);
     setState('');
@@ -413,9 +412,7 @@ function Location({ formData, handleChange }) {
   };
 
   const onClickState = async (e) => {
-    const selectedState = stateList.find(
-      (state) => state.id === parseInt(e.target.value, 10)
-    );
+    const selectedState = stateList.find(state => state.id === parseInt(e.target.value, 10));
     setState(selectedState.name);
     setStateid(selectedState.id);
     setCity('');
@@ -426,9 +423,7 @@ function Location({ formData, handleChange }) {
   };
 
   const onClickCity = (e) => {
-    const selectedCity = cityList.find(
-      (city) => city.id === parseInt(e.target.value, 10)
-    );
+    const selectedCity = cityList.find(city => city.id === parseInt(e.target.value, 10));
     setCity(selectedCity.name);
     setCityid(selectedCity.id);
     handleChange({ target: { name: 'city', value: selectedCity.name } });
@@ -445,11 +440,11 @@ function Location({ formData, handleChange }) {
         <select
           id="country"
           className={"Profile--dropdown-menu" + (formData.country === "" ? " placeholder" : "")}
-          onChange={(e) => onClickCountry(e)}
-          defaultValue={countryid}
+          onChange={onClickCountry}
+          value={countryid}
         >
-          <option defaultValue="0" disabled>국가 선택</option>
-          {countriesList.map((item) => (
+          <option value="0" disabled>국가 선택</option>
+          {countriesList.map(item => (
             <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
@@ -457,12 +452,12 @@ function Location({ formData, handleChange }) {
         <select
           id="state"
           className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
-          onChange={(e) => onClickState(e)}
-          defaultValue={stateid}
-          disabled={!countryid || (stateList.length === 0)}
+          onChange={onClickState}
+          value={stateid}
+          disabled={!countryid || stateList.length === 0}
         >
           <option value="0" disabled>주 선택</option>
-          {stateList.map((item) => (
+          {stateList.map(item => (
             <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
@@ -470,12 +465,12 @@ function Location({ formData, handleChange }) {
         <select
           id="city"
           className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
-          onChange={(e) => onClickCity(e)}
-          defaultValue={cityid}
-          disabled={!stateid || (cityList.length === 0)}
+          onChange={onClickCity}
+          value={cityid}
+          disabled={!stateid || cityList.length === 0}
         >
           <option value="0" disabled>도시 선택</option>
-          {cityList.map((item) => (
+          {cityList.map(item => (
             <option key={item.id} value={item.id}>{item.name}</option>
           ))}
         </select>
