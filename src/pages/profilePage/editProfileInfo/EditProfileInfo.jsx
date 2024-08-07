@@ -172,26 +172,39 @@ function EditProfileInfo() {
 
         {
           education && (
-            <Education
-              handleChange={handleChange}
-            />
+            <>
+              <div style={{ height: '22px', width: 'auto' }}/>
+              <Education
+                handleChange={handleChange}
+              />
+              <div style={{ height: '22px', width: 'auto' }}/>
+            </>
           )
         }
 
         {
           career && (
-            <Career
-              handleChange={handleChange}
-            />
+            <>
+              <div style={{ height: '22px', width: 'auto' }}/>
+              <Career
+                handleChange={handleChange}
+              />
+              <div style={{ height: '22px', width: 'auto' }}/>
+            </>
           )
         }
 
-        <button 
-          className="EditProfileInfo--delete-account"
-          onClick={togglePopUp}
-        >
-          회원탈퇴
-        </button>
+        {
+          (!education && !career) && (
+            <button 
+              className="EditProfileInfo--delete-account"
+              onClick={togglePopUp}
+            >
+              회원탈퇴
+            </button>
+          )
+        }
+
       </div>
 
       {
