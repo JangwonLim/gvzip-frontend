@@ -72,7 +72,7 @@ function PopUp({purpose, closePopUp}) {
 
   const handleCancel = () => {
     if (purpose === "로그인") {
-      navigate(-1);
+      navigate('/');
     } else {
       closePopUp();
     }
