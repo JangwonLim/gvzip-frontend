@@ -448,7 +448,7 @@ function Location({ formData, handleChange }) {
           onChange={(e) => onClickCountry(e)}
           defaultValue={countryid}
         >
-          <option value="0" disabled>국가 선택</option>
+          <option defaultValue="0" disabled>국가 선택</option>
           {countriesList.map((item) => (
             <option key={item.id} value={item.id}>{item.name}</option>
           ))}
