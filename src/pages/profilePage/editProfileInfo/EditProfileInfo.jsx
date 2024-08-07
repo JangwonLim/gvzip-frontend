@@ -156,8 +156,9 @@ function EditProfileInfo() {
         ...prevState,
         [name]: value
       }));
-    }
-    else {
+    } else if (userInfo.email.length > 0) {
+      setIsValidEmail(true);
+    } else {
       setIsValidEmail(false);
     }
   }

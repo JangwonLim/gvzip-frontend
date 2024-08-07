@@ -233,6 +233,14 @@ function Fields({formData, handleChange}) {
 
   const [fields, setFields] = useState([]);
 
+  useEffect(() => {
+    setFields({
+      field1: formData.field1 || '',
+      field2: formData.field2 || '',
+      field3: formData.field3 || ''
+    });
+  }, [formData]);
+
   const onClickFields = (option) => {
     setFields((prevFields) => {
       const fieldArray = [prevFields.field1, prevFields.field2, prevFields.field3];
