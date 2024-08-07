@@ -121,6 +121,7 @@ function StaffForm({formData, handleChange, handleBornYearChange, handleBornMont
         className="Profile--navigate-button"
         disabled={!isValid}
         onClick={registerUser}
+        style={{ marginBottom: "32px" }}
       >
         <span className="h2-18-sb">완료</span>
       </button>
