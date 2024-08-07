@@ -111,8 +111,11 @@ function EditProfileInfo() {
       ...prevState,
       [arrayName]: [...prevState[arrayName], value]
     }));
-    console.log(newUserInfo);
   }
+
+  useEffect(() => {
+    console.log(newUserInfo);
+  }, [newUserInfo]);
 
   const updateProfile = async () => {
     try {
