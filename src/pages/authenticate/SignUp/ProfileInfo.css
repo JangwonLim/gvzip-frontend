@@ -158,6 +158,10 @@
     outline: none;
   }
 
+  .Profile--dropdown-menu:disabled {
+    opacity: 0.3;
+  }
+
   .Profile--navigate-button {
     width: 100%; height: 52px;
     border: 1px solid black;

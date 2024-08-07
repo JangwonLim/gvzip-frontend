@@ -106,15 +106,17 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
   return(
     <div className="Profile--content-container">
       {/* Membership */}
-      <ButtonSelection 
-        formData={contentProps.data}
-        handleChange={contentProps.handleChange}
-        title={"멤버십"}
-        name={"membership"}
-        list={memberList}
-        isMandatory={false}
-        color={"black"}
-      />
+      <div style={{ fontWeight: "500"}}>
+        <ButtonSelection 
+          formData={contentProps.data}
+          handleChange={contentProps.handleChange}
+          title={"멤버십"}
+          name={"membership"}
+          list={memberList}
+          isMandatory={false}
+          color={"black"}
+        />
+      </div>
       
       {/* Campus */}
       <ButtonSelection 

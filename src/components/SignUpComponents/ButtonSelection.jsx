@@ -6,7 +6,7 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
   return (
     <div className="Profile--content-section wide-gap">
       <div style={{ display: "flex", alignContent: "center", gap: "4px" }}>
-        {
+        {/* {
           title === "멤버십" && (
             <img 
               style={{ height: "16px", width: "16px", marginTop: "2px" }}
@@ -23,7 +23,7 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
               alt={name} 
             />
           )
-        }
+        } */}
         <span className="b7-16-sb" style={color === "black" ? {} : { color: "#66707A" }}>{title}</span>
         
         {
