@@ -164,6 +164,7 @@ function Archive() {
 
 
   const handleEnterPress = () => {
+    setInitialSearchingWord(filterData.searchingWord);
     setSearch(false);
     setPage(1); // 새로운 필터가 적용될 때 페이지를 초기화
     setInfo([]); // 기존 데이터를 초기화
