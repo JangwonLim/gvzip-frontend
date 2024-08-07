@@ -94,6 +94,7 @@ function StudentForm({formData, handleChange, handleBornYearChange, handleBornMo
 
       {/* Email */}
       <Email
+        formData={formData}
         handleEmail={handleEmail}
         isValidEmail={isValidEmail}
       />
