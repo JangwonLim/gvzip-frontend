@@ -9,7 +9,7 @@ export const register = async (formData, profileImage) => {
     const blob = new Blob([json], { type: 'application/json' });
     data.append('signUpRequest', blob);
 
-    console.log(profileImage)
+    console.log("profileImage: ", profileImage);
 
     if (profileImage) {
       data.append('profileImage', profileImage);
