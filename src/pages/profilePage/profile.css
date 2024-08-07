@@ -29,6 +29,13 @@
     }
   }
 
+  .ProfilePage--button:disabled {
+    border: none;
+    cursor: not-allowed;
+    opacity: 0.45;
+    color: rgba(256, 256, 256, 0.45);
+  }
+
   .ProfilePage--logout {
     color: var(--grey3);
     text-decoration: underline;
