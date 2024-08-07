@@ -43,7 +43,7 @@ function Year({formData, handleChange, options, title, placeholder}) {
       </div>
 
       <select {...selectProps}>
-        <option value="" disabled>
+        <option value={0} disabled>
           {placeholder}
         </option>
         {options()}
