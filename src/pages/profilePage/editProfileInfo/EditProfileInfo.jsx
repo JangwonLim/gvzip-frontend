@@ -49,11 +49,11 @@ function EditProfileInfo() {
   }, [userInfo, education, career]);
 
   const openEditEducation = () => {
-
+    setPage(4);
   }
 
   const openEditCareer = () => {
-
+    setPage(5);
   }
 
   const togglePopUp = () => {
