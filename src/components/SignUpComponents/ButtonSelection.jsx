@@ -39,7 +39,7 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
             <button
               className={"Profile--button" + ((Array.isArray(formData[name]) ? formData[name].includes(element) : formData[name] === element) ? " selected" : "")}
               key={element}
-              value={element}
+              defaultValue={element}
               name={name}
               onClick={handleChange}
             >
@@ -52,34 +52,3 @@ function ButtonSelection({formData, handleChange, title, name, list, isMandatory
   )
 }
 export default ButtonSelection;
-
-// function Campus({formData, handleChange, title}) {
-//   const campusList = ['음성', '문경', '미국'];
-
-//   return (
-//     <div className="Profile--content-section wide-gap">
-//       <div>
-//         <span className="b7-16-sb" style={{ color: "#66707A"}}>{title} </span>
-//         <span style={{ color: "#FE3C2A"}}>*</span>
-//       </div>
-
-//       <div className="Profile--button-container">
-//         {
-//           campusList.map((element) => (
-//             <button
-//               className={"Profile--button" + (formData.campus === element ? " selected" : "")}
-//               key={element}
-//               value={element}
-//               name="campus"
-//               onClick={handleChange}
-//             >
-//               <span className="b7-16-sb">{element}</span>
-//             </button>
-//           ))
-//         }
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Campus;
