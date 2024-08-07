@@ -50,12 +50,14 @@ function ProfileInfo() {
     careers: []
   });
 
+  // const { formData, setFormData } = useContext(FormDataContext);
+
   useEffect(() => {
     setFormData((prevState) => ({
       ...prevState,
       alumniType: alumniType
     }));
-  }, [alumniType]);
+  }, [alumniType, setFormData]);
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidYear, setIsValidYear] = useState(false);
@@ -89,7 +91,7 @@ function ProfileInfo() {
         generation: result
       }));
     }
-  }, [formData.graduationYear, formData.campus]);
+  }, [formData.graduationYear, formData.campus, setFormData]);
 
   const handleChange = (e, actionType = 'update', index = null, updatedData = null, type = 'educations') => {
     const updateState = (prevState, type) => {

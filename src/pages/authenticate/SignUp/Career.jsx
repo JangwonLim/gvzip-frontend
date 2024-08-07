@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import './ProfileInfo.css';
+import './Signup.css';
 import { validateYear } from "../../../utils/validate";
 import { useDispatch } from "react-redux";
 import { addCareer } from "../../../redux/store";
+import { useNavigate } from "react-router-dom";
 
-function Career({handleChange}) {
+function Career({handleArrayData}) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [careerData, setCareerData] = useState({
     companyName: "",
@@ -53,89 +56,96 @@ function Career({handleChange}) {
       ))
     )
   };
+  // const handleArrayData = (arrayName, value) => {
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [arrayName]: [...prevState[arrayName], value]
+  //   }))
+  // }
 
   const saveData = () => {
-    handleChange("careers", careerData);
+    handleArrayData("careers", careerData);
     dispatch(addCareer(careerData));
+    navigate(-1);
   }
 
   return (
-    <div className="Profile--content-container huge-gap">
-      {/* Company Name */}
-      <div className="Profile--content-section narrow-gap">
-        <div>
-          <span className="b7-16-sb" style={{ color: "#66707A"}}>일한곳 </span>
-          <span style={{ color: "#FE3C2A"}}>*</span>
+      <div className="Profile--content-container huge-gap">
+        {/* Company Name */}
+        <div className="Profile--content-section narrow-gap">
+          <div>
+            <span className="b7-16-sb" style={{ color: "#66707A"}}>일한곳 </span>
+            <span style={{ color: "#FE3C2A"}}>*</span>
+          </div>
+
+          <input 
+            className="Profile--text-input-box"
+            type="text" 
+            placeholder={"일한 곳 입력"}
+            name={"companyName"}
+            value={careerData.companyName}
+            onChange={handleCareerData}
+          />
         </div>
 
-        <input 
-          className="Profile--text-input-box"
-          type="text" 
-          placeholder={"일한 곳 입력"}
-          name={"companyName"}
-          value={careerData.companyName}
-          onChange={handleCareerData}
-        />
-      </div>
+        <div className="Profile--content-section narrow-gap">
+          <div>
+            <span className="b7-16-sb" style={{ color: "#66707A"}}>포지션 </span>
+            <span style={{ color: "#FE3C2A"}}>*</span>
+          </div>
 
-      <div className="Profile--content-section narrow-gap">
-        <div>
-          <span className="b7-16-sb" style={{ color: "#66707A"}}>포지션 </span>
-          <span style={{ color: "#FE3C2A"}}>*</span>
+          <input 
+            className="Profile--text-input-box"
+            type="text" 
+            placeholder={"포지션 입력"}
+            name={"position"}
+            value={careerData.position}
+            onChange={handleCareerData}
+          />
         </div>
 
-        <input 
-          className="Profile--text-input-box"
-          type="text" 
-          placeholder={"포지션 입력"}
-          name={"position"}
-          value={careerData.position}
-          onChange={handleCareerData}
-        />
-      </div>
-
-      <div className="Profile--content-section narrow-gap">
-        <span className="b7-16-sb" style={{ color: "#66707A"}}>시작 연도 </span>
-        <span style={{ color: "#FE3C2A"}}>*</span>
-
-        <input 
-          className="Profile--text-input-box"
-          type="text"
-          placeholder={"YYYY"}
-          name={"startYear"}
-          value={careerData.startYear}
-          onChange={handleCareerData}
-          length={4}
-        />
-      </div>
-
-      <div className="Profile--content-section wide-gap">
-        <div>
-          <span className="b7-16-sb" style={{ color: "#66707A"}}>일한 기간 </span>
+        <div className="Profile--content-section narrow-gap">
+          <span className="b7-16-sb" style={{ color: "#66707A"}}>시작 연도 </span>
           <span style={{ color: "#FE3C2A"}}>*</span>
+
+          <input 
+            className="Profile--text-input-box"
+            type="text"
+            placeholder={"YYYY"}
+            name={"startYear"}
+            value={careerData.startYear}
+            onChange={handleCareerData}
+            length={4}
+          />
         </div>
 
-        <select 
-          name="duration"
-          className={`Profile--dropdown-menu${careerData.duration === "" ? " placeholder" : ""}`}
-          value={careerData.duration}
-          onChange={handleCareerData}
+        <div className="Profile--content-section wide-gap">
+          <div>
+            <span className="b7-16-sb" style={{ color: "#66707A"}}>일한 기간 </span>
+            <span style={{ color: "#FE3C2A"}}>*</span>
+          </div>
+
+          <select 
+            name="duration"
+            className={`Profile--dropdown-menu${careerData.duration === "" ? " placeholder" : ""}`}
+            value={careerData.duration}
+            onChange={handleCareerData}
+          >
+            <option value="" disabled>
+              일한 기간 선택
+            </option>
+            {generateDurationOptions()}
+          </select>
+        </div>
+
+        <button 
+          className="Profile--navigate-button"
+          disabled={!isDataValid}
+          onClick={saveData}
         >
-          <option value="" disabled>
-            일한 기간 선택
-          </option>
-          {generateDurationOptions()}
-        </select>
+          <span className="h2-18-sb">저장</span>
+        </button>
       </div>
-
-      <button 
-        className="Profile--navigate-button"
-        disabled={!isDataValid}
-        onClick={saveData}
-      >
-        <span className="h2-18-sb">저장</span>
-      </button>
-    </div>
   )
 }
 

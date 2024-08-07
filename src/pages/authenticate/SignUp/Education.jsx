@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import './ProfileInfo.css';
+import './Signup.css';
 import '../../../styles/defaultDesign.css';
 import Introduction from "../../../components/SignUpComponents/Introduction";
 import ButtonSelection from "../../../components/SignUpComponents/ButtonSelection";
 import { useDispatch } from "react-redux";
 import { addEducation } from "../../../redux/store";
+import { useNavigate } from "react-router-dom";
 
-function Education({handleChange}) {
+function Education({handleArrayData}) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const statusList = ["재학", "휴학", "졸업"];
   const degreeList = ["학사", "석사", "박사"];
@@ -31,9 +34,17 @@ function Education({handleChange}) {
     }));
   }
 
+  // const handleArrayData = (arrayName, value) => {
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [arrayName]: [...prevState[arrayName], value]
+  //   }))
+  // }
+
   const saveData = () => {
-    handleChange("educations", yearData);
+    handleArrayData("educations", yearData);
     dispatch(addEducation(yearData));
+    navigate(-1);
   }
 
   useEffect(() => {
@@ -46,55 +57,55 @@ function Education({handleChange}) {
   },[yearData])
 
   return(
-    <div 
-      className="Profile--content-container huge-gap"
-    >
-      {/* School Name */}
-      <Introduction
-        formData={yearData}
-        handleChange={handleYearData}
-        title={"학교명"}
-        placeholder={"학교명 입력 ex. 지비대학교"}
-        name={"schoolName"}
-      />
-
-      {/* Major */}
-      <Introduction
-        formData={yearData}
-        handleChange={handleYearData}
-        title={"전공"}
-        placeholder={"전공 입력 ex. 경영학과"}
-        name={"major"}
-      />
-
-      {/* Degree */}
-      <ButtonSelection
-        formData={yearData}
-        handleChange={handleYearData}
-        title={"학위"}
-        name={"degree"}
-        list={degreeList}
-        isMandatory={true}
-      />
-
-      {/* Status */}
-      <ButtonSelection
-        formData={yearData}
-        handleChange={handleYearData}
-        title={"학적"}
-        name={"status"}
-        list={statusList}
-        isMandatory={true}
-      />
-
-      <button 
-        className="Profile--navigate-button"
-        disabled={!isDataValid}
-        onClick={saveData}
+      <div 
+        className="Profile--content-container huge-gap"
       >
-        <span className="h2-18-sb">저장</span>
-      </button>
-    </div>
+        {/* School Name */}
+        <Introduction
+          formData={yearData}
+          handleChange={handleYearData}
+          title={"학교명"}
+          placeholder={"학교명 입력 ex. 지비대학교"}
+          name={"schoolName"}
+        />
+
+        {/* Major */}
+        <Introduction
+          formData={yearData}
+          handleChange={handleYearData}
+          title={"전공"}
+          placeholder={"전공 입력 ex. 경영학과"}
+          name={"major"}
+        />
+
+        {/* Degree */}
+        <ButtonSelection
+          formData={yearData}
+          handleChange={handleYearData}
+          title={"학위"}
+          name={"degree"}
+          list={degreeList}
+          isMandatory={true}
+        />
+
+        {/* Status */}
+        <ButtonSelection
+          formData={yearData}
+          handleChange={handleYearData}
+          title={"학적"}
+          name={"status"}
+          list={statusList}
+          isMandatory={true}
+        />
+
+        <button 
+          className="Profile--navigate-button"
+          disabled={!isDataValid}
+          onClick={saveData}
+        >
+          <span className="h2-18-sb">저장</span>
+        </button>
+      </div>
   )
 }
 

@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './editProfileInfo.css';
 import './../../authenticate/SignUp/ProfileInfo.css';
 import './../../archivePage/Archive.css';
 import AlumAndParentInfo from "./AlumAndParentInfo";
 import PopUp from "../../../components/PopUp/PopUp";
-import { useGoBack } from "../../../utils/usefulFunctions";
 import StudentAndStaffInfo from "./StudentAndStaffInfo";
 import { useSelector } from "react-redux";
 import { updateProfilePicture, updateUserInfo } from "../../../service/putService";
@@ -27,6 +26,25 @@ function EditProfileInfo() {
 
   const [selectedPicture, setSelectedPicture] = useState(userInfo.profileImageURL);
   const [previewImage, setPreviewImage] = useState(userInfo.profileImageURL);
+  const [newUserInfo, setNewUserInfo] = useState(userInfo);
+
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    if (userInfo.alumniType === 0 && !education && !career) {
+      setPage(0);
+    } else if (userInfo.alumniType === 1 && !education && !career) {
+      setPage(1);
+    } else if (education) {
+      setPage(2);
+    } else if (career) {
+      setPage(3);
+    } else {
+      setPage(4);
+    }
+
+    console.log(page);
+  }, [userInfo, education, career, page]);
 
   const togglePopUp = () => {
     setPopUp(!popUp);
@@ -39,8 +57,6 @@ function EditProfileInfo() {
   const toggleCareer = () => {
     setCareer(!career);
   }
-
-  const [newUserInfo, setNewUserInfo] = useState(userInfo);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -140,21 +156,45 @@ function EditProfileInfo() {
     }
   }
 
+  const handleTitle = () => {
+    switch(page) {
+      case 2:
+        return "학력 추가";
+      case 3:
+        return "경력/경험 추가";
+      default:
+        return "프로필 편집";
+    }
+  }
+
+  const handleBackButton = () => {
+    switch(page) {
+      case 2:
+        toggleEducation();
+        break;
+      case 3:
+        toggleCareer();
+        break;
+      default:
+        navigate(-1);
+    }
+  }
+
   return(
     <>
       <div className="EditProfileInfo--wrapper">
         <div className="Profile--header">
           <button 
             className="Profile--header-back-button"
-            onClick={useGoBack()}
+            onClick={handleBackButton()}
           >
             <img src={require("./../../../assets/profile-header-back-button.png")} alt="back-button" />
           </button> 
-          <span className="Profile--header-title">프로필 편집</span>
+          <span className="Profile--header-title">{handleTitle()}</span>
         </div>
 
         {
-          (userInfo.alumniType === 0 && (!education && !career)) && (
+          (page === 0) && (
             <AlumAndParentInfo
               toggleEducation={toggleEducation}
               toggleCareer={toggleCareer}
@@ -169,7 +209,7 @@ function EditProfileInfo() {
         }
 
         {
-          (userInfo.alumniType === 1 && (!education && !career)) && (
+          (page === 1) && (
             <StudentAndStaffInfo
               userInfo={userInfo}
               handleChange={handleChange}
@@ -179,7 +219,7 @@ function EditProfileInfo() {
         }
 
         {
-          education && (
+          (page === 2) && (
             <>
               <div style={{ height: '22px', width: 'auto' }}/>
               <Education
@@ -191,7 +231,7 @@ function EditProfileInfo() {
         }
 
         {
-          career && (
+          (page === 3) && (
             <>
               <div style={{ height: '22px', width: 'auto' }}/>
               <Career
@@ -203,7 +243,7 @@ function EditProfileInfo() {
         }
 
         {
-          (!education && !career) && (
+          (page === 0 || page === 1) && (
             <button 
               className="EditProfileInfo--delete-account"
               onClick={togglePopUp}

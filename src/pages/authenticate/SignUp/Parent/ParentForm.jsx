@@ -80,7 +80,7 @@ function ParentForm({formData, handleChange, handleBornYearChange, handleBornMon
       {
         currentPage === 5 && (
           <Education
-            handleChange={handleArrayData}
+            handleArrayData={handleArrayData}
           />
         )
       }
@@ -88,7 +88,7 @@ function ParentForm({formData, handleChange, handleBornYearChange, handleBornMon
       {
         currentPage === 6 && (
           <Career
-            handleChange={handleArrayData}
+            handleArrayData={handleArrayData}
           />
         )
       }
