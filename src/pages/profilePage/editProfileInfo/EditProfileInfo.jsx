@@ -106,13 +106,6 @@ function EditProfileInfo() {
     }
   };
 
-  const handleArrayData = (arrayName, value) => {
-    setNewUserInfo((prevState) => ({
-      ...prevState,
-      [arrayName]: [...prevState[arrayName], value]
-    }));
-  }
-
   useEffect(() => {
     console.log(newUserInfo);
   }, [newUserInfo]);
@@ -181,6 +174,14 @@ function EditProfileInfo() {
     }
   }
 
+  const handleArrayData = (arrayName, value) => {
+    setNewUserInfo((prevState) => ({
+      ...prevState,
+      [arrayName]: [...prevState[arrayName], value]
+    }));
+    handleBackButton();
+  }
+
   return(
     <>
       <div className="EditProfileInfo--wrapper">
@@ -205,6 +206,7 @@ function EditProfileInfo() {
               updateProfile={updateProfile}
               previewImage={previewImage}
               handleEmail={handleEmail}
+              newUserInfo={newUserInfo}
             />
           )
         }

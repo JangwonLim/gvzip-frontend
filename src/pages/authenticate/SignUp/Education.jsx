@@ -45,7 +45,6 @@ function Education({handleArrayData}) {
     console.log(yearData);
     handleArrayData("educations", yearData);
     dispatch(addEducation(yearData));
-    navigate(-1);
   }
 
   useEffect(() => {
