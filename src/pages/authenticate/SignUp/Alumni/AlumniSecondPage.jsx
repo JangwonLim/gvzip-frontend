@@ -15,10 +15,14 @@ function AlumniSecondPage({ formData, handleChange, goToNextPage, goToPreviousPa
   const [isSecondDone, setIsSecondDone] = useState(false);
 
   useEffect(() => {
-    setIsSecondDone(
-      formData["campus"].length > 0 &&
-      String(formData["graduationYear"]).length > 0
-    )
+    if (formData.alumniType === 0) {
+      setIsSecondDone(
+        formData["campus"].length > 0 &&
+        String(formData["graduationYear"]).length > 0
+      )
+    } else {
+      setIsSecondDone(true);
+    }
   }, [formData]);
 
   const openEducationMenu = (e) => {
