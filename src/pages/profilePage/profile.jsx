@@ -19,6 +19,7 @@ function Profile() {
   const [popUp, setPopUp] = useState(false);
   const [purpose, setPurpose] = useState('');
   const [toast, setToast] = useState(false);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -32,8 +33,10 @@ function Profile() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false); // 데이터 로드가 완료되면 로딩 상태를 false로 설정
     }
-  }, [dispatch])
+  }, [dispatch]);
 
   const closeModal = (e) => {
     if (e.target.className === "Archive--modal-backdrop") {
@@ -57,6 +60,10 @@ function Profile() {
   useEffect(() => {
     fetchMyInfo();
   }, [fetchMyInfo]);
+
+  if (loading) {
+    return <div>Loading...</div>; // 로딩 중일 때 표시할 내용
+  }
 
   return (
     <div className="ProfilePage--container">
