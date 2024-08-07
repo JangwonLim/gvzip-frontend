@@ -8,8 +8,32 @@ import HistoryDetail from "../../../components/HistoryDetail/HistoryDetail";
 import './../../authenticate/SignUp/ProfileInfo.css';
 import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/cjs";
 import { useGoBack } from "../../../utils/usefulFunctions";
+import EditBottomSheet from "../../../components/BottomSheet/EditBottomSheet";
 
-function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail, newUserInfo}) {
+function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail, newUserInfo, educationNumber, setEducationNumber, openEditEducation, careerNumber, setCareerNumber, openEditCareer}) {
+
+  const [educationMenu, setEducationMenu] = useState(false);
+  const [careerMenu, setCareerMenu] = useState(false);
+
+  const openEducationMenu = (e) => {
+    setEducationMenu(true);
+    setEducationNumber(e.target.id);
+  }
+
+  const closeEducationMenu = (e) => {
+    e.preventDefault();
+    setEducationMenu(false);
+  }
+
+  const openCareerMenu = (e) => {
+    setCareerMenu(true);
+    setCareerNumber(e.target.id);
+  }
+
+  const closeCareerMenu = (e) => {
+    e.preventDefault();
+    setCareerMenu(false);
+  }
 
   return (
     <div className="EditProfileInfo--container">
@@ -73,7 +97,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
                     detail2={data.status} 
                     content={data.major} 
                     index={index}
-                    // openEdit={openEducationMenu}
+                    openEdit={openEducationMenu}
                   />
                 )
               }
@@ -108,7 +132,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
                     detail2={data.duration} 
                     content={data.position} 
                     index={index}
-                    // openEdit={openCareerMenu}
+                    openEdit={openCareerMenu}
                   />
                 )
               }
@@ -158,6 +182,39 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
             <span className="h2-18-sb">저장</span>
           </button>
         </div>
+
+        {
+          educationMenu && (
+            <div 
+              className="EditBottomSheet--modal-background"
+              onClick={(e) => closeEducationMenu(e)}
+            >
+              <EditBottomSheet
+                closeEdit={closeEducationMenu}
+                openEditEducation={openEditEducation}
+                handleChange={handleChange}
+                index={educationNumber}
+                type={"education"}
+              />
+            </div>
+          )
+        }
+        {
+          careerMenu && (
+            <div 
+              className="EditBottomSheet--modal-background"
+              onClick={(e) => closeCareerMenu(e)}
+            >
+              <EditBottomSheet
+                closeEdit={closeCareerMenu}
+                openEditEducation={openEditCareer}
+                handleChange={handleChange}
+                index={careerNumber}
+                type={"career"}
+              />
+            </div>
+          )
+        }
       </div>
     </div>
   )

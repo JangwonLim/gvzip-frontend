@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import EditEducation from "../../authenticate/SignUp/EditEducation";
 import Education from "../../authenticate/SignUp/Education";
 import Career from "../../authenticate/SignUp/Career";
+import EditCareer from "../../authenticate/SignUp/EditCareer";
 
 function EditProfileInfo() {
   const [popUp, setPopUp] = useState(false);
@@ -27,6 +28,9 @@ function EditProfileInfo() {
   const [selectedPicture, setSelectedPicture] = useState(userInfo.profileImageURL);
   const [previewImage, setPreviewImage] = useState(userInfo.profileImageURL);
   const [newUserInfo, setNewUserInfo] = useState(userInfo);
+
+  const [educationNumber, setEducationNumber] = useState(null);
+  const [careerNumber, setCareerNumber] = useState(null);
 
   const [page, setPage] = useState(0);
 
@@ -43,6 +47,14 @@ function EditProfileInfo() {
       setPage(4);
     }
   }, [userInfo, education, career]);
+
+  const openEditEducation = () => {
+
+  }
+
+  const openEditCareer = () => {
+
+  }
 
   const togglePopUp = () => {
     setPopUp(!popUp);
@@ -182,6 +194,10 @@ function EditProfileInfo() {
     handleBackButton();
   }
 
+  const closeEditEducation = () => {
+    setPage(0);
+  }
+
   return(
     <>
       <div className="EditProfileInfo--wrapper">
@@ -207,6 +223,12 @@ function EditProfileInfo() {
               previewImage={previewImage}
               handleEmail={handleEmail}
               newUserInfo={newUserInfo}
+              educationNumber={educationNumber}
+              setEducationNumber={setEducationNumber}
+              openEditEducation={openEditEducation}
+              careerNumber={careerNumber}
+              setCareerNumber={setCareerNumber}
+              openEditCareer={openEditCareer}
             />
           )
         }
@@ -239,6 +261,34 @@ function EditProfileInfo() {
               <div style={{ height: '22px', width: 'auto' }}/>
               <Career
                 handleArrayData={handleArrayData}
+              />
+              <div style={{ height: '22px', width: 'auto' }}/>
+            </>
+          )
+        }
+
+        {
+          (page === 4) && (
+            <>
+              <div style={{ height: '22px', width: 'auto' }}/>
+              <EditEducation
+                handleChange={handleChange}
+                index={educationNumber}
+                closeEditEducation={closeEditEducation}
+              />
+              <div style={{ height: '22px', width: 'auto' }}/>
+            </>
+          )
+        }
+
+        {
+          (page === 5) && (
+            <>
+              <div style={{ height: '22px', width: 'auto' }}/>
+              <EditCareer
+                handleChange={handleChange}
+                index={careerNumber}
+                closeEditEducation={closeEditEducation}
               />
               <div style={{ height: '22px', width: 'auto' }}/>
             </>
