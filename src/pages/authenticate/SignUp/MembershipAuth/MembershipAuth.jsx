@@ -142,6 +142,7 @@ function MembershipAuth() {
     } else if (alumniType === 1) {
       setIsValidAuth(parentsAuth.name.length > 0 && isValidDoB);
     } else if (alumniType === 2) {
+      console.log(studentAuth)
       setIsValidAuth(studentAuth.length > 0);
     } else if (alumniType === 3) {
       setIsValidAuth(teacherAuth.length > 0);
