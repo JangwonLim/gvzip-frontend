@@ -150,9 +150,9 @@ function MyInfoCard({data, setModal}) {
             <div className="MyInfoCard--header-container">
               <div className="MyInfoCard--header-text">
                 <span className="pc-body fs-14" style={{ color: "#66707A"}}>
-                {data.campus} 
-                {generation()} 
-                {membership()} <br />
+                {data.campus}&nbsp;
+                {generation()}&nbsp;
+                {membership()}<br />
                 {location}
                 </span>
               </div>

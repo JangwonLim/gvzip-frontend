@@ -30,9 +30,9 @@ function Card({data, setModal, setModalInfo}) {
       <div className="Card--header-container">
         <div className="Card--header-text">
           <span className="b0-10-m" style={{ color: "#66707A"}}>
-            {data.campus} 
-            {generation()} 
-            {membership()} <br />
+            {data.campus}&nbsp;
+            {generation()}&nbsp;
+            {membership()}<br />
             {location}
           </span>
         </div>
