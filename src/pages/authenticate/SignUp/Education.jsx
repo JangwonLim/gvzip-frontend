@@ -6,11 +6,9 @@ import Introduction from "../../../components/SignUpComponents/Introduction";
 import ButtonSelection from "../../../components/SignUpComponents/ButtonSelection";
 import { useDispatch } from "react-redux";
 import { addEducation } from "../../../redux/store";
-import { useNavigate } from "react-router-dom";
 
 function Education({handleArrayData}) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const statusList = ["재학", "휴학", "졸업"];
   const degreeList = ["학사", "석사", "박사"];
