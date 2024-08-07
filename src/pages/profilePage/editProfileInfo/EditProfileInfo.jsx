@@ -150,18 +150,22 @@ function EditProfileInfo() {
 
   const handleEmail = (event) => {
     const { name, value } = event.target;
-    if (validator.isEmail(value) && userInfo.email.length === 0) {
+    if (validator.isEmail(value)) {
       setIsValidEmail(true);
       setNewUserInfo((prevState) => ({
         ...prevState,
         [name]: value
       }));
-    } else if (userInfo.email.length > 0) {
-      setIsValidEmail(true);
     } else {
       setIsValidEmail(false);
     }
   }
+
+  useEffect(() => {
+    if (userInfo.email.length > 0) {
+      setIsValidEmail(true);
+    }
+  }, [userInfo]);
 
   const handleTitle = () => {
     switch(page) {
