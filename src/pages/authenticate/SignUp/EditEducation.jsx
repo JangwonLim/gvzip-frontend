@@ -46,6 +46,8 @@ function EditEducation({handleChange, index, closeEditEducation}) {
     }
   }, [index, educations]);
 
+  console.log(yearData);
+
 
   useEffect(() => {
     const isSchoolNameValid = yearData.schoolName.length > 0;
