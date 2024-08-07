@@ -275,7 +275,7 @@ function MembershipAuth() {
                 type="text" 
                 style={{ marginBottom: "132px" }}
                 onChange={(e) => {
-                  alumniType === 0 ? handleStudent(e) : handleTeacher(e);
+                  alumniType === 2 ? handleStudent(e) : handleTeacher(e);
                 }}
               />
             </div>
