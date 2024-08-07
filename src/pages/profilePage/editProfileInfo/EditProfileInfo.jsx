@@ -221,7 +221,7 @@ function EditProfileInfo() {
             <>
               <div style={{ height: '22px', width: 'auto' }}/>
               <Education
-                handleChange={handleArrayData}
+                handleArrayData={handleArrayData}
               />
               <div style={{ height: '22px', width: 'auto' }}/>
             </>
@@ -233,7 +233,7 @@ function EditProfileInfo() {
             <>
               <div style={{ height: '22px', width: 'auto' }}/>
               <Career
-                handleChange={handleArrayData}
+                handleArrayData={handleArrayData}
               />
               <div style={{ height: '22px', width: 'auto' }}/>
             </>
