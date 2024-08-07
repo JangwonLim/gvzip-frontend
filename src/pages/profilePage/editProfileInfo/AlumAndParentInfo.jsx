@@ -446,7 +446,7 @@ function Location({ formData, handleChange }) {
           id="country"
           className={"Profile--dropdown-menu" + (formData.country === "" ? " placeholder" : "")}
           onChange={(e) => onClickCountry(e)}
-          value={countryid}
+          defaultValue={countryid}
         >
           <option value="0" disabled>국가 선택</option>
           {countriesList.map((item) => (
@@ -458,7 +458,7 @@ function Location({ formData, handleChange }) {
           id="state"
           className={"Profile--dropdown-menu" + (state === "" ? " placeholder" : "")}
           onChange={(e) => onClickState(e)}
-          value={stateid}
+          defaultValue={stateid}
           disabled={!countryid || (stateList.length === 0)}
         >
           <option value="0" disabled>주 선택</option>
@@ -471,7 +471,7 @@ function Location({ formData, handleChange }) {
           id="city"
           className={"Profile--dropdown-menu" + (city === "" ? " placeholder" : "")}
           onChange={(e) => onClickCity(e)}
-          value={cityid}
+          defaultValue={cityid}
           disabled={!stateid || (cityList.length === 0)}
         >
           <option value="0" disabled>도시 선택</option>
