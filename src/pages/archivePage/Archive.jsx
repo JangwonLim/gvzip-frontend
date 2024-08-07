@@ -45,6 +45,7 @@ function Archive() {
   };
 
   const [filterData, setFilterData] = useState(initialFilterData);
+  const [initialSearchingWord, setInitialSearchingWord] = useState(filterData.searchingWord)
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -251,8 +252,8 @@ function Archive() {
               isLoading ? (
                 <p>Loading...</p>
               ) : (
-                (filterData.searchingWord.length > 0 && info.length === 0) ? (
-                  <NoResult searchingWord={filterData.searchingWord}/>
+                (initialSearchingWord.length > 0 && info.length === 0) ? (
+                  <NoResult searchingWord={initialSearchingWord}/>
                 ) : (
                   info.map((item, i) => {
                     return (

@@ -132,11 +132,11 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
       {/* Location */}
       <div className="Profile--content-section wide-gap">
         <div style={{ display: "flex", alignContent: "center", gap: "4px" }}>
-          <img 
+          {/* <img 
             style={{ height: "16px", width: "16px", marginTop: "2px" }}
             src={require("../../assets/filter-location.png")} 
             alt="location"
-          />
+          /> */}
           <span className="b7-16-sb">위치</span>
         </div>
         {/* Country selection */}
@@ -196,7 +196,7 @@ function MobileFilterContent({contentProps, onClickFilterOptions, resetFilter}) 
       {/* Fields */}
       <div className="Profile--content-section wide-gap">
         <div style={{ display: "flex", alignContent: "center", gap: "4px" }}>
-          <img src={require("../../assets/filter-fields.png")} alt="fields" />
+          {/* <img src={require("../../assets/filter-fields.png")} alt="fields" /> */}
           <span className="b7-16-sb">분야</span>
         </div>
 
