@@ -96,12 +96,23 @@ function MyInfoCard({data}) {
   }
 
   const location = [data.city ?? '', data.country ?? ''].filter(Boolean).join(', ');
+
+  const generation = () => {
+    if (data.alumniType === 0) {
+      return data.generation + "회 ";
+    }
+  }
   
   return(
     <div className="SuccessCard--container">
       <div className="SuccessCard--header-container">
         <div className="SuccessCard--header-text">
-          <span className="pc-body fs-14" style={{ color: "#66707A"}}>{data.campus} {data.generation}회 {membership()}<br /> {location}</span>
+          <span className="pc-body fs-14" style={{ color: "#66707A"}}>
+            {data.campus}&nbsp;
+            {generation()}
+            {membership()}<br />
+            {location}
+          </span>
         </div>
 
         <div className="SuccessCard--header-img-container">
