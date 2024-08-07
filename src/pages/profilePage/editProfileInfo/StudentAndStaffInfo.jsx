@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './editProfileInfo.css';
 import './../../../styles/defaultDesign.css';
 import Email from "../../../components/SignUpComponents/Email";
@@ -8,7 +8,7 @@ import Year from "../../../components/SignUpComponents/Year";
 import { useGoBack } from "../../../utils/usefulFunctions";
 import Introduction from "../../../components/SignUpComponents/Introduction";
 
-function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmail, handleEmail}) {
+function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmail, handleEmail, newUserInfo}) {
 
   const campusList = ['음성', '문경', '미국'];
 
@@ -32,6 +32,29 @@ function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmai
       return "재직 캠퍼스"
     }
   }
+
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    if (userInfo.alumniType === 2) {
+      setIsValid(
+        isValidEmail && (
+          userInfo.email !== newUserInfo.email ||
+          userInfo.campus !== newUserInfo.campus ||
+          userInfo.entranceYear !== newUserInfo.entranceYear ||
+          userInfo.expectedGraduationYear !== newUserInfo.expectedGraduationYear
+        )
+      )
+    } else {
+      setIsValid(
+        isValidEmail && (
+          userInfo.email !== newUserInfo.email ||
+          userInfo.campus !== newUserInfo.campus ||
+          userInfo.introduction !== newUserInfo.introduction
+        )
+      )
+    }
+  }, [isValidEmail, userInfo, newUserInfo])
 
   return (
     <div className="EditProfileInfo--container">
@@ -94,7 +117,7 @@ function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmai
           </button>
           <button 
             onClick={updateProfile}
-            disabled
+            disabled={!isValid}
             className="ProfilePage--button black"
           >
             <span className="h2-18-sb">저장</span>

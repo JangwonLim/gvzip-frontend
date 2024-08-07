@@ -255,8 +255,9 @@ function EditProfileInfo() {
               userInfo={userInfo}
               handleChange={handleChange}
               updateProfile={updateProfile}
-              handleEmail={handleEmail}
               isValidEmail={isValidEmail}
+              handleEmail={handleEmail}
+              newUserInfo={newUserInfo}
             />
           )
         }
