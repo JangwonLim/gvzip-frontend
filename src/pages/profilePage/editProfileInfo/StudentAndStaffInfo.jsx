@@ -8,11 +8,7 @@ import Year from "../../../components/SignUpComponents/Year";
 import { useGoBack } from "../../../utils/usefulFunctions";
 import Introduction from "../../../components/SignUpComponents/Introduction";
 
-function StudentAndStaffInfo({userInfo}) {
-  
-  const handleChange = () => {
-    //TODO
-  }
+function StudentAndStaffInfo({userInfo, handleChange, updateProfile, isValidEmail, handleEmail}) {
 
   const campusList = ['음성', '문경', '미국'];
 
@@ -42,6 +38,8 @@ function StudentAndStaffInfo({userInfo}) {
       <div className="EditProfileInfo--additional-info">
         <Email
           formData={userInfo}
+          handleEmail={handleEmail}
+          isValidEmail={isValidEmail}
         />
 
         <ButtonSelection 
@@ -95,7 +93,7 @@ function StudentAndStaffInfo({userInfo}) {
             <span className="h2-18-sb">취소</span>
           </button>
           <button 
-            // onClick={changeProfilePicture}
+            onClick={updateProfile}
             disabled
             className="ProfilePage--button black"
           >

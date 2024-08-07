@@ -239,6 +239,7 @@ function EditProfileInfo() {
               careerNumber={careerNumber}
               setCareerNumber={setCareerNumber}
               openEditCareer={openEditCareer}
+              isValidEmail={isValidEmail}
             />
           )
         }
@@ -249,6 +250,8 @@ function EditProfileInfo() {
               userInfo={userInfo}
               handleChange={handleChange}
               updateProfile={updateProfile}
+              handleEmail={handleEmail}
+              isValidEmail={isValidEmail}
             />
           )
         }

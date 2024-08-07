@@ -10,7 +10,7 @@ import { GetCity, GetCountries, GetState } from "react-country-state-city/dist/c
 import { useGoBack } from "../../../utils/usefulFunctions";
 import EditBottomSheet from "../../../components/BottomSheet/EditBottomSheet";
 
-function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail, newUserInfo, educationNumber, setEducationNumber, openEditEducation, careerNumber, setCareerNumber, openEditCareer}) {
+function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImageChange, handleChange, updateProfile, previewImage, handleEmail, newUserInfo, educationNumber, setEducationNumber, openEditEducation, careerNumber, setCareerNumber, openEditCareer, isValidEmail}) {
 
   const [educationMenu, setEducationMenu] = useState(false);
   const [careerMenu, setCareerMenu] = useState(false);
@@ -83,6 +83,7 @@ function AlumAndParentInfo({toggleEducation, toggleCareer, userInfo, handleImage
         <Email
           formData={userInfo}
           handleEmail={handleEmail}
+          isValidEmail={isValidEmail}
         />
 
         <div className="Profile--content-section wide-gap">
@@ -276,7 +277,7 @@ function Fields({formData, handleChange}) {
               className={"Profile--button field" + ([fields.field1, fields.field2, fields.field3].includes(option) ? " selected" : "")}
               key={option}
               onClick={() => onClickFields(option)}
-              value={formData["field1"]}
+              value={option}
             >
               <span className="b7-16-sb">
                 {option}
